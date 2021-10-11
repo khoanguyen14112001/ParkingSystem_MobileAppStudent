@@ -7,30 +7,22 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
-import android.view.DragEvent;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.textclassifier.TextLanguage;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginScreen extends AppCompatActivity {
 
@@ -51,6 +43,15 @@ public class LoginScreen extends AppCompatActivity {
         txtForgotPassword = findViewById(R.id.txtForgotPassword);
     }
 
+    private void setCustomColor(EditText edtCanSua, int edtColor, int iconColor, int textColor)
+    {
+        // Chỉnh màu cho thanh edit text khi gặp error, focus, ...
+
+        edtCanSua.setBackground(ContextCompat.getDrawable(LoginScreen.this,edtColor));
+        edtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(LoginScreen.this,iconColor));
+        edtCanSua.setTextColor(ContextCompat.getColorStateList(LoginScreen.this,textColor));
+    }
+
     private Boolean validateEmail(){
         String email = edtEmail.getText().toString();
         String emailPattern1 = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -59,26 +60,19 @@ public class LoginScreen extends AppCompatActivity {
         if (email.isEmpty()){
             txtErrorEmail.setText("Field cannot be empty");
             txtErrorEmail.setTextSize(15);
-            edtEmail.setBackground(ContextCompat.getDrawable(LoginScreen.this,R.drawable.edt_custom_error));
-            edtEmail.setCompoundDrawableTintList(ContextCompat.getColorStateList(LoginScreen.this,R.color.red));
-            edtEmail.setTextColor(ContextCompat.getColorStateList(LoginScreen.this,R.color.red));
+            setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
 
          if (!email.matches(emailPattern1) && !email.matches(emailPattern2)) {
              txtErrorEmail.setText("Invalid email address");
              txtErrorEmail.setTextSize(15);
-             edtEmail.setBackground(ContextCompat.getDrawable(LoginScreen.this,R.drawable.edt_custom_error));
-             edtEmail.setCompoundDrawableTintList(ContextCompat.getColorStateList(LoginScreen.this,R.color.red));
-             edtEmail.setTextColor(ContextCompat.getColorStateList(LoginScreen.this,R.color.red));
-
+             setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
              return false;
         }
 
         else {
-            edtEmail.setBackground(ContextCompat.getDrawable(LoginScreen.this,R.drawable.custom_edt));
-            edtEmail.setCompoundDrawableTintList(ContextCompat.getColorStateList(LoginScreen.this,R.color.blackUI));
-            edtEmail.setTextColor(ContextCompat.getColorStateList(LoginScreen.this,R.color.xamChu));
+            setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             txtErrorEmail.setText(null);
             txtErrorEmail.setTextSize(0);
             return true;
@@ -92,18 +86,13 @@ public class LoginScreen extends AppCompatActivity {
         if (password.isEmpty()){
             txtErrorPassword.setText("Field cannot be empty");
             txtErrorPassword.setTextSize(15);
-            edtPassword.setBackground(ContextCompat.getDrawable(LoginScreen.this,R.drawable.edt_custom_error));
-            edtPassword.setCompoundDrawableTintList(ContextCompat.getColorStateList(LoginScreen.this,R.color.red));
-            edtPassword.setTextColor(ContextCompat.getColorStateList(LoginScreen.this,R.color.red));
-
-
+            setCustomColor(edtPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
 
         else {
-            edtPassword.setBackground(ContextCompat.getDrawable(LoginScreen.this,R.drawable.custom_edt));
-            edtPassword.setCompoundDrawableTintList(ContextCompat.getColorStateList(LoginScreen.this,R.color.blackUI));
-            edtPassword.setTextColor(ContextCompat.getColorStateList(LoginScreen.this,R.color.xamChu));
+
+            setCustomColor(edtPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             txtErrorPassword.setText(null);
             txtErrorPassword.setTextSize(0);
             return true;
@@ -160,9 +149,7 @@ public class LoginScreen extends AppCompatActivity {
         edtEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                edtEmail.setBackground(ContextCompat.getDrawable(LoginScreen.this,R.drawable.custom_edt));
-                edtEmail.setCompoundDrawableTintList(ContextCompat.getColorStateList(LoginScreen.this,R.color.blackUI));
-                edtEmail.setTextColor(ContextCompat.getColorStateList(LoginScreen.this,R.color.xamChu));
+                setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
                 txtErrorEmail.setText(null);
                 txtErrorEmail.setTextSize(0);
             }
@@ -181,9 +168,7 @@ public class LoginScreen extends AppCompatActivity {
         edtPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                edtPassword.setBackground(ContextCompat.getDrawable(LoginScreen.this,R.drawable.custom_edt));
-                edtPassword.setCompoundDrawableTintList(ContextCompat.getColorStateList(LoginScreen.this,R.color.blackUI));
-                edtPassword.setTextColor(ContextCompat.getColorStateList(LoginScreen.this,R.color.xamChu));
+                setCustomColor(edtPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
                 txtErrorPassword.setText(null);
                 txtErrorPassword.setTextSize(0);
             }
@@ -200,6 +185,7 @@ public class LoginScreen extends AppCompatActivity {
         });
 
         imgPasswordToggleClose.setOnClickListener(new View.OnClickListener() {
+            // Ẩn hiện password
             @Override
             public void onClick(View view) {
                 if(edtPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
@@ -221,6 +207,7 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                // Validate password và email
                 if(!validateEmail() | !validatePassword()){
 
                     edtEmail.clearFocus();
@@ -232,27 +219,33 @@ public class LoginScreen extends AppCompatActivity {
 
                 else
                 {
+                    // Nếu lần thử > 4 --> bát user chờ 30s, tăng trytime (số lần bị khóa) lên 1 lần
                     String email = edtEmail.getText().toString();
                     String password = edtPassword.getText().toString();
                     if(attemp > 4)
                     {
-                        setAttemp("Too many failed login. Try again in 30 seconds",30000);
+                        setAttemp(3000);
                         trytime++;
                         edtEmail.clearFocus();
                         edtPassword.clearFocus();
                     }
+                    // Nếu lần thử <= 4 --> thực hiện verify email và password
 
                     else if(attemp<4| attemp==4)
                     {
+                        // Nếu đúng thì cho user đi tiếp, reset lại attemp và trytime
                         if(email.equals("123@gmail.com")&&password.equals("123"))
                         {
                             Toast t = Toast.makeText(LoginScreen.this,"login zo",Toast.LENGTH_SHORT);
                             t.setGravity(Gravity.CENTER|Gravity.TOP, 0, 10);
                             t.show();
-                            attemp=0;
+                            attemp=1;
+                            trytime=0;
                         }
+                        // Nếu sai thì bắt đầu làm tiếp như sau:
                         else
                         {
+                            // Nếu số lần bị khóa < 3 lần --> tạo hộp thoại dialog thông báo sai password và email
                             if(trytime<3)
                             {
                                 createDialog();
@@ -260,10 +253,11 @@ public class LoginScreen extends AppCompatActivity {
                                 edtEmail.clearFocus();
                                 edtPassword.clearFocus();
                             }
+                            // Nếu lần bị khóa thứ 3 rồi, set time cho user phải chờ đến 1 tiếng, sau đó set trytime lại từ đầu
 
                             if(trytime==3)
                             {
-                                setAttemp("Too many failed login. Try again in an hour",3600000);
+                                setAttemp(3600000);
                                 trytime = 0;
                                 edtEmail.clearFocus();
                                 edtPassword.clearFocus();
@@ -286,18 +280,12 @@ public class LoginScreen extends AppCompatActivity {
             }
         });
 
-        txtForgotPassword.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View view, DragEvent dragEvent) {
-                return false;
-            }
-        });
-
 
     }
 
-    private void setAttemp(String noiDungBlock, int time) {
+    private void setAttemp(int time) {
 
+            // Nếu attemp(lần thử) > 4 --> block hết phần nhập của user và mở lại sau 30s
             btnLogin.setEnabled(false);
             edtEmail.setEnabled(false);
             edtPassword.setEnabled(false);
@@ -310,12 +298,22 @@ public class LoginScreen extends AppCompatActivity {
 
             btnLogin.setBackground(ContextCompat.getDrawable(LoginScreen.this, R.drawable.button_login_block));
             btnLogin.setTextColor(ContextCompat.getColor(LoginScreen.this, R.color.xamBlcok));
-            txtErrorLogTooMuch.setText(noiDungBlock);
-            txtErrorLogTooMuch.setTextSize(15);
 
+            // set time mở lại cho user
             new CountDownTimer(time, 10) { //Set Timer for 5 seconds
                 public void onTick(long millisUntilFinished) {
+                    long remainedSecs = millisUntilFinished / 1000;
+                    if(time ==5000) {
+                        txtErrorLogTooMuch.setTextSize(15);
+                        txtErrorLogTooMuch.setText("Too many failed login. Try again in " + (remainedSecs % 60) + " seconds");
+                    }
+                    else
+                    {
+                        txtErrorLogTooMuch.setTextSize(15);
+                        txtErrorLogTooMuch.setText("Too many failed login. Try again after 1 hour");
+                    }
                 }
+
 
                 @Override
                 public void onFinish() {
@@ -323,21 +321,25 @@ public class LoginScreen extends AppCompatActivity {
                     edtPassword.setEnabled(true);
                     btnLogin.setEnabled(true);
                     imgPasswordToggleClose.setEnabled(true);
+
                     edtPassword.setCompoundDrawableTintList(ContextCompat.getColorStateList(LoginScreen.this, R.color.blackUI));
                     edtPassword.setBackground(ContextCompat.getDrawable(LoginScreen.this, R.drawable.custom_edt));
+
                     btnLogin.setBackground(ContextCompat.getDrawable(LoginScreen.this, R.drawable.button_login));
                     btnLogin.setTextColor(ContextCompat.getColor(LoginScreen.this, R.color.blackUI));
+
                     edtEmail.setCompoundDrawableTintList(ContextCompat.getColorStateList(LoginScreen.this, R.color.blackUI));
                     edtEmail.setBackground(ContextCompat.getDrawable(LoginScreen.this, R.drawable.custom_edt));
+
                     txtErrorLogTooMuch.setText("");
                     txtErrorLogTooMuch.setTextSize(0);
                 }
             }.start();
-
-            attemp = 0;
-
+            // Chỉnh lại attemp ở mức 1
+            attemp = 1;
 
 
     }
+
 
 }
