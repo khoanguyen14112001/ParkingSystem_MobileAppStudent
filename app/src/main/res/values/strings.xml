@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="sign_up">
+         <u>Sign up</u>
+    </string>
+    <string name="login_failed">Login Failed</string>
+    <string name="warning_wrong_password_try_again">Your email or password is incorrect. \nPlease try again</string>
+    <string name="ok">OK</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+</resources>
