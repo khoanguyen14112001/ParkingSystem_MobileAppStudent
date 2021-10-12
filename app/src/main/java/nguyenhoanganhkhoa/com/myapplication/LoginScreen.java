@@ -144,6 +144,21 @@ public class LoginScreen extends AppCompatActivity {
     int attemp = 1;
     int trytime = 0;
 
+    private void showHidePassword(EditText edtPass, View view ) {
+        if(edtPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+            ((ImageView)(view)).setImageResource(R.drawable.ic_open_toggle);
+            //Show Password
+            edtPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+        }
+        else{
+            ((ImageView)(view)).setImageResource(R.drawable.ic_close_toggle);
+            //Hide Password
+            edtPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
+
+    }
+
     private void addEvents() {
 
         edtEmail.addTextChangedListener(new TextWatcher() {
@@ -188,19 +203,13 @@ public class LoginScreen extends AppCompatActivity {
             // Ẩn hiện password
             @Override
             public void onClick(View view) {
-                if(edtPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-                    ((ImageView)(view)).setImageResource(R.drawable.ic_open_toggle);
-                    //Show Password
-                    edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-
-                }
-                else{
-                    ((ImageView)(view)).setImageResource(R.drawable.ic_close_toggle);
-                    //Hide Password
-                    edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
+                showHidePassword(edtPassword,view);
             }
         });
+
+
+
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
@@ -224,7 +233,7 @@ public class LoginScreen extends AppCompatActivity {
                     String password = edtPassword.getText().toString();
                     if(attemp > 4)
                     {
-                        setAttemp(3000);
+                        setAttemp(30000);
                         trytime++;
                         edtEmail.clearFocus();
                         edtPassword.clearFocus();
@@ -283,6 +292,8 @@ public class LoginScreen extends AppCompatActivity {
 
     }
 
+
+
     private void setAttemp(int time) {
 
             // Nếu attemp(lần thử) > 4 --> block hết phần nhập của user và mở lại sau 30s
@@ -303,7 +314,7 @@ public class LoginScreen extends AppCompatActivity {
             new CountDownTimer(time, 10) { //Set Timer for 5 seconds
                 public void onTick(long millisUntilFinished) {
                     long remainedSecs = millisUntilFinished / 1000;
-                    if(time ==5000) {
+                    if(time ==30000) {
                         txtErrorLogTooMuch.setTextSize(15);
                         txtErrorLogTooMuch.setText("Too many failed login. Try again in " + (remainedSecs % 60) + " seconds");
                     }
