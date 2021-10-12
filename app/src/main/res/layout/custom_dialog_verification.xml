@@ -12,7 +12,7 @@
         android:text="@string/varification_failed"
         android:gravity="center"
         android:fontFamily="@font/fjalla_one_regular"
-        android:textSize="64px"
+        android:textSize="24.5sp"
         android:textColor="@color/black"/>
 
     <TextView
@@ -21,19 +21,19 @@
         android:gravity="center"
         android:fontFamily="@font/be_vietnam_light"
         android:textColor="@color/black"
-        android:layout_marginTop="11px"
+        android:layout_marginTop="30dp"
         android:text="@string/your_vertification_code_is_incorrect"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
-        android:layout_height="100px"
+        android:layout_height="40dp"
         android:background="@drawable/button_dialog_custom"
         android:text="@string/cancel"
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:id="@+id/btnOK"
-        android:textSize="45px"
-        android:layout_marginTop="50px"
+        android:textSize="16sp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/be_vietnam_medium"
         />
 

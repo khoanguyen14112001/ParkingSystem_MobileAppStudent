@@ -13,6 +13,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -317,12 +318,12 @@ public class LoginScreen extends AppCompatActivity {
                 public void onTick(long millisUntilFinished) {
                     long remainedSecs = millisUntilFinished / 1000;
                     if(time ==30000) {
-                        txtErrorLogTooMuch.setTextSize(15);
+                        txtErrorLogTooMuch.setTextSize(TypedValue.COMPLEX_UNIT_SP,13);
                         txtErrorLogTooMuch.setText("Too many failed login. Try again in " + (remainedSecs % 60) + " seconds");
                     }
                     else
                     {
-                        txtErrorLogTooMuch.setTextSize(15);
+                        txtErrorLogTooMuch.setTextSize(TypedValue.COMPLEX_UNIT_SP,13);
                         txtErrorLogTooMuch.setText("Too many failed login. Try again after 1 hour");
                     }
                 }

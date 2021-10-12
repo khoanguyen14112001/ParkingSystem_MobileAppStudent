@@ -20,4 +20,15 @@
     <string name="log_in">Log in</string>
     <string name="varification_failed">Varification failed</string>
     <string name="cancel">Cancel</string>
+    <string name="welcome_to_nmy_parking_system">Welcome to \nmy parking system!</string>
+    <string name="sign_in_with_google">Sign in with google</string>
+    <string name="login_to_existent_account">Login to existent account</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="don_t_have_an_account">Don\'t have an account? </string>
+    <string name="update">Update</string>
+    <string name="phone">Phone</string>
+    <string name="send">Send</string>
+    <string name="enter_your_verification_code_n_we_just_sent_to_your_phone">Enter your verification code \n we just sent to your phone</string>
+    <string name="verify">Verify</string>
+    <string name="you_didn_t_receive_a_code">You didn’t receive a code?\u0020</string>
 </resources>

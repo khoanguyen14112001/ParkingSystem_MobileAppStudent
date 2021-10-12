@@ -24,7 +24,7 @@ import android.widget.TextView;
 public class CreateNewPasswordScreen extends AppCompatActivity {
 
     EditText edtNewPassword, edtConfirmPassword;
-    ImageView imgPasswordToggle1, imgPasswordToggle2;
+    ImageView imgPasswordToggle1, imgPasswordToggle2, imvComeback;
     TextView txtErrorChangePass, txtErrorConfirmPass;
     Button btnUpdate,btnOK;
 
@@ -36,6 +36,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         txtErrorChangePass = findViewById(R.id.txtErrorChangePass);
         txtErrorConfirmPass = findViewById(R.id.txtErrorConfirmPass);
         btnUpdate = findViewById(R.id.btnUpdate);
+        imvComeback = findViewById(R.id.imvComebackCreateNewPassword);
     }
 
 
@@ -54,6 +55,14 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
     }
 
     private void addEvents() {
+
+        imvComeback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         edtNewPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
