@@ -18,4 +18,6 @@
     <string name="successful">Successful</string>
     <string name="your_password_has_been_updated">Your password has been updated</string>
     <string name="log_in">Log in</string>
+    <string name="varification_failed">Varification failed</string>
+    <string name="cancel">Cancel</string>
 </resources>
