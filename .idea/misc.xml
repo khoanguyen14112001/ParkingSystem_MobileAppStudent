@@ -36,8 +36,10 @@
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/activity_login_screen.xml" value="0.22" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/activity_main2.xml" value="0.22" />
-        <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/activity_reset_password_screen.xml" value="0.16666666666666666" />
+        <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/activity_reset_password_screen.xml" value="0.4466666666666667" />
+        <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/activity_verification_screen.xml" value="0.22" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_login.xml" value="0.4466666666666667" />
+        <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_verification.xml" value="0.5" />
       </map>
     </option>
   </component>

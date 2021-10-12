@@ -8,4 +8,8 @@
     <string name="ok">OK</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="verification">Verification</string>
+    <string name="resend"><u>Resend</u></string>
+    <string name="error">Error</string>
+    <string name="your_vertification_code_is_incorrect">Your vertification code is incorrect</string>
 </resources>

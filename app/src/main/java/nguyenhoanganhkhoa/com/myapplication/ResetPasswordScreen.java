@@ -4,6 +4,7 @@ import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -72,6 +73,10 @@ public class ResetPasswordScreen extends AppCompatActivity {
                 if(!validatePhoner()){
                     edtPhone.clearFocus();
                     return;
+                }
+                else {
+                    Intent intent = new Intent(ResetPasswordScreen.this,VerificationScreen.class);
+                    startActivity(intent);
                 }
 
 

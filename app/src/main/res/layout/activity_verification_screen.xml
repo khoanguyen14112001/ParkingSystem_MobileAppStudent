@@ -22,7 +22,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.075"
-        android:id="@+id/gLeft2"
+        android:id="@+id/gLeft3"
 
         />
 
@@ -31,7 +31,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.925"
-        android:id="@+id/gRight2"/>
+        android:id="@+id/gRight3"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintVertical_bias="0.03"
         android:backgroundTint="@color/white"
-        android:id="@+id/imvResetBack"/>
+        android:id="@+id/imvResetBackVerification"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,19 +57,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.12"
         android:textColor="@color/black"
-        android:id="@+id/txtResetPass"
-        android:text="Reset password"
+        android:id="@+id/txtVerification"
+        android:text="@string/verification"
         android:gravity="center"
         android:textSize="82px"
         />
-    
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txtResetPass"
+        app:layout_constraintTop_toBottomOf="@id/txtVerification"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/imvResetBackScreen"
+        android:id="@+id/imvVerificationScreen"
         app:layout_constraintBottom_toBottomOf="parent"
         android:src="@drawable/img_forgot_pass"
         app:layout_constraintVertical_bias="0.07"
@@ -78,46 +78,65 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/imvResetBackScreen"
+        app:layout_constraintTop_toBottomOf="@id/imvVerificationScreen"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintVertical_bias="0.05"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Enter your phone number \nand we’ll send a code to your phone"
+        android:text="Enter your verification code \n
+we just sent to your phone"
         android:gravity="center"
-        android:id="@+id/txtEnterPhone"
+        android:id="@+id/txtVerificationCode"
         android:fontFamily="@font/be_vietnam_medium"
         android:textColor="#AB000000"/>
 
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txtEnterPhone"
-        app:layout_constraintLeft_toLeftOf="@id/gLeft2"
-        app:layout_constraintRight_toRightOf="@id/gRight2"
+    <com.chaos.view.PinView
+        app:layout_constraintTop_toBottomOf="@id/txtVerificationCode"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintVertical_bias="0.09"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/custom_edt"
-        android:inputType="phone"
-        android:textSize="36px"
-        android:drawableStart="@drawable/ic_phone"
-        android:paddingTop="36px"
-        android:paddingBottom= "36px"
-        android:paddingLeft="52px"
-        android:drawablePadding="36px"
-        android:hint="Phone"
-        android:id="@+id/edtPhone"
-        android:textColor="@color/xamChu"
-        android:fontFamily="@font/be_vietnam_light"
-        android:textColorHint="#8F8E8E"
+        android:id="@+id/pvVerification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:cursorVisible="true"
+        android:inputType="number"
+        android:itemBackground="@color/primary_yellow"
+        android:textSize="90px"
+        android:fontFamily="@font/be_vietnam_medium"
+        style="@style/PinWidget.PinView"
+        app:cursorWidth="2dp"
+        app:hideLineWhenFilled="true"
+        app:itemCount="4"
+        app:itemHeight="157px"
+        app:itemRadius="20px"
+        app:lineColor="@color/primary_yellow"
+        app:itemSpacing="70px"
+        app:itemWidth="128px"
+        app:lineWidth="2dp"
+        app:viewType="rectangle"/>
 
-        />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="106px"
+        android:background="@drawable/button_login"
+        android:text="Verify"
+        app:layout_constraintTop_toBottomOf="@id/imvVerificationScreen"
+        app:layout_constraintLeft_toLeftOf="@id/gLeft3"
+        app:layout_constraintRight_toRightOf="@id/gRight3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.6"
+        android:textAllCaps="false"
+        android:fontFamily="@font/be_vietnam_medium"
+        android:textColor="@color/black"
+        android:textSize="45px"
+        android:id="@+id/btnVerify" />
+   <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="0px"
-        android:id="@+id/txtErrorPhone"
+        android:id="@+id/txtErrorCode"
         android:textColor="@color/red"
         android:fontFamily="@font/be_vietnam_medium"
         android:paddingLeft="140px"
@@ -125,26 +144,37 @@
         android:text="ádasdasds"
 
 
-        app:layout_constraintTop_toBottomOf="@id/edtPhone"
-        app:layout_constraintLeft_toLeftOf="@id/gLeft2"
-        app:layout_constraintRight_toRightOf="@id/gRight2"/>
+        app:layout_constraintTop_toBottomOf="@id/pvVerification"
+        app:layout_constraintLeft_toLeftOf="@id/gLeft3"
+        app:layout_constraintRight_toRightOf="@id/gRight3"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="106px"
-        android:background="@drawable/button_login"
-        android:text="Send"
-        app:layout_constraintTop_toBottomOf="@id/imvResetBackScreen"
-        app:layout_constraintLeft_toLeftOf="@id/gLeft2"
-        app:layout_constraintRight_toRightOf="@id/gRight2"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@+id/gLeft3"
+        app:layout_constraintRight_toRightOf="@id/gRight3"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.6"
-        android:textAllCaps="false"
-        android:fontFamily="@font/be_vietnam_medium"
-        android:textColor="@color/black"
-        android:textSize="45px"
-        android:id="@+id/btnSendPassword"
+        app:layout_constraintTop_toBottomOf="@+id/btnVerify"
+        app:layout_constraintVertical_bias="0.3"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You didn’t receive a code? "
+            android:fontFamily="@font/be_vietnam_medium"
+            android:textColor="#AB000000"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resend"
+            android:textColor="@color/primary_yellow"
+            android:fontFamily="@font/be_vietnam_bold"
+            />
+    </LinearLayout>
 
 
-        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
