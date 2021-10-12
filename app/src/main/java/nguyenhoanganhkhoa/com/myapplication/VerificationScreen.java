@@ -3,6 +3,8 @@ package nguyenhoanganhkhoa.com.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,11 +23,13 @@ public class VerificationScreen extends AppCompatActivity {
     PinView pv;
     TextView txtErrorCode;
     Button btnVerify, btnOK;
+    ImageView imvComeback;
 
     private void linkView() {
         pv = findViewById(R.id.pvVerification);
         txtErrorCode = findViewById(R.id.txtErrorCode);
         btnVerify = findViewById(R.id.btnVerify);
+        imvComeback = findViewById(R.id.imvComebackVerification);
 
     }
     @Override
@@ -52,6 +57,13 @@ public class VerificationScreen extends AppCompatActivity {
 
 
     private void addEvents() {
+        imvComeback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,11 +75,12 @@ public class VerificationScreen extends AppCompatActivity {
                 else
                 {
                     if (pv.getText().toString().equals("1234")) {
-                        //
+                        Intent intent = new Intent(VerificationScreen.this,CreateNewPasswordScreen.class);
+                        startActivity(intent);
                     }
                     else
                     {
-                        createDialog(btnOK,R.layout.custom_dialog_verification);
+                        createDialog(VerificationScreen.this,btnOK,R.layout.custom_dialog_verification);
                         txtErrorCode.setTextSize(0);
                     }
                 }
@@ -75,8 +88,8 @@ public class VerificationScreen extends AppCompatActivity {
         });
     }
 
-    private void createDialog(Button btnOK, int dialogScreen ) {
-        Dialog dialog = new Dialog(VerificationScreen.this);
+    private void createDialog(Context context, Button btnOK, int dialogScreen ) {
+        Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(dialogScreen);
 

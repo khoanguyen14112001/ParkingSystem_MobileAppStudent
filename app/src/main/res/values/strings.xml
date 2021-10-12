@@ -12,4 +12,10 @@
     <string name="resend"><u>Resend</u></string>
     <string name="error">Error</string>
     <string name="your_vertification_code_is_incorrect">Your vertification code is incorrect</string>
+    <string name="create_new_password">Create new password</string>
+    <string name="your_identity_has_been_verified_nset_your_new_password">Your identity has been verified! \nSet your new password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="successful">Successful</string>
+    <string name="your_password_has_been_updated">Your password has been updated</string>
+    <string name="log_in">Log in</string>
 </resources>

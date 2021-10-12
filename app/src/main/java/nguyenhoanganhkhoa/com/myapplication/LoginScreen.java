@@ -87,6 +87,7 @@ public class LoginScreen extends AppCompatActivity {
             txtErrorPassword.setText("Field cannot be empty");
             txtErrorPassword.setTextSize(15);
             setCustomColor(edtPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            imgPasswordToggleClose.setImageTintList(getResources().getColorStateList(R.color.red));
             return false;
         }
 
@@ -184,6 +185,7 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 setCustomColor(edtPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+                imgPasswordToggleClose.setImageTintList(getResources().getColorStateList(R.color.black80));
                 txtErrorPassword.setText(null);
                 txtErrorPassword.setTextSize(0);
             }
