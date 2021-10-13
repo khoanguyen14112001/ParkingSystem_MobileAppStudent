@@ -50,7 +50,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
         String password = edtPhone.getText().toString();
 
         if (password.isEmpty()){
-            txtErrorPhone.setText("Field cannot be empty");
+            txtErrorPhone.setText(R.string.field_cannot_be_empty);
             txtErrorPhone.setTextSize(15);
             setCustomColor(edtPhone,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
@@ -96,7 +96,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
                 if(s.length()>12)
                 {
                     setCustomColor(edtPhone,R.drawable.edt_custom_error,R.color.red,R.color.red);
-                    txtErrorPhone.setText("Your phone number is too long");
+                    txtErrorPhone.setText(R.string.your_phone_number_is_too_long);
                     txtErrorPhone.setTextSize(15);
 
                     btnSendPassword.setEnabled(false);

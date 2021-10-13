@@ -133,8 +133,9 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
                     }
                     else
                     {
-                        txtErrorConfirmPass.setText("Your password must be match");
+                        txtErrorConfirmPass.setText(R.string.your_password_must_be_match);
                         txtErrorConfirmPass.setTextSize(15);
+                        setCustomColor(edtNewPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
                         setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
                         clearFocus();
                     }
@@ -148,7 +149,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         String password = edtNewPassword.getText().toString();
 
         if (password.isEmpty()){
-            txtErrorChangePass.setText("Field cannot be empty");
+            txtErrorChangePass.setText(R.string.field_cannot_be_empty);
             txtErrorChangePass.setTextSize(15);
             setCustomColor(edtNewPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imgPasswordToggle1.setImageTintList(getResources().getColorStateList(R.color.red));
@@ -200,7 +201,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         String password = edtConfirmPassword.getText().toString();
 
         if (password.isEmpty()){
-            txtErrorConfirmPass.setText("Field cannot be empty");
+            txtErrorConfirmPass.setText(R.string.field_cannot_be_empty);
             txtErrorConfirmPass.setTextSize(15);
             setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.red));

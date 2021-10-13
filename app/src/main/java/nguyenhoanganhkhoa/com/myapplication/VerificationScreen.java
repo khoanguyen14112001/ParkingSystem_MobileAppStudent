@@ -46,7 +46,7 @@ public class VerificationScreen extends AppCompatActivity {
         String s = pv.getText().toString();
         if(s.isEmpty() | s.length()<4)
         {
-            txtErrorCode.setText("Please enter 4 numbers of code");
+            txtErrorCode.setText(R.string.please_enter_four_numbers_of_code);
             txtErrorCode.setTextSize(15);
             return false;
         }

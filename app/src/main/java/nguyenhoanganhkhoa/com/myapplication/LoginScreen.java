@@ -59,14 +59,14 @@ public class LoginScreen extends AppCompatActivity {
         String emailPattern2 = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+\\.+[a-z]+";
 
         if (email.isEmpty()){
-            txtErrorEmail.setText("Field cannot be empty");
+            txtErrorEmail.setText(R.string.field_cannot_be_empty);
             txtErrorEmail.setTextSize(15);
             setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
 
          if (!email.matches(emailPattern1) && !email.matches(emailPattern2)) {
-             txtErrorEmail.setText("Invalid email address");
+             txtErrorEmail.setText(R.string.invalid_email_address);
              txtErrorEmail.setTextSize(15);
              setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
              return false;
@@ -85,7 +85,7 @@ public class LoginScreen extends AppCompatActivity {
         String password = edtPassword.getText().toString();
 
         if (password.isEmpty()){
-            txtErrorPassword.setText("Field cannot be empty");
+            txtErrorPassword.setText(R.string.field_cannot_be_empty);
             txtErrorPassword.setTextSize(15);
             setCustomColor(edtPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imgPasswordToggleClose.setImageTintList(getResources().getColorStateList(R.color.red));
@@ -319,12 +319,12 @@ public class LoginScreen extends AppCompatActivity {
                     long remainedSecs = millisUntilFinished / 1000;
                     if(time ==30000) {
                         txtErrorLogTooMuch.setTextSize(TypedValue.COMPLEX_UNIT_SP,13);
-                        txtErrorLogTooMuch.setText("Too many failed login. Try again in " + (remainedSecs % 60) + " seconds");
+                        txtErrorLogTooMuch.setText(getString(R.string.too_many_failed_login_try_again_in) + (remainedSecs % 60) + getString(R.string.seconds));
                     }
                     else
                     {
                         txtErrorLogTooMuch.setTextSize(TypedValue.COMPLEX_UNIT_SP,13);
-                        txtErrorLogTooMuch.setText("Too many failed login. Try again after 1 hour");
+                        txtErrorLogTooMuch.setText(R.string.try_again_after_an_hour);
                     }
                 }
 

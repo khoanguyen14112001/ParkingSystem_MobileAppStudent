@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">My Parking System</string>
     <string name="sign_up">
          <u>Sign up</u>
     </string>
@@ -24,11 +24,19 @@
     <string name="sign_in_with_google">Sign in with google</string>
     <string name="login_to_existent_account">Login to existent account</string>
     <string name="forgot_password">Forgot password?</string>
-    <string name="don_t_have_an_account">Don\'t have an account? </string>
+    <string name="don_t_have_an_account">Don\'t have an account?\u0020</string>
     <string name="update">Update</string>
     <string name="phone">Phone</string>
     <string name="send">Send</string>
     <string name="enter_your_verification_code_n_we_just_sent_to_your_phone">Enter your verification code \n we just sent to your phone</string>
     <string name="verify">Verify</string>
-    <string name="you_didn_t_receive_a_code">You didn’t receive a code?\u0020</string>
+    <string name="you_didn_t_receive_a_code">Didn’t receive a code?\u0020</string>
+    <string name="invalid_email_address">Invalid email address</string>
+    <string name="field_cannot_be_empty">Field cannot be empty</string>
+    <string name="try_again_after_an_hour">Too many failed login. Try again after 1 hour</string>
+    <string name="too_many_failed_login_try_again_in">Too many failed login. Try again in \u0020</string>
+    <string name="seconds">\u0020 seconds</string>
+    <string name="your_password_must_be_match">Your password must be match</string>
+    <string name="your_phone_number_is_too_long">Your phone number is too long</string>
+    <string name="please_enter_four_numbers_of_code">Please enter 4 numbers of code</string>
 </resources>
