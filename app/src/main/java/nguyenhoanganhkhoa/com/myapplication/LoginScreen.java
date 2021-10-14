@@ -61,6 +61,7 @@ public class LoginScreen extends AppCompatActivity {
         if (username.isEmpty()){
             txtErrorUsername.setText(R.string.field_cannot_be_empty);
             txtErrorUsername.setTextSize(15);
+            edtUsername.setHintTextColor(getColor(R.color.red));
             setCustomColor(edtUsername,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
@@ -74,6 +75,8 @@ public class LoginScreen extends AppCompatActivity {
 
         else {
             setCustomColor(edtUsername,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            edtUsername.setHintTextColor(getColor(R.color.xamChu));
+
             txtErrorUsername.setText(null);
             txtErrorUsername.setTextSize(0);
             return true;
@@ -88,13 +91,17 @@ public class LoginScreen extends AppCompatActivity {
             txtErrorPassword.setText(R.string.field_cannot_be_empty);
             txtErrorPassword.setTextSize(15);
             setCustomColor(edtPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            imgPasswordToggleClose.setImageTintList(getResources().getColorStateList(R.color.red));
+            imgPasswordToggleClose.setImageTintList(getColorStateList(R.color.red));
+            edtPassword.setHintTextColor(getColor(R.color.red));
+
             return false;
         }
 
         else {
 
             setCustomColor(edtPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            edtPassword.setHintTextColor(getColor(R.color.xamChu));
+
             txtErrorPassword.setText(null);
             txtErrorPassword.setTextSize(0);
             return true;
@@ -141,6 +148,8 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 setCustomColor(edtUsername,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+                edtUsername.setHintTextColor(getColor(R.color.xamChu));
+
                 txtErrorUsername.setText(null);
                 txtErrorUsername.setTextSize(0);
 
@@ -161,7 +170,8 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 setCustomColor(edtPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-                imgPasswordToggleClose.setImageTintList(getResources().getColorStateList(R.color.black80));
+                imgPasswordToggleClose.setImageTintList(getColorStateList(R.color.black80));
+                edtPassword.setHintTextColor(getColor(R.color.xamChu));
                 txtErrorPassword.setText(null);
                 txtErrorPassword.setTextSize(0);
 
@@ -178,6 +188,7 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showHidePassword(edtPassword,view);
+
             }
         });
 
@@ -196,6 +207,8 @@ public class LoginScreen extends AppCompatActivity {
 
                     edtUsername.clearFocus();
                     edtPassword.clearFocus();
+
+
 
                     return;
                 }
@@ -233,6 +246,12 @@ public class LoginScreen extends AppCompatActivity {
                             if(trytime<3)
                             {
                                 CustomDialog customDialog = new CustomDialog(LoginScreen.this,R.layout.custom_dialog_login);
+                                customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        customDialog.dismiss();
+                                    }
+                                });
                                 customDialog.show();
                                 attemp++;
                                 edtUsername.clearFocus();
@@ -280,8 +299,13 @@ public class LoginScreen extends AppCompatActivity {
             edtPassword.setCompoundDrawableTintList(getColorStateList(R.color.xamBlcok));
             edtPassword.setBackground(getDrawable(R.drawable.edt_custom_block));
 
+            edtPassword.setHintTextColor(getColor(R.color.xamChu));
+
+
+
             edtUsername.setCompoundDrawableTintList(getColorStateList(R.color.xamBlockIcon));
             edtUsername.setBackground(getDrawable(R.drawable.edt_custom_block));
+            edtUsername.setHintTextColor(getColor(R.color.xamChu));
 
             btnLogin.setBackground(getDrawable(R.drawable.button_login_block));
             btnLogin.setTextColor(getColor(R.color.xamBlcok));
@@ -292,7 +316,7 @@ public class LoginScreen extends AppCompatActivity {
                     long remainedSecs = millisUntilFinished / 1000;
                     if(time ==30000) {
                         txtErrorLogTooMuch.setTextSize(TypedValue.COMPLEX_UNIT_SP,13);
-                        txtErrorLogTooMuch.setText(getString(R.string.too_many_failed_login_try_again_in) + (remainedSecs % 60) + getString(R.string.seconds));
+                        txtErrorLogTooMuch.setText(getString(R.string.you_have_4_failed_login_attempts) + getString(R.string.try_again_in) + (remainedSecs % 60) + getString(R.string.seconds));
                     }
                     else
                     {
@@ -311,12 +335,14 @@ public class LoginScreen extends AppCompatActivity {
 
                     edtPassword.setCompoundDrawableTintList(getColorStateList(R.color.blackUI));
                     edtPassword.setBackground(getDrawable(R.drawable.custom_edt));
+                    edtPassword.setHintTextColor(getResources().getColor(R.color.xamChu));
 
                     btnLogin.setBackground(getDrawable(R.drawable.custom_button));
                     btnLogin.setTextColor(getColor(R.color.blackUI));
 
                     edtUsername.setCompoundDrawableTintList(getColorStateList(R.color.blackUI));
                     edtUsername.setBackground(getDrawable(R.drawable.custom_edt));
+                    edtUsername.setHintTextColor(getColor(R.color.xamChu));
 
                     txtErrorLogTooMuch.setText("");
                     txtErrorLogTooMuch.setTextSize(0);

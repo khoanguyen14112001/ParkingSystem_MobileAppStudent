@@ -40,22 +40,13 @@ public class CustomDialog extends Dialog {
 
 
         linkView();
-        addEvents();
 
 
 
 
     }
 
-    private void addEvents() {
-        btnOK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
 
-            }
-        });
-    }
 
     private void linkView() {
         btnOK = findViewById(R.id.btnOK);
