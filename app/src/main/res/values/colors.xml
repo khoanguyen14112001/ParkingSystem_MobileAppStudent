@@ -15,5 +15,7 @@
     <color name="primary_yellow">#FFD428</color>
     <color name="xamChu">#8F8E8E</color>
     <color name="black80">#CC000000</color>
+    <color name="xamEdt">#F1F2F6</color>
+
 
 </resources>

@@ -21,7 +21,7 @@ import com.chaos.view.PinView;
 
 public class VerificationScreen extends AppCompatActivity {
     PinView pv;
-    TextView txtErrorCode;
+    TextView txtErrorCode,txtResend;
     Button btnVerify, btnOK;
     ImageView imvComeback;
 
@@ -30,6 +30,7 @@ public class VerificationScreen extends AppCompatActivity {
         txtErrorCode = findViewById(R.id.txtErrorCode);
         btnVerify = findViewById(R.id.btnVerify);
         imvComeback = findViewById(R.id.imvComebackVerification);
+        txtResend = findViewById(R.id.txtResend);
 
     }
     @Override
@@ -57,6 +58,14 @@ public class VerificationScreen extends AppCompatActivity {
 
 
     private void addEvents() {
+
+        txtResend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(VerificationScreen.this,"Code has been resent",Toast.LENGTH_SHORT);
+            }
+        });
+
         imvComeback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +89,8 @@ public class VerificationScreen extends AppCompatActivity {
                     }
                     else
                     {
-                        createDialog(VerificationScreen.this,btnOK,R.layout.custom_dialog_verification);
+                        CustomDialog customDialog = new CustomDialog(VerificationScreen.this,R.layout.custom_dialog_verification);
+                        customDialog.show();
                         txtErrorCode.setTextSize(0);
                     }
                 }
@@ -88,35 +98,5 @@ public class VerificationScreen extends AppCompatActivity {
         });
     }
 
-    private void createDialog(Context context, Button btnOK, int dialogScreen ) {
-        Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(dialogScreen);
-
-        Window window = dialog.getWindow();
-        if (window == null){
-            return;
-        }
-
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT);
-
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        WindowManager.LayoutParams windowAtributes = window.getAttributes();
-        windowAtributes.gravity = Gravity.CENTER;
-        window.setAttributes(windowAtributes);
-
-
-        btnOK = dialog.findViewById(R.id.btnOK);
-        btnOK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-    }
 
 }

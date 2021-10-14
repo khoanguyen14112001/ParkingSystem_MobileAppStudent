@@ -2,6 +2,7 @@ package nguyenhoanganhkhoa.com.myapplication;
 
 import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
@@ -40,9 +41,9 @@ public class ResetPasswordScreen extends AppCompatActivity {
     {
         // Chỉnh màu cho thanh edit text khi gặp error, focus, ...
 
-        edtCanSua.setBackground(ContextCompat.getDrawable(ResetPasswordScreen.this,edtColor));
-        edtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(ResetPasswordScreen.this,iconColor));
-        edtCanSua.setTextColor(ContextCompat.getColorStateList(ResetPasswordScreen.this,textColor));
+        edtCanSua.setBackground(getDrawable(edtColor));
+        edtCanSua.setCompoundDrawableTintList(getColorStateList(iconColor));
+        edtCanSua.setTextColor(getColorStateList(textColor));
     }
 
 
@@ -100,8 +101,9 @@ public class ResetPasswordScreen extends AppCompatActivity {
                     txtErrorPhone.setTextSize(15);
 
                     btnSendPassword.setEnabled(false);
-                    btnSendPassword.setBackground(ContextCompat.getDrawable(ResetPasswordScreen.this, R.drawable.button_login_block));
-                    btnSendPassword.setTextColor(ContextCompat.getColor(ResetPasswordScreen.this, R.color.xamBlcok));
+                    btnSendPassword.setBackground(getDrawable( R.drawable.button_login_block));
+
+                    btnSendPassword.setTextColor(getColor(R.color.xamBlcok));
 
                 }
                 else
@@ -111,8 +113,8 @@ public class ResetPasswordScreen extends AppCompatActivity {
                     txtErrorPhone.setTextSize(0);
 
                     btnSendPassword.setEnabled(true);
-                    btnSendPassword.setBackground(ContextCompat.getDrawable(ResetPasswordScreen.this, R.drawable.button_login));
-                    btnSendPassword.setTextColor(ContextCompat.getColor(ResetPasswordScreen.this, R.color.blackUI));
+                    btnSendPassword.setBackground(getDrawable(R.drawable.custom_button));
+                    btnSendPassword.setTextColor(getColor( R.color.blackUI));
 
                 }
 

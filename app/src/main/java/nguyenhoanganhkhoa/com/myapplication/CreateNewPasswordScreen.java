@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.regex.Pattern;
+
 public class CreateNewPasswordScreen extends AppCompatActivity {
 
     EditText edtNewPassword, edtConfirmPassword;
@@ -54,6 +56,44 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         edtNewPassword.clearFocus();
     }
 
+    public static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    "(?=.*[0-9])" +
+                    "(?=.*[a-z])" +
+                    "(?=.*[A-Z])" +
+                    //   "(?=.*[@#$%^&+=])" +
+                    "(?=\\S+$)" +
+                    ".{8,}" +
+                    "$");
+
+    private void validatePassword(EditText edtPassword, TextView txtError, ImageView imvToggle,
+                                  Button btnPress){
+
+        String passwordInput = edtPassword.getText().toString().trim();
+        if(!PASSWORD_PATTERN.matcher(passwordInput).matches()&& !passwordInput.isEmpty())
+        {
+            txtError.setText(R.string.your_password_is_too_weak);
+            txtError.setTextSize(15);
+            setCustomColor(edtPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            imvToggle.setImageTintList(getResources().getColorStateList(R.color.red));
+
+            btnPress.setBackground(getDrawable(R.drawable.button_login_block));
+            btnPress.setTextColor(getColor(R.color.xamBlcok));
+            btnPress.setEnabled(false);
+        }
+        else {
+            setCustomColor(edtPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            imvToggle.setImageTintList(getResources().getColorStateList(R.color.black80));
+            txtError.setText(null);
+            txtError.setTextSize(0);
+
+            btnPress.setEnabled(true);
+            btnPress.setBackground(getDrawable(R.drawable.custom_button));
+            btnPress.setTextColor(getColor(R.color.blackUI));
+
+        }
+    }
+
     private void addEvents() {
 
         imvComeback.setOnClickListener(new View.OnClickListener() {
@@ -64,17 +104,17 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         });
 
         edtNewPassword.addTextChangedListener(new TextWatcher() {
+
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setCustomColor(edtNewPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-                imgPasswordToggle1.setImageTintList(getResources().getColorStateList(R.color.black80));
-                txtErrorChangePass.setText(null);
-                txtErrorChangePass.setTextSize(0);
+
+
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                validatePassword(edtNewPassword,txtErrorChangePass,imgPasswordToggle1,btnUpdate);
             }
 
             @Override
@@ -86,14 +126,15 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         edtConfirmPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setCustomColor(edtConfirmPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-                imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.black80));
-                txtErrorConfirmPass.setText(null);
-                txtErrorConfirmPass.setTextSize(0);
+
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                setCustomColor(edtConfirmPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+                imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.black80));
+                txtErrorConfirmPass.setText(null);
+                txtErrorConfirmPass.setTextSize(0);
 
             }
 
@@ -127,7 +168,8 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
 
                 else{
                     if(edtConfirmPassword.getText().toString().equals(edtNewPassword.getText().toString())){
-                       createDialog(CreateNewPasswordScreen.this,btnOK,R.layout.custom_dialog_update_password);
+                        CustomDialog customDialog = new CustomDialog(CreateNewPasswordScreen.this,R.layout.custom_dialog_update_password);
+                        customDialog.show();
                         clearFocus();
 
                     }
@@ -137,6 +179,9 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
                         txtErrorConfirmPass.setTextSize(15);
                         setCustomColor(edtNewPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
                         setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+                        imgPasswordToggle1.setImageTintList(getResources().getColorStateList(R.color.red));
+                        imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.red));
+
                         clearFocus();
                     }
                 }
@@ -159,6 +204,8 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         else {
 
             setCustomColor(edtNewPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            imgPasswordToggle1.setImageTintList(getResources().getColorStateList(R.color.black80));
+
             txtErrorChangePass.setText(null);
             txtErrorChangePass.setTextSize(0);
             return true;
@@ -166,36 +213,6 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
 
     }
 
-    private void createDialog(Context context, Button btnOK, int dialogScreen ) {
-        Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(dialogScreen);
-
-        Window window = dialog.getWindow();
-        if (window == null){
-            return;
-        }
-
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT);
-
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        WindowManager.LayoutParams windowAtributes = window.getAttributes();
-        windowAtributes.gravity = Gravity.CENTER;
-        window.setAttributes(windowAtributes);
-
-
-        btnOK = dialog.findViewById(R.id.btnOK);
-        btnOK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-    }
 
     private Boolean validateConfirmPassword(){
         String password = edtConfirmPassword.getText().toString();
@@ -237,9 +254,9 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
     {
         // Chỉnh màu cho thanh edit text khi gặp error, focus, ...
 
-        edtCanSua.setBackground(ContextCompat.getDrawable(CreateNewPasswordScreen.this,edtColor));
-        edtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(CreateNewPasswordScreen.this,iconColor));
-        edtCanSua.setTextColor(ContextCompat.getColorStateList(CreateNewPasswordScreen.this,textColor));
+        edtCanSua.setBackground(getDrawable(edtColor));
+        edtCanSua.setCompoundDrawableTintList(getColorStateList(iconColor));
+        edtCanSua.setTextColor(getColorStateList(textColor));
     }
 
 

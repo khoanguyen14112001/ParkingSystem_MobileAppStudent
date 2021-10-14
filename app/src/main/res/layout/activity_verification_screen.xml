@@ -107,7 +107,7 @@
         app:cursorWidth="2dp"
         app:hideLineWhenFilled="true"
         app:itemCount="4"
-        app:itemHeight="60dp"
+        app:itemHeight="65dp"
         app:itemRadius="10dp"
         app:lineColor="@color/primary_yellow"
         app:itemSpacing="30dp"
@@ -121,13 +121,13 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:background="@drawable/button_login"
+        android:background="@drawable/custom_button"
         android:text="@string/verify"
         app:layout_constraintTop_toBottomOf="@id/pvVerification"
         app:layout_constraintLeft_toLeftOf="@id/gLeft3"
         app:layout_constraintRight_toRightOf="@id/gRight3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintBottom_toTopOf="@id/lnResend"
+        app:layout_constraintVertical_bias="0.4"
         android:textAllCaps="false"
         android:fontFamily="@font/be_vietnam_medium"
         android:textColor="@color/black"
@@ -154,8 +154,8 @@
         app:layout_constraintLeft_toLeftOf="@+id/gLeft3"
         app:layout_constraintRight_toRightOf="@id/gRight3"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVerify"
-        app:layout_constraintVertical_bias="0.32"
+        android:layout_marginBottom="30dp"
+        android:id="@+id/lnResend"
         android:orientation="horizontal">
 
         <TextView
@@ -174,6 +174,7 @@
             android:textSize="16.5sp"
             android:textColor="@color/primary_yellow"
             android:fontFamily="@font/be_vietnam_bold"
+            android:id="@+id/txtResend"
             />
     </LinearLayout>
 

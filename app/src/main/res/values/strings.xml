@@ -6,7 +6,7 @@
     <string name="login_failed">Login Failed</string>
     <string name="warning_wrong_password_try_again">Your email or password is incorrect. \nPlease try again</string>
     <string name="ok">OK</string>
-    <string name="email">Email</string>
+    <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="verification">Verification</string>
     <string name="resend"><u>Resend</u></string>
@@ -39,4 +39,15 @@
     <string name="your_password_must_be_match">Your password must be match</string>
     <string name="your_phone_number_is_too_long">Your phone number is too long</string>
     <string name="please_enter_four_numbers_of_code">Please enter 4 numbers of code</string>
+    <string name="your_password_is_too_weak">Your password is too weak</string>
+    <string name="reset_password">Reset password</string>
+    <string name="enter_your_phone_number_nand_we_ll_send_a_code_to_your_phone">Enter your phone number \nand we’ll send a code to your phone</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="create_an_account_to_get_all_features">Create an account to get all features</string>
+    <string name="full_name">Full name*</string>
+    <string name="username1">Username*</string>
+    <string name="phone1">Phone*</string>
+    <string name="password1">Password*</string>
+    <string name="already_have_an_account">Already have an account? \u0020</string>
+    <string name="login_here">Login here</string>
 </resources>
