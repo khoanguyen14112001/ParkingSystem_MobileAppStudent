@@ -1,34 +1,22 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.model;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.text.Editable;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.text.style.ForegroundColorSpan;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.regex.Pattern;
+
+import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class CreateNewPasswordScreen extends AppCompatActivity {
 
@@ -72,35 +60,122 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
                     "(?=.*[A-Z])" +
                     //   "(?=.*[@#$%^&+=])" +
                     "(?=\\S+$)" +
-                    ".{8,}" +
+                    ".{8,15}" +
                     "$");
 
-    private void validatePassword(EditText edtPassword, TextView txtError, ImageView imvToggle,
-                                  Button btnPress){
+    private Boolean validatePassword(){
 
-        String passwordInput = edtPassword.getText().toString().trim();
-        if(!PASSWORD_PATTERN.matcher(passwordInput).matches()&& !passwordInput.isEmpty())
+        String passwordInput = edtNewPassword.getText().toString().trim();
+
+        if(passwordInput.isEmpty())
         {
-            txtError.setText(R.string.your_password_is_too_weak);
-            txtError.setTextSize(15);
-            setCustomColor(edtPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            imvToggle.setImageTintList(getResources().getColorStateList(R.color.red));
+            txtErrorChangePass.setTextSize(15);
+            setCustomColor(edtNewPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            imgPasswordToggle1.setImageTintList(getResources().getColorStateList(R.color.red));
+            txtErrorChangePass.setText(R.string.field_cannot_be_empty);
+            edtNewPassword.setHintTextColor(getColor(R.color.red));
+            return false;
 
-            btnPress.setBackground(getDrawable(R.drawable.button_login_block));
-            btnPress.setTextColor(getColor(R.color.xamBlcok));
-            btnPress.setEnabled(false);
+        }
+
+        else if(!PASSWORD_PATTERN.matcher(passwordInput).matches())
+        {
+            if(passwordInput.length()<=15)
+            {
+                txtErrorChangePass.setText(R.string.your_password_is_too_weak);
+
+            }
+            else if(passwordInput.length()>15)
+            {
+                txtErrorChangePass.setText(R.string.your_password_is_too_long);
+            }
+            txtErrorChangePass.setTextSize(15);
+            setCustomColor(edtNewPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            imgPasswordToggle1.setImageTintList(getResources().getColorStateList(R.color.red));
+
+            btnUpdate.setBackground(getDrawable(R.drawable.button_login_block));
+            btnUpdate.setTextColor(getColor(R.color.xamBlcok));
+            btnUpdate.setEnabled(false);
+            return false;
         }
         else {
-            setCustomColor(edtPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-            imvToggle.setImageTintList(getResources().getColorStateList(R.color.black80));
-            txtError.setText(null);
-            txtError.setTextSize(0);
+            setCustomColor(edtNewPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            imgPasswordToggle1.setImageTintList(getResources().getColorStateList(R.color.black80));
+            txtErrorChangePass.setText(null);
+            txtErrorChangePass.setTextSize(0);
+            edtNewPassword.setHintTextColor(getColor(R.color.xamChu));
+            btnUpdate.setEnabled(true);
+            btnUpdate.setBackground(getDrawable(R.drawable.custom_button));
+            btnUpdate.setTextColor(getColor(R.color.blackUI));
 
-            btnPress.setEnabled(true);
-            btnPress.setBackground(getDrawable(R.drawable.custom_button));
-            btnPress.setTextColor(getColor(R.color.blackUI));
+            return true;
 
         }
+    }
+    private Boolean validateConfirmPassword(){
+        String password = edtConfirmPassword.getText().toString();
+
+        if (password.isEmpty()){
+            txtErrorConfirmPass.setText(R.string.field_cannot_be_empty);
+
+            txtErrorConfirmPass.setTextSize(15);
+            setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            edtConfirmPassword.setHintTextColor(getColor(R.color.red));
+
+            imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.red));
+            return false;
+        }
+
+        else if(!password.equals(edtNewPassword.getText().toString()))
+        {
+            txtErrorConfirmPass.setText(R.string.your_password_must_be_match);
+
+            txtErrorConfirmPass.setTextSize(15);
+            setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            edtConfirmPassword.setHintTextColor(getColor(R.color.red));
+
+            imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.red));
+            return false;
+        }
+
+        else {
+
+            setCustomColor(edtConfirmPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            edtConfirmPassword.setHintTextColor(getColor(R.color.xamChu));
+
+            imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.black80));
+
+            txtErrorConfirmPass.setText(null);
+            txtErrorConfirmPass.setTextSize(0);
+            return true;
+        }
+
+    }
+    private Boolean validateConfirmPasswordTextChange(){
+        String password = edtConfirmPassword.getText().toString();
+
+        if (password.isEmpty()){
+            txtErrorConfirmPass.setText(R.string.field_cannot_be_empty);
+            txtErrorConfirmPass.setTextSize(15);
+            setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            imgPasswordToggle2.setImageTintList(getColorStateList(R.color.red));
+            edtConfirmPassword.setHintTextColor(getColor(R.color.red));
+
+            return false;
+        }
+
+        else {
+
+            setCustomColor(edtConfirmPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            edtConfirmPassword.setHintTextColor(getColor(R.color.xamChu));
+            imgPasswordToggle2.setImageTintList(getColorStateList(R.color.black80));
+
+
+            txtErrorConfirmPass.setText(null);
+            txtErrorConfirmPass.setTextSize(0);
+            return true;
+        }
+
     }
 
     private void addEvents() {
@@ -108,7 +183,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         imvComeback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CreateNewPasswordScreen.this,ResetPasswordScreen.class);
+                Intent intent = new Intent(CreateNewPasswordScreen.this, ResetPasswordScreen.class);
                 startActivity(intent);
             }
         });
@@ -124,8 +199,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validatePassword(edtNewPassword,txtErrorChangePass,imgPasswordToggle1,btnUpdate);
-                edtNewPassword.setHintTextColor(getColor(R.color.xamChu));
+                validatePassword();
 
             }
 
@@ -143,11 +217,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setCustomColor(edtConfirmPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-                imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.black80));
-                edtConfirmPassword.setHintTextColor(getColor(R.color.xamChu));
-                txtErrorConfirmPass.setText(null);
-                txtErrorConfirmPass.setTextSize(0);
+                validateConfirmPasswordTextChange();
 
             }
 
@@ -175,94 +245,30 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!validateNewPassword() | !validateConfirmPassword()){
+                if(!validatePassword() | !validateConfirmPassword()){
                     clearFocus();
-                    return;
+
                 }
 
                 else{
-                    if(edtConfirmPassword.getText().toString().equals(edtNewPassword.getText().toString())){
                         CustomDialog customDialog = new CustomDialog(CreateNewPasswordScreen.this,R.layout.custom_dialog_update_password);
                         customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent = new Intent(CreateNewPasswordScreen.this,LoginScreen.class);
+                                Intent intent = new Intent(CreateNewPasswordScreen.this, LoginScreen.class);
                                 startActivity(intent);
                             }
                         });
                         customDialog.show();
                         clearFocus();
-
-                    }
-                    else
-                    {
-                        txtErrorConfirmPass.setText(R.string.your_password_must_be_match);
-                        txtErrorConfirmPass.setTextSize(15);
-                        setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
-                        imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.red));
-
-                        clearFocus();
-                    }
                 }
             }
         });
     }
 
 
-    private Boolean validateNewPassword(){
-        String password = edtNewPassword.getText().toString();
-
-        if (password.isEmpty()){
-            txtErrorChangePass.setText(R.string.field_cannot_be_empty);
-            txtErrorChangePass.setTextSize(15);
-            edtNewPassword.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtNewPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            imgPasswordToggle1.setImageTintList(getColorStateList(R.color.red));
-            edtNewPassword.setHintTextColor(getColor(R.color.red));
-            return false;
-        }
-
-        else {
-
-            setCustomColor(edtNewPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-            imgPasswordToggle1.setImageTintList(getResources().getColorStateList(R.color.black80));
-            edtNewPassword.setHintTextColor(getColor(R.color.xamChu));
 
 
-            txtErrorChangePass.setText(null);
-            txtErrorChangePass.setTextSize(0);
-            return true;
-        }
-
-    }
-
-
-    private Boolean validateConfirmPassword(){
-        String password = edtConfirmPassword.getText().toString();
-
-        if (password.isEmpty()){
-            txtErrorConfirmPass.setText(R.string.field_cannot_be_empty);
-
-            txtErrorConfirmPass.setTextSize(15);
-            setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            edtConfirmPassword.setHintTextColor(getColor(R.color.red));
-
-            imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.red));
-            return false;
-        }
-
-        else {
-
-            setCustomColor(edtConfirmPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-            edtConfirmPassword.setHintTextColor(getColor(R.color.xamChu));
-
-
-            txtErrorConfirmPass.setText(null);
-            txtErrorConfirmPass.setTextSize(0);
-            return true;
-        }
-
-    }
 
     private void showHidePassword(EditText edtPass, View view ) {
         if(edtPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){

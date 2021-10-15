@@ -1,29 +1,22 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.model;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.icu.util.BuddhistCalendar;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chaos.view.PinView;
+
+import nguyenhoanganhkhoa.com.myapplication.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class VerificationScreen extends AppCompatActivity {
     PinView pv;
@@ -72,7 +65,7 @@ public class VerificationScreen extends AppCompatActivity {
 
                 ForegroundColorSpan fcsYellow = new ForegroundColorSpan(getColor(R.color.primary_yellow));
 
-                ss.setSpan(fcsYellow,63,65, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ss.setSpan(fcsYellow,62,64, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 txtVerificationText.setText(ss);
 
                 txtResend.setEnabled(false);
@@ -132,7 +125,7 @@ public class VerificationScreen extends AppCompatActivity {
                 else
                 {
                     if (pv.getText().toString().equals("1234")) {
-                        Intent intent = new Intent(VerificationScreen.this,CreateNewPasswordScreen.class);
+                        Intent intent = new Intent(VerificationScreen.this, CreateNewPasswordScreen.class);
                         startActivity(intent);
                     }
                     else if(attempt==5)
@@ -143,7 +136,7 @@ public class VerificationScreen extends AppCompatActivity {
                         customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent = new Intent(VerificationScreen.this,ResetPasswordScreen.class);
+                                Intent intent = new Intent(VerificationScreen.this, ResetPasswordScreen.class);
                                 startActivity(intent);
                             }
                         });

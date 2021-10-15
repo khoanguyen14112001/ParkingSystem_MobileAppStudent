@@ -10,35 +10,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".SignUpScreen_UserInfo"
+            android:name=".model.PersonalInformationSetScreen"
             android:exported="true" />
         <activity
-            android:name=".CreateNewPasswordScreen"
+            android:name=".model.VerificationSignupScreen"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".VerificationScreen"
+            android:name=".model.EmailScreen"
             android:exported="true" />
         <activity
-            android:name=".ResetPasswordScreen"
+            android:name=".model.SignUpScreen_UserInfo"
+            android:exported="true"></activity>
+        <activity
+            android:name=".model.CreateNewPasswordScreen"
             android:exported="true" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".model.VerificationScreen"
             android:exported="true" />
         <activity
-            android:name=".LoginScreen"
-            android:exported="true">
+            android:name=".model.ResetPasswordScreen"
+            android:exported="true" />
+        <activity
+            android:name=".test.MainActivity2"
+            android:exported="true" />
+        <activity
+            android:name=".model.LoginScreen"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:name=".test.MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

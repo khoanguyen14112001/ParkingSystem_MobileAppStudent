@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".model.ResetPasswordScreen"
-    android:orientation="vertical">
+    tools:context=".model.EmailScreen">
 
     <View
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/focus_thiefResetPassScreen"
+        android:id="@+id/focus_thiefUpdatePassScreen"
         android:layout_width="1dp"
         android:layout_height="1dp"
         android:focusable="true"
@@ -22,7 +20,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.075"
-        android:id="@+id/gLeft3"
+        android:id="@+id/gLeft5"
 
         />
 
@@ -31,7 +29,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.925"
-        android:id="@+id/gRight3"/>
+        android:id="@+id/gRight5"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -44,7 +42,7 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintVertical_bias="0.03"
         android:backgroundTint="@color/white"
-        android:id="@+id/imvComebackVerification"/>
+        android:id="@+id/imvComebackEmailScreen"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,8 +54,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.12"
         android:textColor="@color/black"
-        android:id="@+id/txtVerification"
-        android:text="@string/verification"
+        android:id="@+id/txtSignUpScreen"
+        android:text="@string/sign_up_text_screen"
         android:gravity="center"
         android:textSize="32sp"
         />
@@ -65,117 +63,108 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txtVerification"
+        app:layout_constraintTop_toBottomOf="@id/txtSignUpScreen"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/imvVerificationScreen"
+        android:id="@+id/imvSignup"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/img_verification_code"
+        android:src="@drawable/img_signup"
         app:layout_constraintVertical_bias="0.07"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/imvVerificationScreen"
+        app:layout_constraintTop_toBottomOf="@id/imvSignup"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/we_sent_your_code_to_your_phone_nthis_code_will_be_expired_in_30_seconds"
+        android:layout_marginTop="25dp"
+        android:text="@string/sign_in_to_your_uel_email_address_n_to_create_parking_system_account"
         android:gravity="center"
+        android:id="@+id/txtSignUpLongText"
         android:textSize="15sp"
-        android:id="@+id/txtVerificationCode"
         android:fontFamily="@font/be_vietnam_medium"
         android:textColor="#AB000000"/>
 
-    <com.chaos.view.PinView
-        app:layout_constraintTop_toBottomOf="@id/txtVerificationCode"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.15"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/pvVerification"
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:cursorVisible="true"
-        android:inputType="number"
-        android:itemBackground="@color/primary_yellow"
-        android:textSize="40sp"
-        android:fontFamily="@font/fjalla_one_regular"
-        style="@style/PinWidget.PinView"
-        app:cursorWidth="2dp"
-        app:hideLineWhenFilled="true"
-        app:itemCount="4"
-        app:itemHeight="65dp"
-        app:itemRadius="10dp"
-        app:lineColor="@color/primary_yellow"
-        app:itemSpacing="30dp"
-        app:itemWidth="50dp"
-        app:lineWidth="2dp"
-        app:viewType="rectangle"/>
+        app:layout_constraintTop_toBottomOf="@id/txtSignUpLongText"
+        app:layout_constraintLeft_toLeftOf="@id/gLeft5"
+        app:layout_constraintRight_toRightOf="@id/gRight5"
+        android:background="@drawable/custom_edt"
+        android:layout_marginTop="30dp"
+        android:inputType="textEmailAddress"
+        android:textSize="15sp"
+        android:drawableStart="@drawable/ic_user"
+        android:paddingTop="15dp"
+        android:paddingBottom= "15dp"
+        android:paddingStart="15dp"
+        android:drawablePadding="15dp"
+        android:hint="@string/email_uel"
+        android:id="@+id/edtEmail"
+        android:textColor="@color/xamChu"
+        android:fontFamily="@font/be_vietnam_light"
+        android:textColorHint="#8F8E8E"
 
+        />
 
-
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="0dp"
+        android:id="@+id/txtErrorEmail"
+        android:textColor="@color/red"
+        android:fontFamily="@font/be_vietnam_medium"
+        android:paddingStart="15dp"
+        android:gravity="left"
+        app:layout_constraintTop_toBottomOf="@id/edtEmail"
+        app:layout_constraintLeft_toLeftOf="@id/gLeft5"
+        app:layout_constraintRight_toRightOf="@id/gRight5"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="90dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/custom_button"
         android:text="@string/verify"
-        app:layout_constraintTop_toBottomOf="@id/pvVerification"
-        app:layout_constraintLeft_toLeftOf="@id/gLeft3"
-        app:layout_constraintRight_toRightOf="@id/gRight3"
-        app:layout_constraintBottom_toTopOf="@id/lnResend"
-        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintTop_toBottomOf="@id/edtEmail"
+        app:layout_constraintLeft_toLeftOf="@id/gLeft5"
+        app:layout_constraintRight_toRightOf="@id/gRight5"
+        app:layout_constraintBottom_toTopOf="@id/lnLoginHere"
+        app:layout_constraintVertical_bias="0.45"
         android:textAllCaps="false"
         android:fontFamily="@font/be_vietnam_medium"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:id="@+id/btnVerify" />
-   <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="0sp"
-        android:id="@+id/txtErrorCode"
-        android:textColor="@color/red"
-        android:fontFamily="@font/be_vietnam_medium"
-        android:paddingStart="38dp"
-        android:gravity="left"
-
-
-        app:layout_constraintTop_toBottomOf="@id/pvVerification"
-        app:layout_constraintLeft_toLeftOf="@id/gLeft3"
-        app:layout_constraintRight_toRightOf="@id/gRight3"/>
+        android:id="@+id/btnVerifyEmail"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@+id/gLeft3"
-        app:layout_constraintRight_toRightOf="@id/gRight3"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="30dp"
-        android:id="@+id/lnResend"
-        android:orientation="horizontal">
-
+        android:gravity="center"
+        android:id="@+id/lnLoginHere">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/you_didn_t_receive_a_code"
+            android:text="@string/already_have_an_account"
             android:fontFamily="@font/be_vietnam_medium"
             android:textColor="#AB000000"
-            android:textSize="16.5sp"
-            />
+            android:textSize="17sp" />
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/resend"
-            android:textSize="16.5sp"
-            android:textColor="@color/primary_yellow"
+            android:text="@string/login_here_signup"
+            android:id="@+id/txtLoginHere"
+
             android:fontFamily="@font/be_vietnam_bold"
-            android:id="@+id/txtResend"
-            />
+            android:textColor="#FFD428"
+            android:textSize="17sp" />
     </LinearLayout>
 
 

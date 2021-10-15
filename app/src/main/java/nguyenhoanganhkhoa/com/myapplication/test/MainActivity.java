@@ -1,8 +1,10 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 

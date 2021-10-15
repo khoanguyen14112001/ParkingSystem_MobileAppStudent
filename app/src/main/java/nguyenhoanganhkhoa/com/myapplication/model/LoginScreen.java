@@ -1,12 +1,9 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.model;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -16,20 +13,20 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import nguyenhoanganhkhoa.com.myapplication.R;
+
 
 public class LoginScreen extends AppCompatActivity {
 
     EditText edtUsername,edtPassword;
     Button btnLogin,btnOK;
-    TextView txtErrorPassword, txtErrorUsername,txtErrorLogTooMuch,txtForgotPassword;
+    TextView txtErrorPassword, txtErrorUsername,txtErrorLogTooMuch,txtForgotPassword,txtSignUp;
     ImageView imgPasswordToggleClose;
 
     private void linkView() {
@@ -42,6 +39,7 @@ public class LoginScreen extends AppCompatActivity {
         imgPasswordToggleClose = findViewById(R.id.imgToggleClose);
         txtErrorLogTooMuch = findViewById(R.id.txtErrorLogTooMuch);
         txtForgotPassword = findViewById(R.id.txtForgotPassword);
+        txtSignUp = findViewById(R.id.txtSignUp);
     }
 
     private void setCustomColor(EditText edtCanSua, int edtColor, int iconColor, int textColor)
@@ -53,11 +51,8 @@ public class LoginScreen extends AppCompatActivity {
         edtCanSua.setTextColor(ContextCompat.getColorStateList(LoginScreen.this,textColor));
     }
 
-    private Boolean validateEmail(){
+    private Boolean validateUsername(){
         String username = edtUsername.getText().toString();
-//        String emailPattern1 = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-//        String emailPattern2 = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+\\.+[a-z]+";
-
         if (username.isEmpty()){
             txtErrorUsername.setText(R.string.field_cannot_be_empty);
             txtErrorUsername.setTextSize(15);
@@ -66,12 +61,7 @@ public class LoginScreen extends AppCompatActivity {
             return false;
         }
 
-//         if (!email.matches(emailPattern1) && !email.matches(emailPattern2)) {
-//             txtErrorEmail.setText(R.string.invalid_email_address);
-//             txtErrorEmail.setTextSize(15);
-//             setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
-//             return false;
-//        }
+//
 
         else {
             setCustomColor(edtUsername,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
@@ -83,6 +73,7 @@ public class LoginScreen extends AppCompatActivity {
         }
 
     }
+
 
     private Boolean validatePassword(){
         String password = edtPassword.getText().toString();
@@ -101,6 +92,8 @@ public class LoginScreen extends AppCompatActivity {
 
             setCustomColor(edtPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtPassword.setHintTextColor(getColor(R.color.xamChu));
+            imgPasswordToggleClose.setImageTintList(getColorStateList(R.color.black80));
+
 
             txtErrorPassword.setText(null);
             txtErrorPassword.setTextSize(0);
@@ -138,7 +131,13 @@ public class LoginScreen extends AppCompatActivity {
     }
 
     private void addEvents() {
-
+        txtSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginScreen.this,EmailScreen.class);
+                startActivity(intent);
+            }
+        });
         edtUsername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -147,12 +146,7 @@ public class LoginScreen extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setCustomColor(edtUsername,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-                edtUsername.setHintTextColor(getColor(R.color.xamChu));
-
-                txtErrorUsername.setText(null);
-                txtErrorUsername.setTextSize(0);
-
+                validateUsername();
             }
 
             @Override
@@ -169,12 +163,7 @@ public class LoginScreen extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setCustomColor(edtPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-                imgPasswordToggleClose.setImageTintList(getColorStateList(R.color.black80));
-                edtPassword.setHintTextColor(getColor(R.color.xamChu));
-                txtErrorPassword.setText(null);
-                txtErrorPassword.setTextSize(0);
-
+                validatePassword();
             }
 
             @Override
@@ -188,13 +177,8 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showHidePassword(edtPassword,view);
-
             }
         });
-
-
-
-
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
@@ -203,7 +187,7 @@ public class LoginScreen extends AppCompatActivity {
 
 
                 // Validate password và email
-                if(!validateEmail() | !validatePassword()){
+                if(!validateUsername() | !validatePassword()){
 
                     edtUsername.clearFocus();
                     edtPassword.clearFocus();
@@ -278,7 +262,7 @@ public class LoginScreen extends AppCompatActivity {
         txtForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginScreen.this,ResetPasswordScreen.class);
+                Intent intent = new Intent(LoginScreen.this, ResetPasswordScreen.class);
                 startActivity(intent);
 
             }

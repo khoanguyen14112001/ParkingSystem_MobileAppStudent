@@ -1,23 +1,20 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.model;
 
-import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
-import android.text.SpannableString;
-import android.text.Spanned;
 import android.text.TextWatcher;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import nguyenhoanganhkhoa.com.myapplication.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class ResetPasswordScreen extends AppCompatActivity {
     EditText edtPhone;
@@ -55,7 +52,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
     private void addTimerLock() {
 
 
-        new CountDownTimer(6000, 10) { //Set Timer for 5 seconds
+        new CountDownTimer(30000, 10) { //Set Timer for 5 seconds
             public void onTick(long millisUntilFinished) {
                 btnSendPassword.setBackground(getDrawable(R.drawable.button_login_block));
                 AppUtil.eMessage = null;
@@ -96,9 +93,9 @@ public class ResetPasswordScreen extends AppCompatActivity {
 
 
     private Boolean validatePhoner(){
-        String password = edtPhone.getText().toString();
+        String s = edtPhone.getText().toString();
 
-        if (password.isEmpty()){
+        if (s.isEmpty()){
             txtErrorPhone.setText(R.string.field_cannot_be_empty);
             txtErrorPhone.setTextSize(15);
             setCustomColor(edtPhone,R.drawable.edt_custom_error,R.color.red,R.color.red);
@@ -106,13 +103,17 @@ public class ResetPasswordScreen extends AppCompatActivity {
             return false;
         }
 
-        else {
 
+        else {
             setCustomColor(edtPhone,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtPhone.setHintTextColor(getColor(R.color.xamChu));
 
             txtErrorPhone.setText(null);
             txtErrorPhone.setTextSize(0);
+
+            btnSendPassword.setEnabled(true);
+            btnSendPassword.setBackground(getDrawable(R.drawable.custom_button));
+            btnSendPassword.setTextColor(getColor( R.color.blackUI));
             return true;
         }
 
@@ -124,26 +125,25 @@ public class ResetPasswordScreen extends AppCompatActivity {
                 // Validate password và email
                 if(!validatePhoner()){
                     edtPhone.clearFocus();
-                    return;
                 }
 
-                else {
+
+                else{
                     if(!edtPhone.getText().toString().equals("0908315280"))
                     {
                         txtErrorPhone.setText(R.string.your_phone_does_not_exists);
                         txtErrorPhone.setTextSize(15);
                         setCustomColor(edtPhone,R.drawable.edt_custom_error,R.color.red,R.color.red);
-
-
                     }
-                    else{
 
-                        Intent intent = new Intent(ResetPasswordScreen.this,VerificationScreen.class);
+                    else{
+                        Intent intent = new Intent(ResetPasswordScreen.this, VerificationScreen.class);
                         startActivity(intent);
                         setCustomColor(edtPhone,R.drawable.custom_edt,R.color.blackUI,R.color.blackUI);
                     }
-
                 }
+
+
 
 
 
@@ -158,32 +158,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String s = edtPhone.getText().toString();
-                if(s.length()>12)
-                {
-                    setCustomColor(edtPhone,R.drawable.edt_custom_error,R.color.red,R.color.red);
-                    txtErrorPhone.setText(R.string.your_phone_number_is_too_long);
-                    txtErrorPhone.setTextSize(15);
-
-                    btnSendPassword.setEnabled(false);
-                    btnSendPassword.setBackground(getDrawable( R.drawable.button_login_block));
-
-                    btnSendPassword.setTextColor(getColor(R.color.xamBlcok));
-
-                }
-                else
-                {
-                    setCustomColor(edtPhone,R.drawable.custom_edt,R.color.blackUI,R.color.blackUI);
-                    txtErrorPhone.setText(null);
-                    txtErrorPhone.setTextSize(0);
-                    edtPhone.setHintTextColor(getColor(R.color.xamChu));
-
-                    btnSendPassword.setEnabled(true);
-                    btnSendPassword.setBackground(getDrawable(R.drawable.custom_button));
-                    btnSendPassword.setTextColor(getColor( R.color.blackUI));
-
-                }
-
+                validatePhoner();
             }
 
             @Override
@@ -195,7 +170,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
         imvRestBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ResetPasswordScreen.this,LoginScreen.class);
+                Intent intent = new Intent(ResetPasswordScreen.this, LoginScreen.class);
                 startActivity(intent);
             }
         });
