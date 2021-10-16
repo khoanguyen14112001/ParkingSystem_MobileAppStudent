@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/reset_password_failed"
+        android:text="@string/sign_up_failed"
         android:gravity="center"
         android:fontFamily="@font/fjalla_one_regular"
         android:textSize="24.5sp"
@@ -22,7 +22,7 @@
         android:fontFamily="@font/be_vietnam_light"
         android:textColor="@color/black"
         android:layout_marginTop="15dp"
-        android:text="@string/you_have_5_failed_otp_attempts_n_reset_password_feature_is_locked_n_within_30_minutes"/>
+        android:text="@string/you_have_5_failed_otp_attempts_n_sign_up_feature_is_locked_n_within_30_minutes"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"

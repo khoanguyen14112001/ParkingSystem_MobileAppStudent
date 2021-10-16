@@ -9,22 +9,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/unsaved_changes"
+        android:text="Choose where to pick"
         android:gravity="center"
         android:fontFamily="@font/fjalla_one_regular"
         android:textSize="24.5sp"
         android:textColor="@color/black"/>
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:fontFamily="@font/be_vietnam_light"
-        android:textColor="@color/black"
-        android:layout_marginTop="15dp"
-        android:textSize="15sp"
-        android:text="@string/all_your_changes_will_not_be_saved_n_are_you_sure_want_to_leave"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -33,23 +23,23 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center"
         >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOK"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_button_dialog"
+            android:fontFamily="@font/be_vietnam_medium"
+            android:text="Gallery"
+            android:textSize="16sp" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:background="@drawable/custom_button_dialog"
-            android:text="@string/ok"
-            android:layout_gravity="center"
-            android:id="@+id/btnOK"
-            android:textSize="16sp"
-            android:fontFamily="@font/be_vietnam_medium"
-            />
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:background="@drawable/custom_button_dialog_black"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:text="@string/cancel"
+            android:text="CAMERA"
             android:layout_gravity="center"
             android:id="@+id/btnCancel"
             android:layout_marginLeft="30dp"
