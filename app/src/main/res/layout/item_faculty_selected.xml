@@ -8,15 +8,13 @@
     <TextView
         android:id="@+id/txtFacultySelectedItem"
         android:layout_width="match_parent"
+        android:gravity="left|center"
         android:layout_height="50dp"
         android:textSize="15sp"
         android:text="TextView"
+        android:lines="2"
         android:fontFamily="@font/be_vietnam_light"
-        android:background="@drawable/custom_edt"
         android:textColor="@color/xamChu"
-        tools:layout_editor_absoluteX="156dp"
-        tools:layout_editor_absoluteY="99dp"
-        android:paddingTop="14dp"
         android:paddingLeft="45dp"/>
 
 

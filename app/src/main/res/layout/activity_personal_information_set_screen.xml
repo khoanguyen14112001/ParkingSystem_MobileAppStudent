@@ -146,18 +146,46 @@
         app:layout_constraintRight_toRightOf="@id/gRight7"
         />
 
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/edtIDStudent"
+        app:layout_constraintRight_toRightOf="@id/gRight7"
+        app:layout_constraintLeft_toLeftOf="@id/gLeft7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="0sp"
+        android:textColor="@color/red"
+        android:id="@+id/txtErrorIDStudent"
+        android:fontFamily="@font/be_vietnam_medium"
+        android:paddingStart="12dp"/>
 
-    <Spinner
+
+
+    <nguyenhoanganhkhoa.com.myapplication.model.CustomSpinner
+        android:dropDownWidth="match_parent"
         app:layout_constraintTop_toBottomOf="@+id/edtIDStudent"
         app:layout_constraintLeft_toLeftOf="@id/gLeft7"
         app:layout_constraintRight_toRightOf="@id/gRight7"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
+        android:layout_height="wrap_content"
+        android:dropDownVerticalOffset = "50dp"
         android:id="@+id/spnFaculty"
+        android:background="@drawable/custom_edt"
         android:layout_marginTop="15dp"
+        android:popupBackground="@drawable/edt_custom_untouch"
 
         />
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/spnFaculty"
+        app:layout_constraintRight_toRightOf="@id/gRight7"
+        app:layout_constraintLeft_toLeftOf="@id/gLeft7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="0sp"
+        android:textColor="@color/red"
+        android:id="@+id/txtErrorSpnFaculty"
+        android:fontFamily="@font/be_vietnam_medium"
+        android:paddingStart="12dp"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -166,6 +194,7 @@
         app:layout_constraintBottom_toBottomOf="@id/spnFaculty"
         app:layout_constraintLeft_toLeftOf="@id/spnFaculty"
         android:src="@drawable/ic_faculty"
+        android:id="@+id/imvFaculty"
         android:layout_marginLeft="12dp"/>
 
     <ImageView
@@ -175,6 +204,7 @@
         app:layout_constraintBottom_toBottomOf="@id/spnFaculty"
         app:layout_constraintRight_toRightOf="@id/spnFaculty"
         android:src="@drawable/ic_arrow_down_spinner"
+        android:id="@+id/imvDropdown"
         android:layout_marginRight="15dp"/>
 
     <EditText
@@ -188,7 +218,9 @@
         android:drawableStart="@drawable/ic_major"
         android:drawableTint="#242A37"
         android:textColorHint="#8F8E8E"
-        android:padding="15dp"
+        android:paddingTop="15dp"
+        android:paddingLeft="12dp"
+        android:paddingBottom="15dp"
         android:drawablePadding="15dp"
         android:textColor="@color/xamChu"
         app:layout_constraintTop_toBottomOf="@+id/spnFaculty"
@@ -197,6 +229,19 @@
         android:layout_marginTop="15dp"
 
         />
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/edtMajors"
+        app:layout_constraintRight_toRightOf="@id/gRight7"
+        app:layout_constraintLeft_toLeftOf="@id/gLeft7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="0sp"
+        android:textColor="@color/red"
+        android:id="@+id/txtErrorMajor"
+        android:fontFamily="@font/be_vietnam_medium"
+        android:paddingStart="12dp"/>
+
 
     <EditText
         android:layout_width="0dp"
@@ -218,6 +263,19 @@
         android:layout_marginTop="15dp"
         />
 
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/edtDateOfBirth"
+        app:layout_constraintRight_toRightOf="@id/gRight7"
+        app:layout_constraintLeft_toLeftOf="@id/gLeft7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="0sp"
+        android:textColor="@color/red"
+        android:id="@+id/txtErrorDataofbirth"
+        android:fontFamily="@font/be_vietnam_medium"
+        android:paddingStart="12dp"/>
+
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="90dp"
@@ -233,14 +291,5 @@
         android:fontFamily="@font/be_vietnam_medium"
         android:text="@string/save"
         android:background="@drawable/custom_button"/>
-
-
-
-
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

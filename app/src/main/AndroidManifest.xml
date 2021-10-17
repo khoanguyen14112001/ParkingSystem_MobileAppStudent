@@ -18,6 +18,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".model.VerificationSignupScreen"
@@ -41,7 +42,9 @@
             android:exported="true" />
         <activity
             android:name=".test.MainActivity2"
-            android:exported="true" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".model.LoginScreen"
             android:exported="true" >
