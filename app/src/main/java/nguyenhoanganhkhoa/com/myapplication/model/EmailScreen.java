@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
@@ -21,12 +22,14 @@ public class EmailScreen extends AppCompatActivity {
     EditText edtEmail;
     TextView txtErrorEmail,txtLoginHere;
     Button btnVerifyEmail;
+    ImageView imvComebackEmailScreen;
 
     private void linkView() {
         edtEmail = findViewById(R.id.edtEmail);
         txtErrorEmail = findViewById(R.id.txtErrorEmail);
         txtLoginHere = findViewById(R.id.txtLoginHere);
         btnVerifyEmail = findViewById(R.id.btnVerifyEmail);
+        imvComebackEmailScreen = findViewById(R.id.imvComebackEmailScreen);
 
     }
     @Override
@@ -119,10 +122,38 @@ public class EmailScreen extends AppCompatActivity {
         }
 
     }
+    private Boolean validateEmailTextChange(){
+        String email = edtEmail.getText().toString();
+
+        if (email.isEmpty()){
+            txtErrorEmail.setText(R.string.field_cannot_be_empty);
+            txtErrorEmail.setTextSize(15);
+            edtEmail.setHintTextColor(getColor(R.color.red));
+            setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            return false;
+        }
+
+        else {
+            setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            edtEmail.setHintTextColor(getColor(R.color.xamChu));
+
+            txtErrorEmail.setText(null);
+            txtErrorEmail.setTextSize(0);
+            return true;
+        }
+
+    }
 
 
 
     private void addEvents() {
+        imvComebackEmailScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmailScreen.this,LoginScreen.class);
+                startActivity(intent);
+            }
+        });
 
         txtLoginHere.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,13 +170,8 @@ public class EmailScreen extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-//                edtEmail.setHintTextColor(getColor(R.color.xamChu));
-//
-//                txtErrorEmail.setText(null);
-//                txtErrorEmail.setTextSize(0);
 
-                validateEmail();
+                validateEmailTextChange();
             }
 
             @Override

@@ -139,7 +139,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
                     else{
                         Intent intent = new Intent(ResetPasswordScreen.this, VerificationScreen.class);
                         startActivity(intent);
-                        setCustomColor(edtPhone,R.drawable.custom_edt,R.color.blackUI,R.color.blackUI);
+                        setCustomColor(edtPhone,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
                     }
                 }
 

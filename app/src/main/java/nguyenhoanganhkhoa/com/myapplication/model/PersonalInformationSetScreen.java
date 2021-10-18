@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -250,9 +251,9 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
             calendar.set(Calendar.MONTH, month);
             calendar.set(Calendar.DAY_OF_MONTH, day);
             edtDateofbirth.setText(dateFormat.format(calendar.getTime()));
+            String s = edtDateofbirth.getText().toString();
         }
     };
-
     FacultyAdapter facultyAdapter;
     FacultyAdapterError facultyAdapterError;
     private void initAdapterFaculty() {
@@ -363,6 +364,9 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                         year, month, day);
                 datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 datePickerDialog.show();
+
+
+
             }
         });
         edtDateofbirth.addTextChangedListener(new TextWatcher() {
@@ -391,6 +395,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                     clearAllForcus();
                 }
                 else {
+                    clearAllForcus();
                     CustomDialog customDialog = new
                             CustomDialog(PersonalInformationSetScreen.this, R.layout.custom_dialog_saved_information);
                     customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
