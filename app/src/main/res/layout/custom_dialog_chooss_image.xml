@@ -9,45 +9,52 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose where to pick"
+        android:text="Select avatar"
         android:gravity="center"
         android:fontFamily="@font/fjalla_one_regular"
         android:textSize="24.5sp"
         android:textColor="@color/black"/>
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="15dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnTakePhotos"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
-        >
+        android:background="@drawable/custom_button_dialog_long"
+        android:fontFamily="@font/be_vietnam_medium"
+        android:textAllCaps="false"
+        android:text="@string/take_photos"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnOK"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:background="@drawable/custom_button_dialog"
-            android:fontFamily="@font/be_vietnam_medium"
-            android:text="Gallery"
-            android:textSize="16sp" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:background="@drawable/custom_button_dialog"
-            android:textAllCaps="false"
-            android:text="CAMERA"
-            android:layout_gravity="center"
-            android:id="@+id/btnCancel"
-            android:layout_marginLeft="30dp"
-            android:textSize="16sp"
-            android:fontFamily="@font/be_vietnam_medium"
-            />
+        android:background="@drawable/custom_button_dialog_long"
+        android:textAllCaps="false"
+        android:text="@string/choose_from_gallery"
+        android:layout_gravity="center"
+        android:id="@+id/btnChooseFromGallery"
+        android:textSize="16sp"
+        android:fontFamily="@font/be_vietnam_medium"
+        />
 
-    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:background="@drawable/custom_button_dialog_black"
+        android:textAllCaps="false"
+        android:text="@string/cancel"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:id="@+id/btnCancel"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/be_vietnam_medium"
+        />
 
 
 

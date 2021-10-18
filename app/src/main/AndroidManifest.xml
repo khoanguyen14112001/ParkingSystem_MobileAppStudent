@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+
         </activity>
         <activity
             android:name=".model.VerificationSignupScreen"
@@ -27,16 +28,25 @@
         </activity>
         <activity
             android:name=".model.EmailScreen"
-            android:exported="true" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".model.SignUpScreen_UserInfo"
-            android:exported="true"></activity>
+            android:exported="true">
+
+
+        </activity>
         <activity
             android:name=".model.CreateNewPasswordScreen"
-            android:exported="true" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".model.VerificationScreen"
-            android:exported="true" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".model.ResetPasswordScreen"
             android:exported="true" />
@@ -52,7 +62,10 @@
         </activity>
         <activity
             android:name=".test.MainActivity"
-            android:exported="true" />
+            android:exported="true" >
+
+
+        </activity>
     </application>
 
 </manifest>

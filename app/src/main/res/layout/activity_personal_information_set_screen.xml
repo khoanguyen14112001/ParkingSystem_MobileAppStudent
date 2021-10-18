@@ -162,7 +162,7 @@
 
     <nguyenhoanganhkhoa.com.myapplication.model.CustomSpinner
         android:dropDownWidth="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtIDStudent"
+        app:layout_constraintTop_toBottomOf="@+id/txtErrorIDStudent"
         app:layout_constraintLeft_toLeftOf="@id/gLeft7"
         app:layout_constraintRight_toRightOf="@id/gRight7"
         android:layout_width="0dp"
@@ -170,7 +170,7 @@
         android:dropDownVerticalOffset = "50dp"
         android:id="@+id/spnFaculty"
         android:background="@drawable/custom_edt"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="13dp"
         android:popupBackground="@drawable/edt_custom_untouch"
 
         />
@@ -207,11 +207,12 @@
         android:id="@+id/imvDropdown"
         android:layout_marginRight="15dp"/>
 
-    <EditText
+
+    <AutoCompleteTextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:id="@+id/edtMajors"
+        android:id="@+id/adtMajors"
         android:background="@drawable/custom_edt"
         android:hint="@string/major"
         android:fontFamily="@font/be_vietnam_light"
@@ -219,19 +220,23 @@
         android:drawableTint="#242A37"
         android:textColorHint="#8F8E8E"
         android:paddingTop="15dp"
-        android:paddingLeft="12dp"
+        android:paddingLeft="10dp"
         android:paddingBottom="15dp"
         android:drawablePadding="15dp"
         android:textColor="@color/xamChu"
-        app:layout_constraintTop_toBottomOf="@+id/spnFaculty"
+        app:layout_constraintTop_toBottomOf="@+id/txtErrorSpnFaculty"
         app:layout_constraintLeft_toLeftOf="@id/gLeft7"
         app:layout_constraintRight_toRightOf="@id/gRight7"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="13dp"
+        android:dropDownVerticalOffset = "7dp"
+        android:popupBackground="@drawable/edt_custom_untouch"
 
         />
 
+
+
     <TextView
-        app:layout_constraintTop_toBottomOf="@id/edtMajors"
+        app:layout_constraintTop_toBottomOf="@id/adtMajors"
         app:layout_constraintRight_toRightOf="@id/gRight7"
         app:layout_constraintLeft_toLeftOf="@id/gLeft7"
         android:layout_width="0dp"
@@ -243,7 +248,7 @@
         android:paddingStart="12dp"/>
 
 
-    <EditText
+    <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="15sp"
@@ -254,13 +259,15 @@
         android:drawableStart="@drawable/ic_dateofbirth"
         android:drawableTint="#242A37"
         android:textColorHint="#8F8E8E"
-        android:padding="15dp"
-        android:drawablePadding="15dp"
+        android:paddingTop="15dp"
+        android:paddingLeft="14dp"
+        android:paddingBottom="15dp"
+        android:drawablePadding="13dp"
         android:textColor="@color/xamChu"
-        app:layout_constraintTop_toBottomOf="@+id/edtMajors"
+        app:layout_constraintTop_toBottomOf="@+id/txtErrorMajor"
         app:layout_constraintLeft_toLeftOf="@id/gLeft7"
         app:layout_constraintRight_toRightOf="@id/gRight7"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="13dp"
         />
 
     <TextView

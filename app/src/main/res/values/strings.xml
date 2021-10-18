@@ -86,4 +86,9 @@
     <string name="you_have_5_failed_otp_attempts_n_sign_up_feature_is_locked_n_within_30_minutes">You have 5 failed OTP attempts. \n Sign up feature is locked \n within 30 minutes</string>
     <string name="major">Major*</string>
     <string name="please_enter_your_date_of_birth">Please enter your date of birth with precise format</string>
+    <string name="please_enter_full_of_date">Please enter full of date</string>
+    <string name="take_photos">Take photos</string>
+    <string name="choose_from_gallery">Choose from gallery</string>
+    <string name="saved_information">Saved information</string>
+    <string name="your_personal_information_n_has_been_saved">Your personal information \n has been saved.</string>
 </resources>

@@ -5,59 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".test.MainActivity"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:orientation="vertical">
 
-    <com.google.android.material.textfield.TextInputLayout
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/xamChu"
-        app:boxCornerRadiusTopStart="20dp"
-        app:boxCornerRadiusBottomStart="20dp"
-        app:boxCornerRadiusTopEnd="20dp"
-        app:boxCornerRadiusBottomEnd="20dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="@string/log_in"
-        app:counterTextColor="@color/primary_yellow"
-        app:boxStrokeColor="@color/black"
-        app:boxBackgroundColor="@color/teal_200"
-        app:boxStrokeWidthFocused="2dp"
-        app:hintTextColor="@color/black"
-        android:defaultFocusHighlightEnabled="true"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="1"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:startIconDrawable="@drawable/ic_arror_left"
-
-        android:backgroundTint="@color/xamChu"
-
-        app:boxCornerRadiusTopStart="25dp"
-        app:boxCornerRadiusBottomStart="25dp"
-        app:boxCornerRadiusTopEnd="25dp"
-        app:boxCornerRadiusBottomEnd="25dp"
-        android:hint="@string/log_in"
-        app:counterTextColor="@color/primary_yellow"
-        app:boxStrokeColor="@color/black"
-        app:boxBackgroundColor="@color/xamEdt"
-        app:boxStrokeWidthFocused="2dp"
-        app:hintTextColor="@color/black"
-
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:maxLines="1"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:textSize="50dp"
+        android:text="time"
+        android:id="@+id/txtTextCal"
+        android:padding="10dp"
+        />
 
 
 </LinearLayout>

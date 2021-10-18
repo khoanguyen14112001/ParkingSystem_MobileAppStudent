@@ -131,6 +131,7 @@ public class LoginScreen extends AppCompatActivity {
     }
 
     private void addEvents() {
+
         txtSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
