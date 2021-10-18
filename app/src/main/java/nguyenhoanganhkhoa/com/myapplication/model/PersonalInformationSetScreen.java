@@ -47,6 +47,7 @@ import nguyenhoanganhkhoa.com.myapplication.thirdlink.AppUtil;
 
 public class PersonalInformationSetScreen extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {
 
+    //// Lô :))) 
     Button btnSave;
     EditText edtIdStudent;
     CustomSpinner spnFaculty;
