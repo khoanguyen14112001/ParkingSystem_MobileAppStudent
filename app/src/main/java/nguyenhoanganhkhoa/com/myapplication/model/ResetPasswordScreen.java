@@ -61,6 +61,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
                 edtPhone.setHintTextColor(getColor(R.color.xamChu));
                 edtPhone.setCompoundDrawableTintList(getColorStateList(R.color.xamBlockIcon));
                 btnSendPassword.setEnabled(false);
+                imvRestBack.setEnabled(false);
                 edtPhone.setEnabled(false);
 
             }
@@ -74,6 +75,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
                 btnSendPassword.setBackground(getDrawable(R.drawable.custom_button));
                 btnSendPassword.setTextColor(getColor( R.color.blackUI));
                 edtPhone.setEnabled(true);
+                imvRestBack.setEnabled(true);
                 AppUtil.eMessage="";
             }
         }.start();

@@ -63,6 +63,7 @@ public class EmailScreen extends AppCompatActivity {
                 edtEmail.setBackground(getDrawable(R.drawable.edt_custom_block));
                 edtEmail.setHintTextColor(getColor(R.color.xamChu));
                 edtEmail.setCompoundDrawableTintList(getColorStateList(R.color.xamBlockIcon));
+                imvComebackEmailScreen.setEnabled(false);
                 btnVerifyEmail.setEnabled(false);
                 edtEmail.setEnabled(false);
 
@@ -77,6 +78,7 @@ public class EmailScreen extends AppCompatActivity {
                 btnVerifyEmail.setBackground(getDrawable(R.drawable.custom_button));
                 btnVerifyEmail.setTextColor(getColor( R.color.blackUI));
                 edtEmail.setEnabled(true);
+                imvComebackEmailScreen.setEnabled(true);
                 AppUtil.eMessageForSignUp="";
             }
         }.start();
