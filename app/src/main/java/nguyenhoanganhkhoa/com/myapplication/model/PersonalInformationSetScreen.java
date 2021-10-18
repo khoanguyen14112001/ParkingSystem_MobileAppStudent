@@ -47,7 +47,6 @@ import nguyenhoanganhkhoa.com.myapplication.thirdlink.AppUtil;
 
 public class PersonalInformationSetScreen extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {
 
-    //// Lô :))) 
     Button btnSave;
     EditText edtIdStudent;
     CustomSpinner spnFaculty;
@@ -229,15 +228,19 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     private List<Major> getListMajor() {
         List<Major> list = new ArrayList<>();
         list.add(new Major("Economics"));
-        list.add(new Major("E - commerce"));
-        list.add(new Major("International laws"));
+        list.add(new Major("International Economic Relations"));
+        list.add(new Major("Economics and Public Management"));
+        list.add(new Major("Finance and Banking"));
         list.add(new Major("Accounting"));
-        list.add(new Major("Information systems management"));
+        list.add(new Major("Management Information System"));
         list.add(new Major("Business Administration"));
-        list.add(new Major("Economic Mathematics"));
-        list.add(new Major("Faculty of Law"));
-        list.add(new Major("Faculty of Economic Law"));
-        list.add(new Major("Department of Foreign Languages"));
+        list.add(new Major("International Business"));
+        list.add(new Major("Auditing"));
+        list.add(new Major("Marketing and Electronic Commerce"));
+        list.add(new Major("Business Law"));
+        list.add(new Major("International Trade Law"));
+        list.add(new Major("Civil Law and Finance - Banking - Securities Law"));
+        list.add(new Major("E-Commerce"));
         return list;
     }
     Calendar calendar = Calendar.getInstance();
