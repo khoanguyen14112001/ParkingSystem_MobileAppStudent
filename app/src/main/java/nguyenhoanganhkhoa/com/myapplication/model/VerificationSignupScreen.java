@@ -126,7 +126,7 @@ public class VerificationSignupScreen extends AppCompatActivity {
                 {
                     if (pvVerificationSignUp.getText().toString().equals("1234")) {
                        CustomDialog customDialog = new CustomDialog
-                               (VerificationSignupScreen.this,R.layout.custom_dialog_create_account_successful);
+                               (VerificationSignupScreen.this,R.layout.custom_dialog_verification_successful);
                        customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
                            @Override
                            public void onClick(View view) {

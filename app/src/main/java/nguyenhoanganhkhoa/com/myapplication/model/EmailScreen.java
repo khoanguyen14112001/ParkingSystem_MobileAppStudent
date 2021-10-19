@@ -58,12 +58,10 @@ public class EmailScreen extends AppCompatActivity {
         new CountDownTimer(30000, 10) { //Set Timer for 5 seconds
             public void onTick(long millisUntilFinished) {
                 btnVerifyEmail.setBackground(getDrawable(R.drawable.button_login_block));
-                AppUtil.eMessageForSignUp = null;
                 btnVerifyEmail.setTextColor(getColor(R.color.xamBlcok));
                 edtEmail.setBackground(getDrawable(R.drawable.edt_custom_block));
                 edtEmail.setHintTextColor(getColor(R.color.xamChu));
                 edtEmail.setCompoundDrawableTintList(getColorStateList(R.color.xamBlockIcon));
-                imvComebackEmailScreen.setEnabled(false);
                 btnVerifyEmail.setEnabled(false);
                 edtEmail.setEnabled(false);
 
@@ -78,7 +76,6 @@ public class EmailScreen extends AppCompatActivity {
                 btnVerifyEmail.setBackground(getDrawable(R.drawable.custom_button));
                 btnVerifyEmail.setTextColor(getColor( R.color.blackUI));
                 edtEmail.setEnabled(true);
-                imvComebackEmailScreen.setEnabled(true);
                 AppUtil.eMessageForSignUp="";
             }
         }.start();
@@ -152,16 +149,18 @@ public class EmailScreen extends AppCompatActivity {
         imvComebackEmailScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EmailScreen.this,LoginScreen.class);
-                startActivity(intent);
+                Intent openMainActivity = new Intent(EmailScreen.this, LoginScreen.class);
+                openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityIfNeeded(openMainActivity, 0);
             }
         });
 
         txtLoginHere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EmailScreen.this,LoginScreen.class);
-                startActivity(intent);
+                Intent openMainActivity = new Intent(EmailScreen.this, LoginScreen.class);
+                openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityIfNeeded(openMainActivity, 0);
             }
         });
         edtEmail.addTextChangedListener(new TextWatcher() {

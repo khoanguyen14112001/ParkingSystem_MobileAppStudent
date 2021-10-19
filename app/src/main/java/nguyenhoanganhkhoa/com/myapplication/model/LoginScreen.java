@@ -155,7 +155,6 @@ public class LoginScreen extends AppCompatActivity {
 
             }
         });
-
         edtPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -172,7 +171,6 @@ public class LoginScreen extends AppCompatActivity {
 
             }
         });
-
         imgPasswordToggleClose.setOnClickListener(new View.OnClickListener() {
             // Ẩn hiện password
             @Override
@@ -180,7 +178,6 @@ public class LoginScreen extends AppCompatActivity {
                 showHidePassword(edtPassword,view);
             }
         });
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -259,12 +256,12 @@ public class LoginScreen extends AppCompatActivity {
                 }
             }
         });
-
         txtForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginScreen.this, ResetPasswordScreen.class);
-                startActivity(intent);
+                Intent openMainActivity = new Intent(LoginScreen.this, ResetPasswordScreen.class);
+                openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityIfNeeded(openMainActivity, 0);
 
             }
         });

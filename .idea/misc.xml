@@ -71,7 +71,7 @@
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/activity_verification_screen.xml" value="0.22" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/activity_verification_signup_screen.xml" value="0.22" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_chooss_image.xml" value="0.3333333333333333" />
-        <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_create_account_successful.xml" value="0.4466666666666667" />
+        <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_create_account_successful.xml" value="0.3333333333333333" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_login.xml" value="0.3333333333333333" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_saved information.xml" value="0.2" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_saved_information.xml" value="0.38085539714867617" />
@@ -80,6 +80,7 @@
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_verification.xml" value="0.3333333333333333" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_verification_2.xml" value="0.3333333333333333" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_verification_3.xml" value="0.5" />
+        <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/custom_dialog_verification_successful.xml" value="0.3333333333333333" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/item_faculty.xml" value="0.3333333333333333" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/item_faculty_selected.xml" value="0.3333333333333333" />
         <entry key="..\:/WorkingDocumentary/MainStudy/NCKH2021/Student_MobileApp/app/src/main/res/layout/item_faculty_selected_errror.xml" value="0.2" />

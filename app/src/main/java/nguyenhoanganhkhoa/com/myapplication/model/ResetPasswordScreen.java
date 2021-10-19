@@ -55,13 +55,11 @@ public class ResetPasswordScreen extends AppCompatActivity {
         new CountDownTimer(30000, 10) { //Set Timer for 5 seconds
             public void onTick(long millisUntilFinished) {
                 btnSendPassword.setBackground(getDrawable(R.drawable.button_login_block));
-                AppUtil.eMessage = null;
                 btnSendPassword.setTextColor(getColor(R.color.xamBlcok));
                 edtPhone.setBackground(getDrawable(R.drawable.edt_custom_block));
                 edtPhone.setHintTextColor(getColor(R.color.xamChu));
                 edtPhone.setCompoundDrawableTintList(getColorStateList(R.color.xamBlockIcon));
                 btnSendPassword.setEnabled(false);
-                imvRestBack.setEnabled(false);
                 edtPhone.setEnabled(false);
 
             }
@@ -75,7 +73,6 @@ public class ResetPasswordScreen extends AppCompatActivity {
                 btnSendPassword.setBackground(getDrawable(R.drawable.custom_button));
                 btnSendPassword.setTextColor(getColor( R.color.blackUI));
                 edtPhone.setEnabled(true);
-                imvRestBack.setEnabled(true);
                 AppUtil.eMessage="";
             }
         }.start();
@@ -172,8 +169,9 @@ public class ResetPasswordScreen extends AppCompatActivity {
         imvRestBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ResetPasswordScreen.this, LoginScreen.class);
-                startActivity(intent);
+                Intent openMainActivity = new Intent(ResetPasswordScreen.this, LoginScreen.class);
+                openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityIfNeeded(openMainActivity, 0);
             }
         });
 

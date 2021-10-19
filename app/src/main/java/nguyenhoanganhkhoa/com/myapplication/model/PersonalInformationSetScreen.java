@@ -292,7 +292,8 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                 customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        finish();
+                        Intent intent = new Intent(PersonalInformationSetScreen.this,EmailScreen.class);
+                        startActivity(intent);
                     }
                 });
                 customDialogTwoButton.btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -401,11 +402,12 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                 else {
                     clearAllForcus();
                     CustomDialog customDialog = new
-                            CustomDialog(PersonalInformationSetScreen.this, R.layout.custom_dialog_saved_information);
+                            CustomDialog(PersonalInformationSetScreen.this, R.layout.custom_dialog_create_account_successful);
                     customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             customDialog.dismiss();
+                            Toast.makeText(PersonalInformationSetScreen.this,"Let's go",Toast.LENGTH_SHORT).show();
                         }
                     });
                     customDialog.show();
