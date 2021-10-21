@@ -93,4 +93,34 @@
     <string name="your_personal_information_n_has_been_saved">Your personal information \n has been saved.</string>
     <string name="verification_successful">Verification successful</string>
     <string name="continue_to_fill_in_personal_n_information_to_complete_nsign_up_process">Continue to fill in personal \n information to complete \nsign up process</string>
+    <string-array name="faculty">
+        <item>Faculty*</item>
+        <item>Faculty of Economics</item>
+        <item>Faculty of International Economic Relations</item>
+        <item>Faculty of Finance - Banking</item>
+        <item>Faculty of Accounting - Auditing</item>
+        <item>Faculty of Information Systems</item>
+        <item>Faculty of Business Administration</item>
+        <item>Faculty of Economic Mathematics</item>
+        <item>Faculty of Law</item>
+        <item>Faculty of Economic Law</item>
+        <item>Department of Foreign Languages</item>
+    </string-array>
+
+    <string-array name="major">
+        <item>International Business</item>
+        <item>Economics</item>
+        <item>Economics and Public Management</item>
+        <item>Finance and Banking</item>
+        <item>Accounting</item>
+        <item>Management Information Systems</item>
+        <item>Business Administration</item>
+        <item>Auditing</item>
+        <item>Marketing and Electronic Commerce</item>
+        <item>Business Law</item>
+        <item>International Trade Law</item>
+        <item>Civil Law and Finance - Banking - Securities Law</item>
+        <item>E-Commerce</item>
+
+    </string-array>
 </resources>

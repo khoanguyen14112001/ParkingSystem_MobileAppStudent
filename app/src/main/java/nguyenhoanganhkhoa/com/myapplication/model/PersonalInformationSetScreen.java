@@ -227,20 +227,11 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     }
     private List<Major> getListMajor() {
         List<Major> list = new ArrayList<>();
-        list.add(new Major("Economics"));
-        list.add(new Major("International Economic Relations"));
-        list.add(new Major("Economics and Public Management"));
-        list.add(new Major("Finance and Banking"));
-        list.add(new Major("Accounting"));
-        list.add(new Major("Management Information System"));
-        list.add(new Major("Business Administration"));
-        list.add(new Major("International Business"));
-        list.add(new Major("Auditing"));
-        list.add(new Major("Marketing and Electronic Commerce"));
-        list.add(new Major("Business Law"));
-        list.add(new Major("International Trade Law"));
-        list.add(new Major("Civil Law and Finance - Banking - Securities Law"));
-        list.add(new Major("E-Commerce"));
+        String[] majorArray= getResources().getStringArray(R.array.major);
+
+        for (int i = 0;i<majorArray.length;i++)
+            list.add(new Major(majorArray[i]));
+
         return list;
     }
     Calendar calendar = Calendar.getInstance();
@@ -264,26 +255,20 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         facultyAdapter = new FacultyAdapter(this,R.layout.item_faculty_selected,getListFaculty());
         spnFaculty.setAdapter(facultyAdapter);
 
-
     }
     private List<Faculty> getListFaculty() {
         List<Faculty> list =new ArrayList<>();
-        list.add(new Faculty("Faculty*"));
-        list.add(new Faculty("Faculty of Economics"));
-        list.add(new Faculty("Faculty of International Economic Relations"));
-        list.add(new Faculty("Faculty of Finance - Banking"));
-        list.add(new Faculty("Faculty of Accounting - Auditing"));
-        list.add(new Faculty("Faculty of Information Systems"));
-        list.add(new Faculty("Faculty of Business Administration "));
-        list.add(new Faculty("Faculty of Economic Mathematics"));
-        list.add(new Faculty("Faculty of Law"));
-        list.add(new Faculty("Faculty of Economic Law"));
-        list.add(new Faculty("Department of Foreign Languages"));
+        String[] facultyArray= getResources().getStringArray(R.array.faculty);
+
+        for (int i = 0;i<facultyArray.length;i++)
+            list.add(new Faculty(facultyArray[i]));
+
         return list;
 
     }
     public static int selectedFaculty = 0;
     private void addEvents() {
+
         imvComebackUserinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

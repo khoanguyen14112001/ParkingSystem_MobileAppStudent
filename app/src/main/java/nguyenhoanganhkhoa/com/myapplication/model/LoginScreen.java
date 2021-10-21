@@ -213,7 +213,7 @@ public class LoginScreen extends AppCompatActivity {
                     else if(attemp<4| attemp==4)
                     {
                         // Nếu đúng thì cho user đi tiếp, reset lại attemp và trytime
-                        if(email.equals("123")&&password.equals("123"))
+                        if(email.equals("hoianhemvippro123 ")&&password.equals("HoIViPpRo123"))
                         {
                             Toast t = Toast.makeText(LoginScreen.this,"login zo",Toast.LENGTH_SHORT);
                             t.setGravity(Gravity.CENTER|Gravity.TOP, 0, 10);
