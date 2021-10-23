@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication.adapter;
+package nguyenhoanganhkhoa.com.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,17 +10,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.CountDownLatch;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
-import nguyenhoanganhkhoa.com.myapplication.data.Faculty;
-import nguyenhoanganhkhoa.com.myapplication.data.Major;
-import nguyenhoanganhkhoa.com.myapplication.model.PersonalInformationSetScreen;
+import nguyenhoanganhkhoa.com.models.Major;
 
 public class MajorAdapter extends ArrayAdapter<Major> {
     private List<Major> mListMajor;

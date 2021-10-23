@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication.model;
+package nguyenhoanganhkhoa.com.myapplication;
 
 import android.text.Editable;
 import android.text.TextWatcher;

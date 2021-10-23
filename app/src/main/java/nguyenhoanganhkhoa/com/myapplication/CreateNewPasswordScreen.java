@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication.model;
+package nguyenhoanganhkhoa.com.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.regex.Pattern;
-
-import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class CreateNewPasswordScreen extends AppCompatActivity {
 

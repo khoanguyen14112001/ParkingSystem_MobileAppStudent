@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication.test;
+package nguyenhoanganhkhoa.com.test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,19 +7,13 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
-import nguyenhoanganhkhoa.com.myapplication.adapter.MajorAdapter;
-import nguyenhoanganhkhoa.com.myapplication.data.Major;
 
 public class MainActivity extends AppCompatActivity {
 

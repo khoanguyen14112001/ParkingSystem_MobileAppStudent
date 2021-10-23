@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication.data;
+package nguyenhoanganhkhoa.com.models;
 
 public class Major {
     public String getNameMajor() {

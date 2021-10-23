@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication.thirdlink;
+package nguyenhoanganhkhoa.com.thirdlink;
 
 public class AppUtil {
     public static String eMessage = "";

@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication.model;
+package nguyenhoanganhkhoa.com.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -18,8 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import nguyenhoanganhkhoa.com.myapplication.R;
 
 
 public class LoginScreen extends AppCompatActivity {

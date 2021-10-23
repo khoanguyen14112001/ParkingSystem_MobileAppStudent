@@ -1,27 +1,16 @@
-package nguyenhoanganhkhoa.com.myapplication.test;
+package nguyenhoanganhkhoa.com.test;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
-import nguyenhoanganhkhoa.com.myapplication.adapter.FacultyAdapter;
-import nguyenhoanganhkhoa.com.myapplication.data.Faculty;
+import nguyenhoanganhkhoa.com.adapter.FacultyAdapter;
+import nguyenhoanganhkhoa.com.models.Faculty;
 
 public class MainActivity2 extends AppCompatActivity {
     private Spinner spnTest;

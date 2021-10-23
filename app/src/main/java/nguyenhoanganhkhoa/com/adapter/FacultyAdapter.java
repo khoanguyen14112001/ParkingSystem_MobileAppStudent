@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication.adapter;
+package nguyenhoanganhkhoa.com.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,27 +14,21 @@ import androidx.core.content.ContextCompat;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
-import nguyenhoanganhkhoa.com.myapplication.data.Faculty;
-import nguyenhoanganhkhoa.com.myapplication.model.PersonalInformationSetScreen;
-import nguyenhoanganhkhoa.com.myapplication.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.models.Faculty;
+import nguyenhoanganhkhoa.com.myapplication.PersonalInformationSetScreen;
 
-public class FacultyAdapterError extends ArrayAdapter<Faculty> {
+public class FacultyAdapter extends ArrayAdapter<Faculty> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_faculty_selected,parent,false);
-
         TextView txtFacultySelected = convertView.findViewById(R.id.txtFacultySelectedItem);
 
         Faculty faculty = this.getItem(position);
         if (faculty !=null){
             txtFacultySelected.setText(faculty.getNameFaculty());
-            if(position ==0)
-                txtFacultySelected.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.red));
-            else
-                txtFacultySelected.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.xamChu));
-        }
 
+        }
         return convertView;
 //        return super.getView(position, convertView, parent);
     }
@@ -42,8 +36,6 @@ public class FacultyAdapterError extends ArrayAdapter<Faculty> {
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_faculty,parent,false);
-
-
         TextView txtFaculty = convertView.findViewById(R.id.txtFacultyItem);
 
         Faculty faculty = this.getItem(position);
@@ -55,8 +47,9 @@ public class FacultyAdapterError extends ArrayAdapter<Faculty> {
             else
                 txtFaculty.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.xamChu));
         }
+
         if(PersonalInformationSetScreen.selectedFaculty==position && PersonalInformationSetScreen.selectedFaculty!=0)
-            txtFaculty.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.primary_yellow));
+                txtFaculty.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.primary_yellow));
 
 
         return convertView;
@@ -78,9 +71,10 @@ public class FacultyAdapterError extends ArrayAdapter<Faculty> {
             return true;
         }
     }
-    public FacultyAdapterError(@NonNull Context context, int resource, @NonNull List<Faculty> objects) {
+    public FacultyAdapter(@NonNull Context context, int resource, @NonNull List<Faculty> objects) {
 
 
         super(context, resource, objects);
     }
+
 }

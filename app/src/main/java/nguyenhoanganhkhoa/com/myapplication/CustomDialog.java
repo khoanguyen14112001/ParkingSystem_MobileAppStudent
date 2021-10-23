@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication.model;
+package nguyenhoanganhkhoa.com.myapplication;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -14,16 +15,16 @@ import androidx.annotation.NonNull;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
 
-public class CustomDialogThreeButton extends Dialog {
-    Button btnTakePhotos, btnChooseFromGallery, btnCancel;
+public class CustomDialog extends Dialog {
+    Button btnOK;
     Activity activity;
-    public CustomDialogThreeButton(@NonNull Context context, int dialoglayout) {
+    public CustomDialog(@NonNull Context context, int dialogLayout) {
 
         super(context);
         this.activity = (Activity) context;
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(dialoglayout);
+        setContentView(dialogLayout);
 
         Window window = this.getWindow();
         if (window == null){
@@ -42,11 +43,14 @@ public class CustomDialogThreeButton extends Dialog {
 
         linkView();
 
+
+
+
     }
 
-    private void linkView() {
-        btnTakePhotos = findViewById(R.id.btnTakePhotos);
-        btnCancel = findViewById(R.id.btnCancel);
-        btnChooseFromGallery = findViewById(R.id.btnChooseFromGallery);
+
+
+    public void linkView() {
+        btnOK = findViewById(R.id.btnOK);
     }
 }

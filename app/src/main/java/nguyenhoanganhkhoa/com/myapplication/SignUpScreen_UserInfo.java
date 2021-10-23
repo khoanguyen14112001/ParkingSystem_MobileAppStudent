@@ -1,7 +1,6 @@
-package nguyenhoanganhkhoa.com.myapplication.model;
+package nguyenhoanganhkhoa.com.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.regex.Pattern;
-
-import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class SignUpScreen_UserInfo extends AppCompatActivity {
     EditText edtFullname, edtPhoneSignUp, edtUsernameSignUp,edtPassSignUp,edtConfirmPassSignup;

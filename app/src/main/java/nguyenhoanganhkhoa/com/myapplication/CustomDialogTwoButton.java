@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication.model;
+package nguyenhoanganhkhoa.com.myapplication;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -6,7 +6,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -15,10 +14,10 @@ import androidx.annotation.NonNull;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
 
-public class CustomDialog extends Dialog {
-    Button btnOK;
+public class CustomDialogTwoButton extends Dialog {
+    Button btnOK, btnCancel;
     Activity activity;
-    public CustomDialog(@NonNull Context context, int dialogLayout) {
+    public CustomDialogTwoButton(@NonNull Context context, int dialogLayout) {
 
         super(context);
         this.activity = (Activity) context;
@@ -43,14 +42,10 @@ public class CustomDialog extends Dialog {
 
         linkView();
 
-
-
-
     }
 
-
-
-    public void linkView() {
+    private void linkView() {
         btnOK = findViewById(R.id.btnOK);
+        btnCancel = findViewById(R.id.btnCancel);
     }
 }

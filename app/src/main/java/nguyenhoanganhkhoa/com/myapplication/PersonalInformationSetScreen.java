@@ -1,24 +1,20 @@
-package nguyenhoanganhkhoa.com.myapplication.model;
+package nguyenhoanganhkhoa.com.myapplication;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -33,17 +29,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import nguyenhoanganhkhoa.com.myapplication.R;
-import nguyenhoanganhkhoa.com.myapplication.adapter.FacultyAdapter;
-import nguyenhoanganhkhoa.com.myapplication.adapter.FacultyAdapterError;
-import nguyenhoanganhkhoa.com.myapplication.adapter.MajorAdapter;
-import nguyenhoanganhkhoa.com.myapplication.data.Faculty;
-import nguyenhoanganhkhoa.com.myapplication.data.Major;
-import nguyenhoanganhkhoa.com.myapplication.test.MainActivity;
-import nguyenhoanganhkhoa.com.myapplication.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.adapter.FacultyAdapter;
+import nguyenhoanganhkhoa.com.adapter.FacultyAdapterError;
+import nguyenhoanganhkhoa.com.adapter.MajorAdapter;
+import nguyenhoanganhkhoa.com.models.Faculty;
+import nguyenhoanganhkhoa.com.models.Major;
 
 public class PersonalInformationSetScreen extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {
 

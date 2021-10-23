@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".model.PersonalInformationSetScreen"
+            android:name=".PersonalInformationSetScreen"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,48 +22,48 @@
 
         </activity>
         <activity
-            android:name=".model.VerificationSignupScreen"
+            android:name=".VerificationSignupScreen"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".model.EmailScreen"
+            android:name=".EmailScreen"
             android:exported="true" >
 
         </activity>
         <activity
-            android:name=".model.SignUpScreen_UserInfo"
+            android:name=".SignUpScreen_UserInfo"
             android:exported="true">
 
 
         </activity>
         <activity
-            android:name=".model.CreateNewPasswordScreen"
+            android:name=".CreateNewPasswordScreen"
             android:exported="true" >
 
         </activity>
         <activity
-            android:name=".model.VerificationScreen"
+            android:name=".VerificationScreen"
             android:exported="true" >
 
         </activity>
         <activity
-            android:name=".model.ResetPasswordScreen"
+            android:name=".ResetPasswordScreen"
             android:exported="true" />
         <activity
-            android:name=".test.MainActivity2"
+            android:name="nguyenhoanganhkhoa.com.test.MainActivity2"
             android:exported="true" >
 
         </activity>
         <activity
-            android:name=".model.LoginScreen"
+            android:name=".LoginScreen"
             android:exported="true" >
 
 
 
         </activity>
         <activity
-            android:name=".test.MainActivity"
+            android:name="nguyenhoanganhkhoa.com.test.MainActivity"
             android:exported="true" >
 
 
