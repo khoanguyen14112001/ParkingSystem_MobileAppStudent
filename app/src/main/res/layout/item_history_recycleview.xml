@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="16dp"
+    android:paddingTop="20dp">
+    <TextView
+        android:gravity="left|center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/oct_2021"
+        android:textColor="@color/blackUI"
+        android:fontFamily="@font/fjalla_one_regular"
+        android:textSize="30sp"
+        android:paddingLeft="24dp"
+        android:background="@color/primary_yellow"
+        android:id="@+id/txtDayAll"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rcvHistory"
+        />
+
+
+
+</LinearLayout>

@@ -91,6 +91,10 @@
     <string name="your_personal_information_n_has_been_saved">Your personal information \n has been saved.</string>
     <string name="verification_successful">Verification successful</string>
     <string name="continue_to_fill_in_personal_n_information_to_complete_nsign_up_process">Continue to fill in personal \n information to complete \nsign up process</string>
+    <string name="home">Home</string>
+    <string name="history">History</string>
+    <string name="wallet">Wallet</string>
+    <string name="account">Account</string>
     <string-array name="faculty">
         <item>Faculty*</item>
         <item>Faculty of Economics</item>
@@ -121,4 +125,24 @@
         <item>E-Commerce</item>
 
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="heo">Ý Heo</string>
+    <string name="hello">Hello,</string>
+    <string name="your_balance">Your balance</string>
+    <string name="vnd">VND</string>
+    <string name="acitivities">Acitivities</string>
+    <string name="qr_code">QR CODE</string>
+    <string name="withdraw">WITHDRAW</string>
+    <string name="last_transaction">Last Transaction</string>
+    <string name="see_all">See All</string>
+    <string name="top_up">Top up</string>
+    <string name="_20_oct_10_07">20 Oct, 10:07</string>
+    <string name="search_history">Search history</string>
+    <string name="filter">Filter</string>
+    <string name="all">All</string>
+    <string name="exit">Exit</string>
+    <string name="oct_2021">Oct 2021</string>
+    <string name="entry">Entry</string>
+    <string name="contact_support">Contact support</string>
 </resources>

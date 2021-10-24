@@ -78,8 +78,6 @@ public class FacultyAdapterError extends ArrayAdapter<Faculty> {
         }
     }
     public FacultyAdapterError(@NonNull Context context, int resource, @NonNull List<Faculty> objects) {
-
-
         super(context, resource, objects);
     }
 }

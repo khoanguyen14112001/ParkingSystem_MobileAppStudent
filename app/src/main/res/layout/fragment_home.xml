@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="nguyenhoanganhkhoa.com.fragments.HomeFragment"
+    android:background="@color/xamNen">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+
+
+    <!--    code main day-->
+    <com.google.android.material.appbar.AppBarLayout
+        app:elevation="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appbar"
+        app:layout_constraintTop_toBottomOf="@id/lnInfo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:backgroundTint="@color/xamNen">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="parallax">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/viewTest"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/viewTest"
+                    app:cardCornerRadius="20dp"
+                    app:cardBackgroundColor="#EBE9E7"
+                    app:cardElevation="0dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/viewTest"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:id="@+id/cvBalance"
+                    app:cardCornerRadius="20dp"
+                    android:backgroundTint="@color/primary_yellow"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/big_shoulder_display_bold"
+                            android:textSize="40sp"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:id="@+id/txtMoneyDisplay"
+                            android:text="150.000"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toRightOf="@id/txtMoneyDisplay"
+                            android:textSize="26sp"
+                            android:text="@string/vnd"
+                            android:paddingLeft="11dp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/be_vietnam_light"
+                            android:id="@+id/txtVND"
+                            app:layout_constraintBaseline_toBaselineOf="@id/txtMoneyDisplay"
+
+                            />
+
+
+                        <TextView
+                            android:id="@+id/txtYourBalance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/be_vietnam_light"
+                            android:text="@string/your_balance"
+                            android:textColor="@color/blackUI"
+                            android:textSize="18sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtVND" />
+
+                        <ImageView
+                            android:layout_width="85dp"
+                            android:layout_height="84dp"
+                            android:src="@drawable/img_momo"
+                            app:layout_constraintBottom_toBottomOf="@+id/txtYourBalance"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/txtMoneyDisplay" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/cvBalance"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:text="@string/acitivities"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="35dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/be_vietnam_semibold"
+                    android:textSize="20sp"
+                    android:id="@+id/txtActivities"
+                    />
+
+                <LinearLayout
+                    app:layout_constraintTop_toBottomOf="@id/txtActivities"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:padding="20dp"
+                    android:id="@+id/lnWithdraw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/primary_yellow"
+                        app:cardCornerRadius="10dp">
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:padding="10dp"
+
+                            android:backgroundTint="@color/primary_yellow"
+                            android:src="@drawable/ic_withdraw"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/withdraw"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/be_vietnam_semibold"
+                        android:paddingTop="4dp"
+                        android:textColor="@color/blackUI"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    app:layout_constraintTop_toBottomOf="@id/txtActivities"
+                    app:layout_constraintLeft_toRightOf="@id/lnWithdraw"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:id="@+id/lnTopUp"
+                    android:padding="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/primary_yellow"
+                        app:cardCornerRadius="10dp">
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:padding="10dp"
+
+                            android:backgroundTint="@color/primary_yellow"
+                            android:src="@drawable/ic_qrcode"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/qr_code"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/be_vietnam_semibold"
+                        android:paddingTop="4dp"
+                        android:textColor="@color/blackUI"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    app:layout_constraintTop_toBottomOf="@id/txtActivities"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/lnWithdraw"
+                    android:padding="20dp"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/lnQrCode"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/primary_yellow"
+                        app:cardCornerRadius="10dp">
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:padding="10dp"
+
+                            android:backgroundTint="@color/primary_yellow"
+                            android:src="@drawable/ic_topup"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOP UP"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/be_vietnam_semibold"
+                        android:paddingTop="4dp"
+                        android:textColor="@color/blackUI"/>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="pin"
+                android:background="@color/xamNen"
+                app:elevation="0dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lnInfo"
+                    android:paddingRight="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="3dp"
+                    android:paddingBottom="20dp">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/img_heo"
+                        android:id="@+id/imvInsideAvatar"
+                        />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="15dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/hello"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/be_vietnam_light"
+                            android:textColor="@color/xamChu"
+                            android:id="@+id/txtHello"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/be_vietnam_semibold"
+                            android:text="@string/heo"
+                            android:textColor="@color/black"
+                            android:id="@+id/txtNameDisplayUser"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="right">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_notice_bell"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/nest_scrollview_custom"
+        android:id="@+id/nestScroll"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="20dp">
+
+            <View
+                android:id="@+id/viewNest"
+                android:layout_width="60dp"
+                android:layout_height="6dp"
+                android:background="@drawable/nest_srollview_up"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtLastTrans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/be_vietnam_semibold"
+                android:text="@string/last_transaction"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewNest" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/be_vietnam_semibold"
+                android:text="@string/see_all"
+                android:textColor="@color/primary_yellow"
+                android:textSize="16sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewNest" />
+
+            <ListView
+                android:id="@+id/lvHistoryTrans"
+                android:layout_width="match_parent"
+                android:layout_height="335dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtLastTrans" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

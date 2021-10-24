@@ -14,13 +14,19 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="myCustomSpinner" parent="android:Widget.Holo.Light.Spinner">
-        <item name="android:background">@drawable/custom_button</item>
+    <style name="BottomNavigationViewTextStyle">
+        ...
+        <item name="fontFamily">@font/be_vietnam_regular</item>
+        ...
     </style>
 
-    <style name="myCustomTheme" parent="android:Theme.Light">
-        <item name="android:dropDownSpinnerStyle">@style/myCustomSpinner</item>
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColor">@color/xamChu</item>
+        <item name="android:editTextColor">@color/xamChu</item>
+        <item name="android:textColorHint">@color/xamChu</item>
+        <item name="fontFamily">@font/be_vietnam_regular</item>
     </style>
+
 
 
 

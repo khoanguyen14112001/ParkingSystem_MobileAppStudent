@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nguyenhoanganhkhoa.com.myapplication">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -10,8 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
         <activity
-            android:name=".PersonalInformationSetScreen"
+
+            android:name=".HomePageScreen"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,49 +25,41 @@
 
         </activity>
         <activity
-            android:name=".VerificationSignupScreen"
+            android:name=".PersonalInformationSetScreen"
             android:exported="true">
 
         </activity>
+        <activity
+            android:name=".VerificationSignupScreen"
+            android:exported="true"></activity>
         <activity
             android:name=".EmailScreen"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".SignUpScreen_UserInfo"
-            android:exported="true">
-
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".CreateNewPasswordScreen"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".VerificationScreen"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ResetPasswordScreen"
             android:exported="true" />
         <activity
             android:name="nguyenhoanganhkhoa.com.test.MainActivity2"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".LoginScreen"
-            android:exported="true" >
-
-
+            android:exported="true">
 
         </activity>
         <activity
             android:name="nguyenhoanganhkhoa.com.test.MainActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+
 
 
 
