@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_yellow"
+    android:backgroundTint="@color/white"
+    tools:context="nguyenhoanganhkhoa.com.fragments.HistoryFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_arror_left"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/imvAllTransBack"
+
+        />
+
+    <TextView
+        android:id="@+id/txtTransaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/fjalla_one_regular"
+        android:text="@string/transaction"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/svTransaction"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/searchview_custom"
+        android:focusable="false"
+        app:iconifiedByDefault="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/lnFilterTrans"
+        app:layout_constraintTop_toBottomOf="@id/txtTransaction"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="@string/search_transaction"
+        app:searchIcon="@drawable/ic_search"
+        app:theme="@style/SearchViewStyle" />
+
+    <LinearLayout
+        android:id="@+id/lnFilterTrans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/svTransaction"
+        app:layout_constraintLeft_toRightOf="@id/svTransaction"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/svTransaction">
+
+        <ImageView
+            android:id="@+id/imvFilterTrans"
+            android:layout_width="25dp"
+            android:layout_height="31dp"
+            android:src="@drawable/ic_filter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/be_vietnam_regular"
+            android:text="@string/filter"
+            android:textColor="@color/blackUI"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAllTrans"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_choose_filter_choosen"
+        android:fontFamily="@font/be_vietnam_regular"
+        android:text="@string/all"
+        android:textAllCaps="false"
+        android:textColor="@color/blackUI"
+        app:layout_constraintEnd_toStartOf="@+id/btnTopUpTrans"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/svTransaction" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnTopUpTrans"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_choose_filter"
+        android:fontFamily="@font/be_vietnam_regular"
+        android:text="@string/top_up"
+        android:textAllCaps="false"
+        android:textColor="@color/blackUI"
+        app:layout_constraintEnd_toStartOf="@+id/btnWithdrawTrans"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnAllTrans"
+        app:layout_constraintTop_toBottomOf="@id/svTransaction" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnWithdrawTrans"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_choose_filter"
+        android:fontFamily="@font/be_vietnam_regular"
+        android:text="@string/withdrawLow"
+        android:textAllCaps="false"
+        android:textColor="@color/blackUI"
+        app:layout_constraintEnd_toStartOf="@+id/btnParkingPayment"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnTopUpTrans"
+        app:layout_constraintTop_toBottomOf="@id/svTransaction" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnParkingPayment"
+        android:layout_width="135dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_choose_filter"
+        android:fontFamily="@font/be_vietnam_regular"
+        android:text="Parking payment"
+        android:textAllCaps="false"
+        android:textColor="@color/blackUI"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnWithdrawTrans"
+        app:layout_constraintTop_toBottomOf="@id/svTransaction" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvDisplayTransaction"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAllTrans" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

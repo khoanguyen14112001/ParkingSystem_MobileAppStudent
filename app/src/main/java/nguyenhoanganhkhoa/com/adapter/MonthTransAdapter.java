@@ -13,26 +13,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.models.Date;
-import nguyenhoanganhkhoa.com.models.History;
+import nguyenhoanganhkhoa.com.models.Month;
 import nguyenhoanganhkhoa.com.myapplication.R;
 
-public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
+public class MonthTransAdapter extends RecyclerView.Adapter<MonthTransAdapter.ViewHolder> {
 
     private Context context;
-    private List<Date> mDates;
+    private List<Month> mMonths;
 
-    public DateAdapter(Context context) {
+    public MonthTransAdapter(Context context) {
         this.context = context;
     }
 
-    public void setData(List<Date> list){
-        this.mDates = list;
+    public void setData(List<Month> list){
+        this.mMonths = list;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public DateAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MonthTransAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.item_history_recycleview,parent,false);
 
@@ -40,29 +40,30 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DateAdapter.ViewHolder holder, int position) {
-        Date date = mDates.get(position);
-        if(date==null)
+    public void onBindViewHolder(@NonNull MonthTransAdapter.ViewHolder holder, int position) {
+        Month month = mMonths.get(position);
+        if(month ==null)
         {
             return;
         }
 
-        holder.txtDayAll.setText(date.getDateParking());
+        holder.txtDayAll.setText(month.getMonthTrans());
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
         holder.rcvHistory.setLayoutManager(linearLayoutManager);
 
-        HistoryAdapter historyAdapter = new HistoryAdapter();
-        historyAdapter.setData(date.getHistories());
+        TransAllAdapter transAllAdapter = new TransAllAdapter();
 
-        holder.rcvHistory.setAdapter(historyAdapter);
+        transAllAdapter.setData(month.getTransactions());
+
+        holder.rcvHistory.setAdapter(transAllAdapter);
 
     }
 
     @Override
     public int getItemCount() {
-        if(mDates!=null)
-            return mDates.size();
+        if(mMonths !=null)
+            return mMonths.size();
         else
             return 0;
     }

@@ -195,7 +195,7 @@
         app:layout_constraintLeft_toLeftOf="@id/spnFaculty"
         android:src="@drawable/ic_faculty"
         android:id="@+id/imvFaculty"
-        android:layout_marginLeft="12dp"/>
+        android:layout_marginLeft="15dp"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -220,7 +220,7 @@
         android:drawableTint="#242A37"
         android:textColorHint="#8F8E8E"
         android:paddingTop="15dp"
-        android:paddingLeft="10dp"
+        android:paddingLeft="15dp"
         android:paddingBottom="15dp"
         android:drawablePadding="15dp"
         android:textColor="@color/xamChu"
@@ -261,9 +261,9 @@
         android:drawableTint="#242A37"
         android:textColorHint="#8F8E8E"
         android:paddingTop="15dp"
-        android:paddingLeft="14dp"
+        android:paddingLeft="15dp"
         android:paddingBottom="15dp"
-        android:drawablePadding="13dp"
+        android:drawablePadding="15dp"
         android:textColor="@color/xamChu"
         app:layout_constraintTop_toBottomOf="@+id/txtErrorMajor"
         app:layout_constraintLeft_toLeftOf="@id/gLeft7"

@@ -15,7 +15,7 @@
         android:lines="2"
         android:fontFamily="@font/be_vietnam_light"
         android:textColor="@color/xamChu"
-        android:paddingLeft="45dp"/>
+        android:paddingLeft="50dp"/>
 
 
 

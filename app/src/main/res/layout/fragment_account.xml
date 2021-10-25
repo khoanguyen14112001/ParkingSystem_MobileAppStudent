@@ -1,16 +1,395 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/xamBlockIcon"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="nguyenhoanganhkhoa.com.fragments.AccountFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@color/primary_yellow"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/txtProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fjalla_one_regular"
+                android:paddingTop="8dp"
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:text="@string/my_profile"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
 
-</FrameLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imvAvatarIns"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/img_heo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_camera"
+                    app:layout_constraintBottom_toBottomOf="@id/imvAvatarIns"
+                    app:layout_constraintRight_toRightOf="@id/imvAvatarIns" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/be_vietnam_semibold"
+                android:text="@string/heo"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/button_dialog_custom"
+                android:fontFamily="@font/be_vietnam_regular"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="2dp"
+                android:text="@string/student"
+                android:textColor="@color/primary_yellow"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.035"
+                android:id="@+id/gLeftInfo"
+
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.965"
+                android:id="@+id/gRightInfo"
+
+                />
+            <View
+                android:layout_marginTop="50dp"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="@+id/gRightInfo"
+                app:layout_constraintLeft_toLeftOf="@id/gLeftInfo"
+                android:background="@drawable/button_signin_google_untouch"
+                android:id="@+id/view1"
+                >
+            </View>
+
+            <View
+                android:layout_width="170dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="30dp"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/view1"
+                android:id="@+id/viewHide2"
+                android:background="@color/white">
+            </View>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="@string/personal_information"
+                android:textColor="@color/primary_yellow"
+                android:fontFamily="@font/be_vietnam_semibold"
+                app:layout_constraintTop_toTopOf="@id/viewHide2"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/viewHide2"
+                app:layout_constraintLeft_toLeftOf="@id/viewHide2"
+                android:background="@color/white"
+                app:layout_constraintRight_toRightOf="@id/viewHide2"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="@id/view1"
+                app:layout_constraintLeft_toLeftOf="@id/view1"
+                app:layout_constraintRight_toRightOf="@id/view1"
+                app:layout_constraintTop_toTopOf="@id/view1">
+
+                <EditText
+                    android:id="@+id/edtGender"
+                    android:enabled="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:drawableStart="@drawable/ic_gender"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/be_vietnam_light"
+                    android:text="@string/female"
+                    android:textColor="@color/blackUI"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/edtDateOfBirthIns"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/edtDateOfBirthIns"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:enabled="false"
+                    android:drawableStart="@drawable/ic_dateofbirth"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/be_vietnam_light"
+
+
+                    android:text="@string/july_06_2001"
+                    android:textColor="@color/blackUI"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/edtIDIns"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtGender" />
+
+                <EditText
+                    android:id="@+id/edtIDIns"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:enabled="false"
+
+
+                    android:drawableStart="@drawable/ic_user"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/be_vietnam_light"
+
+                    android:text="@string/k194111641"
+                    android:textColor="@color/blackUI"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/edtFacultyIns"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtDateOfBirthIns" />
+
+                <EditText
+                    android:id="@+id/edtFacultyIns"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:drawableStart="@drawable/ic_faculty"
+
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/be_vietnam_light"
+                    android:enabled="false"
+
+                    android:text="@string/faculty_of_information_systems"
+                    android:textColor="@color/blackUI"
+
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/edtMajorIns"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtIDIns" />
+
+                <EditText
+                    android:id="@+id/edtMajorIns"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:drawableStart="@drawable/ic_major"
+
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/be_vietnam_light"
+                    android:text="E-commerse"
+                    android:enabled="false"
+
+
+                    android:textColor="@color/blackUI"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtFacultyIns" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintTop_toTopOf="@id/view1"
+                app:layout_constraintRight_toRightOf="@id/view1"
+                android:padding="15dp"
+                />
+
+
+            <!--            New here-->
+
+            <View
+                android:layout_marginTop="40dp"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                app:layout_constraintTop_toBottomOf="@id/view1"
+                app:layout_constraintRight_toRightOf="@+id/gRightInfo"
+                app:layout_constraintLeft_toLeftOf="@id/gLeftInfo"
+                android:background="@drawable/button_signin_google_untouch"
+                android:id="@+id/view2"
+                >
+            </View>
+
+            <View
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                app:layout_constraintTop_toBottomOf="@id/view1"
+                app:layout_constraintLeft_toLeftOf="@id/view2"
+                android:id="@+id/viewHide3"
+                android:background="@color/white">
+            </View>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contact_infomation"
+                android:textColor="@color/primary_yellow"
+                android:fontFamily="@font/be_vietnam_semibold"
+                app:layout_constraintTop_toTopOf="@id/viewHide3"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/viewHide3"
+                app:layout_constraintLeft_toLeftOf="@id/viewHide3"
+                android:background="@color/white"
+                app:layout_constraintRight_toRightOf="@id/viewHide3"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="@id/view2"
+                app:layout_constraintLeft_toLeftOf="@id/view2"
+                app:layout_constraintRight_toRightOf="@id/view2"
+                app:layout_constraintTop_toTopOf="@id/view2">
+
+                <EditText
+                    android:paddingLeft="3dp"
+                    android:id="@+id/edtPhoneIns"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/be_vietnam_light"
+                    android:text="@string/_0971759040"
+                    android:textColor="@color/blackUI"
+                    android:enabled="false"
+
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/edtEmailIns"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/edtEmailIns"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+
+                    android:drawableStart="@drawable/ic_mail"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/be_vietnam_light"
+
+                    android:enabled="false"
+
+                    android:text="@string/yth19411c_st_uel_edu_vn"
+                    android:textColor="@color/blackUI"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtPhoneIns" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintTop_toTopOf="@id/view2"
+                app:layout_constraintRight_toRightOf="@id/view2"
+                android:padding="15dp"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/view2"
+                app:layout_constraintLeft_toLeftOf="@id/gLeftInfo"
+                app:layout_constraintRight_toRightOf="@id/gRightInfo"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/joined"
+                    android:textColor="@color/blackUI"
+                    android:fontFamily="@font/be_vietnam_light"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blackUI"
+                    android:fontFamily="@font/be_vietnam_semibold"
+                    android:text="@string/space"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blackUI"
+                    android:fontFamily="@font/be_vietnam_semibold"
+                    android:text="@string/march_24_2021"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/be_vietnam_semibold"
+                    android:text="@string/sign_out"
+                    android:gravity="end"/>
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

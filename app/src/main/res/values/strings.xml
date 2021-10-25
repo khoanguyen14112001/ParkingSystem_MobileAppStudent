@@ -134,6 +134,7 @@
     <string name="acitivities">Acitivities</string>
     <string name="qr_code">QR CODE</string>
     <string name="withdraw">WITHDRAW</string>
+    <string name="withdrawLow">Withdraw</string>
     <string name="last_transaction">Last Transaction</string>
     <string name="see_all">See All</string>
     <string name="top_up">Top up</string>
@@ -145,4 +146,21 @@
     <string name="oct_2021">Oct 2021</string>
     <string name="entry">Entry</string>
     <string name="contact_support">Contact support</string>
+    <string name="my_profile">Profile</string>
+    <string name="student">Student</string>
+    <string name="july_06_2001">July 06, 2001</string>
+    <string name="k194111641">K194111641</string>
+    <string name="faculty_of_information_systems">Faculty of Information Systems</string>
+    <string name="contact_infomation">Contact infomation</string>
+    <string name="_0971759040">0971759040</string>
+    <string name="yth19411c_st_uel_edu_vn">yth19411c@st.uel.edu.vn</string>
+    <string name="joined">Joined</string>
+    <string name="space">\u0020</string>
+    <string name="march_24_2021">March 24, 2021</string>
+    <string name="sign_out">Sign out</string>
+    <string name="auto_update_after">Auto update after</string>
+    <string name="_60s">60s</string>
+    <string name="_150_000">150.000</string>
+    <string name="transaction">Transaction</string>
+    <string name="search_transaction">Search transaction</string>
 </resources>

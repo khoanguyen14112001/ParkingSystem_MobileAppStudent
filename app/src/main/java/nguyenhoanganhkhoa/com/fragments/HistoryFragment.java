@@ -92,25 +92,39 @@ public class HistoryFragment extends Fragment {
     }
 
     private List<Date> getListDate() {
-        List<Date> listDate = new ArrayList<>();
+        List<Date> listMonth = new ArrayList<>();
 
-        List<History> listHis = new ArrayList<>();
-        listHis.add(new History(R.drawable.img_red_bike,"Exit","20/124/2012"));
-        listHis.add(new History(R.drawable.img_red_bike,"E14xit","20/11240/1242012"));
-        listHis.add(new History(R.drawable.img_red_bike,"Ex124it","20/10112424/2012"));
-        listHis.add(new History(R.drawable.img_red_bike,"Ex112424it","20/10124/2012"));
-        listHis.add(new History(R.drawable.img_red_bike,"Ex124it","20/1240/2012"));
-        listHis.add(new History(R.drawable.img_red_bike,"Ex14it","20/1120/2012"));
-        listHis.add(new History(R.drawable.img_red_bike,"Ex14it","20/1120/2012"));
-        listHis.add(new History(R.drawable.img_red_bike,"Ex2it","20/410/2012"));
+        List<History> listHis1 = new ArrayList<>();
+        List<History> listHis2 = new ArrayList<>();
+        List<History> listHis3 = new ArrayList<>();
 
-        listDate.add(new Date("14/12/2021",listHis));
-        listDate.add(new Date("14/12/2022",listHis));
-        listDate.add(new Date("14/12/2031",listHis));
-        listDate.add(new Date("14/12/20141",listHis));
-        listDate.add(new Date("14/12/20411",listHis));
-        listDate.add(new Date("14/12/20231",listHis));
+        listHis1.add(new History(R.drawable.img_green_bike,"Entry","21 Oct, 20:07"));
+        listHis1.add(new History(R.drawable.img_red_bike,"Exit","20 Oct, 16:49"));
+        listHis1.add(new History(R.drawable.img_green_bike,"Entry","20 Oct, 12:14"));
+        listHis1.add(new History(R.drawable.img_red_bike,"Exit","06 Oct, 12:07"));
+        listHis1.add(new History(R.drawable.img_green_bike,"Entry","06 Oct, 09:18"));
+        listHis1.add(new History(R.drawable.img_red_bike,"Exit","04 Oct, 16:53"));
+        listHis1.add(new History(R.drawable.img_green_bike,"Entry","04 Oct, 07:07"));
 
-        return listDate;
+        listHis2.add(new History(R.drawable.img_red_bike,"Exit","29 Sep, 15:53"));
+        listHis2.add(new History(R.drawable.img_green_bike,"Entry","29 Sep, 06:57"));
+        listHis2.add(new History(R.drawable.img_red_bike,"Exit","27 Sep, 11:58"));
+        listHis2.add(new History(R.drawable.img_green_bike,"Entry","27 Sep, 07:04"));
+        listHis2.add(new History(R.drawable.img_red_bike,"Exit","24 Sep, 14:53"));
+
+        listHis3.add(new History(R.drawable.img_green_bike,"Entry","24 Aug, 06:57"));
+        listHis3.add(new History(R.drawable.img_red_bike,"Exit","22 Aug, 11:58"));
+        listHis3.add(new History(R.drawable.img_green_bike,"Entry","22 Aug, 07:04"));
+        listHis3.add(new History(R.drawable.img_red_bike,"Exit","20 Aug, 14:53"));
+        listHis3.add(new History(R.drawable.img_green_bike,"Entry","20 Aug, 07:04"));
+
+
+
+
+        listMonth.add(new Date("Oct 2021",listHis1));
+        listMonth.add(new Date("Sep 2021",listHis2));
+        listMonth.add(new Date("Aug 2021",listHis3));
+
+        return listMonth;
     }
 }
