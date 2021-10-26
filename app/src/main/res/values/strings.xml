@@ -163,4 +163,13 @@
     <string name="_150_000">150.000</string>
     <string name="transaction">Transaction</string>
     <string name="search_transaction">Search transaction</string>
+    <string name="the_parking_lot_will_be_under_maintenance_from_14_jan_to_20_jan">The parking lot will be under maintenance from 14, Jan to 20, Jan</string>
+    <string name="e_commerce">E-commerce</string>
+    <string name="notifications">Notifications</string>
+    <string name="search_notifications">Search notifications</string>
+    <string name="unread">Unread</string>
+    <string name="read">Read</string>
+    <string name="recent">Recent</string>
+    <string name="mark_all_as_read">Mark all as read</string>
+    <string name="before">Before</string>
 </resources>

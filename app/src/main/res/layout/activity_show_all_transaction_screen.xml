@@ -107,26 +107,11 @@
         android:text="@string/top_up"
         android:textAllCaps="false"
         android:textColor="@color/blackUI"
-        app:layout_constraintEnd_toStartOf="@+id/btnWithdrawTrans"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnAllTrans"
         app:layout_constraintTop_toBottomOf="@id/svTransaction" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnWithdrawTrans"
-        android:layout_width="90dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/button_choose_filter"
-        android:fontFamily="@font/be_vietnam_regular"
-        android:text="@string/withdrawLow"
-        android:textAllCaps="false"
-        android:textColor="@color/blackUI"
-        app:layout_constraintEnd_toStartOf="@+id/btnParkingPayment"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnTopUpTrans"
-        app:layout_constraintTop_toBottomOf="@id/svTransaction" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnParkingPayment"
@@ -141,9 +126,7 @@
         android:textAllCaps="false"
         android:textColor="@color/blackUI"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnWithdrawTrans"
+        app:layout_constraintStart_toEndOf="@+id/btnTopUpTrans"
         app:layout_constraintTop_toBottomOf="@id/svTransaction" />
 
 
@@ -152,6 +135,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnAllTrans" />
 

@@ -113,9 +113,9 @@
             </View>
 
             <View
-                android:layout_width="170dp"
+                android:layout_width="163dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="33dp"
                 android:layout_marginLeft="30dp"
 
                 app:layout_constraintTop_toTopOf="parent"
@@ -124,7 +124,7 @@
                 android:background="@color/white">
             </View>
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:text="@string/personal_information"
                 android:textColor="@color/primary_yellow"
@@ -231,7 +231,7 @@
 
                     android:drawablePadding="16dp"
                     android:fontFamily="@font/be_vietnam_light"
-                    android:text="E-commerse"
+                    android:text="@string/e_commerce"
                     android:enabled="false"
 
 
@@ -254,7 +254,7 @@
                 />
 
 
-            <!--            New here-->
+            <!--Contact info here-->
 
             <View
                 android:layout_marginTop="40dp"
@@ -269,7 +269,7 @@
             </View>
 
             <View
-                android:layout_width="150dp"
+                android:layout_width="152dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"

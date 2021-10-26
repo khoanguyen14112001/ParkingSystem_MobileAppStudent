@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,6 +22,9 @@ import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.TransactionAdapter;
 import nguyenhoanganhkhoa.com.models.Transaction;
+import nguyenhoanganhkhoa.com.myapplication.AllNotificationScreen;
+import nguyenhoanganhkhoa.com.myapplication.CustomDialog;
+import nguyenhoanganhkhoa.com.myapplication.HomePageScreen;
 import nguyenhoanganhkhoa.com.myapplication.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.ShowAllTransactionScreen;
@@ -77,6 +81,7 @@ public class HomeFragment extends Fragment {
     ListView lvHistoryTrans;
     TextView txtSeeAllTrans;
     ImageButton btnQRCodeHome;
+    ImageView imvNoteBell;
 
 
     @Override
@@ -87,6 +92,8 @@ public class HomeFragment extends Fragment {
         lvHistoryTrans = view.findViewById(R.id.lvHistoryTrans);
         txtSeeAllTrans = view.findViewById(R.id.txtSeeAllTrans);
         btnQRCodeHome = view.findViewById(R.id.btnQRCodeHome);
+        imvNoteBell = view.findViewById(R.id.imvNoteBell);
+
 
         // Xử lý sự kiện
         initData();
@@ -111,6 +118,21 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), QRCodeScreen.class);
                 startActivity(intent);
+            }
+        });
+
+        imvNoteBell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CustomDialogFragment customDialogFragment = new CustomDialogFragment(getActivity(),R.layout.custom_dialog_notification);
+                customDialogFragment.btnSeeAll.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), AllNotificationScreen.class);
+                        startActivity(intent);
+                    }
+                });
+                customDialogFragment.show();
             }
         });
 

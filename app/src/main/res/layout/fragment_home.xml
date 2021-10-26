@@ -11,7 +11,6 @@
 
 
 
-
     <!--    code main day-->
     <com.google.android.material.appbar.AppBarLayout
         app:elevation="0dp"
@@ -225,8 +224,8 @@
                     android:paddingLeft="3dp"
                     android:paddingBottom="20dp">
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:src="@drawable/img_heo"
                         android:id="@+id/imvInsideAvatar"
                         />
@@ -263,6 +262,7 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:id="@+id/imvNoteBell"
                             android:src="@drawable/ic_notice_bell"/>
                     </LinearLayout>
 

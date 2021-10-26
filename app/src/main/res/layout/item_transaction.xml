@@ -52,7 +52,7 @@
             android:fontFamily="@font/be_vietnam_medium"
             android:textSize="15sp"/>
     </LinearLayout>
-    
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
