@@ -20,9 +20,11 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
 
     private Context context;
     private List<Date> mDates;
+    private int layout;
 
-    public DateAdapter(Context context) {
+    public DateAdapter(Context context, int layout) {
         this.context = context;
+        this.layout = layout;
     }
 
     public void setData(List<Date> list){
@@ -34,7 +36,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
     @Override
     public DateAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_history_recycleview,parent,false);
+        View view = inflater.inflate(layout,parent,false);
 
         return new ViewHolder(view);
     }
@@ -51,10 +53,8 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
         holder.rcvHistory.setLayoutManager(linearLayoutManager);
-
         HistoryAdapter historyAdapter = new HistoryAdapter();
         historyAdapter.setData(date.getHistories());
-
         holder.rcvHistory.setAdapter(historyAdapter);
 
     }

@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +22,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-import nguyenhoanganhkhoa.com.adapter.TransactionAdapter;
+import nguyenhoanganhkhoa.com.adapter.TransAllAdapter;
 import nguyenhoanganhkhoa.com.models.Transaction;
 import nguyenhoanganhkhoa.com.myapplication.AllNotificationScreen;
 import nguyenhoanganhkhoa.com.myapplication.CustomDialog;
@@ -28,6 +30,7 @@ import nguyenhoanganhkhoa.com.myapplication.HomePageScreen;
 import nguyenhoanganhkhoa.com.myapplication.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.ShowAllTransactionScreen;
+import nguyenhoanganhkhoa.com.myapplication.TopUpScreen;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,10 +80,10 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    TransactionAdapter transactionAdapter;
-    ListView lvHistoryTrans;
+    TransAllAdapter transAllAdapter;
+    RecyclerView rcvHistoryTrans;
     TextView txtSeeAllTrans;
-    ImageButton btnQRCodeHome;
+    ImageButton btnQRCodeHome,btnTopUpHome;
     ImageView imvNoteBell;
 
 
@@ -89,10 +92,11 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        lvHistoryTrans = view.findViewById(R.id.lvHistoryTrans);
+        rcvHistoryTrans = view.findViewById(R.id.rcvHistoryTrans);
         txtSeeAllTrans = view.findViewById(R.id.txtSeeAllTrans);
         btnQRCodeHome = view.findViewById(R.id.btnQRCodeHome);
         imvNoteBell = view.findViewById(R.id.imvNoteBell);
+        btnTopUpHome = view.findViewById(R.id.btnTopUpHome);
 
 
         // Xử lý sự kiện
@@ -109,6 +113,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ShowAllTransactionScreen.class);
+                startActivity(intent);
+            }
+        });
+
+        btnTopUpHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TopUpScreen.class);
                 startActivity(intent);
             }
         });
@@ -130,6 +142,7 @@ public class HomeFragment extends Fragment {
                     public void onClick(View view) {
                         Intent intent = new Intent(getContext(), AllNotificationScreen.class);
                         startActivity(intent);
+                        customDialogFragment.dismiss();
                     }
                 });
                 customDialogFragment.show();
@@ -142,24 +155,27 @@ public class HomeFragment extends Fragment {
 
 
     private void initData() {
-        transactionAdapter = new TransactionAdapter(getContext(),R.layout.item_transaction,getTransactionList());
-        lvHistoryTrans.setAdapter(transactionAdapter);
+        transAllAdapter = new TransAllAdapter();
+        transAllAdapter.setData(getTransactionList());
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        rcvHistoryTrans.setLayoutManager(linearLayoutManager);
+
+        rcvHistoryTrans.setAdapter(transAllAdapter);
     }
 
 
     private List<Transaction> getTransactionList() { List<Transaction> list = new ArrayList<>();
-        list.add(new Transaction("Top up","20 Oct, 10:07","+50.000",R.drawable.ic_topup));
-        list.add(new Transaction("Parking payment","10 Oct, 16:19","-3.000",R.drawable.ic_bike));
-        list.add(new Transaction("Withdraw","08 Oct, 20:59","-30.000",R.drawable.ic_withdraw));
-        list.add(new Transaction("Parking payment","01 Oct, 12:09","-3.000",R.drawable.ic_bike));
-        list.add(new Transaction("Parking payment","29 Sep, 15:08","-3.000",R.drawable.ic_bike));
-        list.add(new Transaction("Top up","20 Sep, 19:07","+10.000",R.drawable.ic_topup));
-//        list.add(new Transaction("Top up","19 Sep, 11:06","+70.000",R.drawable.ic_topup));
-//        list.add(new Transaction("Parking payment","11 Sep, 16:18","-3.000",R.drawable.ic_bike));
-//        list.add(new Transaction("Withdraw","08 Sep, 20:59","-10.000",R.drawable.ic_withdraw));
-//        list.add(new Transaction("Parking payment","30 Aug, 12:04","-3.000",R.drawable.ic_bike));
-//        list.add(new Transaction("Parking payment","29 Aug, 15:03","-3.000",R.drawable.ic_bike));
-//        list.add(new Transaction("Top up","20 Aug, 18:08","+30.000",R.drawable.ic_topup));
+        list.add(new Transaction("Top up","20 Oct, 10:07 ","+50.000",R.drawable.ic_topup));
+        list.add(new Transaction("Parking payment","10 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
+        list.add(new Transaction("Parking payment","09 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
+        list.add(new Transaction("Parking payment","08 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
+        list.add(new Transaction("Parking payment","07 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
+        list.add(new Transaction("Parking payment","06 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
+        list.add(new Transaction("Parking payment","05 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
+        list.add(new Transaction("Parking payment","04 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
+        list.add(new Transaction("Parking payment","03 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
+
         return list;
     }
 

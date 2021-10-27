@@ -34,8 +34,7 @@ public class MonthTransAdapter extends RecyclerView.Adapter<MonthTransAdapter.Vi
     @Override
     public MonthTransAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_history_recycleview,parent,false);
-
+        View view = inflater.inflate(R.layout.item_transaction_month,parent,false);
         return new ViewHolder(view);
     }
 
@@ -47,16 +46,15 @@ public class MonthTransAdapter extends RecyclerView.Adapter<MonthTransAdapter.Vi
             return;
         }
 
-        holder.txtDayAll.setText(month.getMonthTrans());
+        holder.txtMonthAll.setText(month.getMonthTrans());
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
-        holder.rcvHistory.setLayoutManager(linearLayoutManager);
+        holder.rcvTransactionList.setLayoutManager(linearLayoutManager);
 
         TransAllAdapter transAllAdapter = new TransAllAdapter();
-
         transAllAdapter.setData(month.getTransactions());
 
-        holder.rcvHistory.setAdapter(transAllAdapter);
+        holder.rcvTransactionList.setAdapter(transAllAdapter);
 
     }
 
@@ -69,12 +67,12 @@ public class MonthTransAdapter extends RecyclerView.Adapter<MonthTransAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtDayAll;
-        private RecyclerView rcvHistory;
+        private TextView txtMonthAll;
+        private RecyclerView rcvTransactionList;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtDayAll = itemView.findViewById(R.id.txtDayAll);
-            rcvHistory = itemView.findViewById(R.id.rcvHistory);
+            txtMonthAll = itemView.findViewById(R.id.txtMonthAll);
+            rcvTransactionList = itemView.findViewById(R.id.rcvTransactionList);
         }
     }
 }

@@ -77,7 +77,7 @@ public class HistoryFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_history, container, false);
 
         rcvDisplayHistoryAndDate = view.findViewById(R.id.rcvDisplayHistoryAndDate);
-        dateAdapter= new DateAdapter(getContext());
+        dateAdapter= new DateAdapter(getContext(),R.layout.item_history_recycleview);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         rcvDisplayHistoryAndDate.setLayoutManager(linearLayoutManager);

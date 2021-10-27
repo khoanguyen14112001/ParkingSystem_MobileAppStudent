@@ -1,17 +1,18 @@
+
 package nguyenhoanganhkhoa.com.models;
 
 import java.util.List;
 
 public class Month {
-    private String MonthTrans;
+    private String monthTrans;
     private List<Transaction> transactions;
 
     public String getMonthTrans() {
-        return MonthTrans;
+        return monthTrans;
     }
 
     public void setMonthTrans(String monthTrans) {
-        MonthTrans = monthTrans;
+        this.monthTrans = monthTrans;
     }
 
     public List<Transaction> getTransactions() {
@@ -23,7 +24,7 @@ public class Month {
     }
 
     public Month(String monthTrans, List<Transaction> transactions) {
-        MonthTrans = monthTrans;
+        this.monthTrans = monthTrans;
         this.transactions = transactions;
     }
 }

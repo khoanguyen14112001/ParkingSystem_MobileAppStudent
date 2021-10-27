@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:background="@color/primary_yellow"
             app:layout_constraintTop_toTopOf="parent">
             <TextView
@@ -40,8 +41,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imvAvatarIns"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:src="@drawable/img_heo"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -87,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.035"
+                app:layout_constraintGuide_percent="0.06"
                 android:id="@+id/gLeftInfo"
 
                 />
@@ -96,12 +97,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.965"
+                app:layout_constraintGuide_percent="0.94"
                 android:id="@+id/gRightInfo"
 
                 />
             <View
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="35dp"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -115,7 +116,7 @@
             <View
                 android:layout_width="163dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="33dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
 
                 app:layout_constraintTop_toTopOf="parent"
@@ -130,7 +131,7 @@
                 android:textColor="@color/primary_yellow"
                 android:fontFamily="@font/be_vietnam_semibold"
                 app:layout_constraintTop_toTopOf="@id/viewHide2"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/viewHide2"
                 app:layout_constraintLeft_toLeftOf="@id/viewHide2"
                 android:background="@color/white"
@@ -271,7 +272,7 @@
             <View
                 android:layout_width="152dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="23dp"
                 android:layout_marginLeft="30dp"
                 app:layout_constraintTop_toBottomOf="@id/view1"
                 app:layout_constraintLeft_toLeftOf="@id/view2"
@@ -285,7 +286,7 @@
                 android:textColor="@color/primary_yellow"
                 android:fontFamily="@font/be_vietnam_semibold"
                 app:layout_constraintTop_toTopOf="@id/viewHide3"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/viewHide3"
                 app:layout_constraintLeft_toLeftOf="@id/viewHide3"
                 android:background="@color/white"
@@ -358,18 +359,21 @@
                 app:layout_constraintTop_toBottomOf="@id/view2"
                 app:layout_constraintLeft_toLeftOf="@id/gLeftInfo"
                 app:layout_constraintRight_toRightOf="@id/gRightInfo"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:orientation="horizontal"
                 android:paddingBottom="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/joined"
+                    android:textSize="16sp"
+
                     android:textColor="@color/blackUI"
                     android:fontFamily="@font/be_vietnam_light"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
                     android:textColor="@color/blackUI"
                     android:fontFamily="@font/be_vietnam_semibold"
                     android:text="@string/space"/>
@@ -377,12 +381,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blackUI"
+                    android:textSize="16sp"
                     android:fontFamily="@font/be_vietnam_semibold"
                     android:text="@string/march_24_2021"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/red"
+                    android:textSize="16sp"
+
                     android:fontFamily="@font/be_vietnam_semibold"
                     android:text="@string/sign_out"
                     android:gravity="end"/>

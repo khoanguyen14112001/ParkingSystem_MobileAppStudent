@@ -1,5 +1,6 @@
 package nguyenhoanganhkhoa.com.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
+import nguyenhoanganhkhoa.com.myapplication.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.ShowAllTransactionScreen;
+import nguyenhoanganhkhoa.com.myapplication.TopUpScreen;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +63,39 @@ public class WalletFragment extends Fragment {
         }
     }
 
+    ImageView imbTopUpWallet, imbQRCodeWallet, imbTransaction;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wallet, container, false);
+        View view = inflater.inflate(R.layout.fragment_wallet, container, false);
+
+        imbTopUpWallet = view.findViewById(R.id.imbTopUpWallet);
+        imbQRCodeWallet = view.findViewById(R.id.imbQRCodeWallet);
+        imbTransaction = view.findViewById(R.id.imbTransaction);
+
+        imbTopUpWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TopUpScreen.class);
+                startActivity(intent);
+            }
+        });
+
+        imbQRCodeWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), QRCodeScreen.class);
+                startActivity(intent);
+            }
+        });
+        imbTransaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ShowAllTransactionScreen.class);
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 }

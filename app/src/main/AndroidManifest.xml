@@ -12,11 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".AboutUsScreen"
+            android:exported="true" />
+        <activity
+            android:name=".TopUpQRCodeScreen"
+            android:exported="true" />
+        <activity
+            android:name=".TopUpScreen"
+            android:exported="true" />
+        <activity
             android:name=".AllNotificationScreen"
             android:exported="true" />
         <activity
             android:name=".NotificationDialog"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ShowAllTransactionScreen"
             android:exported="true" />

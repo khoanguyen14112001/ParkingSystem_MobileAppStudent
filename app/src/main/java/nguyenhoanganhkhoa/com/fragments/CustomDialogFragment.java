@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.DialogNotificationAdapter;
-import nguyenhoanganhkhoa.com.adapter.TransactionAdapter;
 import nguyenhoanganhkhoa.com.models.Notification;
 import nguyenhoanganhkhoa.com.myapplication.HomePageScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
