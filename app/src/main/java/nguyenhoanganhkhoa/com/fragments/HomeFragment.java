@@ -24,7 +24,6 @@ import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.TransAllAdapter;
 import nguyenhoanganhkhoa.com.models.Transaction;
-import nguyenhoanganhkhoa.com.myapplication.AboutUsScreen;
 import nguyenhoanganhkhoa.com.myapplication.AllNotificationScreen;
 import nguyenhoanganhkhoa.com.myapplication.CustomDialog;
 import nguyenhoanganhkhoa.com.myapplication.HomePageScreen;
