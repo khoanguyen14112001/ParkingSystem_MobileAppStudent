@@ -73,17 +73,17 @@ public class AccountFragment extends Fragment {
     }
 
     private void linkView(View view) {
-        imvChangeProfile = view.findViewById(R.id.imvChangeProfile);
+//        imvChangeProfile = view.findViewById(R.id.imvChangeProfile);
 
     }
 
     private void addEvents() {
-        imvChangeProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), EditInfomationScreen.class);
-                startActivity(intent);
-            }
-        });
+//        imvChangeProfile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getContext(), EditInfomationScreen.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }

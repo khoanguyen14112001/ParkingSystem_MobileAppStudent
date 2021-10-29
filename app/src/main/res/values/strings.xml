@@ -202,4 +202,11 @@
     <string name="section_when_making_transactions_at">section when making transactions at</string>
     <string name="parking_payment">Parking payment</string>
     <string name="mark_all_as_unread">Mark all as unread</string>
+    <string name="our_team">Our team</string>
+    <string name="introduce">Introduce</string>
+    <string name="textIntroduceTeam">myPARKING team consists of 5 members from the high-quality E-Commerce course 19, Faculty of Information Systems, University of Economics and Law. </string>
+    <string name="textIntroduceSystem">PARKING SYSTEM If you need a lover Let me kno-o-o-ow and let me in I could treat you better Steal you ro-o-o-oses every day I might not have a fancy car. But I fancy you So gimme a chance If you need a lover, baby.</string>
+    <string name="contact_us">Contact us</string>
+    <string name="linkGmail">support.myPARKING@gmail.com</string>
+    <string name="linkFace">https://www.facebook.com/dufourofficial</string>
 </resources>

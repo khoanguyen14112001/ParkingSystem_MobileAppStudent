@@ -114,13 +114,13 @@ public class HomeFragment extends Fragment {
     }
 
     private void addEvents() {
-        btnAboutUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AboutUsScreen.class);
-                startActivity(intent);
-            }
-        });
+//        btnAboutUs.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), AboutUsScreen.class);
+//                startActivity(intent);
+//            }
+//        });
         txtSeeAllTrans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
