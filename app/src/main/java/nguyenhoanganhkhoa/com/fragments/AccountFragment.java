@@ -1,5 +1,6 @@
 package nguyenhoanganhkhoa.com.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import nguyenhoanganhkhoa.com.myapplication.EditInfomationScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 
 /**
@@ -57,10 +60,30 @@ public class AccountFragment extends Fragment {
         }
     }
 
+    ImageView imvChangeProfile;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+
+        linkView(view);
+        addEvents();
         return view;
+    }
+
+    private void linkView(View view) {
+        imvChangeProfile = view.findViewById(R.id.imvChangeProfile);
+
+    }
+
+    private void addEvents() {
+        imvChangeProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), EditInfomationScreen.class);
+                startActivity(intent);
+            }
+        });
     }
 }

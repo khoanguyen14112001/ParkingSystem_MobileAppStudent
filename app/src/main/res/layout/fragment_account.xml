@@ -88,7 +88,8 @@
             app:layout_constraintBottom_toTopOf="@id/layoutBottom"
             app:layout_constraintRight_toRightOf="parent"
             android:src="@drawable/ic_edit_black"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:id="@+id/imvChangeProfile"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

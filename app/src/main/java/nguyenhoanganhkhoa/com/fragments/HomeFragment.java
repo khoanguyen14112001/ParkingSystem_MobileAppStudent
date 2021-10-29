@@ -24,6 +24,7 @@ import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.TransAllAdapter;
 import nguyenhoanganhkhoa.com.models.Transaction;
+import nguyenhoanganhkhoa.com.myapplication.AboutUsScreen;
 import nguyenhoanganhkhoa.com.myapplication.AllNotificationScreen;
 import nguyenhoanganhkhoa.com.myapplication.CustomDialog;
 import nguyenhoanganhkhoa.com.myapplication.HomePageScreen;
@@ -84,7 +85,7 @@ public class HomeFragment extends Fragment {
     RecyclerView rcvHistoryTrans;
     TextView txtSeeAllTrans;
     ImageButton btnQRCodeHome,btnTopUpHome;
-    ImageView imvNoteBell;
+    ImageView imvNoteBell, btnAboutUs;
 
 
     @Override
@@ -92,23 +93,34 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        rcvHistoryTrans = view.findViewById(R.id.rcvHistoryTrans);
-        txtSeeAllTrans = view.findViewById(R.id.txtSeeAllTrans);
-        btnQRCodeHome = view.findViewById(R.id.btnQRCodeHome);
-        imvNoteBell = view.findViewById(R.id.imvNoteBell);
-        btnTopUpHome = view.findViewById(R.id.btnTopUpHome);
 
+        linkView(view);
 
         // Xử lý sự kiện
         initData();
         addEvents();
-
         return view;
 
 
     }
 
+    private void linkView(View view) {
+        rcvHistoryTrans = view.findViewById(R.id.rcvHistoryTrans);
+        txtSeeAllTrans = view.findViewById(R.id.txtSeeAllTrans);
+        btnQRCodeHome = view.findViewById(R.id.btnQRCodeHome);
+        imvNoteBell = view.findViewById(R.id.imvNoteBell);
+        btnTopUpHome = view.findViewById(R.id.btnTopUpHome);
+        btnAboutUs = view.findViewById(R.id.btnAboutUs);
+    }
+
     private void addEvents() {
+        btnAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AboutUsScreen.class);
+                startActivity(intent);
+            }
+        });
         txtSeeAllTrans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

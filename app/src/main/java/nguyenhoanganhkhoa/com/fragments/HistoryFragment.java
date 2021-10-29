@@ -79,16 +79,20 @@ public class HistoryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_history, container, false);
 
+        linkView(view);
+        addEvent();
+        initAdapter();
+
+        return view;
+
+
+    }
+
+    private void linkView(View view) {
         rcvDisplayHistoryAndDate = view.findViewById(R.id.rcvDisplayHistoryAndDate);
         radHistoryAll = view.findViewById(R.id.radHistoryAll);
         radHistoryEntry = view.findViewById(R.id.radHistoryEntry);
         radHistoryExit = view.findViewById(R.id.radHistoryExit);
-
-        addEvent();
-        initAdapter();
-        return view;
-
-
     }
 
     private void addEvent() {

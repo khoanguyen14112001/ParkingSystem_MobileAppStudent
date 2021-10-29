@@ -69,10 +69,14 @@ public class WalletFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wallet, container, false);
 
-        imbTopUpWallet = view.findViewById(R.id.imbTopUpWallet);
-        imbQRCodeWallet = view.findViewById(R.id.imbQRCodeWallet);
-        imbTransaction = view.findViewById(R.id.imbTransaction);
+        linkView(view);
+        addEventS();
 
+
+        return view;
+    }
+
+    private void addEventS() {
         imbTopUpWallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +100,10 @@ public class WalletFragment extends Fragment {
             }
         });
 
-        return view;
+    }
+    private void linkView(View view) {
+        imbTopUpWallet = view.findViewById(R.id.imbTopUpWallet);
+        imbQRCodeWallet = view.findViewById(R.id.imbQRCodeWallet);
+        imbTransaction = view.findViewById(R.id.imbTransaction);
     }
 }
