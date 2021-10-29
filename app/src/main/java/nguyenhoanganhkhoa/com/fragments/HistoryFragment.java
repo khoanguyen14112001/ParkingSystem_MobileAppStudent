@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
@@ -70,6 +72,7 @@ public class HistoryFragment extends Fragment {
     SearchView svHistory;
     RecyclerView rcvDisplayHistoryAndDate;
     DateAdapter dateAdapter;
+    RadioButton radHistoryAll, radHistoryEntry, radHistoryExit;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,6 +80,41 @@ public class HistoryFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_history, container, false);
 
         rcvDisplayHistoryAndDate = view.findViewById(R.id.rcvDisplayHistoryAndDate);
+        radHistoryAll = view.findViewById(R.id.radHistoryAll);
+        radHistoryEntry = view.findViewById(R.id.radHistoryEntry);
+        radHistoryExit = view.findViewById(R.id.radHistoryExit);
+
+        addEvent();
+        initAdapter();
+        return view;
+
+
+    }
+
+    private void addEvent() {
+        radHistoryAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                initAdapter();
+
+            }
+        });
+        radHistoryExit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                initAdapter();
+
+            }
+        });
+        radHistoryEntry.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                initAdapter();
+            }
+        });
+    }
+
+    private void initAdapter() {
         dateAdapter= new DateAdapter(getContext(),R.layout.item_history_recycleview);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
@@ -84,11 +122,6 @@ public class HistoryFragment extends Fragment {
 
         dateAdapter.setData(getListDate());
         rcvDisplayHistoryAndDate.setAdapter(dateAdapter);
-
-
-        return view;
-
-
     }
 
     private List<Date> getListDate() {
@@ -118,13 +151,54 @@ public class HistoryFragment extends Fragment {
         listHis3.add(new History(R.drawable.img_red_bike,"Exit","20 Aug, 14:53"));
         listHis3.add(new History(R.drawable.img_green_bike,"Entry","20 Aug, 07:04"));
 
+        listMonth.add(new Date("Oct 2021",addGetCategory(listHis1)));
+        listMonth.add(new Date("Sep 2021",addGetCategory(listHis2)));
+        listMonth.add(new Date("Aug 2021",addGetCategory(listHis3)));
 
 
+        // Nếu tháng nào không có dữ liệu thì xóa
+        for(int i =0; i< listMonth.size();i++)
+        {
+            if(listMonth.get(i).getHistories().isEmpty())
+            {
+                listMonth.remove(i);
 
-        listMonth.add(new Date("Oct 2021",listHis1));
-        listMonth.add(new Date("Sep 2021",listHis2));
-        listMonth.add(new Date("Aug 2021",listHis3));
+            }
+        }
 
         return listMonth;
+    }
+
+    private List<History> addGetCategory(List<History> list) {
+
+        List<History> listValue = new ArrayList<>();
+        if(radHistoryAll.isChecked())
+        {
+            return list;
+        }
+        if(radHistoryEntry.isChecked())
+        {
+            for (int i = 0;i<list.size();i++)
+            {
+                if(list.get(i).getStatusInOut().equals("Entry"))
+                {
+                    listValue.add(list.get(i));
+                }
+            }
+            return listValue;
+        }
+        if(radHistoryExit.isChecked())
+        {
+            for (int i = 0;i<list.size();i++)
+            {
+                if(list.get(i).getStatusInOut().equals("Exit"))
+                {
+                    listValue.add(list.get(i));
+                }
+            }
+            return listValue;
+        }
+        return listValue;
+
     }
 }

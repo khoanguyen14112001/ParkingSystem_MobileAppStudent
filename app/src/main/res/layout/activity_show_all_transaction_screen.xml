@@ -77,54 +77,65 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnAllTrans"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="20dp"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/svTransaction"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:orientation="horizontal"
         android:layout_marginTop="12dp"
-        android:background="@drawable/button_choose_filter_choosen"
-        android:fontFamily="@font/be_vietnam_regular"
-        android:text="@string/all"
-        android:textAllCaps="false"
-        android:textColor="@color/blackUI"
-        app:layout_constraintEnd_toStartOf="@+id/btnTopUpTrans"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/svTransaction" />
+        >
+        <RadioButton
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toBottomOf="@id/svHistory"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="@string/all"
+            android:textColor="@color/blackUI"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:background="@drawable/custom_rad_filter"
+            android:checked="true"
+            android:textAllCaps="false"
+            android:fontFamily="@font/be_vietnam_regular"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/radTransAllAll"
+            />
+        <RadioButton
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toBottomOf="@id/svHistory"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="@string/top_up"
+            android:textColor="@color/blackUI"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:background="@drawable/custom_rad_filter"
+            android:textAllCaps="false"
+            android:fontFamily="@font/be_vietnam_regular"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/radTransAllTopUp"
+            />
+        <RadioButton
+            android:layout_width="135dp"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toBottomOf="@id/svHistory"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="@string/parking_payment"
+            android:textColor="@color/blackUI"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:background="@drawable/custom_rad_filter"
+            android:textAllCaps="false"
+            android:fontFamily="@font/be_vietnam_regular"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/radTransAllParkingPayment"
+            />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnTopUpTrans"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/button_choose_filter"
-        android:fontFamily="@font/be_vietnam_regular"
-        android:text="@string/top_up"
-        android:textAllCaps="false"
-        android:textColor="@color/blackUI"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnAllTrans"
-        app:layout_constraintTop_toBottomOf="@id/svTransaction" />
 
+    </RadioGroup>
 
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnParkingPayment"
-        android:layout_width="135dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/button_choose_filter"
-        android:fontFamily="@font/be_vietnam_regular"
-        android:text="Parking payment"
-        android:textAllCaps="false"
-        android:textColor="@color/blackUI"
-
-        app:layout_constraintStart_toEndOf="@+id/btnTopUpTrans"
-        app:layout_constraintTop_toBottomOf="@id/svTransaction" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -134,7 +145,7 @@
         android:layout_marginTop="20dp"
         android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnAllTrans" />
+        app:layout_constraintTop_toBottomOf="@id/radioGroup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

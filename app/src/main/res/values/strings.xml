@@ -200,4 +200,6 @@
     <string name="transaction_code_cap">transaction code</string>
     <string name="message">Message</string>
     <string name="section_when_making_transactions_at">section when making transactions at</string>
+    <string name="parking_payment">Parking payment</string>
+    <string name="mark_all_as_unread">Mark all as unread</string>
 </resources>

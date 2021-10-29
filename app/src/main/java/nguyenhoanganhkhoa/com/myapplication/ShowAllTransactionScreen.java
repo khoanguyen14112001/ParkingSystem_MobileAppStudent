@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +26,14 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
     RecyclerView rcvDisplayTransaction;
     MonthTransAdapter monthTransAdapter;
     ImageView imvAllTransBack;
+    RadioButton radTransAllAll, radTransAllTopUp, radTransAllParkingPayment;
 
 
     private void linkView() {
         imvAllTransBack= findViewById(R.id.imvAllTransBack);
+        radTransAllAll= findViewById(R.id.radTransAllAll);
+        radTransAllTopUp= findViewById(R.id.radTransAllTopUp);
+        radTransAllParkingPayment= findViewById(R.id.radTransAllParkingPayment);
 
     }
 
@@ -47,6 +53,24 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        radTransAllTopUp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                initAdapter();
+            }
+        });
+        radTransAllAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                initAdapter();
+            }
+        });
+        radTransAllParkingPayment.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                initAdapter();
             }
         });
     }
@@ -69,6 +93,7 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
         List<Transaction> listTrans2 = new ArrayList<>();
         List<Transaction> listTrans3 = new ArrayList<>();
         List<Transaction> listTrans4 = new ArrayList<>();
+        List<Transaction> listTrans5 = new ArrayList<>();
 
         listTrans1.add(new Transaction("Top up","20 Oct, 10:07 ","+50.000",R.drawable.ic_topup));
         listTrans1.add(new Transaction("Parking payment","10 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
@@ -98,12 +123,55 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
 
 
 
-        listMonth.add(new Month("Oct 2021",listTrans1));
-        listMonth.add(new Month("Sep 2021",listTrans2));
-        listMonth.add(new Month("Aug 2021",listTrans3));
-        listMonth.add(new Month("July 2021",listTrans4));
+        listMonth.add(new Month("Oct 2021",addGetCategory(listTrans1)));
+        listMonth.add(new Month("Sep 2021",addGetCategory(listTrans2)));
+        listMonth.add(new Month("Aug 2021",addGetCategory(listTrans3)));
+        listMonth.add(new Month("July 2021",addGetCategory(listTrans4)));
+        listMonth.add(new Month("Jun 2021",addGetCategory(listTrans5)));
 
+        // Nếu tháng nào không có dữ liệu thì xóa
+        for(int i =0; i< listMonth.size();i++)
+        {
+            if(listMonth.get(i).getTransactions().isEmpty())
+            {
+                listMonth.remove(i);
+
+            }
+        }
         return listMonth;
+    }
+
+    private List<Transaction> addGetCategory(List<Transaction> list) {
+
+        List<Transaction> listValue = new ArrayList<>();
+        if(radTransAllAll.isChecked())
+        {
+            return list;
+        }
+        if(radTransAllTopUp.isChecked())
+        {
+            for (int i = 0;i<list.size();i++)
+            {
+                if(list.get(i).getStatusTrans().equals("Top up"))
+                {
+                    listValue.add(list.get(i));
+                }
+            }
+            return listValue;
+        }
+        if(radTransAllParkingPayment.isChecked())
+        {
+            for (int i = 0;i<list.size();i++)
+            {
+                if(list.get(i).getStatusTrans().equals("Parking payment"))
+                {
+                    listValue.add(list.get(i));
+                }
+            }
+            return listValue;
+        }
+        return listValue;
+
     }
 
 
