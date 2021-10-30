@@ -73,7 +73,6 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         edtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(PersonalInformationSetScreen.this,iconColor));
         edtCanSua.setTextColor(ContextCompat.getColorStateList(PersonalInformationSetScreen.this,textColor));
     }
-
     private void setCustomColortxt(TextView txtCanSua, int edtColor, int iconColor, int textColor){
         // Chỉnh màu cho thanh eTit text khi gặp error, focus, ...
 

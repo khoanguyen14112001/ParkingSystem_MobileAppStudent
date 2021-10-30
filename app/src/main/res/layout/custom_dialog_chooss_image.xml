@@ -21,7 +21,7 @@
         android:layout_width="180dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:background="@drawable/custom_button_dialog_long"
+        android:background="@drawable/custom_button_dialog"
         android:fontFamily="@font/be_vietnam_medium"
         android:textAllCaps="false"
         android:text="@string/take_photos"
@@ -33,7 +33,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
 
-        android:background="@drawable/custom_button_dialog_long"
+        android:background="@drawable/custom_button_dialog"
         android:textAllCaps="false"
         android:text="@string/choose_from_gallery"
         android:layout_gravity="center"

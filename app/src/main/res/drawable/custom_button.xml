@@ -3,7 +3,7 @@
     <item android:drawable="@drawable/button_login"
         android:state_pressed="false" />
 
-    <item android:drawable="@drawable/yellow_button_press"
+    <item android:drawable="@drawable/button_login_press"
         android:state_pressed="true" />
 
 </selector>

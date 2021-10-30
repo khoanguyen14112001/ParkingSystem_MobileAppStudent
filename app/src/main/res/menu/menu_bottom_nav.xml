@@ -12,5 +12,4 @@
     <item android:id="@+id/act_account"
         android:icon="@drawable/ic_account"
         android:title="@string/account"/>
-
 </menu>

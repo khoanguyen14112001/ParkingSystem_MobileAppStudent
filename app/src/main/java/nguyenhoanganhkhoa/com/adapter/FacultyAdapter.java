@@ -18,8 +18,10 @@ import nguyenhoanganhkhoa.com.models.Faculty;
 import nguyenhoanganhkhoa.com.myapplication.PersonalInformationSetScreen;
 
 public class FacultyAdapter extends ArrayAdapter<Faculty> {
+
     @NonNull
     @Override
+
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_faculty_selected,parent,false);
         TextView txtFacultySelected = convertView.findViewById(R.id.txtFacultySelectedItem);
@@ -42,7 +44,7 @@ public class FacultyAdapter extends ArrayAdapter<Faculty> {
         if (faculty !=null){
             txtFaculty.setText(faculty.getNameFaculty());
 
-            if(position ==0)
+            if(position ==0 && faculty.getNameFaculty().equals("Faculty*"))
                 txtFaculty.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.black));
             else
                 txtFaculty.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.xamChu));
@@ -60,7 +62,9 @@ public class FacultyAdapter extends ArrayAdapter<Faculty> {
 
 
     public boolean isEnabled(int position){
-        if(position == 0)
+        Faculty faculty = this.getItem(position);
+
+        if(position == 0 && faculty.getNameFaculty().equals("Faculty*"))
         {
             // Disable the first item from Spinner
             // First item will be use for hint
@@ -72,7 +76,6 @@ public class FacultyAdapter extends ArrayAdapter<Faculty> {
         }
     }
     public FacultyAdapter(@NonNull Context context, int resource, @NonNull List<Faculty> objects) {
-
 
         super(context, resource, objects);
     }

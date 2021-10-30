@@ -3,7 +3,7 @@
     <item android:drawable="@drawable/button_dialog_custom_2"
         android:state_pressed="false" />
 
-    <item android:drawable="@drawable/black_button_press"
+    <item android:drawable="@drawable/button_dialog_black_press"
         android:state_pressed="true" />
 
 </selector>

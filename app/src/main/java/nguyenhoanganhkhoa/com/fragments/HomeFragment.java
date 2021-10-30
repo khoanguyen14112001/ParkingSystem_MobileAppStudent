@@ -24,6 +24,7 @@ import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.TransAllAdapter;
 import nguyenhoanganhkhoa.com.models.Transaction;
+import nguyenhoanganhkhoa.com.myapplication.AboutUsScreen;
 import nguyenhoanganhkhoa.com.myapplication.AllNotificationScreen;
 import nguyenhoanganhkhoa.com.myapplication.CustomDialog;
 import nguyenhoanganhkhoa.com.myapplication.HomePageScreen;
@@ -101,6 +102,7 @@ public class HomeFragment extends Fragment {
         return view;
 
 
+
     }
 
     private void linkView(View view) {
@@ -113,13 +115,13 @@ public class HomeFragment extends Fragment {
     }
 
     private void addEvents() {
-//        btnAboutUs.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), AboutUsScreen.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AboutUsScreen.class);
+                startActivity(intent);
+            }
+        });
         txtSeeAllTrans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
