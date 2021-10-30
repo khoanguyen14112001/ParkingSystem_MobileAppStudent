@@ -1,4 +1,4 @@
 # ParkingSystem_MobileAppStudent
 
 
-Đọc là cún :3 
+This is My Parking - Student Mobile app. 
