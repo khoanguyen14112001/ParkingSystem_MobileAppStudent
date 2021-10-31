@@ -11,13 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-
+        <activity
+            android:name=".OurTeamSreen"
+            android:exported="true" />
         <activity
             android:name=".AboutUsScreen"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".EditInfomationScreen"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".TopUpQRCodeScreen"
             android:exported="true" />
