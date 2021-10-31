@@ -280,8 +280,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
                 customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(EditInfomationScreen.this,EmailScreen.class);
-                        startActivity(intent);
+                        finish();
                     }
                 });
                 customDialogTwoButton.btnCancel.setOnClickListener(new View.OnClickListener() {

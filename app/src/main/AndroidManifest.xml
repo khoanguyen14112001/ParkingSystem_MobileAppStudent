@@ -11,15 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
         <activity
             android:name=".AboutUsScreen"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".EditInfomationScreen"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".TopUpQRCodeScreen"
             android:exported="true" />
@@ -43,7 +41,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".PersonalInformationSetScreen"

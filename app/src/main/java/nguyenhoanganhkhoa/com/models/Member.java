@@ -5,25 +5,25 @@ public class Member {
     String memberCareer;
     String memberName;
     String memberRole;
-    String memberSex;
+    String memberGender;
     String memberDateOfBirth;
 
 
-    public Member(int memberThumb, String memberCareer, String memberName, String memberRole, String memberSex, String memberDateOfBirth) {
+    public Member(int memberThumb, String memberCareer, String memberName, String memberRole, String memberGender, String memberDateOfBirth) {
         this.memberThumb = memberThumb;
         this.memberCareer = memberCareer;
         this.memberName = memberName;
         this.memberRole = memberRole;
-        this.memberSex = memberSex;
+        this.memberGender = memberGender;
         this.memberDateOfBirth = memberDateOfBirth;
     }
 
-    public String getMemberSex() {
-        return memberSex;
+    public String getMemberGender() {
+        return memberGender;
     }
 
     public void setMemberSex(String memberSex) {
-        this.memberSex = memberSex;
+        this.memberGender = memberSex;
     }
 
     public String getMemberDateOfBirth() {

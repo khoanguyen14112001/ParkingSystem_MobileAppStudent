@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,7 +58,7 @@ public class AboutUsScreen extends AppCompatActivity {
 
     }
 
-    public List<Member> getMemberList() {
+    public static List<Member> getMemberList() {
         List<Member> list = new ArrayList<>();
 
         list.add(new Member(R.drawable.img_avatar_female,"Business Analyst","Vo Thi Tuyet Trinh","Leader",
@@ -66,7 +69,7 @@ public class AboutUsScreen extends AppCompatActivity {
                 "Male","July 06, 2001"));
         list.add(new Member(R.drawable.img_avatar_male,"Developer","Tran Hoang Gia Bao","Member",
                 "Male","July 06, 2001"));
-        list.add(new Member(R.drawable.img_avatar_male,"Developer","Nguyen Hoang\n Anh Khoa","Member",
+        list.add(new Member(R.drawable.img_avatar_male,"Developer","Nguyen Hoang Anh Khoa","Member",
                 "Male","November 14, 2001"));
 
         return list;
@@ -88,6 +91,10 @@ public class AboutUsScreen extends AppCompatActivity {
         SpannableString ss = new SpannableString(textVerifcation) ;
         ForegroundColorSpan fcsYellow = new ForegroundColorSpan(getColor(ColorChange));
         ss.setSpan(fcsYellow,numStart,numEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        StyleSpan typefaceSpan = new StyleSpan(Typeface.BOLD);
+        ss.setSpan(typefaceSpan,numStart,numEnd,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
         text.setText(ss);
     }
 }
