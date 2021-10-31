@@ -18,6 +18,7 @@ import java.util.List;
 import me.relex.circleindicator.CircleIndicator3;
 import nguyenhoanganhkhoa.com.adapter.DetailMemberAdapter;
 import nguyenhoanganhkhoa.com.models.Member;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 public class OurTeamScreen extends AppCompatActivity {
 
@@ -39,7 +40,7 @@ public class OurTeamScreen extends AppCompatActivity {
     }
 
     private void addEvents() {
-        prepareDots();
+        AppUtil.prepareDots(this,mList.size(),layout_dots,dots,14);
         imvBackOurTeam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,22 +86,5 @@ public class OurTeamScreen extends AppCompatActivity {
         imvBackOurTeam= findViewById(R.id.imvBackOurTeam);
         dots = new TextView[mList.size()];
 
-
-    }
-
-    private void prepareDots ()
-    {
-
-        for(int i = 0; i<mList.size();i++)
-        {
-            dots[i] = new TextView(this);
-            dots[i].setText(Html.fromHtml("&#9679;"));
-            dots[i].setTextSize(14);
-
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(6,0,6,0);
-            layout_dots.addView(dots[i],layoutParams);
-        }
     }
 }
