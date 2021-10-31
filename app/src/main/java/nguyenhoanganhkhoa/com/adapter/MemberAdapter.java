@@ -1,6 +1,7 @@
 package nguyenhoanganhkhoa.com.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +18,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import nguyenhoanganhkhoa.com.models.Member;
 import nguyenhoanganhkhoa.com.models.Month;
+import nguyenhoanganhkhoa.com.myapplication.OurTeamScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
@@ -51,8 +54,19 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         holder.txtCareerMember.setText(member.getMemberCareer());
         holder.txtRoleMember.setText(member.getMemberRole());
         holder.txtNameMember.setText(member.getMemberName());
+        holder.layout_member.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToDetail();
+            }
+        });
+
+    }
 
 
+    private void goToDetail() {
+        Intent intent = new Intent(context, OurTeamScreen.class);
+        context.startActivity(intent);
     }
 
     @Override
@@ -66,9 +80,11 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtCareerMember,txtNameMember, txtRoleMember ;
         private CircleImageView imvAvatarMember;
+        private ConstraintLayout layout_member;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            layout_member = itemView.findViewById(R.id.layout_member);
             txtCareerMember = itemView.findViewById(R.id.txtCareerMember);
             txtNameMember = itemView.findViewById(R.id.txtNameMember);
             txtRoleMember = itemView.findViewById(R.id.txtRoleMember);

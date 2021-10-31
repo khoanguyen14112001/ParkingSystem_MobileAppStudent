@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -11,6 +12,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -60,17 +62,18 @@ public class AboutUsScreen extends AppCompatActivity {
 
     public static List<Member> getMemberList() {
         List<Member> list = new ArrayList<>();
-
-        list.add(new Member(R.drawable.img_avatar_female,"Business Analyst","Vo Thi Tuyet Trinh","Leader",
+        list.add(new Member(R.drawable.img_avatar_male,"Developer","Nguyen Hoang Anh Khoa","Leader",
+                "Male","November 14, 2001"));
+        list.add(new Member(R.drawable.img_avatar_male,"Developer","Tran Hoang Gia Bao","Member",
+                "Male","July 06, 2001"));
+        list.add(new Member(R.drawable.img_avatar_female,"Business Analyst","Vo Thi Tuyet Trinh","Member",
                 "Female","July 06, 2001"));
         list.add(new Member(R.drawable.img_heo,"Designer","Truong Hoang Y","Member",
                 "Female","July 06, 2001"));
         list.add(new Member(R.drawable.img_avatar_male,"Designer","Trinh Chan Khoa","Member",
                 "Male","July 06, 2001"));
-        list.add(new Member(R.drawable.img_avatar_male,"Developer","Tran Hoang Gia Bao","Member",
-                "Male","July 06, 2001"));
-        list.add(new Member(R.drawable.img_avatar_male,"Developer","Nguyen Hoang Anh Khoa","Member",
-                "Male","November 14, 2001"));
+
+
 
         return list;
     }
@@ -84,6 +87,8 @@ public class AboutUsScreen extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
 
     public void changeColor(TextView text, int numStart, int numEnd, int ColorChange) {
