@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.signup;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,8 +34,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import nguyenhoanganhkhoa.com.adapter.FacultyAdapter;
 import nguyenhoanganhkhoa.com.adapter.FacultyAdapterError;
 import nguyenhoanganhkhoa.com.adapter.MajorAdapter;
+import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
+import nguyenhoanganhkhoa.com.customdialog.CustomDialogThreeButton;
+import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.models.Faculty;
 import nguyenhoanganhkhoa.com.models.Major;
+import nguyenhoanganhkhoa.com.myapplication.another.CustomSpinner;
+import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.home.HomePageScreen;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class PersonalInformationSetScreen extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {
@@ -349,7 +355,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                 customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(PersonalInformationSetScreen.this,EmailScreen.class);
+                        Intent intent = new Intent(PersonalInformationSetScreen.this, EmailScreen.class);
                         startActivity(intent);
                     }
                 });
@@ -464,7 +470,8 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                         @Override
                         public void onClick(View view) {
                             customDialog.dismiss();
-                            Toast.makeText(PersonalInformationSetScreen.this,"Let's go",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(PersonalInformationSetScreen.this, HomePageScreen.class);
+                            startActivity(intent);
                         }
                     });
                     customDialog.show();

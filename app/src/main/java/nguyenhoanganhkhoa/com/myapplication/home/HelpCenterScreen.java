@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +16,7 @@ import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.QuestionsAdapter;
 import nguyenhoanganhkhoa.com.models.QuestionsCategories;
+import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class HelpCenterScreen extends AppCompatActivity {
     QuestionsAdapter questionsAdapter;

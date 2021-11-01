@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import nguyenhoanganhkhoa.com.myapplication.EditInfomationScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.EditInfomationScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 
 /**

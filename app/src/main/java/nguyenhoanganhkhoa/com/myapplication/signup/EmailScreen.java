@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.signup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
@@ -179,7 +181,7 @@ public class EmailScreen extends AppCompatActivity {
                 }
                 else
                 {
-                    Intent intent = new Intent(EmailScreen.this,SignUpScreen_UserInfo.class);
+                    Intent intent = new Intent(EmailScreen.this, SignUpScreen_UserInfo.class);
                     startActivity(intent);
                 }
             }

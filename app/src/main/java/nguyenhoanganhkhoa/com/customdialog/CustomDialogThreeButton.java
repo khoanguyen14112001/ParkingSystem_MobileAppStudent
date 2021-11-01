@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.customdialog;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class CustomDialogThreeButton extends Dialog {
-    Button btnTakePhotos, btnChooseFromGallery, btnCancel;
+    public Button btnTakePhotos, btnChooseFromGallery, btnCancel;
     Activity activity;
     public CustomDialogThreeButton(@NonNull Context context, int dialoglayout) {
 

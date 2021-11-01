@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import nguyenhoanganhkhoa.com.adapter.ViewPagerAdapter;
+import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class HomePageScreen extends AppCompatActivity {
     BottomNavigationView navBottom;

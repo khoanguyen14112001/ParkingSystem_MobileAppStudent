@@ -1,7 +1,6 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.login;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,14 +10,17 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
+import nguyenhoanganhkhoa.com.myapplication.signup.EmailScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.HomePageScreen;
+import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.forgotpass.ResetPasswordScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
@@ -130,7 +132,7 @@ public class LoginScreen extends AppCompatActivity {
         txtSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginScreen.this,EmailScreen.class);
+                Intent intent = new Intent(LoginScreen.this, EmailScreen.class);
                 startActivity(intent);
             }
         });
@@ -210,7 +212,7 @@ public class LoginScreen extends AppCompatActivity {
                         // Nếu đúng thì cho user đi tiếp, reset lại attemp và trytime
                         if(email.equals(AppUtil.USERNAME_APP)&&password.equals(AppUtil.PASSWORD_APP))
                         {
-                            Intent intent = new Intent(LoginScreen.this,HomePageScreen.class);
+                            Intent intent = new Intent(LoginScreen.this, HomePageScreen.class);
                             startActivity(intent);
                             attemp=1;
                             trytime=0;

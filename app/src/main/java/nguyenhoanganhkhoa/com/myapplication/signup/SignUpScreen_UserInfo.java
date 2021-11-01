@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.signup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,16 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.regex.Pattern;
-
+import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
+import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
@@ -404,7 +402,7 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
                 }
                 else{
                     clearAllFocus();
-                    Intent intent = new Intent(SignUpScreen_UserInfo.this,VerificationSignupScreen.class);
+                    Intent intent = new Intent(SignUpScreen_UserInfo.this, VerificationSignupScreen.class);
                     startActivity(intent);
                     // Move to next screen
                 }

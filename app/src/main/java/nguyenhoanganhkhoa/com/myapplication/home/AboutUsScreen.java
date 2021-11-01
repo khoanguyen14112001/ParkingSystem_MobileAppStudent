@@ -1,18 +1,10 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
-import android.text.style.TypefaceSpan;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,9 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.MemberAdapter;
-import nguyenhoanganhkhoa.com.adapter.TransAllAdapter;
 import nguyenhoanganhkhoa.com.models.Member;
-import nguyenhoanganhkhoa.com.models.Transaction;
+import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class AboutUsScreen extends AppCompatActivity {

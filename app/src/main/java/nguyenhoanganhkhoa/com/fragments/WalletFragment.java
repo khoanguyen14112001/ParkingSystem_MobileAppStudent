@@ -8,15 +8,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import nguyenhoanganhkhoa.com.myapplication.HelpCenterScreen;
-import nguyenhoanganhkhoa.com.myapplication.QRCodeScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.HelpCenterScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
-import nguyenhoanganhkhoa.com.myapplication.ShowAllTransactionScreen;
-import nguyenhoanganhkhoa.com.myapplication.TopUpScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.ShowAllTransactionScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.TopUpScreen;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,7 +64,7 @@ public class WalletFragment extends Fragment {
         }
     }
 
-    ImageView imbTopUpWallet, imbQRCodeWallet, imbTransaction;
+    ImageButton imbTopUpWallet, imbQRCodeWallet, imbTransaction;
     LinearLayout lnHelpCenter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

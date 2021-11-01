@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.home;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,10 +32,14 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import nguyenhoanganhkhoa.com.adapter.FacultyAdapter;
-import nguyenhoanganhkhoa.com.adapter.FacultyAdapterError;
 import nguyenhoanganhkhoa.com.adapter.MajorAdapter;
+import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
+import nguyenhoanganhkhoa.com.customdialog.CustomDialogThreeButton;
+import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.models.Faculty;
 import nguyenhoanganhkhoa.com.models.Major;
+import nguyenhoanganhkhoa.com.myapplication.another.CustomSpinner;
+import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class EditInfomationScreen extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {

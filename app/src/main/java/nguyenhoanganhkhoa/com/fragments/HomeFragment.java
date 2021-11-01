@@ -3,7 +3,6 @@ package nguyenhoanganhkhoa.com.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,28 +10,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.TransAllAdapter;
+import nguyenhoanganhkhoa.com.customdialog.CustomDialogFragmentHome;
 import nguyenhoanganhkhoa.com.models.Transaction;
-import nguyenhoanganhkhoa.com.myapplication.AboutUsScreen;
-import nguyenhoanganhkhoa.com.myapplication.AllNotificationScreen;
-import nguyenhoanganhkhoa.com.myapplication.CustomDialog;
-import nguyenhoanganhkhoa.com.myapplication.HomePageScreen;
-import nguyenhoanganhkhoa.com.myapplication.NewsScreen;
-import nguyenhoanganhkhoa.com.myapplication.QRCodeScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.AboutUsScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.AllNotificationScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.NewsScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
-import nguyenhoanganhkhoa.com.myapplication.ShowAllTransactionScreen;
-import nguyenhoanganhkhoa.com.myapplication.TopUpScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.ShowAllTransactionScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.TopUpScreen;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -158,7 +152,7 @@ public class HomeFragment extends Fragment {
         imvNoteBell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CustomDialogFragment customDialogFragment = new CustomDialogFragment(getActivity(),R.layout.custom_dialog_notification);
+                CustomDialogFragmentHome customDialogFragment = new CustomDialogFragmentHome(getActivity(),R.layout.custom_dialog_notification);
                 customDialogFragment.btnSeeAll.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

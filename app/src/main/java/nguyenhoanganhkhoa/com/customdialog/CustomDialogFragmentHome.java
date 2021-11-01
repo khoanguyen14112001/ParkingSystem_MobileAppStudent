@@ -1,8 +1,7 @@
-package nguyenhoanganhkhoa.com.fragments;
+package nguyenhoanganhkhoa.com.customdialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
@@ -20,16 +19,15 @@ import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.DialogNotificationAdapter;
 import nguyenhoanganhkhoa.com.models.Notification;
-import nguyenhoanganhkhoa.com.myapplication.HomePageScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 
-public class CustomDialogFragment extends Dialog {
-    Button btnSeeAll;
+public class CustomDialogFragmentHome extends Dialog {
+    public Button btnSeeAll;
     Activity activity;
     RecyclerView rcvNotification;
     DialogNotificationAdapter dialogNotificationAdapter;
 
-    public CustomDialogFragment(@NonNull Activity activity, int dialogLayout) {
+    public CustomDialogFragmentHome(@NonNull Activity activity, int dialogLayout) {
 
         super(activity);
         this.activity =  activity;
@@ -93,10 +91,10 @@ public class CustomDialogFragment extends Dialog {
                 "maintenance from 14, Jan to 20, Jan","13 Jan, 19:04"));
         list.add(new Notification(R.drawable.img_newnotice,"Due to the Christmas holiday, " +
                 "the parking lot will not be open","23 Dec, 18:35"));
-//        list.add(new Notification(R.drawable.img_notice,"The parking lot will be under " +
-//                "maintenance from 11 Nov to 14 Nov","13 Jan, 19:04"));
-//        list.add(new Notification(R.drawable.img_nomoney_notice,"You currently do not have enough " +
-//                "money to pay, please top up","03 Nov, 17:05"));
+        list.add(new Notification(R.drawable.img_notice,"The parking lot will be under " +
+                "maintenance from 11 Nov to 14 Nov","13 Jan, 19:04"));
+        list.add(new Notification(R.drawable.img_nomoney_notice,"You currently do not have enough " +
+                "money to pay, please top up","03 Nov, 17:05"));
 
         return list;
     }

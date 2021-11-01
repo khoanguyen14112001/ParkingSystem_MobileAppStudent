@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +16,7 @@ import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.DialogNotificationAdapter;
 import nguyenhoanganhkhoa.com.models.Notification;
+import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class AllNotificationScreen extends AppCompatActivity {
 

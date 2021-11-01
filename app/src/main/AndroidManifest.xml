@@ -12,66 +12,77 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".HelpCenterScreen"
+            android:name=".home.HelpCenterScreen"
             android:exported="true" >
 
         </activity>
         <activity
-            android:name=".NewsScreen"
+            android:name=".home.NewsScreen"
             android:exported="true"/>
         <activity
-            android:name=".OurTeamScreen"
+            android:name=".home.OurTeamScreen"
             android:exported="true" />
         <activity
-            android:name=".AboutUsScreen"
+            android:name=".home.AboutUsScreen"
             android:exported="true" />
         <activity
-            android:name=".EditInfomationScreen"
+            android:name=".home.EditInfomationScreen"
             android:exported="true" >
 
         </activity>
         <activity
-            android:name=".TopUpQRCodeScreen"
+            android:name=".home.TopUpQRCodeScreen"
             android:exported="true" />
         <activity
-            android:name=".TopUpScreen"
+            android:name=".home.TopUpScreen"
             android:exported="true" />
         <activity
-            android:name=".AllNotificationScreen"
+            android:name=".home.AllNotificationScreen"
             android:exported="true" />
         <activity
-            android:name=".ShowAllTransactionScreen"
+            android:name=".home.ShowAllTransactionScreen"
             android:exported="true" />
         <activity
-            android:name=".QRCodeScreen"
+            android:name=".home.QRCodeScreen"
             android:exported="true" />
         <activity
-            android:name=".HomePageScreen"
+            android:name=".home.HomePageScreen"
             android:exported="true">
 
 
         </activity>
         <activity
-            android:name=".PersonalInformationSetScreen"
+            android:name=".signup.PersonalInformationSetScreen"
             android:exported="true" />
         <activity
-            android:name=".VerificationSignupScreen"
+            android:name=".signup.VerificationSignupScreen"
             android:exported="true" >
 
         </activity>
         <activity
-            android:name=".EmailScreen"
+            android:name=".signup.EmailScreen"
             android:exported="true" />
         <activity
-            android:name=".SignUpScreen_UserInfo"
+            android:name=".signup.SignUpScreen_UserInfo"
             android:exported="true" />
         <activity
-            android:name=".CreateNewPasswordScreen"
+            android:name=".forgotpass.CreateNewPasswordScreen"
             android:exported="true" >
 
         </activity>
         <activity
-            android:name=".VerificationScreen"
+            android:name=".forgotpass.VerificationScreen"
+            android:exported="true" >
+
+        </activity>
+        <activity
+            android:name=".forgotpass.ResetPasswordScreen"
+            android:exported="true" />
+        <activity
+            android:name="nguyenhoanganhkhoa.com.test.MainActivity2"
+            android:exported="true" />
+        <activity
+            android:name=".login.LoginScreen"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -79,15 +90,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ResetPasswordScreen"
-            android:exported="true" />
-        <activity
-            android:name="nguyenhoanganhkhoa.com.test.MainActivity2"
-            android:exported="true" />
-        <activity
-            android:name=".LoginScreen"
-            android:exported="true" />
         <activity
             android:name="nguyenhoanganhkhoa.com.test.MainActivity"
             android:exported="true"

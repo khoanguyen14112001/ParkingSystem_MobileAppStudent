@@ -1,17 +1,6 @@
 package nguyenhoanganhkhoa.com.thirdlink;
 
-import android.content.Context;
-import android.text.Html;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.regex.Pattern;
-
-import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class AppUtil {
     public static String eMessage = "";
@@ -29,7 +18,7 @@ public class AppUtil {
     public static String LOCK_CONDITION_SIGNUP = "LOCK";
     public static String LOCK_CONDITION_FORGOTPASS = "KEY";
 
-    // Cac password
+    // Thông tin dữ liệu để validate APP.
     public static String USERNAME_APP = "nckh123";
     public static String PASSWORD_APP = "NCKH12345a";
     public static String VERIFICATION_CODE_APP = "1234";

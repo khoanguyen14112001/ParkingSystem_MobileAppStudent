@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,8 +19,7 @@ import java.util.TimerTask;
 
 import nguyenhoanganhkhoa.com.adapter.ImagesAdapter;
 import nguyenhoanganhkhoa.com.models.Images;
-import nguyenhoanganhkhoa.com.models.Member;
-import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class NewsScreen extends AppCompatActivity {

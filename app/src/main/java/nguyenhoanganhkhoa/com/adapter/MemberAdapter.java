@@ -5,20 +5,17 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import nguyenhoanganhkhoa.com.models.Member;
-import nguyenhoanganhkhoa.com.models.Month;
-import nguyenhoanganhkhoa.com.myapplication.OurTeamScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.OurTeamScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {

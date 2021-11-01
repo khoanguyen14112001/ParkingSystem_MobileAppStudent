@@ -1,13 +1,10 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.signup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,6 +12,8 @@ import android.widget.TextView;
 
 import com.chaos.view.PinView;
 
+import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
+import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
@@ -123,7 +122,7 @@ public class VerificationSignupScreen extends AppCompatActivity {
                        customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
                            @Override
                            public void onClick(View view) {
-                               Intent intent = new Intent(VerificationSignupScreen.this,PersonalInformationSetScreen.class);
+                               Intent intent = new Intent(VerificationSignupScreen.this, PersonalInformationSetScreen.class);
                                startActivity(intent);
                            }
                        });

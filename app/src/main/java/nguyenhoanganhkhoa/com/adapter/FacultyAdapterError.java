@@ -15,7 +15,7 @@ import java.util.List;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.models.Faculty;
-import nguyenhoanganhkhoa.com.myapplication.PersonalInformationSetScreen;
+import nguyenhoanganhkhoa.com.myapplication.signup.PersonalInformationSetScreen;
 
 public class FacultyAdapterError extends ArrayAdapter<Faculty> {
     @NonNull

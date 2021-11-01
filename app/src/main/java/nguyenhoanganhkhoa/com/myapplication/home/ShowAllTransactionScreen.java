@@ -1,4 +1,4 @@
-package nguyenhoanganhkhoa.com.myapplication;
+package nguyenhoanganhkhoa.com.myapplication.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -14,12 +13,10 @@ import android.widget.RadioButton;
 import java.util.ArrayList;
 import java.util.List;
 
-import nguyenhoanganhkhoa.com.adapter.DateAdapter;
 import nguyenhoanganhkhoa.com.adapter.MonthTransAdapter;
-import nguyenhoanganhkhoa.com.models.Date;
-import nguyenhoanganhkhoa.com.models.History;
 import nguyenhoanganhkhoa.com.models.Month;
 import nguyenhoanganhkhoa.com.models.Transaction;
+import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class ShowAllTransactionScreen extends AppCompatActivity {
 
