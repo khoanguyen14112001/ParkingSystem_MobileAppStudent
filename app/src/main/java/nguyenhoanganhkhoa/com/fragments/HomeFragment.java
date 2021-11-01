@@ -28,6 +28,7 @@ import nguyenhoanganhkhoa.com.myapplication.AboutUsScreen;
 import nguyenhoanganhkhoa.com.myapplication.AllNotificationScreen;
 import nguyenhoanganhkhoa.com.myapplication.CustomDialog;
 import nguyenhoanganhkhoa.com.myapplication.HomePageScreen;
+import nguyenhoanganhkhoa.com.myapplication.NewsScreen;
 import nguyenhoanganhkhoa.com.myapplication.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.ShowAllTransactionScreen;
@@ -84,8 +85,8 @@ public class HomeFragment extends Fragment {
     TransAllAdapter transAllAdapter;
     RecyclerView rcvHistoryTrans;
     TextView txtSeeAllTrans;
-    ImageButton btnQRCodeHome,btnTopUpHome;
-    ImageView imvNoteBell, btnAboutUs;
+    ImageButton imbQRCodeHome,imbTopUpHome, imbAboutUs, imbNewsHome;
+    ImageView imvNoteBell;
 
 
     @Override
@@ -108,14 +109,22 @@ public class HomeFragment extends Fragment {
     private void linkView(View view) {
         rcvHistoryTrans = view.findViewById(R.id.rcvHistoryTrans);
         txtSeeAllTrans = view.findViewById(R.id.txtSeeAllTrans);
-        btnQRCodeHome = view.findViewById(R.id.btnQRCodeHome);
+        imbQRCodeHome = view.findViewById(R.id.imbQRCodeHome);
         imvNoteBell = view.findViewById(R.id.imvNoteBell);
-        btnTopUpHome = view.findViewById(R.id.btnTopUpHome);
-        btnAboutUs = view.findViewById(R.id.btnAboutUs);
+        imbTopUpHome = view.findViewById(R.id.imbTopUpHome);
+        imbAboutUs = view.findViewById(R.id.imbAboutUs);
+        imbNewsHome = view.findViewById(R.id.imbNewsHome);
     }
 
     private void addEvents() {
-        btnAboutUs.setOnClickListener(new View.OnClickListener() {
+        imbNewsHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NewsScreen.class);
+                startActivity(intent);
+            }
+        });
+        imbAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AboutUsScreen.class);
@@ -130,7 +139,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        btnTopUpHome.setOnClickListener(new View.OnClickListener() {
+        imbTopUpHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), TopUpScreen.class);
@@ -138,7 +147,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        btnQRCodeHome.setOnClickListener(new View.OnClickListener() {
+        imbQRCodeHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), QRCodeScreen.class);

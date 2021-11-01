@@ -173,7 +173,7 @@
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageButton
-                                    android:id="@+id/btnQRCodeHome"
+                                    android:id="@+id/imbQRCodeHome"
                                     android:layout_width="70dp"
                                     android:layout_height="70dp"
                                     android:background="@drawable/text_custom_spin"
@@ -209,7 +209,7 @@
 
 
                                 <ImageButton
-                                    android:id="@+id/btnAboutUs"
+                                    android:id="@+id/imbAboutUs"
                                     android:layout_width="70dp"
                                     android:layout_height="70dp"
                                     android:background="@drawable/text_custom_spin"
@@ -242,7 +242,7 @@
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageButton
-                                    android:id="@+id/btnTopUpHome"
+                                    android:id="@+id/imbTopUpHome"
                                     android:layout_width="70dp"
                                     android:layout_height="70dp"
                                     android:background="@drawable/text_custom_spin"
@@ -274,7 +274,7 @@
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageButton
-                                    android:id="@+id/btnNewsHome"
+                                    android:id="@+id/imbNewsHome"
                                     android:layout_width="70dp"
                                     android:layout_height="70dp"
                                     android:background="@drawable/text_custom_spin"

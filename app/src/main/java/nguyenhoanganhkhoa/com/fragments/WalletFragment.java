@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import nguyenhoanganhkhoa.com.myapplication.HelpCenterScreen;
 import nguyenhoanganhkhoa.com.myapplication.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.ShowAllTransactionScreen;
@@ -64,6 +66,7 @@ public class WalletFragment extends Fragment {
     }
 
     ImageView imbTopUpWallet, imbQRCodeWallet, imbTransaction;
+    LinearLayout lnHelpCenter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,6 +80,14 @@ public class WalletFragment extends Fragment {
     }
 
     private void addEventS() {
+        lnHelpCenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), HelpCenterScreen.class);
+                startActivity(intent);
+            }
+        });
+
         imbTopUpWallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,5 +116,6 @@ public class WalletFragment extends Fragment {
         imbTopUpWallet = view.findViewById(R.id.imbTopUpWallet);
         imbQRCodeWallet = view.findViewById(R.id.imbQRCodeWallet);
         imbTransaction = view.findViewById(R.id.imbTransaction);
+        lnHelpCenter = view.findViewById(R.id.lnHelpCenter);
     }
 }

@@ -225,4 +225,8 @@
     <string name="news">News</string>
     <string name="news_from_organization">News from organization</string>
     <string name="advertisement">Advertisement</string>
+    <string name="how_can_we_help_you">How can we help you?</string>
+    <string name="search_problem">Search problem</string>
+    <string name="popular_questions">Popular questions</string>
+    <string name="problem_categories">Problem Categories</string>
 </resources>
