@@ -13,14 +13,10 @@
         android:theme="@style/Theme.MyApplication">
         <activity
             android:name=".HelpCenterScreen"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".NewsScreen"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".OurTeamScreen"
             android:exported="true" />
@@ -47,7 +43,7 @@
             android:exported="true" />
         <activity
             android:name=".HomePageScreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
