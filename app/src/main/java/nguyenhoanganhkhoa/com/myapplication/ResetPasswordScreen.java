@@ -41,7 +41,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
 
     private void addCondition() {
         String s = AppUtil.eMessage;
-        if(s.equals("key"))
+        if(s.equals(AppUtil.LOCK_CONDITION_FORGOTPASS))
             addTimerLock();
         else if (s.equals(""))
             return;
@@ -127,7 +127,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
 
 
                 else{
-                    if(!edtPhone.getText().toString().equals("0908315280"))
+                    if(!edtPhone.getText().toString().equals(AppUtil.PHONE_APP))
                     {
                         txtErrorPhone.setText(R.string.your_phone_does_not_exists);
                         txtErrorPhone.setTextSize(15);

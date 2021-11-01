@@ -21,6 +21,7 @@ import nguyenhoanganhkhoa.com.adapter.ImagesAdapter;
 import nguyenhoanganhkhoa.com.models.Images;
 import nguyenhoanganhkhoa.com.models.Member;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class NewsScreen extends AppCompatActivity {
 
@@ -33,6 +34,8 @@ public class NewsScreen extends AppCompatActivity {
     int currentPosition = 0;
     Timer timer;
     ImageView imvBackNews;
+
+    ReusedConstraint reusedConstraint= new ReusedConstraint(NewsScreen.this);
 
 
 
@@ -61,7 +64,7 @@ public class NewsScreen extends AppCompatActivity {
 
     private void addAutoEvents() {
         createSlideShow();
-        AppUtil.prepareDots(this,getImagesNews().size(),layout_dots_news,dots,9);
+        reusedConstraint.prepareDots(this,getImagesNews().size(),layout_dots_news,dots,9);
     }
 
     private void initAdapter(int layout) {
@@ -104,7 +107,7 @@ public class NewsScreen extends AppCompatActivity {
         viewPagerNews.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
-                seletedIndicator(position);
+                reusedConstraint.seletedIndicator(dots, position);
                 currentPosition = position;
                 super.onPageSelected(position);
             }
@@ -141,20 +144,6 @@ public class NewsScreen extends AppCompatActivity {
                 handler.post(runnable);
             }
         }, 250,2500);
-    }
-
-    private void seletedIndicator(int position) {
-        for (int i =0; i<dots.length;i++)
-        {
-            if(i==position)
-            {
-                dots[i].setTextColor(getColor(R.color.primary_yellow));
-
-            }
-            else {
-                dots[i].setTextColor(getColor(R.color.xamChu));
-            }
-        }
     }
 
 }

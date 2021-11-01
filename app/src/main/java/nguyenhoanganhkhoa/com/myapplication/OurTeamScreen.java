@@ -19,6 +19,7 @@ import me.relex.circleindicator.CircleIndicator3;
 import nguyenhoanganhkhoa.com.adapter.DetailMemberAdapter;
 import nguyenhoanganhkhoa.com.models.Member;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class OurTeamScreen extends AppCompatActivity {
 
@@ -27,6 +28,9 @@ public class OurTeamScreen extends AppCompatActivity {
     List<Member> mList = AboutUsScreen.getMemberList();
     ImageView imvBackOurTeam;
     TextView dots[];
+
+    ReusedConstraint reusedConstraint= new ReusedConstraint(OurTeamScreen.this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,7 @@ public class OurTeamScreen extends AppCompatActivity {
     }
 
     private void addEvents() {
-        AppUtil.prepareDots(this,mList.size(),layout_dots,dots,14);
+        reusedConstraint.prepareDots(this,mList.size(),layout_dots,dots,14);
         imvBackOurTeam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,25 +54,11 @@ public class OurTeamScreen extends AppCompatActivity {
         viewPagerOurTeam.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
-                seletedIndicator(position);
+                reusedConstraint.seletedIndicator(dots,position);
                 super.onPageSelected(position);
 
             }
         });
-    }
-
-    private void seletedIndicator(int position) {
-        for (int i =0; i<dots.length;i++)
-        {
-            if(i==position)
-            {
-                dots[i].setTextColor(getColor(R.color.primary_yellow));
-
-            }
-            else {
-                dots[i].setTextColor(getColor(R.color.xamChu));
-            }
-        }
     }
 
 

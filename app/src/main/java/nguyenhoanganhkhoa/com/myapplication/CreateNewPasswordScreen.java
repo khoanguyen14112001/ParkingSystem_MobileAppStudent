@@ -16,12 +16,17 @@ import android.widget.TextView;
 
 import java.util.regex.Pattern;
 
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
+
 public class CreateNewPasswordScreen extends AppCompatActivity {
 
     EditText edtNewPassword, edtConfirmPassword;
     ImageView imgPasswordToggle1, imgPasswordToggle2, imvComeback;
     TextView txtErrorChangePass, txtErrorConfirmPass,txtVerificationCode;
-    Button btnUpdate,btnOK;
+    Button btnUpdate;
+
+    ReusedConstraint reusedConstraint = new ReusedConstraint(CreateNewPasswordScreen.this);
 
     private void linkView() {
         edtNewPassword = findViewById(R.id.edtNewPassword);
@@ -51,16 +56,6 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         edtNewPassword.clearFocus();
     }
 
-    public static final Pattern PASSWORD_PATTERN =
-            Pattern.compile("^" +
-                    "(?=.*[0-9])" +
-                    "(?=.*[a-z])" +
-                    "(?=.*[A-Z])" +
-                    //   "(?=.*[@#$%^&+=])" +
-                    "(?=\\S+$)" +
-                    ".{8,15}" +
-                    "$");
-
     private Boolean validatePassword(){
 
         String passwordInput = edtNewPassword.getText().toString().trim();
@@ -68,7 +63,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         if(passwordInput.isEmpty())
         {
             txtErrorChangePass.setTextSize(15);
-            setCustomColor(edtNewPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtNewPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imgPasswordToggle1.setImageTintList(getResources().getColorStateList(R.color.red));
             txtErrorChangePass.setText(R.string.field_cannot_be_empty);
             edtNewPassword.setHintTextColor(getColor(R.color.red));
@@ -76,7 +71,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
 
         }
 
-        else if(!PASSWORD_PATTERN.matcher(passwordInput).matches())
+        else if(!AppUtil.PASSWORD_PATTERN.matcher(passwordInput).matches())
         {
             if(passwordInput.length()<=15)
             {
@@ -88,7 +83,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
                 txtErrorChangePass.setText(R.string.your_password_is_too_long);
             }
             txtErrorChangePass.setTextSize(15);
-            setCustomColor(edtNewPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtNewPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imgPasswordToggle1.setImageTintList(getResources().getColorStateList(R.color.red));
 
             btnUpdate.setBackground(getDrawable(R.drawable.button_login_block));
@@ -97,7 +92,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
             return false;
         }
         else {
-            setCustomColor(edtNewPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtNewPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             imgPasswordToggle1.setImageTintList(getResources().getColorStateList(R.color.black80));
             txtErrorChangePass.setText(null);
             txtErrorChangePass.setTextSize(0);
@@ -117,7 +112,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
             txtErrorConfirmPass.setText(R.string.field_cannot_be_empty);
 
             txtErrorConfirmPass.setTextSize(15);
-            setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
             edtConfirmPassword.setHintTextColor(getColor(R.color.red));
 
             imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.red));
@@ -129,7 +124,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
             txtErrorConfirmPass.setText(R.string.your_password_must_be_match);
 
             txtErrorConfirmPass.setTextSize(15);
-            setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
             edtConfirmPassword.setHintTextColor(getColor(R.color.red));
 
             imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.red));
@@ -138,7 +133,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
 
         else {
 
-            setCustomColor(edtConfirmPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtConfirmPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtConfirmPassword.setHintTextColor(getColor(R.color.xamChu));
 
             imgPasswordToggle2.setImageTintList(getResources().getColorStateList(R.color.black80));
@@ -155,7 +150,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         if (password.isEmpty()){
             txtErrorConfirmPass.setText(R.string.field_cannot_be_empty);
             txtErrorConfirmPass.setTextSize(15);
-            setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtConfirmPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imgPasswordToggle2.setImageTintList(getColorStateList(R.color.red));
             edtConfirmPassword.setHintTextColor(getColor(R.color.red));
 
@@ -164,7 +159,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
 
         else {
 
-            setCustomColor(edtConfirmPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtConfirmPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtConfirmPassword.setHintTextColor(getColor(R.color.xamChu));
             imgPasswordToggle2.setImageTintList(getColorStateList(R.color.black80));
 
@@ -187,8 +182,6 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         });
 
         edtNewPassword.addTextChangedListener(new TextWatcher() {
-
-
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -228,7 +221,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         imgPasswordToggle1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showHidePassword(edtNewPassword,view);
+                reusedConstraint.showHidePassword(edtNewPassword,view);
 
             }
         });
@@ -236,7 +229,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         imgPasswordToggle2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showHidePassword(edtConfirmPassword,view);
+                reusedConstraint.showHidePassword(edtConfirmPassword,view);
             }
         });
 
@@ -262,34 +255,6 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
                 }
             }
         });
-    }
-
-
-
-
-
-    private void showHidePassword(EditText edtPass, View view ) {
-        if(edtPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-            ((ImageView)(view)).setImageResource(R.drawable.ic_open_toggle);
-            //Show Password
-            edtPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-
-        }
-        else{
-            ((ImageView)(view)).setImageResource(R.drawable.ic_close_toggle);
-            //Hide Password
-            edtPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        }
-
-    }
-
-    private void setCustomColor(EditText edtCanSua, int edtColor, int iconColor, int textColor)
-    {
-        // Chỉnh màu cho thanh edit text khi gặp error, focus, ...
-
-        edtCanSua.setBackground(getDrawable(edtColor));
-        edtCanSua.setCompoundDrawableTintList(getColorStateList(iconColor));
-        edtCanSua.setTextColor(getColorStateList(textColor));
     }
 
 

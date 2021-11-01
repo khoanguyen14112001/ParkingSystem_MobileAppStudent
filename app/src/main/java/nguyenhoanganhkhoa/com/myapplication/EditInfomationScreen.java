@@ -36,6 +36,7 @@ import nguyenhoanganhkhoa.com.adapter.FacultyAdapterError;
 import nguyenhoanganhkhoa.com.adapter.MajorAdapter;
 import nguyenhoanganhkhoa.com.models.Faculty;
 import nguyenhoanganhkhoa.com.models.Major;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class EditInfomationScreen extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {
     Button btnSave;
@@ -47,6 +48,8 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     TextView txtErrorIdStudent, txtErrorMarjor, txtErrorDateofBirth, txtErrorFaculty,edtDateofbirth,
     txtErrorPhone;
     AutoCompleteTextView adtMajor;
+
+    ReusedConstraint reusedConstraint = new ReusedConstraint(EditInfomationScreen.this);
 
 
     private void linkView() {
@@ -88,189 +91,11 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
 
     }
 
-    private void setCustomColor(EditText edtCanSua, int edtColor, int iconColor, int textColor){
-        // Chỉnh màu cho thanh edit text khi gặp error, focus, ...
-
-        edtCanSua.setBackground(ContextCompat.getDrawable(EditInfomationScreen.this,edtColor));
-        edtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(EditInfomationScreen.this,iconColor));
-        edtCanSua.setTextColor(ContextCompat.getColorStateList(EditInfomationScreen.this,textColor));
-    }
-    private void setCustomColortxt(TextView txtCanSua, int edtColor, int iconColor, int textColor){
-        // Chỉnh màu cho thanh eTit text khi gặp error, focus, ...
-
-        txtCanSua.setBackground(ContextCompat.getDrawable(EditInfomationScreen.this,edtColor));
-        txtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(EditInfomationScreen.this,iconColor));
-        txtCanSua.setTextColor(ContextCompat.getColorStateList(EditInfomationScreen.this,textColor));
-    }
-    private Boolean validateIDStudent(){
-        String username = edtIdStudent.getText().toString();
-        if (username.isEmpty()){
-            txtErrorIdStudent.setText(R.string.field_cannot_be_empty);
-            txtErrorIdStudent.setTextSize(15);
-            edtIdStudent.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtIdStudent,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            return false;
-        }
-
-//
-
-        else {
-            setCustomColor(edtIdStudent,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-            edtIdStudent.setHintTextColor(getColor(R.color.xamChu));
-
-            txtErrorIdStudent.setText(null);
-            txtErrorIdStudent.setTextSize(0);
-            return true;
-        }
-
-    }
-    private Boolean validatePhoneNumber(){
-        String username = edtPhone.getText().toString();
-        if (username.isEmpty()){
-            txtErrorPhone.setText(R.string.field_cannot_be_empty);
-            txtErrorPhone.setTextSize(15);
-            edtIdStudent.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtPhone,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            return false;
-        }
-
-//
-
-        else {
-            setCustomColor(edtPhone,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-            edtPhone.setHintTextColor(getColor(R.color.xamChu));
-            txtErrorPhone.setText(null);
-            txtErrorPhone.setTextSize(0);
-            return true;
-        }
-
-    }
-    private Boolean validateMajor(){
-        String username = adtMajor.getText().toString();
-        if (username.isEmpty()){
-            txtErrorMarjor.setText(R.string.field_cannot_be_empty);
-            txtErrorMarjor.setTextSize(15);
-            adtMajor.setHintTextColor(getColor(R.color.red));
-            setCustomColor(adtMajor,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            return false;
-        }
 
 
-        else {
-            setCustomColor(adtMajor,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-            adtMajor.setHintTextColor(getColor(R.color.xamChu));
-
-            txtErrorMarjor.setText(null);
-            txtErrorMarjor.setTextSize(0);
-            return true;
-        }
-
-    }
-    private Boolean validateDateOfbirth(){
-
-        String dateofbirth = edtDateofbirth.getText().toString();
-        if (dateofbirth.isEmpty()){
-            txtErrorDateofBirth.setText(R.string.field_cannot_be_empty);
-            txtErrorDateofBirth.setTextSize(15);
-            edtDateofbirth.setHintTextColor(getColor(R.color.red));
-            setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            return false;
-        }
-        else if(!edtDateofbirth.getText().toString().isEmpty())
-        {
-            String sub1last = edtDateofbirth.getText().toString().substring(9,10);
-            if(!sub1last.equals("1")&&!sub1last.equals("2")&&!sub1last.equals("3")
-                    &&!sub1last.equals("4")&&!sub1last.equals("5")&&
-                    !sub1last.equals("6")&&!sub1last.equals("7")&&
-                    !sub1last.equals("8")&&!sub1last.equals("9")&&!sub1last.equals("0"))
-            {
-                txtErrorDateofBirth.setText(R.string.please_enter_full_of_date);
-                txtErrorDateofBirth.setTextSize(15);
-                edtDateofbirth.setHintTextColor(getColor(R.color.red));
-                setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
-                return false;
-            }
-            else
-            {
-                setCustomColortxt(edtDateofbirth,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-                edtDateofbirth.setHintTextColor(getColor(R.color.xamChu));
-                txtErrorDateofBirth.setText(null);
-                txtErrorDateofBirth.setTextSize(0);
-                return true;
-            }
-        }
-        return true;
-    }
-    private Boolean validateDateOfbirthTextChange(){
-        String username = edtDateofbirth.getText().toString();
-        if (username.isEmpty()){
-            txtErrorDateofBirth.setText(R.string.field_cannot_be_empty);
-            txtErrorDateofBirth.setTextSize(15);
-            edtDateofbirth.setHintTextColor(getColor(R.color.red));
-            setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            return false;
-        }
 
 
-        else {
-            setCustomColortxt(edtDateofbirth,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-            edtDateofbirth.setHintTextColor(getColor(R.color.xamChu));
-
-            txtErrorDateofBirth.setText(null);
-            txtErrorDateofBirth.setTextSize(0);
-            return true;
-        }
-
-    }
-
-    MajorAdapter majorAdapter;
-    private void initAderterMarjor() {
-        majorAdapter = new MajorAdapter(this,R.layout.item_faculty_selected,getListMajor());
-        adtMajor.setAdapter(majorAdapter);
-
-    }
-    private List<Major> getListMajor() {
-        List<Major> list = new ArrayList<>();
-        String[] majorArray= getResources().getStringArray(R.array.major);
-
-        for (int i = 0;i<majorArray.length;i++)
-            list.add(new Major(majorArray[i]));
-
-        return list;
-    }
-    Calendar calendar = Calendar.getInstance();
-    final int year = calendar.get(Calendar.YEAR);
-    final int month = calendar.get(Calendar.MONTH);
-    final int day = calendar.get(Calendar.DAY_OF_MONTH);
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    DatePickerDialog.OnDateSetListener setListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            calendar.set(Calendar.YEAR, year);
-            calendar.set(Calendar.MONTH, month);
-            calendar.set(Calendar.DAY_OF_MONTH, day);
-            edtDateofbirth.setText(dateFormat.format(calendar.getTime()));
-            String s = edtDateofbirth.getText().toString();
-        }
-    };
-
-    FacultyAdapter facultyAdapter;
-    private void initAdapterFaculty() {
-        facultyAdapter = new FacultyAdapter(this,R.layout.item_faculty_selected,getListFaculty());
-        spnFaculty.setAdapter(facultyAdapter);
-
-    }
-    private List<Faculty> getListFaculty() {
-        List<Faculty> list =new ArrayList<>();
-        String[] facultyArray= getResources().getStringArray(R.array.facultyEditInfo);
-
-        for (int i = 0;i<facultyArray.length;i++)
-            list.add(new Faculty(facultyArray[i]));
-
-        return list;
-
-    }
-    public static int selectedFaculty = 0;
+    // Sự kiện addEvents() và các sự kiện khác
     private void addEvents() {
         imvComebackEditInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -397,7 +222,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
             @Override
             public void onClick(View view) {
 
-                if(!validateIDStudent()|!validateMajor()|!validateDateOfbirth())
+                if(!validateIDStudent()|!validateMajor()|!validateDateOfbirth()|!validatePhoneNumber())
                 {
                     clearAllForcus();
                 }
@@ -424,6 +249,35 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         });
 
     }
+    private void clearAllForcus(){
+        edtIdStudent.clearFocus();
+        adtMajor.clearFocus();
+        edtDateofbirth.clearFocus();
+        spnFaculty.clearFocus();
+    }
+    private void setCustomColortxt(TextView txtCanSua, int edtColor, int iconColor, int textColor){
+        // Chỉnh màu cho thanh eTit text khi gặp error, focus, ...
+
+        txtCanSua.setBackground(ContextCompat.getDrawable(EditInfomationScreen.this,edtColor));
+        txtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(EditInfomationScreen.this,iconColor));
+        txtCanSua.setTextColor(ContextCompat.getColorStateList(EditInfomationScreen.this,textColor));
+    }
+
+
+    // Tạo sự kiện thêm và đóng spinner
+    @Override
+    public void onPopupWindowOpened(Spinner spinner) {
+        imvDropdown.setImageResource(R.drawable.ic_arrrow_dropdown_up);
+
+
+
+    }
+    @Override
+    public void onPopupWindowClosed(Spinner spinner) {
+        imvDropdown.setImageResource(R.drawable.ic_arrow_down_spinner);
+    }
+
+    // Tạo sự kiện chụp ảnh
     private static final int REQUEST_TAKE_PICTURE = 1337;
     private static final int REQUEST_PICK_PICTURE = 1338;
     private void cameraPickImage() {
@@ -471,22 +325,179 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-    private void clearAllForcus(){
-        edtIdStudent.clearFocus();
-        adtMajor.clearFocus();
-        edtDateofbirth.clearFocus();
-        spnFaculty.clearFocus();
+
+    //Tạo sự kiện pick datetime
+    Calendar calendar = Calendar.getInstance();
+    final int year = calendar.get(Calendar.YEAR);
+    final int month = calendar.get(Calendar.MONTH);
+    final int day = calendar.get(Calendar.DAY_OF_MONTH);
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    DatePickerDialog.OnDateSetListener setListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, month);
+            calendar.set(Calendar.DAY_OF_MONTH, day);
+            edtDateofbirth.setText(dateFormat.format(calendar.getTime()));
+            String s = edtDateofbirth.getText().toString();
+        }
+    };
+
+    //Tạo sự kiện Validate
+    private Boolean validateIDStudent(){
+        String username = edtIdStudent.getText().toString();
+        if (username.isEmpty()){
+            txtErrorIdStudent.setText(R.string.field_cannot_be_empty);
+            txtErrorIdStudent.setTextSize(15);
+            edtIdStudent.setHintTextColor(getColor(R.color.red));
+            reusedConstraint.setCustomColor(edtIdStudent,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            return false;
+        }
+
+//
+
+        else {
+            reusedConstraint.setCustomColor(edtIdStudent,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            edtIdStudent.setHintTextColor(getColor(R.color.xamChu));
+
+            txtErrorIdStudent.setText(null);
+            txtErrorIdStudent.setTextSize(0);
+            return true;
+        }
+
     }
-    // Tạo sự kiện thêm và đóng spinner
-    @Override
-    public void onPopupWindowOpened(Spinner spinner) {
-        imvDropdown.setImageResource(R.drawable.ic_arrrow_dropdown_up);
+    private Boolean validatePhoneNumber(){
+        String username = edtPhone.getText().toString();
+        if (username.isEmpty()){
+            txtErrorPhone.setText(R.string.field_cannot_be_empty);
+            txtErrorPhone.setTextSize(15);
+            edtPhone.setHintTextColor(getColor(R.color.red));
+            reusedConstraint.setCustomColor(edtPhone,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            return false;
+        }
+
+//
+
+        else {
+            reusedConstraint.setCustomColor(edtPhone,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            edtPhone.setHintTextColor(getColor(R.color.xamChu));
+            txtErrorPhone.setText(null);
+            txtErrorPhone.setTextSize(0);
+            return true;
+        }
+
+    }
+    private Boolean validateMajor(){
+        String username = adtMajor.getText().toString();
+        if (username.isEmpty()){
+            txtErrorMarjor.setText(R.string.field_cannot_be_empty);
+            txtErrorMarjor.setTextSize(15);
+            adtMajor.setHintTextColor(getColor(R.color.red));
+            reusedConstraint.setCustomColor(adtMajor,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            return false;
+        }
 
 
+        else {
+            reusedConstraint.setCustomColor(adtMajor,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            adtMajor.setHintTextColor(getColor(R.color.xamChu));
+
+            txtErrorMarjor.setText(null);
+            txtErrorMarjor.setTextSize(0);
+            return true;
+        }
 
     }
-    @Override
-    public void onPopupWindowClosed(Spinner spinner) {
-        imvDropdown.setImageResource(R.drawable.ic_arrow_down_spinner);
+    private Boolean validateDateOfbirth(){
+
+        String dateofbirth = edtDateofbirth.getText().toString();
+        if (dateofbirth.isEmpty()){
+            txtErrorDateofBirth.setText(R.string.field_cannot_be_empty);
+            txtErrorDateofBirth.setTextSize(15);
+            edtDateofbirth.setHintTextColor(getColor(R.color.red));
+            setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            return false;
+        }
+        else if(!edtDateofbirth.getText().toString().isEmpty())
+        {
+            String sub1last = edtDateofbirth.getText().toString().substring(9,10);
+            if(!sub1last.equals("1")&&!sub1last.equals("2")&&!sub1last.equals("3")
+                    &&!sub1last.equals("4")&&!sub1last.equals("5")&&
+                    !sub1last.equals("6")&&!sub1last.equals("7")&&
+                    !sub1last.equals("8")&&!sub1last.equals("9")&&!sub1last.equals("0"))
+            {
+                txtErrorDateofBirth.setText(R.string.please_enter_full_of_date);
+                txtErrorDateofBirth.setTextSize(15);
+                edtDateofbirth.setHintTextColor(getColor(R.color.red));
+                setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
+                return false;
+            }
+            else
+            {
+                setCustomColortxt(edtDateofbirth,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+                edtDateofbirth.setHintTextColor(getColor(R.color.xamChu));
+                txtErrorDateofBirth.setText(null);
+                txtErrorDateofBirth.setTextSize(0);
+                return true;
+            }
+        }
+        return true;
     }
+    private Boolean validateDateOfbirthTextChange(){
+        String username = edtDateofbirth.getText().toString();
+        if (username.isEmpty()){
+            txtErrorDateofBirth.setText(R.string.field_cannot_be_empty);
+            txtErrorDateofBirth.setTextSize(15);
+            edtDateofbirth.setHintTextColor(getColor(R.color.red));
+            setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            return false;
+        }
+
+
+        else {
+            setCustomColortxt(edtDateofbirth,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            edtDateofbirth.setHintTextColor(getColor(R.color.xamChu));
+
+            txtErrorDateofBirth.setText(null);
+            txtErrorDateofBirth.setTextSize(0);
+            return true;
+        }
+
+    }
+
+    //Các sự kiện nạp adapter
+    MajorAdapter majorAdapter;
+    private void initAderterMarjor() {
+        majorAdapter = new MajorAdapter(this,R.layout.item_faculty_selected,getListMajor());
+        adtMajor.setAdapter(majorAdapter);
+
+    }
+    private List<Major> getListMajor() {
+        List<Major> list = new ArrayList<>();
+        String[] majorArray= getResources().getStringArray(R.array.major);
+
+        for (int i = 0;i<majorArray.length;i++)
+            list.add(new Major(majorArray[i]));
+
+        return list;
+    }
+
+    public static int selectedFaculty = 0;
+    FacultyAdapter facultyAdapter;
+    private void initAdapterFaculty() {
+        facultyAdapter = new FacultyAdapter(this,R.layout.item_faculty_selected,getListFaculty());
+        spnFaculty.setAdapter(facultyAdapter);
+
+    }
+    private List<Faculty> getListFaculty() {
+        List<Faculty> list =new ArrayList<>();
+        String[] facultyArray= getResources().getStringArray(R.array.facultyEditInfo);
+
+        for (int i = 0;i<facultyArray.length;i++)
+            list.add(new Faculty(facultyArray[i]));
+
+        return list;
+
+    }
+
 }

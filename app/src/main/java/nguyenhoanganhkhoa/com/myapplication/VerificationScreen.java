@@ -16,11 +16,12 @@ import android.widget.TextView;
 import com.chaos.view.PinView;
 
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class VerificationScreen extends AppCompatActivity {
     PinView pv;
     TextView txtErrorCode,txtResend,txtVerificationText;
-    Button btnVerify, btnOK;
+    Button btnVerify;
     ImageView imvComeback;
 
     private void linkView() {
@@ -46,7 +47,6 @@ public class VerificationScreen extends AppCompatActivity {
 
     private void addTimer() {
 
-
         new CountDownTimer(time, 10) { //Set Timer for 5 seconds
             public void onTick(long millisUntilFinished) {
 
@@ -59,13 +59,8 @@ public class VerificationScreen extends AppCompatActivity {
 
                 // Set color seconds
 
-                String textVerifcation = txtVerificationText.getText().toString();
-                SpannableString ss = new SpannableString(textVerifcation) ;
-
-                ForegroundColorSpan fcsYellow = new ForegroundColorSpan(getColor(R.color.primary_yellow));
-
-                ss.setSpan(fcsYellow,62,64, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                txtVerificationText.setText(ss);
+                ReusedConstraint reusedConstraint = new ReusedConstraint(VerificationScreen.this);
+                reusedConstraint.changeColor(txtVerificationText,62,64,R.color.primary_yellow);
 
                 txtResend.setEnabled(false);
             }
@@ -123,14 +118,13 @@ public class VerificationScreen extends AppCompatActivity {
 
                 else
                 {
-                    if (pv.getText().toString().equals("1234")) {
+                    if (pv.getText().toString().equals(AppUtil.VERIFICATION_CODE_APP)) {
                         Intent intent = new Intent(VerificationScreen.this, CreateNewPasswordScreen.class);
                         startActivity(intent);
                     }
                     else if(attempt==5)
                     {
-                        String keyValue = "key";
-                        AppUtil.eMessage=keyValue;
+                        AppUtil.eMessage=AppUtil.LOCK_CONDITION_FORGOTPASS;
                         CustomDialog customDialog = new CustomDialog(VerificationScreen.this,R.layout.custom_dialog_verification_2);
                         customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
                             @Override

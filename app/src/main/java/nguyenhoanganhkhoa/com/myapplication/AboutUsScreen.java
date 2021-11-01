@@ -24,12 +24,15 @@ import nguyenhoanganhkhoa.com.adapter.MemberAdapter;
 import nguyenhoanganhkhoa.com.adapter.TransAllAdapter;
 import nguyenhoanganhkhoa.com.models.Member;
 import nguyenhoanganhkhoa.com.models.Transaction;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class AboutUsScreen extends AppCompatActivity {
     RecyclerView rcvListMemberTeam;
     MemberAdapter memberAdapter;
     TextView txtIntroduceTeam, txtIntroduceSystem;
     ImageView imvComebackAboutUs;
+
+    ReusedConstraint reusedConstraint = new ReusedConstraint(AboutUsScreen.this);
 
     private void linkView() {
         rcvListMemberTeam = findViewById(R.id.rcvListMemberTeam);
@@ -79,8 +82,8 @@ public class AboutUsScreen extends AppCompatActivity {
     }
 
     private void addEvents() {
-        changeColor(txtIntroduceTeam,0,14,R.color.primary_yellow);
-        changeColor(txtIntroduceSystem,0,14,R.color.primary_yellow);
+        reusedConstraint.changeColor(txtIntroduceTeam,0,14,R.color.primary_yellow);
+        reusedConstraint.changeColor(txtIntroduceSystem,0,14,R.color.primary_yellow);
         imvComebackAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,15 +94,5 @@ public class AboutUsScreen extends AppCompatActivity {
 
     }
 
-    public void changeColor(TextView text, int numStart, int numEnd, int ColorChange) {
-        String textVerifcation = text.getText().toString();
-        SpannableString ss = new SpannableString(textVerifcation) ;
-        ForegroundColorSpan fcsYellow = new ForegroundColorSpan(getColor(ColorChange));
-        ss.setSpan(fcsYellow,numStart,numEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        StyleSpan typefaceSpan = new StyleSpan(Typeface.BOLD);
-        ss.setSpan(typefaceSpan,numStart,numEnd,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        text.setText(ss);
-    }
 }

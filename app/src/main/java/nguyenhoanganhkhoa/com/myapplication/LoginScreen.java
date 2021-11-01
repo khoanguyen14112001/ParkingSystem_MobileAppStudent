@@ -19,6 +19,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
+
 
 public class LoginScreen extends AppCompatActivity {
 
@@ -26,6 +29,8 @@ public class LoginScreen extends AppCompatActivity {
     Button btnLogin,btnOK;
     TextView txtErrorPassword, txtErrorUsername,txtErrorLogTooMuch,txtForgotPassword,txtSignUp;
     ImageView imgPasswordToggleClose;
+
+    ReusedConstraint reusedConstraint = new ReusedConstraint(LoginScreen.this);
 
     private void linkView() {
         edtUsername = findViewById(R.id.edtUsername);
@@ -40,14 +45,6 @@ public class LoginScreen extends AppCompatActivity {
         txtSignUp = findViewById(R.id.txtSignUp);
     }
 
-    private void setCustomColor(EditText edtCanSua, int edtColor, int iconColor, int textColor)
-    {
-        // Chỉnh màu cho thanh edit text khi gặp error, focus, ...
-
-        edtCanSua.setBackground(ContextCompat.getDrawable(LoginScreen.this,edtColor));
-        edtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(LoginScreen.this,iconColor));
-        edtCanSua.setTextColor(ContextCompat.getColorStateList(LoginScreen.this,textColor));
-    }
 
     private Boolean validateUsername(){
         String username = edtUsername.getText().toString();
@@ -55,14 +52,14 @@ public class LoginScreen extends AppCompatActivity {
             txtErrorUsername.setText(R.string.field_cannot_be_empty);
             txtErrorUsername.setTextSize(15);
             edtUsername.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtUsername,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtUsername,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
 
 //
 
         else {
-            setCustomColor(edtUsername,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtUsername,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtUsername.setHintTextColor(getColor(R.color.xamChu));
 
             txtErrorUsername.setText(null);
@@ -79,7 +76,7 @@ public class LoginScreen extends AppCompatActivity {
         if (password.isEmpty()){
             txtErrorPassword.setText(R.string.field_cannot_be_empty);
             txtErrorPassword.setTextSize(15);
-            setCustomColor(edtPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtPassword,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imgPasswordToggleClose.setImageTintList(getColorStateList(R.color.red));
             edtPassword.setHintTextColor(getColor(R.color.red));
 
@@ -88,7 +85,7 @@ public class LoginScreen extends AppCompatActivity {
 
         else {
 
-            setCustomColor(edtPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtPassword,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtPassword.setHintTextColor(getColor(R.color.xamChu));
             imgPasswordToggleClose.setImageTintList(getColorStateList(R.color.black80));
 
@@ -211,11 +208,10 @@ public class LoginScreen extends AppCompatActivity {
                     else if(attemp<4| attemp==4)
                     {
                         // Nếu đúng thì cho user đi tiếp, reset lại attemp và trytime
-                        if(email.equals("hoianhemvippro123 ")&&password.equals("HoIViPpRo123"))
+                        if(email.equals(AppUtil.USERNAME_APP)&&password.equals(AppUtil.PASSWORD_APP))
                         {
-                            Toast t = Toast.makeText(LoginScreen.this,"login zo",Toast.LENGTH_SHORT);
-                            t.setGravity(Gravity.CENTER|Gravity.TOP, 0, 10);
-                            t.show();
+                            Intent intent = new Intent(LoginScreen.this,HomePageScreen.class);
+                            startActivity(intent);
                             attemp=1;
                             trytime=0;
                         }

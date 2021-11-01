@@ -36,6 +36,7 @@ import nguyenhoanganhkhoa.com.adapter.FacultyAdapterError;
 import nguyenhoanganhkhoa.com.adapter.MajorAdapter;
 import nguyenhoanganhkhoa.com.models.Faculty;
 import nguyenhoanganhkhoa.com.models.Major;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class PersonalInformationSetScreen extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {
 
@@ -47,6 +48,9 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     ImageView imvCamera, imvFaculty, imvDropdown, imvComebackUserinfo;
     TextView txtErrorIdStudent, txtErrorMarjor, txtErrorDateofBirth, txtErrorFaculty,edtDateofbirth;
     AutoCompleteTextView adtMajor;
+
+    ReusedConstraint reusedConstraint = new ReusedConstraint(PersonalInformationSetScreen.this);
+
     private void linkView() {
         btnSave = findViewById(R.id.btnSave);
         edtIdStudent = findViewById(R.id.edtIDStudent);
@@ -66,34 +70,35 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         adtMajor = findViewById(R.id.adtMajors);
         imvComebackUserinfo=findViewById(R.id.imvComebackUserinfo);
     }
-    private void setCustomColor(EditText edtCanSua, int edtColor, int iconColor, int textColor){
-        // Chỉnh màu cho thanh edit text khi gặp error, focus, ...
 
-        edtCanSua.setBackground(ContextCompat.getDrawable(PersonalInformationSetScreen.this,edtColor));
-        edtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(PersonalInformationSetScreen.this,iconColor));
-        edtCanSua.setTextColor(ContextCompat.getColorStateList(PersonalInformationSetScreen.this,textColor));
-    }
-    private void setCustomColortxt(TextView txtCanSua, int edtColor, int iconColor, int textColor){
-        // Chỉnh màu cho thanh eTit text khi gặp error, focus, ...
 
-        txtCanSua.setBackground(ContextCompat.getDrawable(PersonalInformationSetScreen.this,edtColor));
-        txtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(PersonalInformationSetScreen.this,iconColor));
-        txtCanSua.setTextColor(ContextCompat.getColorStateList(PersonalInformationSetScreen.this,textColor));
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_personal_information_set_screen);
+
+        linkView();
+        initAdapterFaculty();
+        initAderterMarjor();
+        addEvents();
     }
+
+    //Các sự kiện validate
     private Boolean validateIDStudent(){
         String username = edtIdStudent.getText().toString();
         if (username.isEmpty()){
             txtErrorIdStudent.setText(R.string.field_cannot_be_empty);
             txtErrorIdStudent.setTextSize(15);
             edtIdStudent.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtIdStudent,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtIdStudent,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
 
-//
+
 
         else {
-            setCustomColor(edtIdStudent,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtIdStudent,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtIdStudent.setHintTextColor(getColor(R.color.xamChu));
 
             txtErrorIdStudent.setText(null);
@@ -108,13 +113,13 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
             txtErrorMarjor.setText(R.string.field_cannot_be_empty);
             txtErrorMarjor.setTextSize(15);
             adtMajor.setHintTextColor(getColor(R.color.red));
-            setCustomColor(adtMajor,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(adtMajor,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
 
 
         else {
-            setCustomColor(adtMajor,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(adtMajor,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             adtMajor.setHintTextColor(getColor(R.color.xamChu));
 
             txtErrorMarjor.setText(null);
@@ -133,30 +138,30 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
             setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
-         else if(!edtDateofbirth.getText().toString().isEmpty())
-                {
-                    String sub1last = edtDateofbirth.getText().toString().substring(9,10);
-                    if(!sub1last.equals("1")&&!sub1last.equals("2")&&!sub1last.equals("3")
-                            &&!sub1last.equals("4")&&!sub1last.equals("5")&&
-                            !sub1last.equals("6")&&!sub1last.equals("7")&&
-                            !sub1last.equals("8")&&!sub1last.equals("9")&&!sub1last.equals("0"))
-                    {
-                        txtErrorDateofBirth.setText(R.string.please_enter_full_of_date);
-                        txtErrorDateofBirth.setTextSize(15);
-                        edtDateofbirth.setHintTextColor(getColor(R.color.red));
-                        setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
-                        return false;
-                    }
-                    else
-                    {
-                        setCustomColortxt(edtDateofbirth,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-                        edtDateofbirth.setHintTextColor(getColor(R.color.xamChu));
-                        txtErrorDateofBirth.setText(null);
-                        txtErrorDateofBirth.setTextSize(0);
-                        return true;
-                    }
-                }
-         return true;
+        else if(!edtDateofbirth.getText().toString().isEmpty())
+        {
+            String sub1last = edtDateofbirth.getText().toString().substring(9,10);
+            if(!sub1last.equals("1")&&!sub1last.equals("2")&&!sub1last.equals("3")
+                    &&!sub1last.equals("4")&&!sub1last.equals("5")&&
+                    !sub1last.equals("6")&&!sub1last.equals("7")&&
+                    !sub1last.equals("8")&&!sub1last.equals("9")&&!sub1last.equals("0"))
+            {
+                txtErrorDateofBirth.setText(R.string.please_enter_full_of_date);
+                txtErrorDateofBirth.setTextSize(15);
+                edtDateofbirth.setHintTextColor(getColor(R.color.red));
+                setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
+                return false;
+            }
+            else
+            {
+                setCustomColortxt(edtDateofbirth,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+                edtDateofbirth.setHintTextColor(getColor(R.color.xamChu));
+                txtErrorDateofBirth.setText(null);
+                txtErrorDateofBirth.setTextSize(0);
+                return true;
+            }
+        }
+        return true;
     }
     private Boolean validateDateOfbirthTextChange(){
         String username = edtDateofbirth.getText().toString();
@@ -200,31 +205,8 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
             return true;
         }
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_information_set_screen);
 
-        linkView();
-        initAdapterFaculty();
-        initAderterMarjor();
-        addEvents();
-    }
-    MajorAdapter majorAdapter;
-    private void initAderterMarjor() {
-        majorAdapter = new MajorAdapter(this,R.layout.item_faculty_selected,getListMajor());
-        adtMajor.setAdapter(majorAdapter);
-
-    }
-    private List<Major> getListMajor() {
-        List<Major> list = new ArrayList<>();
-        String[] majorArray= getResources().getStringArray(R.array.major);
-
-        for (int i = 0;i<majorArray.length;i++)
-            list.add(new Major(majorArray[i]));
-
-        return list;
-    }
+    //Pick Date
     Calendar calendar = Calendar.getInstance();
     final int year = calendar.get(Calendar.YEAR);
     final int month = calendar.get(Calendar.MONTH);
@@ -240,6 +222,8 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
             String s = edtDateofbirth.getText().toString();
         }
     };
+
+    //Nạp adapter và dữ liệu cho các List
     FacultyAdapter facultyAdapter;
     FacultyAdapterError facultyAdapterError;
     private void initAdapterFaculty() {
@@ -258,6 +242,103 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
     }
     public static int selectedFaculty = 0;
+
+    MajorAdapter majorAdapter;
+    private void initAderterMarjor() {
+        majorAdapter = new MajorAdapter(this,R.layout.item_faculty_selected,getListMajor());
+        adtMajor.setAdapter(majorAdapter);
+
+    }
+    private List<Major> getListMajor() {
+        List<Major> list = new ArrayList<>();
+        String[] majorArray= getResources().getStringArray(R.array.major);
+
+        for (int i = 0;i<majorArray.length;i++)
+            list.add(new Major(majorArray[i]));
+
+        return list;
+    }
+
+
+
+    //Tạo sự kiện chụp ảnh
+    private static final int REQUEST_TAKE_PICTURE = 1337;
+    private static final int REQUEST_PICK_PICTURE = 1338;
+    private void cameraPickImage() {
+        CustomDialogThreeButton customDialogThreeButton = new CustomDialogThreeButton
+                (PersonalInformationSetScreen.this,R.layout.custom_dialog_chooss_image);
+        customDialogThreeButton.btnTakePhotos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, REQUEST_TAKE_PICTURE);
+                customDialogThreeButton.dismiss();
+
+            }
+        });
+
+        customDialogThreeButton.btnChooseFromGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameraIntent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(cameraIntent, REQUEST_PICK_PICTURE);
+                customDialogThreeButton.dismiss();
+            }
+        });
+        customDialogThreeButton.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customDialogThreeButton.dismiss();
+            }
+        });
+
+        customDialogThreeButton.show();
+
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode==REQUEST_TAKE_PICTURE && resultCode==RESULT_OK){
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            imvAvatar.setImageBitmap(bitmap);
+        }
+        else if(requestCode==REQUEST_PICK_PICTURE && resultCode==RESULT_OK)
+        {
+            imvAvatar.setImageURI(data.getData());
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    // Tạo sự kiện thêm và đóng spinner
+    @Override
+    public void onPopupWindowOpened(Spinner spinner) {
+        String thongdiep = getString(R.string.field_cannot_be_empty);
+
+        if (txtErrorFaculty.getText().toString().equals(thongdiep))
+        {
+            imvDropdown.setImageResource(R.drawable.ic_arrrow_dropdown_up_errror);
+        }
+        else
+            imvDropdown.setImageResource(R.drawable.ic_arrrow_dropdown_up);
+
+
+
+    }
+    @Override
+    public void onPopupWindowClosed(Spinner spinner) {
+        String thongdiep = getString(R.string.field_cannot_be_empty);
+
+        if (txtErrorFaculty.getText().toString().equals(thongdiep))
+        {
+            imvDropdown.setImageResource(R.drawable.ic_arrow_down_spinner_error);
+        }
+        else
+            imvDropdown.setImageResource(R.drawable.ic_arrow_down_spinner);
+
+    }
+
+    // AddEvents và một vài sự kiện khác
     private void addEvents() {
 
         imvComebackUserinfo.setOnClickListener(new View.OnClickListener() {
@@ -397,84 +478,18 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
             }
         });
     }
-    private static final int REQUEST_TAKE_PICTURE = 1337;
-    private static final int REQUEST_PICK_PICTURE = 1338;
-    private void cameraPickImage() {
-        CustomDialogThreeButton customDialogThreeButton = new CustomDialogThreeButton
-                (PersonalInformationSetScreen.this,R.layout.custom_dialog_chooss_image);
-        customDialogThreeButton.btnTakePhotos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, REQUEST_TAKE_PICTURE);
-                customDialogThreeButton.dismiss();
-
-            }
-        });
-
-        customDialogThreeButton.btnChooseFromGallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cameraIntent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(cameraIntent, REQUEST_PICK_PICTURE);
-                customDialogThreeButton.dismiss();
-            }
-        });
-        customDialogThreeButton.btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                customDialogThreeButton.dismiss();
-            }
-        });
-
-        customDialogThreeButton.show();
-
-
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode==REQUEST_TAKE_PICTURE && resultCode==RESULT_OK){
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            imvAvatar.setImageBitmap(bitmap);
-        }
-        else if(requestCode==REQUEST_PICK_PICTURE && resultCode==RESULT_OK)
-        {
-            imvAvatar.setImageURI(data.getData());
-
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
     private void clearAllForcus(){
         edtIdStudent.clearFocus();
         adtMajor.clearFocus();
         edtDateofbirth.clearFocus();
         spnFaculty.clearFocus();
     }
-    // Tạo sự kiện thêm và đóng spinner
-    @Override
-    public void onPopupWindowOpened(Spinner spinner) {
-        String thongdiep = getString(R.string.field_cannot_be_empty);
+    private void setCustomColortxt(TextView txtCanSua, int edtColor, int iconColor, int textColor){
+        // Chỉnh màu cho thanh eTit text khi gặp error, focus, ...
 
-        if (txtErrorFaculty.getText().toString().equals(thongdiep))
-        {
-            imvDropdown.setImageResource(R.drawable.ic_arrrow_dropdown_up_errror);
-        }
-        else
-            imvDropdown.setImageResource(R.drawable.ic_arrrow_dropdown_up);
-
-
-
+        txtCanSua.setBackground(ContextCompat.getDrawable(PersonalInformationSetScreen.this,edtColor));
+        txtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(PersonalInformationSetScreen.this,iconColor));
+        txtCanSua.setTextColor(ContextCompat.getColorStateList(PersonalInformationSetScreen.this,textColor));
     }
-    @Override
-    public void onPopupWindowClosed(Spinner spinner) {
-        String thongdiep = getString(R.string.field_cannot_be_empty);
 
-        if (txtErrorFaculty.getText().toString().equals(thongdiep))
-        {
-            imvDropdown.setImageResource(R.drawable.ic_arrow_down_spinner_error);
-        }
-        else
-            imvDropdown.setImageResource(R.drawable.ic_arrow_down_spinner);
-
-    }
 }

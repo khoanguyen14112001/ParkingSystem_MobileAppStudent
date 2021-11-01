@@ -16,11 +16,12 @@ import android.widget.TextView;
 import com.chaos.view.PinView;
 
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class VerificationSignupScreen extends AppCompatActivity {
     PinView pvVerificationSignUp;
     TextView txtErrorCodeSignUp,txtResendSignUp,txtVerificationTextSignUp;
-    Button btnVerifySignUp, btnOK;
+    Button btnVerifySignUp;
     ImageView imvComebackSignUp;
 
     private void linkView() {
@@ -58,15 +59,8 @@ public class VerificationSignupScreen extends AppCompatActivity {
                         getString(R.string.seconds));
 
                 // Set color seconds
-
-                String textVerifcation = txtVerificationTextSignUp.getText().toString();
-                SpannableString ss = new SpannableString(textVerifcation) ;
-
-                ForegroundColorSpan fcsYellow = new ForegroundColorSpan(getColor(R.color.primary_yellow));
-
-                ss.setSpan(fcsYellow,62,64, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                txtVerificationTextSignUp.setText(ss);
-
+                ReusedConstraint reusedConstraint = new ReusedConstraint(VerificationSignupScreen.this);
+                reusedConstraint.changeColor(txtVerificationTextSignUp,62,64,R.color.primary_yellow);
                 txtResendSignUp.setEnabled(false);
             }
 
@@ -123,7 +117,7 @@ public class VerificationSignupScreen extends AppCompatActivity {
 
                 else
                 {
-                    if (pvVerificationSignUp.getText().toString().equals("1234")) {
+                    if (pvVerificationSignUp.getText().toString().equals(AppUtil.VERIFICATION_CODE_APP)) {
                        CustomDialog customDialog = new CustomDialog
                                (VerificationSignupScreen.this,R.layout.custom_dialog_verification_successful);
                        customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
@@ -137,9 +131,7 @@ public class VerificationSignupScreen extends AppCompatActivity {
 
                     }
                     else if(attempt==5)
-                    {
-                        String keyValueSignUp = "letGo";
-                        AppUtil.eMessageForSignUp=keyValueSignUp;
+                    { AppUtil.eMessageForSignUp=AppUtil.LOCK_CONDITION_SIGNUP;
                         CustomDialog customDialog = new CustomDialog(VerificationSignupScreen.this,R.layout.custom_dialog_verification_2);
                         customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
                             @Override

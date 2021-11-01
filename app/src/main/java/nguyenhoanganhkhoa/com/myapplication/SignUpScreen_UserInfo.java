@@ -16,11 +16,16 @@ import android.widget.TextView;
 
 import java.util.regex.Pattern;
 
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
+
 public class SignUpScreen_UserInfo extends AppCompatActivity {
     EditText edtFullname, edtPhoneSignUp, edtUsernameSignUp,edtPassSignUp,edtConfirmPassSignup;
     TextView txtErrorFullname, txtErrorPhoneSignUp, txtErrorUsernameSignUp, txtErrorPassSignup, txtErrorConfirmPassSignUp;
     Button btnSignUp;
     ImageView imvToggleClose3, imvToggleClose4,imvSignupUserInfoBack;
+    ReusedConstraint reusedConstraint = new ReusedConstraint(SignUpScreen_UserInfo.this);
+
     private void linkView() {
         edtFullname = findViewById(R.id.edtFullname);
         edtPhoneSignUp = findViewById(R.id.edtPhoneSignup);
@@ -49,15 +54,7 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
         addEvents();
 
     }
-    public static final Pattern PASSWORD_PATTERN =
-            Pattern.compile("^" +
-                    "(?=.*[0-9])" +
-                    "(?=.*[a-z])" +
-                    "(?=.*[A-Z])" +
-                    //   "(?=.*[@#$%^&+=])" +
-                    "(?=\\S+$)" +
-                    ".{8,15}" +
-                    "$");
+
 
 
     private Boolean validateFullname(){
@@ -67,13 +64,13 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             txtErrorFullname.setText(R.string.field_cannot_be_empty);
             txtErrorFullname.setTextSize(15);
             edtFullname.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtFullname,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtFullname,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
 
         else
         {
-            setCustomColor(edtFullname,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtFullname,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtFullname.setHintTextColor(getColor(R.color.xamChu));
             txtErrorFullname.setText(null);
             txtErrorFullname.setTextSize(0);
@@ -87,19 +84,19 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             txtErrorPhoneSignUp.setText(R.string.field_cannot_be_empty);
             txtErrorPhoneSignUp.setTextSize(15);
             edtPhoneSignUp.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtPhoneSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtPhoneSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
-        else if(s.equals("0123123123"))
+        else if(s.equals(AppUtil.PHONE_APP))
         {
             txtErrorPhoneSignUp.setText(R.string.your_phone_is_already_registered);
             txtErrorPhoneSignUp.setTextSize(15);
             edtPhoneSignUp.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtPhoneSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtPhoneSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
         else{
-            setCustomColor(edtPhoneSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtPhoneSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtPhoneSignUp.setHintTextColor(getColor(R.color.xamChu));
             txtErrorPhoneSignUp.setText(null);
             txtErrorPhoneSignUp.setTextSize(0);
@@ -113,11 +110,11 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             txtErrorPhoneSignUp.setText(R.string.field_cannot_be_empty);
             txtErrorPhoneSignUp.setTextSize(15);
             edtPhoneSignUp.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtPhoneSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtPhoneSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
         else{
-            setCustomColor(edtPhoneSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtPhoneSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtPhoneSignUp.setHintTextColor(getColor(R.color.xamChu));
             txtErrorPhoneSignUp.setText(null);
             txtErrorPhoneSignUp.setTextSize(0);
@@ -131,19 +128,19 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             txtErrorUsernameSignUp.setText(R.string.field_cannot_be_empty);
             txtErrorUsernameSignUp.setTextSize(15);
             edtUsernameSignUp.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtUsernameSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
-        else if(s.equals("123nckh"))
+        else if(s.equals(AppUtil.USERNAME_APP))
         {
             txtErrorUsernameSignUp.setText(R.string.your_username_is_already_exists);
             txtErrorUsernameSignUp.setTextSize(15);
             edtUsernameSignUp.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtUsernameSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
         else{
-            setCustomColor(edtUsernameSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtUsernameSignUp.setHintTextColor(getColor(R.color.xamChu));
             txtErrorUsernameSignUp.setText(null);
             txtErrorUsernameSignUp.setTextSize(0);
@@ -158,12 +155,12 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             txtErrorUsernameSignUp.setText(R.string.field_cannot_be_empty);
             txtErrorUsernameSignUp.setTextSize(15);
             edtUsernameSignUp.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtUsernameSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
 
         else{
-            setCustomColor(edtUsernameSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtUsernameSignUp.setHintTextColor(getColor(R.color.xamChu));
             txtErrorUsernameSignUp.setText(null);
             txtErrorUsernameSignUp.setTextSize(0);
@@ -178,11 +175,11 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             txtErrorPassSignup.setText(R.string.field_cannot_be_empty);
             txtErrorPassSignup.setTextSize(15);
             edtPassSignUp.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtPassSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtPassSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imvToggleClose3.setImageTintList(getColorStateList(R.color.red));
             return false;
         }
-        if(!PASSWORD_PATTERN.matcher(password).matches())
+        if(!AppUtil.PASSWORD_PATTERN.matcher(password).matches())
         {
             if(password.length()<=15)
             {
@@ -195,12 +192,12 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             }
             txtErrorPassSignup.setTextSize(15);
             edtPassSignUp.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtPassSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtPassSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imvToggleClose3.setImageTintList(getColorStateList(R.color.red));
             return false;
         }
         else {
-            setCustomColor(edtPassSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtPassSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             imvToggleClose3.setImageTintList(getResources().getColorStateList(R.color.black80));
             edtPassSignUp.setHintTextColor(getColor(R.color.xamChu));
             txtErrorPassSignup.setText(null);
@@ -216,7 +213,7 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             txtErrorConfirmPassSignUp.setText(R.string.field_cannot_be_empty);
             txtErrorConfirmPassSignUp.setTextSize(15);
             edtConfirmPassSignup.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtConfirmPassSignup,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtConfirmPassSignup,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imvToggleClose4.setImageTintList(getColorStateList(R.color.red));
             return false;
         }
@@ -226,14 +223,14 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             txtErrorConfirmPassSignUp.setText(R.string.your_password_must_be_match);
             txtErrorConfirmPassSignUp.setTextSize(15);
             edtConfirmPassSignup.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtConfirmPassSignup,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtConfirmPassSignup,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imvToggleClose4.setImageTintList(getColorStateList(R.color.red));
             return false;
         }
 
 
         else {
-            setCustomColor(edtConfirmPassSignup,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtConfirmPassSignup,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             imvToggleClose4.setImageTintList(getResources().getColorStateList(R.color.black80));
             edtConfirmPassSignup.setHintTextColor(getColor(R.color.xamChu));
             txtErrorConfirmPassSignUp.setText(null);
@@ -249,13 +246,13 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             txtErrorConfirmPassSignUp.setText(R.string.field_cannot_be_empty);
             txtErrorConfirmPassSignUp.setTextSize(15);
             edtConfirmPassSignup.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtConfirmPassSignup,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtConfirmPassSignup,R.drawable.edt_custom_error,R.color.red,R.color.red);
             imvToggleClose4.setImageTintList(getColorStateList(R.color.red));
             return false;
         }
 
         else {
-            setCustomColor(edtConfirmPassSignup,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtConfirmPassSignup,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             imvToggleClose4.setImageTintList(getResources().getColorStateList(R.color.black80));
             edtConfirmPassSignup.setHintTextColor(getColor(R.color.xamChu));
             txtErrorConfirmPassSignUp.setText(null);
@@ -306,14 +303,14 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
         imvToggleClose3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showHidePassword(edtPassSignUp,view);
+                reusedConstraint.showHidePassword(edtPassSignUp,view);
             }
         });
 
         imvToggleClose4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showHidePassword(edtConfirmPassSignup,view);
+                reusedConstraint.showHidePassword(edtConfirmPassSignup,view);
             }
         });
 
@@ -423,29 +420,8 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
         edtConfirmPassSignup.clearFocus();;
     }
 
-    private void setCustomColor(EditText edtCanSua, int edtColor, int iconColor, int textColor)
-    {
-        // Chỉnh màu cho thanh edit text khi gặp error, focus, ...
 
-        edtCanSua.setBackground(getDrawable(edtColor));
-        edtCanSua.setCompoundDrawableTintList(getColorStateList(iconColor));
-        edtCanSua.setTextColor(getColorStateList(textColor));
-    }
 
-    private void showHidePassword(EditText edtPass, View view ) {
-        if(edtPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-            ((ImageView)(view)).setImageResource(R.drawable.ic_open_toggle);
-            //Show Password
-            edtPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-
-        }
-        else{
-            ((ImageView)(view)).setImageResource(R.drawable.ic_close_toggle);
-            //Hide Password
-            edtPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        }
-
-    }
 
 
 

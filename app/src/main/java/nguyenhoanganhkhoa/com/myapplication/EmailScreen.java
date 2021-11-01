@@ -14,12 +14,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class EmailScreen extends AppCompatActivity {
     EditText edtEmail;
     TextView txtErrorEmail,txtLoginHere;
     Button btnVerifyEmail;
     ImageView imvComebackEmailScreen;
+
+    ReusedConstraint reusedConstraint = new ReusedConstraint(EmailScreen.this);
 
     private void linkView() {
         edtEmail = findViewById(R.id.edtEmail);
@@ -41,7 +44,7 @@ public class EmailScreen extends AppCompatActivity {
 
     private void addConditions() {
         String s = AppUtil.eMessageForSignUp;
-        if(s.equals("letGo"))
+        if(s.equals(AppUtil.LOCK_CONDITION_SIGNUP))
             addTimerLock();
         else if (s.equals(""))
             return;
@@ -67,7 +70,7 @@ public class EmailScreen extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.blackUI);
+                reusedConstraint.setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.blackUI);
                 edtEmail.setHintTextColor(getColor(R.color.xamChu));
                 btnVerifyEmail.setEnabled(true);
                 btnVerifyEmail.setBackground(getDrawable(R.drawable.custom_button));
@@ -76,16 +79,6 @@ public class EmailScreen extends AppCompatActivity {
                 AppUtil.eMessageForSignUp="";
             }
         }.start();
-    }
-
-
-    private void setCustomColor(EditText edtCanSua, int edtColor, int iconColor, int textColor)
-    {
-        // Chỉnh màu cho thanh edit text khi gặp error, focus, ...
-
-        edtCanSua.setBackground(getDrawable(edtColor));
-        edtCanSua.setCompoundDrawableTintList(getColorStateList(iconColor));
-        edtCanSua.setTextColor(getColorStateList(textColor));
     }
 
     private Boolean validateEmail(){
@@ -97,19 +90,19 @@ public class EmailScreen extends AppCompatActivity {
             txtErrorEmail.setText(R.string.field_cannot_be_empty);
             txtErrorEmail.setTextSize(15);
             edtEmail.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
 
          else if (!email.matches(emailPattern1) && !email.matches(emailPattern2)) {
              txtErrorEmail.setText(R.string.invalid_email_address);
              txtErrorEmail.setTextSize(15);
-             setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
              return false;
         }
 
         else {
-            setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtEmail.setHintTextColor(getColor(R.color.xamChu));
 
             txtErrorEmail.setText(null);
@@ -125,12 +118,12 @@ public class EmailScreen extends AppCompatActivity {
             txtErrorEmail.setText(R.string.field_cannot_be_empty);
             txtErrorEmail.setTextSize(15);
             edtEmail.setHintTextColor(getColor(R.color.red));
-            setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            reusedConstraint.setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
 
         else {
-            setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            reusedConstraint.setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtEmail.setHintTextColor(getColor(R.color.xamChu));
 
             txtErrorEmail.setText(null);
@@ -139,8 +132,6 @@ public class EmailScreen extends AppCompatActivity {
         }
 
     }
-
-
 
     private void addEvents() {
         imvComebackEmailScreen.setOnClickListener(new View.OnClickListener() {
