@@ -11,11 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.myapplication.home.HelpCenterScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.home.SettingScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.ShowAllTransactionScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.TopUpScreen;
+import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,7 +68,7 @@ public class WalletFragment extends Fragment {
     }
 
     ImageButton imbTopUpWallet, imbQRCodeWallet, imbTransaction;
-    LinearLayout lnHelpCenter;
+    LinearLayout lnHelpCenter,lnSetting,lnSignout ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,6 +82,37 @@ public class WalletFragment extends Fragment {
     }
 
     private void addEventS() {
+        lnSignout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CustomDialogTwoButton customDialogTwoButton = new CustomDialogTwoButton(getContext(),R.layout.custom_dialog_signout);
+                customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), LoginScreen.class);
+                        startActivity(intent);
+                        customDialogTwoButton.dismiss();
+                    }
+                });
+                customDialogTwoButton.btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        customDialogTwoButton.dismiss();
+                    }
+                });
+                customDialogTwoButton.show();
+
+
+            }
+        });
+
+        lnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SettingScreen.class);
+                startActivity(intent);
+            }
+        });
         lnHelpCenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,5 +150,8 @@ public class WalletFragment extends Fragment {
         imbQRCodeWallet = view.findViewById(R.id.imbQRCodeWallet);
         imbTransaction = view.findViewById(R.id.imbTransaction);
         lnHelpCenter = view.findViewById(R.id.lnHelpCenter);
+        lnSetting = view.findViewById(R.id.lnSetting);
+        lnSignout= view.findViewById(R.id.lnSignout);
+
     }
 }

@@ -176,7 +176,7 @@
                                     android:id="@+id/imbQRCodeHome"
                                     android:layout_width="70dp"
                                     android:layout_height="70dp"
-                                    android:background="@drawable/text_custom_spin"
+                                    android:background="@drawable/custom_button_homepage"
                                     android:padding="10dp"
                                     android:scaleType="fitCenter"
                                     android:src="@drawable/ic_qrcode" />
@@ -212,7 +212,7 @@
                                     android:id="@+id/imbAboutUs"
                                     android:layout_width="70dp"
                                     android:layout_height="70dp"
-                                    android:background="@drawable/text_custom_spin"
+                                    android:background="@drawable/custom_button_homepage"
                                     android:padding="10dp"
                                     android:scaleType="fitCenter"
                                     android:src="@drawable/ic_aboutus" />
@@ -245,7 +245,7 @@
                                     android:id="@+id/imbTopUpHome"
                                     android:layout_width="70dp"
                                     android:layout_height="70dp"
-                                    android:background="@drawable/text_custom_spin"
+                                    android:background="@drawable/custom_button_homepage"
                                     android:padding="10dp"
                                     android:scaleType="fitCenter"
                                     android:src="@drawable/ic_topup" />
@@ -277,7 +277,7 @@
                                     android:id="@+id/imbNewsHome"
                                     android:layout_width="70dp"
                                     android:layout_height="70dp"
-                                    android:background="@drawable/text_custom_spin"
+                                    android:background="@drawable/custom_button_homepage"
                                     android:padding="10dp"
                                     android:scaleType="fitCenter"
                                     android:src="@drawable/ic_news" />

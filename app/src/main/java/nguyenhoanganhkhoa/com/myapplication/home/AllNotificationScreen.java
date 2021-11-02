@@ -28,14 +28,13 @@ public class AllNotificationScreen extends AppCompatActivity {
     RecyclerView rcvDisplayRecentNotifications, rcvBeforeNotifications;
     ImageView imvBackNotifications;
     TextView txtMarkAllAsRead,txtRecent, txtBefore;
-    RadioButton radNotificationAllRead, radNotificationAllUnread, radNotificationAllAll;
+    RadioButton radNotificationAllUnread, radNotificationAllAll;
 
     private void linkView() {
         rcvDisplayRecentNotifications =findViewById(R.id.rcvDisplayAllNotifications);
         rcvBeforeNotifications =findViewById(R.id.rcvDisTest);
         imvBackNotifications = findViewById(R.id.imvBackNotifications);
         txtMarkAllAsRead = findViewById(R.id.txtMarkAllAsRead);
-        radNotificationAllRead= findViewById(R.id.radNotificationAllRead);
         radNotificationAllUnread = findViewById(R.id.radNotificationAllUnread);
         radNotificationAllAll = findViewById(R.id.radNotificationAllAll);
         txtRecent = findViewById(R.id.txtRecent);
@@ -66,30 +65,7 @@ public class AllNotificationScreen extends AppCompatActivity {
                 finish();
             }
         });
-        radNotificationAllRead.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                /** Nháp
-                 *  if(b)
-                 *                 {
-                 *                     txtMarkAllAsRead.setText(R.string.mark_all_as_unread);
-                 *                     txtRecent.setVisibility(View.INVISIBLE);
-                 *                     txtBefore.setVisibility(View.INVISIBLE);
-                 *                     rcvBeforeNotifications.setVisibility(View.GONE);
-                 *                     if(messageRead == 90)
-                 *                     {
-                 *                         rcvDisplayRecentNotifications.setVisibility(View.GONE);
-                 *                     }
-                 *                     else
-                 *                     {
-                 *                         initAdapter(dialogNotificationAdapterAllRead, rcvDisplayRecentNotifications,
-                 *                                 getAllReadList(),R.layout.item_notification_all);
-                 *                     }
-                 *                 }
-                 */
 
-            }
-        });
         radNotificationAllAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

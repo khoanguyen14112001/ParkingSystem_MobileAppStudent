@@ -282,57 +282,59 @@
         app:layout_constraintRight_toRightOf="@id/gRight1"
         android:stretchColumns="*"
         android:id="@+id/tbMoneyPrice"
+        android:focusable="true"
+        android:focusedByDefault="true"
         >
         <TableRow>
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:background="@drawable/spin_custom"
+                android:background="@drawable/custom_button_amount"
                 android:text="10.000"
                 android:fontFamily="@font/big_shoulder_display_bold"
-                android:textSize="28sp"/>
+                android:textSize="25sp"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:background="@drawable/spin_custom"
+                android:background="@drawable/custom_button_amount"
                 android:text="20.000"
-                android:textSize="28sp"
+                android:textSize="25sp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/big_shoulder_display_bold" />
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:background="@drawable/spin_custom"
-                android:text="30.000"
+                android:background="@drawable/custom_button_amount"
+                android:text="50.000"
                 android:fontFamily="@font/big_shoulder_display_bold"
-                android:textSize="28sp"/>
+                android:textSize="25sp"/>
         </TableRow>
 
         <TableRow android:layout_marginTop="15dp">
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:background="@drawable/spin_custom"
+                android:background="@drawable/custom_button_amount"
                 android:text="100.000"
                 android:fontFamily="@font/big_shoulder_display_bold"
-                android:textSize="28sp"/>
+                android:textSize="25sp"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:background="@drawable/spin_custom"
+                android:background="@drawable/custom_button_amount"
                 android:text="@string/_150_000"
-                android:textSize="28sp"
+                android:textSize="25sp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/big_shoulder_display_bold" />
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:background="@drawable/spin_custom"
+                android:background="@drawable/custom_button_amount"
                 android:text="200.000"
                 android:fontFamily="@font/big_shoulder_display_bold"
-                android:textSize="28sp"/>
+                android:textSize="25sp"/>
         </TableRow>
 
 

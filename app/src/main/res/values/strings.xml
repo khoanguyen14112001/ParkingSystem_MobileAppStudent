@@ -229,4 +229,21 @@
     <string name="search_problem">Search problem</string>
     <string name="popular_questions">Popular questions</string>
     <string name="problem_categories">Problem Categories</string>
+    <string name="payment_setting">Payment setting</string>
+    <string name="secure_my_account">Secure my account</string>
+    <string name="confirm_quick_payment">Confirm quick payment</string>
+    <string name="login_setting">Login setting</string>
+    <string name="automatically_lock_the_app">Automatically lock the app</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="other">Other</string>
+    <string name="app_information">App information</string>
+    <string name="_45s">45s</string>
+    <string name="from_admin">From admin</string>
+    <string name="saved_changes">Saved changes!</string>
+    <string name="your_changes_have_been_n_successfully_saved">Your changes have been \n successfully saved</string>
+    <string name="how_do_we_protect_your_information">How do we protect your information?</string>
+    <string name="terms_of_service">Terms of service</string>
+    <string name="you_are_signing_out_nare_you_sure">You are signing out. \nAre you sure?</string>
+    <string name="yes">Yes</string>
 </resources>

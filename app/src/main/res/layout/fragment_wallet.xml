@@ -134,7 +134,7 @@
                 android:src="@drawable/ic_qrcode"
                 android:padding="10dp"
                 android:id="@+id/imbQRCodeWallet"
-                android:background="@drawable/text_custom_spin"/>
+                android:background="@drawable/custom_button_homepage"/>
 
 
             <TextView
@@ -165,7 +165,7 @@
                 android:src="@drawable/ic_transaction"
                 android:padding="10dp"
                 android:id="@+id/imbTransaction"
-                android:background="@drawable/text_custom_spin"/>
+                android:background="@drawable/custom_button_homepage"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -192,7 +192,7 @@
                 android:src="@drawable/ic_topup"
                 android:id="@+id/imbTopUpWallet"
                 android:padding="10dp"
-                android:background="@drawable/text_custom_spin"/>
+                android:background="@drawable/custom_button_homepage"/>
 
             <TextView
                 android:layout_width="wrap_content"

@@ -3,6 +3,9 @@ package nguyenhoanganhkhoa.com.myapplication.home;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -13,6 +16,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -21,6 +25,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.function.IntUnaryOperator;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import nguyenhoanganhkhoa.com.adapter.FacultyAdapter;
@@ -36,15 +42,17 @@ import nguyenhoanganhkhoa.com.adapter.MajorAdapter;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogThreeButton;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
+import nguyenhoanganhkhoa.com.fragments.AccountFragment;
 import nguyenhoanganhkhoa.com.models.Faculty;
 import nguyenhoanganhkhoa.com.models.Major;
 import nguyenhoanganhkhoa.com.myapplication.another.CustomSpinner;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class EditInfomationScreen extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {
     Button btnSave;
-    EditText edtIdStudent, edtPhone;
+    EditText edtIdStudent, edtPhone,edtNameEditInfo;
     CustomSpinner spnFaculty;
     RadioButton radFemale, radMale;
     CircleImageView imvAvatar;
@@ -53,6 +61,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     txtErrorPhone;
     AutoCompleteTextView adtMajor;
 
+
     ReusedConstraint reusedConstraint = new ReusedConstraint(EditInfomationScreen.this);
 
 
@@ -60,6 +69,8 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         btnSave = findViewById(R.id.btnSaveEditInfo);
         edtIdStudent = findViewById(R.id.edtIDStudentEditInfo);
         edtDateofbirth = findViewById(R.id.edtDateOfBirthEditInfo);
+        edtNameEditInfo = findViewById(R.id.edtNameEditInfo);
+
 
         spnFaculty = findViewById(R.id.spnFacultyEditInfo);
         radFemale = findViewById(R.id.radFemaleEditInfor);
@@ -90,13 +101,60 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         linkView();
         initAdapterFaculty();
         initAderterMarjor();
+        getData();
         addEvents();
 
 
     }
 
 
+    private void getData() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("my_bundle");
+        edtNameEditInfo.setText(bundle.getString(AppUtil.NAME));
+        edtDateofbirth.setText(bundle.getString(AppUtil.DATE_OF_BIRTH));
+        edtIdStudent.setText(bundle.getString(AppUtil.ID));
+        edtPhone.setText(bundle.getString(AppUtil.PHONE));
+        adtMajor.setText(bundle.getString(AppUtil.MAJOR));
 
+        if(bundle.getString(AppUtil.GENDER).equals("Female"))
+        {
+            radFemale.setChecked(true);
+        }
+        else if(bundle.getString(AppUtil.GENDER).equals("Male"))
+        {
+            radMale.setChecked(true);
+        }
+        for (int i = 0; i < getListFaculty().size(); i++) {
+            if (getListFaculty().get(i).getNameFaculty().equals(bundle.getString(AppUtil.FACULTY))) {
+                spnFaculty.setSelection(i);
+                break;
+            }
+        }
+
+
+
+
+    }
+    private void pushData(Bundle bundle){
+        bundle.putString(AppUtil.DATE_OF_BIRTH,edtDateofbirth.getText().toString());
+        bundle.putString(AppUtil.FACULTY,spnFaculty.getSelectedItem().toString());
+        bundle.putString(AppUtil.MAJOR,adtMajor.getText().toString());
+        bundle.putString(AppUtil.PHONE,edtPhone.getText().toString());
+        bundle.putString(AppUtil.NAME,edtNameEditInfo.getText().toString());
+
+        if(radMale.isChecked())
+        {
+            bundle.putString(AppUtil.GENDER,"Male");
+        }
+        else if(radFemale.isChecked())
+        {
+            bundle.putString(AppUtil.GENDER,"Female");
+
+        }
+        bundle.putString(AppUtil.ID,edtIdStudent.getText().toString());
+
+    }
 
 
     // Sự kiện addEvents() và các sự kiện khác
@@ -233,12 +291,14 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
                 else {
                     clearAllForcus();
                     CustomDialog customDialog = new
-                            CustomDialog(EditInfomationScreen.this, R.layout.custom_dialog_create_account_successful);
+                            CustomDialog(EditInfomationScreen.this, R.layout.custom_dialog_save_editifor_change);
                     customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
                             customDialog.dismiss();
-                            Toast.makeText(EditInfomationScreen.this,"Let's go",Toast.LENGTH_SHORT).show();
+                            finish();
+
                         }
                     });
                     customDialog.show();
@@ -253,6 +313,13 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         });
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
+
     private void clearAllForcus(){
         edtIdStudent.clearFocus();
         adtMajor.clearFocus();
@@ -491,6 +558,8 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     private void initAdapterFaculty() {
         facultyAdapter = new FacultyAdapter(this,R.layout.item_faculty_selected,getListFaculty());
         spnFaculty.setAdapter(facultyAdapter);
+
+
 
     }
     private List<Faculty> getListFaculty() {

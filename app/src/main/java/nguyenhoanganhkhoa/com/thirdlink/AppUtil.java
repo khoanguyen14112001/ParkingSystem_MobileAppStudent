@@ -24,4 +24,18 @@ public class AppUtil {
     public static String VERIFICATION_CODE_APP = "1234";
     public static String PHONE_APP = "0908315280";
 
+    //Dữ liệu đẩy
+    public static String DATE_OF_BIRTH = "dateofbirth";
+    public static String FACULTY = "faculty";
+    public static String MAJOR = "major";
+    public static String PHONE = "phone";
+    public static String NAME = "name";
+    public static String ID = "id";
+    public static String GENDER = "gender";
+
+
+
+
+
+
 }

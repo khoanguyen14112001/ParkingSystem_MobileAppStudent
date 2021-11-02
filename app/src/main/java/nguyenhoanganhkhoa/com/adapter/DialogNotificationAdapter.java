@@ -137,7 +137,7 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtNotificationDate,txtNotificationContent;
         ImageView imvThumbNotification;
-        ConstraintLayout layout_item_notification,layout_item_notification_all_bold,layout_item_notification_light;
+        ConstraintLayout layout_item_notification,layout_item_notification_all_bold;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtNotificationDate = itemView.findViewById(R.id.txtNotificationDate);
@@ -145,7 +145,6 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
             imvThumbNotification = itemView.findViewById(R.id.imvThumbNotification);
             layout_item_notification = itemView.findViewById(R.id.layout_item_notification);
             layout_item_notification_all_bold = itemView.findViewById(R.id.layout_item_notification_all_bold);
-            layout_item_notification_light = itemView.findViewById(R.id.layout_item_notification_light);
         }
     }
 }

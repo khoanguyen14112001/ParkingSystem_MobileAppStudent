@@ -65,6 +65,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/be_vietnam_semibold"
                 android:text="@string/heo"
+                android:id="@+id/txtNameIns"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -161,66 +162,65 @@
                 app:layout_constraintRight_toRightOf="@id/view1"
                 app:layout_constraintTop_toTopOf="@id/view1">
 
-                <EditText
-                    android:id="@+id/edtGender"
+                <TextView
+                    android:id="@+id/txtGender"
                     android:enabled="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:drawableStart="@drawable/ic_gender"
+                    app:drawableStartCompat="@drawable/ic_gender"
                     android:drawablePadding="16dp"
                     android:fontFamily="@font/be_vietnam_light"
                     android:text="@string/female"
                     android:textColor="@color/blackUI"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/edtDateOfBirthIns"
+                    app:layout_constraintBottom_toTopOf="@+id/txtDateOfBirthIns"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:id="@+id/edtDateOfBirthIns"
+                <TextView
+                    android:id="@+id/txtDateOfBirthIns"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:enabled="false"
-                    android:drawableStart="@drawable/ic_dateofbirth"
+                    app:drawableStartCompat="@drawable/ic_dateofbirth"
                     android:drawablePadding="16dp"
                     android:fontFamily="@font/be_vietnam_light"
 
-
-                    android:text="@string/july_06_2001"
+                    android:text="06/07/2001"
                     android:textColor="@color/blackUI"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/edtIDIns"
+                    app:layout_constraintBottom_toTopOf="@+id/txtIDIns"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtGender" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtGender" />
 
-                <EditText
-                    android:id="@+id/edtIDIns"
+                <TextView
+                    android:id="@+id/txtIDIns"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:enabled="false"
 
 
-                    android:drawableStart="@drawable/ic_user"
+                    app:drawableStartCompat="@drawable/ic_user"
                     android:drawablePadding="16dp"
                     android:fontFamily="@font/be_vietnam_light"
 
                     android:text="@string/k194111641"
                     android:textColor="@color/blackUI"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/edtFacultyIns"
+                    app:layout_constraintBottom_toTopOf="@+id/txtFacultyIns"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtDateOfBirthIns" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtDateOfBirthIns" />
 
-                <EditText
-                    android:id="@+id/edtFacultyIns"
+                <TextView
+                    android:id="@+id/txtFacultyIns"
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:drawableStart="@drawable/ic_faculty"
+                    app:drawableStartCompat="@drawable/ic_faculty"
 
                     android:drawablePadding="16dp"
                     android:fontFamily="@font/be_vietnam_light"
@@ -230,17 +230,17 @@
                     android:textColor="@color/blackUI"
 
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/edtMajorIns"
+                    app:layout_constraintBottom_toTopOf="@+id/txtMajorIns"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtIDIns" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtIDIns" />
 
-                <EditText
-                    android:id="@+id/edtMajorIns"
+                <TextView
+                    android:id="@+id/txtMajorIns"
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:drawableStart="@drawable/ic_major"
+                    app:drawableStartCompat="@drawable/ic_major"
 
                     android:drawablePadding="16dp"
                     android:fontFamily="@font/be_vietnam_light"
@@ -252,7 +252,7 @@
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtFacultyIns" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtFacultyIns" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -307,13 +307,13 @@
                 app:layout_constraintRight_toRightOf="@id/view2"
                 app:layout_constraintTop_toTopOf="@id/view2">
 
-                <EditText
-                    android:paddingLeft="3dp"
-                    android:id="@+id/edtPhoneIns"
+                <TextView
+                    android:paddingStart="3dp"
+                    android:id="@+id/txtPhoneIns"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:drawableStart="@drawable/ic_phone"
+                    app:drawableStartCompat="@drawable/ic_phone"
                     android:drawablePadding="16dp"
                     android:fontFamily="@font/be_vietnam_light"
                     android:text="@string/_0971759040"
@@ -321,17 +321,17 @@
                     android:enabled="false"
 
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/edtEmailIns"
+                    app:layout_constraintBottom_toTopOf="@+id/txtEmailIns"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:id="@+id/edtEmailIns"
+                <TextView
+                    android:id="@+id/txtEmailIns"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
 
-                    android:drawableStart="@drawable/ic_mail"
+                    app:drawableStartCompat="@drawable/ic_mail"
                     android:drawablePadding="16dp"
                     android:fontFamily="@font/be_vietnam_light"
 
@@ -342,7 +342,7 @@
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtPhoneIns" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtPhoneIns" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
