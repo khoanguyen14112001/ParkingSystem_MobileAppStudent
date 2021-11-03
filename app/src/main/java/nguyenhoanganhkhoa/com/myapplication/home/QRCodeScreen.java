@@ -5,12 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class QRCodeScreen extends AppCompatActivity {
 
     ImageView imvQRCodeScan;
+    TextView txtSecondUpdateQRCode;
+
+    ReusedConstraint reusedConstraint = new ReusedConstraint(QRCodeScreen.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,8 @@ public class QRCodeScreen extends AppCompatActivity {
     }
 
     private void addEvents() {
+        reusedConstraint.addTimer(txtSecondUpdateQRCode,45000);
+
         imvQRCodeScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,5 +40,6 @@ public class QRCodeScreen extends AppCompatActivity {
 
     private void linkView() {
         imvQRCodeScan = findViewById(R.id.imvQRCodeScan);
+        txtSecondUpdateQRCode= findViewById(R.id.txtSecondUpdateQRCode);
     }
 }

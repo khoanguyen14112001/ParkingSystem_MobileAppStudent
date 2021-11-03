@@ -47,7 +47,7 @@ public class VerificationSignupScreen extends AppCompatActivity {
     private void addTimer() {
 
 
-        new CountDownTimer(time, 10) { //Set Timer for 5 seconds
+        new CountDownTimer(time, 10) {
             public void onTick(long millisUntilFinished) {
 
                 long remainedSecs = millisUntilFinished / 1000;

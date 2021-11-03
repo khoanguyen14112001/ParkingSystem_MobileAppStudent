@@ -136,25 +136,25 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
 
 
     }
-    private void pushData(Bundle bundle){
-        bundle.putString(AppUtil.DATE_OF_BIRTH,edtDateofbirth.getText().toString());
-        bundle.putString(AppUtil.FACULTY,spnFaculty.getSelectedItem().toString());
-        bundle.putString(AppUtil.MAJOR,adtMajor.getText().toString());
-        bundle.putString(AppUtil.PHONE,edtPhone.getText().toString());
-        bundle.putString(AppUtil.NAME,edtNameEditInfo.getText().toString());
-
-        if(radMale.isChecked())
-        {
-            bundle.putString(AppUtil.GENDER,"Male");
-        }
-        else if(radFemale.isChecked())
-        {
-            bundle.putString(AppUtil.GENDER,"Female");
-
-        }
-        bundle.putString(AppUtil.ID,edtIdStudent.getText().toString());
-
-    }
+//    private void pushData(Bundle bundle){
+//        bundle.putString(AppUtil.DATE_OF_BIRTH,edtDateofbirth.getText().toString());
+//        bundle.putString(AppUtil.FACULTY,spnFaculty.getSelectedItem().toString());
+//        bundle.putString(AppUtil.MAJOR,adtMajor.getText().toString());
+//        bundle.putString(AppUtil.PHONE,edtPhone.getText().toString());
+//        bundle.putString(AppUtil.NAME,edtNameEditInfo.getText().toString());
+//
+//        if(radMale.isChecked())
+//        {
+//            bundle.putString(AppUtil.GENDER,"Male");
+//        }
+//        else if(radFemale.isChecked())
+//        {
+//            bundle.putString(AppUtil.GENDER,"Female");
+//
+//        }
+//        bundle.putString(AppUtil.ID,edtIdStudent.getText().toString());
+//
+//    }
 
 
     // Sự kiện addEvents() và các sự kiện khác
@@ -295,7 +295,6 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
                     customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
                             customDialog.dismiss();
                             finish();
 
@@ -313,13 +312,11 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         });
 
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
     }
-
     private void clearAllForcus(){
         edtIdStudent.clearFocus();
         adtMajor.clearFocus();
@@ -339,9 +336,6 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     @Override
     public void onPopupWindowOpened(Spinner spinner) {
         imvDropdown.setImageResource(R.drawable.ic_arrrow_dropdown_up);
-
-
-
     }
     @Override
     public void onPopupWindowClosed(Spinner spinner) {

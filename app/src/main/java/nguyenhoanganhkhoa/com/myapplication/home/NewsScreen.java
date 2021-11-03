@@ -27,7 +27,7 @@ public class NewsScreen extends AppCompatActivity {
     ViewPager2 viewPagerNews;
     RecyclerView rcvAds;
     ImagesAdapter imagesAdapter;
-    TextView dots[];
+    TextView dots[]  = new TextView[getImagesNews().size()];
     LinearLayout layout_dots_news;
 
     int currentPosition = 0;
@@ -42,7 +42,6 @@ public class NewsScreen extends AppCompatActivity {
     private void linkViews() {
         viewPagerNews = findViewById(R.id.viewPagerNews);
         rcvAds = findViewById(R.id.rcvAds);
-        dots = new TextView[getImagesNews().size()];
         layout_dots_news = findViewById(R.id.layout_dots_news);
         imvBackNews= findViewById(R.id.imvBackNews);
     }

@@ -15,6 +15,7 @@ import java.util.List;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.models.Faculty;
+import nguyenhoanganhkhoa.com.myapplication.home.EditInfomationScreen;
 import nguyenhoanganhkhoa.com.myapplication.signup.PersonalInformationSetScreen;
 
 public class FacultyAdapter extends ArrayAdapter<Faculty> {
@@ -52,6 +53,10 @@ public class FacultyAdapter extends ArrayAdapter<Faculty> {
 
         if(PersonalInformationSetScreen.selectedFaculty==position && PersonalInformationSetScreen.selectedFaculty!=0)
                 txtFaculty.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.primary_yellow));
+
+        if(EditInfomationScreen.selectedFaculty==position && EditInfomationScreen.selectedFaculty!=0)
+            txtFaculty.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.primary_yellow));
+
 
 
         return convertView;

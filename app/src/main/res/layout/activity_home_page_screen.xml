@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".home.HomePageScreen"
     android:orientation="vertical">
+
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vpagerHomepage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/viewColor"
-        android:id="@+id/vpagerHomepage"/>
+        android:layout_above="@+id/viewColor" />
 
     <View
         android:layout_width="match_parent"

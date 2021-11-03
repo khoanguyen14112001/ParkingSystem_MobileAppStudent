@@ -183,18 +183,11 @@ public class LoginScreen extends AppCompatActivity {
 
                 // Validate password và email
                 if(!validateUsername() | !validatePassword()){
-
                     edtUsername.clearFocus();
                     edtPassword.clearFocus();
-
-
-
                     return;
                 }
-
-
-                else
-                {
+                else {
                     // Nếu lần thử > 4 --> bát user chờ 30s, tăng trytime (số lần bị khóa) lên 1 lần
                     String email = edtUsername.getText().toString();
                     String password = edtPassword.getText().toString();

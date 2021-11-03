@@ -48,6 +48,9 @@ dependencies {
     //indicator
     implementation 'me.relex:circleindicator:2.1.6'
 
+    implementation 'com.github.santalu:maskara:1.0.0'
+    implementation 'com.aldoapps:autoformatedittext:0.9.3'
+
 
 
 

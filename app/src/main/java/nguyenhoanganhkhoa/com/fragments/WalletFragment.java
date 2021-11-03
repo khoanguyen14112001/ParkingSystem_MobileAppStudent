@@ -9,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.myapplication.home.HelpCenterScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.home.SecurityCenterScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.SettingScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.ShowAllTransactionScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.TopUpScreen;
@@ -68,7 +70,7 @@ public class WalletFragment extends Fragment {
     }
 
     ImageButton imbTopUpWallet, imbQRCodeWallet, imbTransaction;
-    LinearLayout lnHelpCenter,lnSetting,lnSignout ;
+    LinearLayout lnHelpCenter,lnSetting,lnSignout ,lnSecurityCenter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,6 +84,16 @@ public class WalletFragment extends Fragment {
     }
 
     private void addEventS() {
+
+
+        lnSecurityCenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SecurityCenterScreen.class);
+                startActivity(intent);
+            }
+        });
+
         lnSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,6 +164,7 @@ public class WalletFragment extends Fragment {
         lnHelpCenter = view.findViewById(R.id.lnHelpCenter);
         lnSetting = view.findViewById(R.id.lnSetting);
         lnSignout= view.findViewById(R.id.lnSignout);
+        lnSecurityCenter= view.findViewById(R.id.lnSecurityCenter);
 
     }
 }

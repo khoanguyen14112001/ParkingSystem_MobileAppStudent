@@ -2,6 +2,7 @@ package nguyenhoanganhkhoa.com.thirdlink;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.CountDownTimer;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -15,8 +16,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.home.TopUpQRCodeScreen;
 
 public class ReusedConstraint {
     Context context;
@@ -87,5 +90,21 @@ public class ReusedConstraint {
 
         text.setText(ss);
     }
+
+    public void addTimer(TextView txt, int time) {
+        new CountDownTimer(time, 10) {
+            public void onTick(long millisUntilFinished) {
+
+                long remainedSecs = millisUntilFinished / 1000;
+                txt.setText(remainedSecs + "s");
+            }
+            @Override
+            public void onFinish() {
+                Toast.makeText(txt.getContext(), "End of time",Toast.LENGTH_SHORT).show();
+            }
+        }.start();
+
+    }
+
 
 }

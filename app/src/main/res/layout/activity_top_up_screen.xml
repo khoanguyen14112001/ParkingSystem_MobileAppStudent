@@ -163,7 +163,7 @@
             android:background="@color/white"
             />
 
-        <EditText
+        <nguyenhoanganhkhoa.com.myapplication.another.AutoFormatEditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -175,7 +175,10 @@
             app:layout_constraintRight_toLeftOf="@id/imbPlus"
             app:layout_constraintBottom_toBottomOf="@id/viewHolder"
             android:background="@color/white"
-            android:text="0"
+            android:hint="0"
+
+            android:maxLength="7"
+            android:textColorHint="@color/black"
             android:inputType="number"
             android:textSize="50sp"
             android:fontFamily="@font/big_shoulder_display_bold"/>
@@ -291,6 +294,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/custom_button_amount"
                 android:text="10.000"
+                android:id="@+id/btn10k"
                 android:fontFamily="@font/big_shoulder_display_bold"
                 android:textSize="25sp"/>
             <androidx.appcompat.widget.AppCompatButton
@@ -298,6 +302,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/custom_button_amount"
                 android:text="20.000"
+                android:id="@+id/btn20k"
                 android:textSize="25sp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -305,6 +310,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                android:id="@+id/btn50k"
                 android:background="@drawable/custom_button_amount"
                 android:text="50.000"
                 android:fontFamily="@font/big_shoulder_display_bold"
@@ -317,6 +323,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/custom_button_amount"
                 android:text="100.000"
+                android:id="@+id/btn100k"
                 android:fontFamily="@font/big_shoulder_display_bold"
                 android:textSize="25sp"/>
             <androidx.appcompat.widget.AppCompatButton
@@ -324,6 +331,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/custom_button_amount"
                 android:text="@string/_150_000"
+                android:id="@+id/btn150k"
                 android:textSize="25sp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -331,6 +339,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                android:id="@+id/btn200k"
                 android:background="@drawable/custom_button_amount"
                 android:text="200.000"
                 android:fontFamily="@font/big_shoulder_display_bold"

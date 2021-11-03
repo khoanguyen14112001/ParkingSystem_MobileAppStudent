@@ -22,7 +22,7 @@ public class OurTeamScreen extends AppCompatActivity {
     LinearLayout layout_dots;
     List<Member> mList = AboutUsScreen.getMemberList();
     ImageView imvBackOurTeam;
-    TextView dots[];
+    TextView dots[] = new TextView[mList.size()];
 
     ReusedConstraint reusedConstraint= new ReusedConstraint(OurTeamScreen.this);
 
@@ -69,7 +69,6 @@ public class OurTeamScreen extends AppCompatActivity {
         viewPagerOurTeam = findViewById(R.id.viewPagerOurTeam);
         layout_dots = findViewById(R.id.layout_dots);
         imvBackOurTeam= findViewById(R.id.imvBackOurTeam);
-        dots = new TextView[mList.size()];
 
     }
 }
