@@ -55,7 +55,8 @@
             app:layout_constraintVertical_bias="0.1"
             android:textColor="@color/black"
             android:id="@+id/txtPersonalInformation"
-            android:text="@string/personal_information"
+            android:textAllCaps="true"
+            android:text="@string/my_profile"
             android:gravity="center"
             android:textSize="32sp"
             />
@@ -298,7 +299,7 @@
             android:textSize="15sp"
             android:id="@+id/edtPhoneEditInfo"
             android:background="@drawable/custom_edt"
-            android:hint="@string/phone"
+            android:hint="@string/phone2"
             android:fontFamily="@font/be_vietnam_light"
             android:drawableStart="@drawable/ic_phone"
             android:drawableTint="#242A37"
