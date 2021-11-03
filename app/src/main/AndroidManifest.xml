@@ -13,9 +13,7 @@
         android:theme="@style/Theme.MyApplication">
         <activity
             android:name=".home.SecurityCenterScreen"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".home.SettingScreen"
             android:exported="true" />
@@ -57,7 +55,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".signup.PersonalInformationSetScreen"
@@ -85,7 +82,7 @@
             android:exported="true" />
         <activity
             android:name=".login.LoginScreen"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name="nguyenhoanganhkhoa.com.test.MainActivity"
             android:exported="true"
