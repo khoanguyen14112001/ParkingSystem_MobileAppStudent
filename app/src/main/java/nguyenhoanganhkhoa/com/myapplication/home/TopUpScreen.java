@@ -33,6 +33,15 @@ public class TopUpScreen extends AppCompatActivity {
     int m200k = 200000;
     int m500k = 500000;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_top_up_screen);
+
+        linkView();
+        addEvents();
+    }
+
     private void linkView() {
         imvBackTopUp = findViewById(R.id.imvBackTopUp);
 
@@ -58,15 +67,6 @@ public class TopUpScreen extends AppCompatActivity {
         edtAmount.setText(amountFormat);
     }
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_up_screen);
-
-        linkView();
-        addEvents();
-    }
 
     private String deleteCharDot (String s) {
         if(!s.isEmpty())

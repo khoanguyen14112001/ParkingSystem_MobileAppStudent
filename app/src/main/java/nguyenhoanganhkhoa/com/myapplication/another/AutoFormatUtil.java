@@ -8,6 +8,7 @@ public class AutoFormatUtil {
 
     private static final String FORMAT_NO_DECIMAL = "###,###";
 
+
     private static final String FORMAT_WITH_DECIMAL = "###,###.###";
 
     public static int getCharOccurance(String input, char c) {
@@ -25,13 +26,24 @@ public class AutoFormatUtil {
         return input.replaceAll("\\D+", "");
     }
 
-    public static String formatToStringWithoutDecimal(double value) {
-        NumberFormat formatter = new DecimalFormat(FORMAT_NO_DECIMAL);
-        return formatter.format(value);
+    public static String formatToStringWithoutDecimal(int value) {
+        String s = String.valueOf(value);
+        StringBuilder sb = new StringBuilder(s);
+        if(s.length()==4)
+        {
+            sb.insert(1,".");
+        }
+        else if(s.length()==5) {
+            sb.insert(2, ".");
+        }
+        else if(s.length()==6) {
+            sb.insert(3, ".");
+        }
+        return sb.toString();
     }
 
     public static String formatToStringWithoutDecimal(String value) {
-        return formatToStringWithoutDecimal(Double.parseDouble(value));
+        return formatToStringWithoutDecimal(Integer.parseInt(value));
     }
 
     public static String formatWithDecimal(String price) {

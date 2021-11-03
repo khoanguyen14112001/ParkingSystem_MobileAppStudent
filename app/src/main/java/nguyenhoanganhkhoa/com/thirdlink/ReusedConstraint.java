@@ -100,7 +100,6 @@ public class ReusedConstraint {
             }
             @Override
             public void onFinish() {
-                Toast.makeText(txt.getContext(), "End of time",Toast.LENGTH_SHORT).show();
             }
         }.start();
 
