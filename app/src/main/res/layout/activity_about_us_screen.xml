@@ -160,8 +160,8 @@
                 android:paddingBottom="5dp"
                 >
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/img_gmail"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -179,16 +179,16 @@
                 android:layout_height="wrap_content"
                 >
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/img_face"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/linkFace"
                     android:layout_gravity="center"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/be_vietnam_medium"
 
@@ -203,8 +203,8 @@
                 android:paddingBottom="5dp"
                 >
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/img_insta"/>
                 <TextView
                     android:layout_width="wrap_content"

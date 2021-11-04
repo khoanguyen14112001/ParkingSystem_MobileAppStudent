@@ -26,6 +26,7 @@ import nguyenhoanganhkhoa.com.myapplication.home.NewsScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.home.ShowAllTransactionScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.TopUpChooseWalletScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.TopUpScreen;
 
 /**
@@ -136,7 +137,7 @@ public class HomeFragment extends Fragment {
         imbTopUpHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), TopUpScreen.class);
+                Intent intent = new Intent(getContext(),TopUpChooseWalletScreen.class);
                 startActivity(intent);
             }
         });

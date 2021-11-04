@@ -29,7 +29,7 @@
         android:id="@+id/imvSecuritySettingBack"
 
         />
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary_yellow"
@@ -43,10 +43,13 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/lnP"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
@@ -65,14 +68,18 @@
 
         </LinearLayout>
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/img_security_female"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="bottom"
-            android:layout_marginEnd="40dp"/>
+            app:layout_constraintRight_toRightOf="parent"
+            android:paddingTop="10dp"
+            app:layout_constraintLeft_toRightOf="@id/lnP"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
 
-    </LinearLayout>
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

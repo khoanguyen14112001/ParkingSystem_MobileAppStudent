@@ -203,7 +203,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/big_shoulder_display_bold"
-                        android:textSize="22sp"
+                        android:textSize="26sp"
                         android:textColor="@color/blackUI"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -213,7 +213,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintLeft_toRightOf="@id/txtMoneyDisplay"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:text="@string/vnd"
                         android:paddingLeft="8dp"
                         android:textColor="@color/black"
@@ -231,7 +231,7 @@
                     android:fontFamily="@font/be_vietnam_light"
                     android:text="@string/your_balance"
                     android:textColor="@color/blackUI"
-                    android:textSize="8sp"
+                    android:textSize="11sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtVND" />
 

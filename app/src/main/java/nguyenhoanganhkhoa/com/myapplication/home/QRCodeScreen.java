@@ -2,6 +2,7 @@ package nguyenhoanganhkhoa.com.myapplication.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ public class QRCodeScreen extends AppCompatActivity {
 
     ImageView imvQRCodeScan;
     TextView txtSecondUpdateQRCode;
+    View viewHoldImage;
 
     ReusedConstraint reusedConstraint = new ReusedConstraint(QRCodeScreen.this);
 
@@ -29,6 +31,14 @@ public class QRCodeScreen extends AppCompatActivity {
 
     private void addEvents() {
         reusedConstraint.addTimer(txtSecondUpdateQRCode,45000);
+        viewHoldImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QRCodeScreen.this,TopUpChooseWalletScreen.class);
+                startActivity(intent);
+            }
+        });
+
 
         imvQRCodeScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,5 +51,6 @@ public class QRCodeScreen extends AppCompatActivity {
     private void linkView() {
         imvQRCodeScan = findViewById(R.id.imvQRCodeScan);
         txtSecondUpdateQRCode= findViewById(R.id.txtSecondUpdateQRCode);
+        viewHoldImage = findViewById(R.id.viewHoldImage);
     }
 }

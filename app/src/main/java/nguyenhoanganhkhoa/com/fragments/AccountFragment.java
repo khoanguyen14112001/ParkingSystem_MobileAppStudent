@@ -16,8 +16,10 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 
+import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.myapplication.home.EditInfomationScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 /**
@@ -68,7 +70,7 @@ public class AccountFragment extends Fragment {
     }
 
     ImageView imvChangeProfile;
-    TextView txtDateOfBirthIns,txtFacultyIns, txtMajorIns, txtPhoneIns, txtNameIns,txtGender, txtIDIns ;
+    TextView txtDateOfBirthIns,txtFacultyIns, txtMajorIns, txtPhoneIns, txtNameIns,txtGender, txtIDIns, txtSignOut ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -119,10 +121,33 @@ public class AccountFragment extends Fragment {
         txtNameIns = view.findViewById(R.id.txtNameIns);
         txtGender = view.findViewById(R.id.txtGender);
         txtIDIns = view.findViewById(R.id.txtIDIns);
+        txtSignOut = view.findViewById(R.id.txtSignOut);
 
     }
 
     private void addEvents() {
+        txtSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CustomDialogTwoButton customDialogTwoButton = new CustomDialogTwoButton(getContext(),R.layout.custom_dialog_signout);
+                customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), LoginScreen.class);
+                        startActivity(intent);
+                    }
+                });
+                customDialogTwoButton.btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        customDialogTwoButton.dismiss();
+                    }
+                });
+
+                customDialogTwoButton.show();
+
+            }
+        });
         imvChangeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -62,30 +62,6 @@ public class TopUpScreen extends AppCompatActivity {
 
 
 
-    private void formatNumber(int amount) {
-        String amountFormat = String.format("%,d", amount);
-        edtAmount.setText(amountFormat);
-    }
-
-
-    private String deleteCharDot (String s) {
-        if(!s.isEmpty())
-        {
-            StringBuilder stringBuilder = new StringBuilder(s);
-
-            if(s.length() == 6)
-            {
-                stringBuilder.deleteCharAt(2);
-            }
-            else if(s.length() == 7)
-            {
-                stringBuilder.deleteCharAt(3);
-            }
-            return stringBuilder.toString();
-        }
-        return "";
-    }
-
     private void setStatusButton(boolean isEnable, int colorButton, int colorText) {
         btnRequestTransfer.setEnabled(isEnable);
         btnRequestTransfer.setBackground(getDrawable(colorButton));
@@ -128,8 +104,8 @@ public class TopUpScreen extends AppCompatActivity {
             public void onClick(View view) {
                 String s = edtAmount.getText().toString();
                 int amountMoneyCurrent;
-                if(!s.equals("")){
-                    amountMoneyCurrent = Integer.parseInt(deleteCharDot(s));
+                if(!s.isEmpty()){
+                    amountMoneyCurrent = Integer.parseInt(s);
                 }
                 else{
                     amountMoneyCurrent = 0;
@@ -137,7 +113,8 @@ public class TopUpScreen extends AppCompatActivity {
                 int newAmount;
                 if(!((amountMoneyCurrent + m10k) > m500k)){
                     newAmount = amountMoneyCurrent + m10k;
-                    formatNumber(newAmount);
+                    edtAmount.setText(String.valueOf(newAmount));
+
                 }
             }
         });
@@ -148,7 +125,7 @@ public class TopUpScreen extends AppCompatActivity {
                 String s = edtAmount.getText().toString();
                 int amountMoneyCurrent;
                 if(!s.equals("")){
-                    amountMoneyCurrent = Integer.parseInt(deleteCharDot(s));
+                    amountMoneyCurrent = Integer.parseInt(s);
                 }
                 else{
                     amountMoneyCurrent = 0;
@@ -156,7 +133,7 @@ public class TopUpScreen extends AppCompatActivity {
                 int newAmount;
                 if(((amountMoneyCurrent - m10k) >= 0)){
                     newAmount = amountMoneyCurrent - m10k;
-                    formatNumber(newAmount);
+                    edtAmount.setText(String.valueOf(newAmount));
                 }
             }
         });
@@ -191,22 +168,26 @@ public class TopUpScreen extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.btn10k:
-                    formatNumber(m10k);
+                    edtAmount.setText(String.valueOf(m10k));
                     break;
                 case R.id.btn20k:
-                    formatNumber(m20k);
+                    edtAmount.setText(String.valueOf(m20k));
+
                     break;
                 case R.id.btn50k:
-                    formatNumber(m50k);
+                    edtAmount.setText(String.valueOf(m50k));
+
                     break;
                 case R.id.btn100k:
-                    formatNumber(m100k);
+                    edtAmount.setText(String.valueOf(m100k));
+
                     break;
                 case R.id.btn150k:
-                    formatNumber(m150k);
+                    edtAmount.setText(String.valueOf(m150k));
+
                     break;
                 case R.id.btn200k:
-                    formatNumber(m200k);
+                    edtAmount.setText(String.valueOf(m200k));
                     break;
             }
 
