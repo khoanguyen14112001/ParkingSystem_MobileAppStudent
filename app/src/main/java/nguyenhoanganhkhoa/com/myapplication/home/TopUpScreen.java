@@ -70,13 +70,18 @@ public class TopUpScreen extends AppCompatActivity {
 
     private void validateAmount() {
         String s = edtAmount.getText().toString();
-        if(s.isEmpty()|s.equals("0"))
+        if(s.isEmpty())
         {
             setStatusButton(false,R.drawable.button_login_block,R.color.xamBlcok);
         }
-        else
-        {
-            setStatusButton(true,R.drawable.custom_button, R.color.black);
+        else{
+            if((Integer.parseInt(s)==0)){
+                setStatusButton(false,R.drawable.button_login_block,R.color.xamBlcok);
+            }
+            else{
+                setStatusButton(true,R.drawable.custom_button, R.color.black);
+            }
+
         }
     }
 

@@ -62,7 +62,7 @@ public class AboutUsScreen extends AppCompatActivity {
                 "Male","July 06, 2001"));
         list.add(new Member(R.drawable.img_avatar_female,"Business Analyst","Vo Thi Tuyet Trinh","Member",
                 "Female","July 06, 2001"));
-        list.add(new Member(R.drawable.img_heo,"Designer","Truong Hoang Y","Member",
+        list.add(new Member(R.drawable.img_avatar_female,"Designer","Truong Hoang Y","Member",
                 "Female","July 06, 2001"));
         list.add(new Member(R.drawable.img_avatar_male,"Designer","Trinh Chan Khoa","Member",
                 "Male","July 06, 2001"));
