@@ -20,14 +20,13 @@ import java.util.List;
 import nguyenhoanganhkhoa.com.adapter.TransAllAdapter;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogFragmentHome;
 import nguyenhoanganhkhoa.com.models.Transaction;
+import nguyenhoanganhkhoa.com.myapplication.home.TopUpMainScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.AboutUsScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.AllNotificationScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.NewsScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.home.ShowAllTransactionScreen;
-import nguyenhoanganhkhoa.com.myapplication.home.TopUpChooseWalletScreen;
-import nguyenhoanganhkhoa.com.myapplication.home.TopUpScreen;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -137,7 +136,7 @@ public class HomeFragment extends Fragment {
         imbTopUpHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(),TopUpChooseWalletScreen.class);
+                Intent intent = new Intent(getContext(), TopUpMainScreen.class);
                 startActivity(intent);
             }
         });

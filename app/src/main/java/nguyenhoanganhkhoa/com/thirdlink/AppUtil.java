@@ -1,5 +1,7 @@
 package nguyenhoanganhkhoa.com.thirdlink;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 public class AppUtil {
@@ -32,6 +34,17 @@ public class AppUtil {
     public static String NAME = "name";
     public static String ID = "id";
     public static String GENDER = "gender";
+
+    public static String DATE_OF_BIRTH1 = "dateofbirth1";
+    public static String FACULTY1 = "faculty1";
+    public static String MAJOR1 = "major1";
+    public static String PHONE1 = "phone1";
+    public static String NAME1 = "name1";
+    public static String ID1 = "id1";
+    public static String GENDER1 = "gender1";
+
+    public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
+
 
 
 

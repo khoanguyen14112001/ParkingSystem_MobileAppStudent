@@ -1,13 +1,17 @@
 package nguyenhoanganhkhoa.com.fragments;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +24,7 @@ import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.myapplication.home.EditInfomationScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
+import nguyenhoanganhkhoa.com.myapplication.signup.EmailScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 /**
@@ -67,10 +72,12 @@ public class AccountFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     ImageView imvChangeProfile;
     TextView txtDateOfBirthIns,txtFacultyIns, txtMajorIns, txtPhoneIns, txtNameIns,txtGender, txtIDIns, txtSignOut ;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,27 +86,32 @@ public class AccountFragment extends Fragment {
 
         linkView(view);
         addEvents();
+        getData();
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getData();
+    }
+
+    private void  getData(){
+        Bundle bundle = getArguments();
+        if(bundle!=null)
+        {
+            txtDateOfBirthIns.setText(bundle.getString(AppUtil.DATE_OF_BIRTH1));
+            txtFacultyIns.setText(bundle.getString(AppUtil.FACULTY1));
+            txtMajorIns.setText(bundle.getString(AppUtil.MAJOR1));
+            txtPhoneIns.setText(bundle.getString(AppUtil.PHONE1));
+            txtNameIns.setText(bundle.getString(AppUtil.NAME1));
+            txtGender.setText(bundle.getString(AppUtil.GENDER1));
+            txtIDIns.setText(bundle.getString(AppUtil.ID1));
+
+        }
 
 
-    //    private Bundle getData(){
-//        Bundle bundle = new Bundle();
-//        if(bundle!=null)
-//        {
-//            txtDateOfBirthIns.setText(bundle.getString(AppUtil.DATE_OF_BIRTH));
-//            txtFacultyIns.setText(bundle.getString(AppUtil.FACULTY));
-//            txtMajorIns.setText(bundle.getString(AppUtil.MAJOR));
-//            txtPhoneIns.setText(bundle.getString(AppUtil.PHONE));
-//            txtNameIns.setText(bundle.getString(AppUtil.NAME));
-//            txtGender.setText(bundle.getString(AppUtil.GENDER));
-//            txtIDIns.setText(bundle.getString(AppUtil.ID));
-//        }
-//        return bundle;
-//
-//
-//    }
+    }
     private void pushData(Intent intent) {
         Bundle bundle = new Bundle();
         bundle.putString(AppUtil.DATE_OF_BIRTH,txtDateOfBirthIns.getText().toString());

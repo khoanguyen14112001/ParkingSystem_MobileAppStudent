@@ -191,7 +191,7 @@ public class LoginScreen extends AppCompatActivity {
                     // Nếu lần thử > 4 --> bát user chờ 30s, tăng trytime (số lần bị khóa) lên 1 lần
                     String email = edtUsername.getText().toString();
                     String password = edtPassword.getText().toString();
-                    if(attemp > 4)
+                    if(attemp > 3)
                     {
                         setAttemp(30000);
                         trytime++;
@@ -200,7 +200,7 @@ public class LoginScreen extends AppCompatActivity {
                     }
                     // Nếu lần thử <= 4 --> thực hiện verify email và password
 
-                    else if(attemp<4| attemp==4)
+                    else if(attemp<3| attemp==3)
                     {
                         // Nếu đúng thì cho user đi tiếp, reset lại attemp và trytime
                         if(email.equals(AppUtil.USERNAME_APP)&&password.equals(AppUtil.PASSWORD_APP))

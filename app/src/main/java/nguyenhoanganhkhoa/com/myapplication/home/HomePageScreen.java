@@ -61,6 +61,13 @@ public class HomePageScreen extends AppCompatActivity {
 
     }
 
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
+
     private void setUpViewPager() {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         vpagerHomePage.setAdapter(viewPagerAdapter);

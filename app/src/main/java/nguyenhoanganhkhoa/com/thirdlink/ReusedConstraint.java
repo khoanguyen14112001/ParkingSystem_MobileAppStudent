@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
-import nguyenhoanganhkhoa.com.myapplication.home.TopUpQRCodeScreen;
 
 public class ReusedConstraint {
     Context context;

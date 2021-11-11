@@ -19,8 +19,7 @@ import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.home.SecurityCenterScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.SettingScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.ShowAllTransactionScreen;
-import nguyenhoanganhkhoa.com.myapplication.home.TopUpChooseWalletScreen;
-import nguyenhoanganhkhoa.com.myapplication.home.TopUpScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.TopUpMainScreen;
 import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
 
 /**
@@ -137,7 +136,7 @@ public class WalletFragment extends Fragment {
         imbTopUpWallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), TopUpChooseWalletScreen.class);
+                Intent intent = new Intent(getContext(), TopUpMainScreen.class);
                 startActivity(intent);
             }
         });

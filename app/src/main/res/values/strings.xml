@@ -58,7 +58,7 @@
     <string name="a_strong_password_must_have_at_least_8_characters_upper_lowercase_letters_and_at_least_one_number">A strong password must have at least 8 \ncharacters, upper and lowercase letters \nand at least one number</string>
     <string name="reset_password_failed">Reset password failed</string>
     <string name="you_have_5_failed_otp_attempts_n_reset_password_feature_is_locked_n_within_30_minutes">You have 5 failed OTP attempts. \n Reset password feature is locked \n within 30 minutes</string>
-    <string name="you_have_4_failed_login_attempts">You have 4 failed login attempts. \n</string>
+    <string name="you_have_4_failed_login_attempts">You have 3 failed login attempts. \n</string>
     <string name="try_again_in">Try again in\u0020</string>
     <string name="sign_up_text_screen">Sign up</string>
     <string name="sign_in_to_your_uel_email_address_n_to_create_parking_system_account">Sign in to your UEL email address \n to create parking system account</string>

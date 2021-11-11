@@ -34,7 +34,7 @@ public class QRCodeScreen extends AppCompatActivity {
         viewHoldImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(QRCodeScreen.this,TopUpChooseWalletScreen.class);
+                Intent intent = new Intent(QRCodeScreen.this,TopUpMainScreen.class);
                 startActivity(intent);
             }
         });

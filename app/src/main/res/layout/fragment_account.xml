@@ -181,7 +181,7 @@
                     android:drawablePadding="16dp"
                     android:fontFamily="@font/be_vietnam_light"
 
-                    android:text="06/07/2001"
+                    android:text="July 06, 2001"
                     android:textColor="@color/blackUI"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/txtIDIns"

@@ -280,6 +280,7 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
                     customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            customDialogTwoButton.dismiss();
                             finish();
                         }
                     });

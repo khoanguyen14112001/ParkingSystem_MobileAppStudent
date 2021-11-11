@@ -1,47 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.TopUpScreen">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@drawable/ic_arror_left"
-        android:layout_margin="16dp"
-        android:id="@+id/imvBackTopUp"
-        />
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        app:layout_constraintBottom_toBottomOf="@id/txtTopUp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginEnd="25dp"
-        android:src="@drawable/ic_i"
-        />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.TopUpAmountFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textAllCaps="true"
-        android:fontFamily="@font/fjalla_one_regular"
-        android:textColor="@color/black"
-        android:layout_marginTop="28dp"
-        android:textSize="30sp"
-        android:text="@string/top_up"
-        android:id="@+id/txtTopUp"
-        />
+    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txtTopUp"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         android:id="@+id/lnText1"
@@ -287,7 +256,6 @@
         android:id="@+id/tbMoneyPrice"
         android:focusable="true"
         android:focusedByDefault="true"
-        android:elevation="0dp"
         >
         <TableRow>
             <androidx.appcompat.widget.AppCompatButton
@@ -331,6 +299,8 @@
                 android:stateListAnimator="@null"
                 android:fontFamily="@font/big_shoulder_display_bold"
                 android:textSize="25sp"/>
+
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
@@ -416,10 +386,7 @@
         android:id="@+id/btnRequestTransfer"
         android:textAllCaps="false"
 
-       />
-
-
-
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,6 +42,8 @@ import nguyenhoanganhkhoa.com.models.Major;
 import nguyenhoanganhkhoa.com.myapplication.another.CustomSpinner;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.home.HomePageScreen;
+import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class PersonalInformationSetScreen extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {
@@ -144,52 +146,18 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
             setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
-        else if(!edtDateofbirth.getText().toString().isEmpty())
-        {
-            String sub1last = edtDateofbirth.getText().toString().substring(9,10);
-            if(!sub1last.equals("1")&&!sub1last.equals("2")&&!sub1last.equals("3")
-                    &&!sub1last.equals("4")&&!sub1last.equals("5")&&
-                    !sub1last.equals("6")&&!sub1last.equals("7")&&
-                    !sub1last.equals("8")&&!sub1last.equals("9")&&!sub1last.equals("0"))
-            {
-                txtErrorDateofBirth.setText(R.string.please_enter_full_of_date);
-                txtErrorDateofBirth.setTextSize(15);
-                edtDateofbirth.setHintTextColor(getColor(R.color.red));
-                setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
-                return false;
-            }
-            else
-            {
-                setCustomColortxt(edtDateofbirth,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-                edtDateofbirth.setHintTextColor(getColor(R.color.xamChu));
-                txtErrorDateofBirth.setText(null);
-                txtErrorDateofBirth.setTextSize(0);
-                return true;
-            }
-        }
-        return true;
-    }
-    private Boolean validateDateOfbirthTextChange(){
-        String username = edtDateofbirth.getText().toString();
-        if (username.isEmpty()){
-            txtErrorDateofBirth.setText(R.string.field_cannot_be_empty);
-            txtErrorDateofBirth.setTextSize(15);
-            edtDateofbirth.setHintTextColor(getColor(R.color.red));
-            setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            return false;
-        }
-
 
         else {
             setCustomColortxt(edtDateofbirth,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtDateofbirth.setHintTextColor(getColor(R.color.xamChu));
-
             txtErrorDateofBirth.setText(null);
             txtErrorDateofBirth.setTextSize(0);
             return true;
         }
 
+
     }
+
     private Boolean validateFaculty(){
         String selectedItem = facultyAdapter.getItem(spnFaculty.getSelectedItemPosition()).getNameFaculty();
 
@@ -217,14 +185,13 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     final int year = calendar.get(Calendar.YEAR);
     final int month = calendar.get(Calendar.MONTH);
     final int day = calendar.get(Calendar.DAY_OF_MONTH);
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     DatePickerDialog.OnDateSetListener setListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, month);
             calendar.set(Calendar.DAY_OF_MONTH, day);
-            edtDateofbirth.setText(dateFormat.format(calendar.getTime()));
+            edtDateofbirth.setText(AppUtil.dateFormat.format(calendar.getTime()));
             String s = edtDateofbirth.getText().toString();
         }
     };
@@ -445,7 +412,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateDateOfbirthTextChange();
+                validateDateOfbirth();
             }
 
             @Override
@@ -470,7 +437,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                         @Override
                         public void onClick(View view) {
                             customDialog.dismiss();
-                            Intent intent = new Intent(PersonalInformationSetScreen.this, HomePageScreen.class);
+                            Intent intent = new Intent(PersonalInformationSetScreen.this, LoginScreen.class);
                             startActivity(intent);
                         }
                     });

@@ -1,5 +1,7 @@
 package nguyenhoanganhkhoa.com.myapplication.home;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -9,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -38,6 +41,7 @@ import java.util.function.IntUnaryOperator;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import nguyenhoanganhkhoa.com.adapter.FacultyAdapter;
+import nguyenhoanganhkhoa.com.adapter.FacultyEditAdapter;
 import nguyenhoanganhkhoa.com.adapter.MajorAdapter;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogThreeButton;
@@ -136,25 +140,32 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
 
 
     }
-//    private void pushData(Bundle bundle){
-//        bundle.putString(AppUtil.DATE_OF_BIRTH,edtDateofbirth.getText().toString());
-//        bundle.putString(AppUtil.FACULTY,spnFaculty.getSelectedItem().toString());
-//        bundle.putString(AppUtil.MAJOR,adtMajor.getText().toString());
-//        bundle.putString(AppUtil.PHONE,edtPhone.getText().toString());
-//        bundle.putString(AppUtil.NAME,edtNameEditInfo.getText().toString());
-//
-//        if(radMale.isChecked())
-//        {
-//            bundle.putString(AppUtil.GENDER,"Male");
-//        }
-//        else if(radFemale.isChecked())
-//        {
-//            bundle.putString(AppUtil.GENDER,"Female");
-//
-//        }
-//        bundle.putString(AppUtil.ID,edtIdStudent.getText().toString());
-//
-//    }
+
+
+    public void pushData(){
+        Bundle bundle = new Bundle();
+        bundle.putString(AppUtil.DATE_OF_BIRTH1,edtDateofbirth.getText().toString());
+        bundle.putString(AppUtil.FACULTY1,spnFaculty.getSelectedItem().toString());
+        bundle.putString(AppUtil.MAJOR1,adtMajor.getText().toString());
+        bundle.putString(AppUtil.PHONE1,edtPhone.getText().toString());
+        bundle.putString(AppUtil.NAME1,edtNameEditInfo.getText().toString());
+
+        if(radMale.isChecked())
+        {
+            bundle.putString(AppUtil.GENDER1,"Male");
+        }
+        else if(radFemale.isChecked())
+        {
+            bundle.putString(AppUtil.GENDER1,"Female");
+
+        }
+        bundle.putString(AppUtil.ID1,edtIdStudent.getText().toString());
+
+        Fragment fragment = new AccountFragment();
+        fragment.setArguments(bundle);
+
+    }
+
 
 
     // Sự kiện addEvents() và các sự kiện khác
@@ -167,6 +178,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
                 customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        customDialogTwoButton.dismiss();
                         finish();
                     }
                 });
@@ -272,7 +284,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateDateOfbirthTextChange();
+                validateDateOfbirth();
             }
 
             @Override
@@ -296,6 +308,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
                         @Override
                         public void onClick(View view) {
                             customDialog.dismiss();
+                            pushData();
                             finish();
 
                         }
@@ -312,11 +325,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         });
 
     }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
 
-    }
     private void clearAllForcus(){
         edtIdStudent.clearFocus();
         adtMajor.clearFocus();
@@ -396,14 +405,13 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     final int year = calendar.get(Calendar.YEAR);
     final int month = calendar.get(Calendar.MONTH);
     final int day = calendar.get(Calendar.DAY_OF_MONTH);
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     DatePickerDialog.OnDateSetListener setListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, month);
             calendar.set(Calendar.DAY_OF_MONTH, day);
-            edtDateofbirth.setText(dateFormat.format(calendar.getTime()));
+            edtDateofbirth.setText(AppUtil.dateFormat.format(calendar.getTime()));
             String s = edtDateofbirth.getText().toString();
         }
     };
@@ -483,52 +491,17 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
             setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
-        else if(!edtDateofbirth.getText().toString().isEmpty())
-        {
-            String sub1last = edtDateofbirth.getText().toString().substring(9,10);
-            if(!sub1last.equals("1")&&!sub1last.equals("2")&&!sub1last.equals("3")
-                    &&!sub1last.equals("4")&&!sub1last.equals("5")&&
-                    !sub1last.equals("6")&&!sub1last.equals("7")&&
-                    !sub1last.equals("8")&&!sub1last.equals("9")&&!sub1last.equals("0"))
-            {
-                txtErrorDateofBirth.setText(R.string.please_enter_full_of_date);
-                txtErrorDateofBirth.setTextSize(15);
-                edtDateofbirth.setHintTextColor(getColor(R.color.red));
-                setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
-                return false;
-            }
-            else
-            {
-                setCustomColortxt(edtDateofbirth,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-                edtDateofbirth.setHintTextColor(getColor(R.color.xamChu));
-                txtErrorDateofBirth.setText(null);
-                txtErrorDateofBirth.setTextSize(0);
-                return true;
-            }
-        }
-        return true;
-    }
-    private Boolean validateDateOfbirthTextChange(){
-        String username = edtDateofbirth.getText().toString();
-        if (username.isEmpty()){
-            txtErrorDateofBirth.setText(R.string.field_cannot_be_empty);
-            txtErrorDateofBirth.setTextSize(15);
-            edtDateofbirth.setHintTextColor(getColor(R.color.red));
-            setCustomColortxt(edtDateofbirth,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            return false;
-        }
-
 
         else {
             setCustomColortxt(edtDateofbirth,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtDateofbirth.setHintTextColor(getColor(R.color.xamChu));
-
             txtErrorDateofBirth.setText(null);
             txtErrorDateofBirth.setTextSize(0);
             return true;
-        }
+            }
 
     }
+
 
     //Các sự kiện nạp adapter
     MajorAdapter majorAdapter;
@@ -548,9 +521,9 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     }
 
     public static int selectedFaculty = 0;
-    FacultyAdapter facultyAdapter;
+    FacultyEditAdapter facultyAdapter;
     private void initAdapterFaculty() {
-        facultyAdapter = new FacultyAdapter(this,R.layout.item_faculty_selected,getListFaculty());
+        facultyAdapter = new FacultyEditAdapter(this,R.layout.item_faculty_selected,getListFaculty());
         spnFaculty.setAdapter(facultyAdapter);
 
 

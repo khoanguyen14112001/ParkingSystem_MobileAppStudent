@@ -13,12 +13,12 @@ import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
-import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.models.Faculty;
+import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.home.EditInfomationScreen;
 import nguyenhoanganhkhoa.com.myapplication.signup.PersonalInformationSetScreen;
 
-public class FacultyAdapter extends ArrayAdapter<Faculty> {
+public class FacultyEditAdapter extends ArrayAdapter<Faculty> {
 
 
     @NonNull
@@ -52,8 +52,9 @@ public class FacultyAdapter extends ArrayAdapter<Faculty> {
                 txtFaculty.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.xamChu));
         }
 
-        if(PersonalInformationSetScreen.selectedFaculty==position && PersonalInformationSetScreen.selectedFaculty!=0)
-                txtFaculty.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.primary_yellow));
+
+        if(EditInfomationScreen.selectedFaculty==position && EditInfomationScreen.selectedFaculty!=0)
+            txtFaculty.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.primary_yellow));
 
 
 
@@ -78,7 +79,7 @@ public class FacultyAdapter extends ArrayAdapter<Faculty> {
             return true;
         }
     }
-    public FacultyAdapter(@NonNull Context context, int resource, @NonNull List<Faculty> objects) {
+    public FacultyEditAdapter(@NonNull Context context, int resource, @NonNull List<Faculty> objects) {
 
         super(context, resource, objects);
     }
