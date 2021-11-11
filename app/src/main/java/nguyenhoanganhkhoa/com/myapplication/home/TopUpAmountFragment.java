@@ -1,25 +1,69 @@
 package nguyenhoanganhkhoa.com.myapplication.home;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.santalu.maskara.widget.MaskEditText;
-
-import java.text.Format;
-
 import nguyenhoanganhkhoa.com.myapplication.R;
 
-public class TopUpScreen extends AppCompatActivity {
-    ImageView imvBackTopUp;
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link TopUpAmountFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class TopUpAmountFragment extends Fragment {
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public TopUpAmountFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment TopUpAmountFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static TopUpAmountFragment newInstance(String param1, String param2) {
+        TopUpAmountFragment fragment = new TopUpAmountFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
     Button btnRequestTransfer;
     Button btn10k, btn20k, btn50k, btn100k, btn150k, btn200k;
     EditText edtAmount;
@@ -34,37 +78,36 @@ public class TopUpScreen extends AppCompatActivity {
     int m500k = 500000;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_up_screen);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_top_up_amount, container, false);
 
-        linkView();
+        linkView(view);
         addEvents();
+
+        return view;
+
     }
 
-    private void linkView() {
-        imvBackTopUp = findViewById(R.id.imvBackTopUp);
+    private void linkView(View view) {
 
-        imbPlus = findViewById(R.id.imbPlus);
-        imbMinus = findViewById(R.id.imbMinus);
+        imbPlus = view.findViewById(R.id.imbPlus);
+        imbMinus = view.findViewById(R.id.imbMinus);
 
-        btnRequestTransfer = findViewById(R.id.btnRequestTransfer);
+        btnRequestTransfer = view.findViewById(R.id.btnRequestTransfer);
 
-        btn10k = findViewById(R.id.btn10k);
-        btn20k = findViewById(R.id.btn20k);
-        btn50k = findViewById(R.id.btn50k);
-        btn100k = findViewById(R.id.btn100k);
-        btn150k = findViewById(R.id.btn150k);
-        btn200k = findViewById(R.id.btn200k);
+        btn10k = view.findViewById(R.id.btn10k);
+        btn20k = view.findViewById(R.id.btn20k);
+        btn50k = view.findViewById(R.id.btn50k);
+        btn100k = view.findViewById(R.id.btn100k);
+        btn150k = view.findViewById(R.id.btn150k);
+        btn200k = view.findViewById(R.id.btn200k);
 
-        edtAmount= findViewById(R.id.edtAmount);
+        edtAmount= view.findViewById(R.id.edtAmount);
     }
-
-
-
     private void setStatusButton(boolean isEnable, int colorButton, int colorText) {
         btnRequestTransfer.setEnabled(isEnable);
-        btnRequestTransfer.setBackground(getDrawable(colorButton));
+        btnRequestTransfer.setBackground(getContext().getDrawable(colorButton));
         btnRequestTransfer.setTextColor(getResources().getColor(colorText));
     }
 
@@ -150,18 +193,13 @@ public class TopUpScreen extends AppCompatActivity {
         btn150k.setOnClickListener(clickForMoney);
         btn200k.setOnClickListener(clickForMoney);
 
-        imvBackTopUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         btnRequestTransfer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TopUpScreen.this,TopUpQRCodeScreen.class);
-                startActivity(intent);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.lnFragmentRelace,new TopUpQRCodeFragment());
+                fragmentTransaction.addToBackStack(null).commit();
             }
         });
 
@@ -199,5 +237,6 @@ public class TopUpScreen extends AppCompatActivity {
 
         }
     };
+
 
 }
