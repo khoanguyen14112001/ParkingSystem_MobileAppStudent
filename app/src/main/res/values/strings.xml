@@ -16,7 +16,7 @@
     <string name="successful">Successful</string>
     <string name="your_password_has_been_updated">Your password has been updated. \nLog in now.</string>
     <string name="log_in">Log in</string>
-    <string name="varification_failed">Varification failed</string>
+    <string name="varification_failed">Verification failed</string>
     <string name="cancel">Cancel</string>
     <string name="welcome_to_nmy_parking_system">Welcome to \nmy parking system!</string>
     <string name="sign_in_with_google">Sign in with google</string>
@@ -254,4 +254,20 @@
     <string name="viettel_pay">VIETTEL PAY</string>
     <string name="next">Next</string>
     <string name="pci_dss_security_standards_certificate">PCI-DSS Security Standards certificate</string>
+    <string name="your_email_has_already_registered">Your email has already registered!</string>
+    <string name="edit_activities">Edit activities</string>
+    <string name="favorite_activities">Favorite activities</string>
+    <string name="filters">Filters</string>
+    <string name="sort_by">Sort by</string>
+    <string name="choose_date">Choose date ...</string>
+    <string name="apply">Apply</string>
+    <string name="clear_filters">Clear filters</string>
+    <string name="unsuccessful">Unsuccessful</string>
+    <string name="filter_applied">Filter applied</string>
+
+    <array name="initial_slider_values">
+        <item>0</item>
+        <item>0</item>
+    </array>
+
 </resources>

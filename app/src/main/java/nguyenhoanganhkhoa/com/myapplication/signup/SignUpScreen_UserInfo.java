@@ -1,5 +1,6 @@
 package nguyenhoanganhkhoa.com.myapplication.signup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
@@ -22,6 +27,7 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
     TextView txtErrorFullname, txtErrorPhoneSignUp, txtErrorUsernameSignUp, txtErrorPassSignup, txtErrorConfirmPassSignUp;
     Button btnSignUp;
     ImageView imvToggleClose3, imvToggleClose4,imvSignupUserInfoBack;
+
     ReusedConstraint reusedConstraint = new ReusedConstraint(SignUpScreen_UserInfo.this);
 
     private void linkView() {
@@ -119,6 +125,7 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             return true;
         }
     }
+
     private Boolean validateUsername(){
         String s = edtUsernameSignUp.getText().toString();
         if(s.isEmpty())
@@ -129,21 +136,8 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
-        else if(s.equals(AppUtil.USERNAME_APP))
-        {
-            txtErrorUsernameSignUp.setText(R.string.your_username_is_already_exists);
-            txtErrorUsernameSignUp.setTextSize(15);
-            edtUsernameSignUp.setHintTextColor(getColor(R.color.red));
-            reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
-            return false;
-        }
-        else{
-            reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
-            edtUsernameSignUp.setHintTextColor(getColor(R.color.xamChu));
-            txtErrorUsernameSignUp.setText(null);
-            txtErrorUsernameSignUp.setTextSize(0);
+        else
             return true;
-        }
 
     }
     private Boolean validateUsernameTextChange(){
@@ -397,18 +391,65 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!validateFullname()|!validateUsername()|!validatePhone()|!validateNewPassword()|!validateConfirmPassword())
-                {
-                    clearAllFocus();
-                }
-                else{
-                    clearAllFocus();
-                    Intent intent = new Intent(SignUpScreen_UserInfo.this, VerificationSignupScreen.class);
-                    startActivity(intent);
-                    // Move to next screen
-                }
+                String s = edtUsernameSignUp.getText().toString();
+                checkExistUsername(s);
+
             }
         });
+    }
+    private void validation() {
+        if(!validateFullname()|!validateUsername()|!validatePhone()|!validateNewPassword()|!validateConfirmPassword())
+        {
+            clearAllFocus();
+        }
+
+        else{
+            clearAllFocus();
+
+            AppUtil.USERNAME_S = edtUsernameSignUp.getText().toString();
+            AppUtil.PASSWORD_S = edtPassSignUp.getText().toString();
+            AppUtil.PHONE_S = edtPhoneSignUp.getText().toString();
+            AppUtil.FULLNAME_S = edtFullname.getText().toString();
+
+            Intent intent = new Intent(SignUpScreen_UserInfo.this, VerificationSignupScreen.class);
+            startActivity(intent);
+
+
+
+            // Move to next screen
+        }
+    }
+    private void checkExistUsername(String username) {
+
+        AppUtil.databaseReference.child(AppUtil.DATA_OBJECT).child(username)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            txtErrorUsernameSignUp.setText(R.string.your_username_is_already_exists);
+                            txtErrorUsernameSignUp.setTextSize(15);
+                            edtUsernameSignUp.setHintTextColor(getColor(R.color.red));
+                            reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
+                            if(!validateFullname()|!validateUsername()|!validatePhone()|!validateNewPassword()|!validateConfirmPassword())
+                            {
+                                clearAllFocus();
+                            }
+                        }
+                        else {
+                            reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+                            edtUsernameSignUp.setHintTextColor(getColor(R.color.xamChu));
+                            txtErrorUsernameSignUp.setText(null);
+                            txtErrorUsernameSignUp.setTextSize(0);
+                            validation();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
     }
 
     private void clearAllFocus() {
@@ -418,6 +459,7 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
         edtPassSignUp.clearFocus();;
         edtConfirmPassSignup.clearFocus();;
     }
+
 
 
 

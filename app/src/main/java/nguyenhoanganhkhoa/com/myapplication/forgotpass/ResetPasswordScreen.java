@@ -43,17 +43,17 @@ public class ResetPasswordScreen extends AppCompatActivity {
 
     private void addCondition() {
         String s = AppUtil.eMessage;
+
         if(s.equals(AppUtil.LOCK_CONDITION_FORGOTPASS))
             addTimerLock();
         else if (s.equals(""))
             return;
 
-
     }
     private void addTimerLock() {
 
 
-        new CountDownTimer(30000, 10) { //Set Timer for 5 seconds
+        new CountDownTimer(1800000, 10) { //Set Timer for 5 seconds
             public void onTick(long millisUntilFinished) {
                 btnSendPassword.setBackground(getDrawable(R.drawable.button_login_block));
                 btnSendPassword.setTextColor(getColor(R.color.xamBlcok));
@@ -64,7 +64,6 @@ public class ResetPasswordScreen extends AppCompatActivity {
                 edtPhone.setEnabled(false);
 
             }
-
 
             @Override
             public void onFinish() {

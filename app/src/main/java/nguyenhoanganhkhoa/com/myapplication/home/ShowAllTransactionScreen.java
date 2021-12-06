@@ -5,15 +5,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.MonthTransAdapter;
+import nguyenhoanganhkhoa.com.customdialog.CustomBottomSheetFilter;
 import nguyenhoanganhkhoa.com.models.Month;
 import nguyenhoanganhkhoa.com.models.Transaction;
 import nguyenhoanganhkhoa.com.myapplication.R;
@@ -22,8 +26,11 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
 
     RecyclerView rcvDisplayTransaction;
     MonthTransAdapter monthTransAdapter;
-    ImageView imvAllTransBack;
+    ImageView imvAllTransBack, imvFilterTrans;
     RadioButton radTransAllAll, radTransAllTopUp, radTransAllParkingPayment;
+
+    CustomBottomSheetFilter bottomSheetDialog = null;
+    ImageView imvClose;
 
 
     private void linkView() {
@@ -31,6 +38,9 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
         radTransAllAll= findViewById(R.id.radTransAllAll);
         radTransAllTopUp= findViewById(R.id.radTransAllTopUp);
         radTransAllParkingPayment= findViewById(R.id.radTransAllParkingPayment);
+
+        imvClose= findViewById(R.id.imvClose);
+        imvFilterTrans= findViewById(R.id.imvFilterTrans);
 
     }
 
@@ -42,10 +52,32 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
         linkView();
         initAdapter();
         addEvents();
+        
+
+    }
+
+
+    private void createBottomSheetDialog() {
+        if(bottomSheetDialog ==null){
+//            View view = LayoutInflater.from(this).inflate(R.layout.custom_bottomdialog_filter,null);
+//            bottomSheetDialog = new BottomSheetDialog(this);
+//            bottomSheetDialog.setContentView(view);
+
+            bottomSheetDialog = new CustomBottomSheetFilter(ShowAllTransactionScreen.this,R.style.BottomSheetDialogTheme,R.layout.custom_bottomdialog_filter);
+//            bottomSheetDialog = new CustomBottomSheetFilter(this,R.layout.custom_bottomdialog_filter);
+        }
+        bottomSheetDialog.show();
 
     }
 
     private void addEvents() {
+        imvFilterTrans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createBottomSheetDialog();
+            }
+        });
+
         imvAllTransBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

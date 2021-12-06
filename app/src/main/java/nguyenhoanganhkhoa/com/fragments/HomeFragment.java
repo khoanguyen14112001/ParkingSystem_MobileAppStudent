@@ -1,25 +1,39 @@
 package nguyenhoanganhkhoa.com.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import nguyenhoanganhkhoa.com.adapter.HomeButtonAdapter;
 import nguyenhoanganhkhoa.com.adapter.TransAllAdapter;
+import nguyenhoanganhkhoa.com.customdialog.CustomDialogEditActivities;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogFragmentHome;
+import nguyenhoanganhkhoa.com.models.HomeButtons;
 import nguyenhoanganhkhoa.com.models.Transaction;
+import nguyenhoanganhkhoa.com.myapplication.home.EditActivitiesScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.TopUpMainScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.AboutUsScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.AllNotificationScreen;
@@ -27,6 +41,7 @@ import nguyenhoanganhkhoa.com.myapplication.home.NewsScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.home.ShowAllTransactionScreen;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,8 +94,13 @@ public class HomeFragment extends Fragment {
     TransAllAdapter transAllAdapter;
     RecyclerView rcvHistoryTrans;
     TextView txtSeeAllTrans;
-    ImageButton imbQRCodeHome,imbTopUpHome, imbAboutUs, imbNewsHome;
+    ImageButton imbEditActivities;
     ImageView imvNoteBell;
+
+    HomeButtonAdapter homeButtonAdapter;
+    RecyclerView rcvButtonsHome;
+
+
 
 
     @Override
@@ -93,6 +113,7 @@ public class HomeFragment extends Fragment {
 
         // Xử lý sự kiện
         initData();
+        initButton();
         addEvents();
         return view;
 
@@ -100,31 +121,73 @@ public class HomeFragment extends Fragment {
 
     }
 
+    private void initButton() {
+        homeButtonAdapter = new HomeButtonAdapter(getContext(),R.layout.item_home_button);
+        homeButtonAdapter.setData(getButtonList());
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
+        rcvButtonsHome.setLayoutManager(linearLayoutManager);
+
+        rcvButtonsHome.setAdapter(homeButtonAdapter);
+    }
+
+    private List<HomeButtons> getButtonList() {
+        List<HomeButtons> list = new ArrayList<>();
+        list.add(new HomeButtons(R.drawable.ic_topup, AppUtil.top_up));
+        list.add(new HomeButtons(R.drawable.ic_qrcode,AppUtil.qr_code));
+        list.add(new HomeButtons(R.drawable.ic_news,AppUtil.news));
+        list.add(new HomeButtons(R.drawable.ic_aboutus,AppUtil.about_us));
+        return list;
+
+    }
+
     private void linkView(View view) {
         rcvHistoryTrans = view.findViewById(R.id.rcvHistoryTrans);
         txtSeeAllTrans = view.findViewById(R.id.txtSeeAllTrans);
-        imbQRCodeHome = view.findViewById(R.id.imbQRCodeHome);
         imvNoteBell = view.findViewById(R.id.imvNoteBell);
-        imbTopUpHome = view.findViewById(R.id.imbTopUpHome);
-        imbAboutUs = view.findViewById(R.id.imbAboutUs);
-        imbNewsHome = view.findViewById(R.id.imbNewsHome);
+        imbEditActivities = view.findViewById(R.id.imbEditActivities);
+        rcvButtonsHome = view.findViewById(R.id.rcvButtonsHome);
     }
 
     private void addEvents() {
-        imbNewsHome.setOnClickListener(new View.OnClickListener() {
+
+        imbEditActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), NewsScreen.class);
-                startActivity(intent);
+//                CustomDialogEditActivities dialog = new CustomDialogEditActivities(getActivity(),
+//                        R.layout.custom_dialog_edit_activities,imbEditActivities);
+//                dialog.cvEdit.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view){
+//                        Intent intent = new Intent(getContext(),EditActivitiesScreen.class);
+//                        startActivity(intent);
+//
+//                    }
+//                });
+//                dialog.show();
+
+
+
+
+                Context wrapper = new ContextThemeWrapper(getContext(),R.style.PopUpCustomStyle);
+                PopupMenu popupMenu = new PopupMenu(wrapper,imbEditActivities);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_edit_activities,popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        Intent intent = new Intent(getContext(),EditActivitiesScreen.class);
+                        startActivity(intent);
+                        return true;
+                    }
+                });
+                popupMenu.show();
+
+
             }
         });
-        imbAboutUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AboutUsScreen.class);
-                startActivity(intent);
-            }
-        });
+
+
         txtSeeAllTrans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,21 +196,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        imbTopUpHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), TopUpMainScreen.class);
-                startActivity(intent);
-            }
-        });
 
-        imbQRCodeHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), QRCodeScreen.class);
-                startActivity(intent);
-            }
-        });
 
         imvNoteBell.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,7 +230,8 @@ public class HomeFragment extends Fragment {
     }
 
 
-    private List<Transaction> getTransactionList() { List<Transaction> list = new ArrayList<>();
+    private List<Transaction> getTransactionList() {
+        List<Transaction> list = new ArrayList<>();
         list.add(new Transaction("Top up","20 Oct, 10:07 ","+50.000",R.drawable.ic_topup));
         list.add(new Transaction("Parking payment","10 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
         list.add(new Transaction("Parking payment","09 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
@@ -194,6 +244,8 @@ public class HomeFragment extends Fragment {
 
         return list;
     }
+
+
 
 
 

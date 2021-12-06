@@ -17,10 +17,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import nguyenhoanganhkhoa.com.models.Member;
 import nguyenhoanganhkhoa.com.myapplication.home.OurTeamScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
     private Context context;
     private List<Member> mMember;
+
+    public static int memberNumber;
 
     public MemberAdapter(Context context) {
         this.context = context;
@@ -54,15 +57,16 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         holder.layout_member.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToDetail();
+                goToDetail(holder.getAdapterPosition());
             }
         });
 
     }
 
 
-    private void goToDetail() {
+    private void goToDetail(int position) {
         Intent intent = new Intent(context, OurTeamScreen.class);
+        memberNumber = position;
         context.startActivity(intent);
     }
 

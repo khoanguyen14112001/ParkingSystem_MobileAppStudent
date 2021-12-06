@@ -370,21 +370,13 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="170dp"
-        android:layout_height="35dp"
+        style="@style/buttonYellow"
         android:text="@string/request_transfer"
-        android:paddingStart="18dp"
-        android:paddingEnd="18dp"
         app:layout_constraintTop_toBottomOf="@id/lnProtect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@drawable/custom_button"
-        android:fontFamily="@font/be_vietnam_medium"
-        android:textColor="@color/black"
-        android:textSize="16sp"
         android:id="@+id/btnRequestTransfer"
-        android:textAllCaps="false"
 
         />
 

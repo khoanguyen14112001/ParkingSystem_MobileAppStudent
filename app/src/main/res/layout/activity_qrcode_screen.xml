@@ -7,12 +7,9 @@
     tools:context=".home.QRCodeScreen">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/imageViewComback"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@drawable/ic_arror_left"
-        android:layout_margin="16dp"
         android:id="@+id/imvQRCodeScan"
 
         />
@@ -27,13 +24,7 @@
         android:id="@+id/lnInfoQR"
         android:gravity="center">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:fontFamily="@font/fjalla_one_regular"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:layout_marginTop="28dp"
+            style="@style/in_BigHeaderText"
             android:text="@string/qr_code"
             />
 
@@ -46,11 +37,10 @@
            />
 
         <TextView
+            style="@style/in_SmallHeaderText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/be_vietnam_semibold"
             android:text="@string/heo"
-            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView

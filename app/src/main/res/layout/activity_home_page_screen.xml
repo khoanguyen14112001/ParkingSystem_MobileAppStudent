@@ -33,4 +33,7 @@
         app:itemTextColor="@color/nav_custom_color"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_bottom_nav" />
+
+
+
 </RelativeLayout>

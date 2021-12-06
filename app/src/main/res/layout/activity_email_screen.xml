@@ -32,32 +32,19 @@
         android:id="@+id/gRight5"/>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_arror_left"
+        style="@style/imageViewComback"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintVertical_bias="0.03"
-        android:backgroundTint="@color/white"
         android:id="@+id/imvComebackEmailScreen"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/fjalla_one_regular"
+        style="@style/out_BigHeaderText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        android:textColor="@color/black"
         android:id="@+id/txtSignUpScreen"
         android:text="@string/sign_up_text_screen"
-        android:gravity="center"
-        android:textSize="32sp"
         />
 
     <ImageView
@@ -87,35 +74,24 @@
         android:textColor="#AB000000"/>
 
     <EditText
+        style="@style/inputStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/txtSignUpLongText"
         app:layout_constraintLeft_toLeftOf="@id/gLeft5"
         app:layout_constraintRight_toRightOf="@id/gRight5"
-        android:background="@drawable/custom_edt"
         android:layout_marginTop="30dp"
         android:inputType="textEmailAddress"
-        android:textSize="15sp"
         android:drawableStart="@drawable/ic_mail"
-        android:paddingTop="15dp"
-        android:paddingBottom= "15dp"
-        android:paddingStart="15dp"
-        android:drawablePadding="15dp"
         android:hint="@string/email_uel"
         android:id="@+id/edtEmail"
-        android:textColor="@color/xamChu"
-        android:fontFamily="@font/be_vietnam_light"
-        android:textColorHint="#8F8E8E"
-
         />
 
     <TextView
+        style="@style/errorInputStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="0dp"
         android:id="@+id/txtErrorEmail"
-        android:textColor="@color/red"
-        android:fontFamily="@font/be_vietnam_medium"
         android:paddingStart="15dp"
         android:gravity="left"
         app:layout_constraintTop_toBottomOf="@id/edtEmail"
@@ -123,19 +99,13 @@
         app:layout_constraintRight_toRightOf="@id/gRight5"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="200dp"
-        android:layout_height="38dp"
-        android:background="@drawable/custom_button"
+        style="@style/buttonYellow"
         android:text="@string/verify"
         app:layout_constraintTop_toBottomOf="@id/edtEmail"
         app:layout_constraintLeft_toLeftOf="@id/gLeft5"
         app:layout_constraintRight_toRightOf="@id/gRight5"
         app:layout_constraintBottom_toTopOf="@id/lnLoginHere"
         app:layout_constraintVertical_bias="0.45"
-        android:textAllCaps="false"
-        android:fontFamily="@font/be_vietnam_medium"
-        android:textColor="@color/black"
-        android:textSize="16sp"
         android:id="@+id/btnVerifyEmail"/>
 
     <LinearLayout

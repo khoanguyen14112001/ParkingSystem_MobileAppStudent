@@ -2,6 +2,10 @@ package nguyenhoanganhkhoa.com.myapplication.home;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -13,8 +17,10 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -33,6 +39,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -51,6 +59,7 @@ import nguyenhoanganhkhoa.com.models.Faculty;
 import nguyenhoanganhkhoa.com.models.Major;
 import nguyenhoanganhkhoa.com.myapplication.another.CustomSpinner;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.signup.PersonalInformationSetScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
@@ -105,6 +114,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         linkView();
         initAdapterFaculty();
         initAderterMarjor();
+        addResultLauncher();
         getData();
         addEvents();
 
@@ -352,16 +362,46 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     }
 
     // Tạo sự kiện chụp ảnh
-    private static final int REQUEST_TAKE_PICTURE = 1337;
-    private static final int REQUEST_PICK_PICTURE = 1338;
+    ActivityResultLauncher<Intent> activityResultLauncher;
+    boolean isCamera;
+    Bitmap bitmap = null;
+    private void addResultLauncher() {
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if(result.getResultCode()==RESULT_OK && result.getData()!=null){
+                    if(isCamera){
+                        bitmap = (Bitmap) result.getData().getExtras().get("data");
+                        imvAvatar.setImageBitmap(bitmap);
+                    }
+                    else{
+                        Uri uri = result.getData().getData();
+                        if(uri !=null){
+                            try {
+                                InputStream inputStream = getContentResolver().openInputStream(uri);
+                                bitmap = BitmapFactory.decodeStream(inputStream);
+                                imvAvatar.setImageBitmap(bitmap);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }
+                }
+            }
+        });
+
+    }
     private void cameraPickImage() {
+
         CustomDialogThreeButton customDialogThreeButton = new CustomDialogThreeButton
                 (EditInfomationScreen.this,R.layout.custom_dialog_chooss_image);
         customDialogThreeButton.btnTakePhotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isCamera = true;
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, REQUEST_TAKE_PICTURE);
+                activityResultLauncher.launch(cameraIntent);
                 customDialogThreeButton.dismiss();
 
             }
@@ -370,8 +410,10 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         customDialogThreeButton.btnChooseFromGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cameraIntent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(cameraIntent, REQUEST_PICK_PICTURE);
+                isCamera = false;
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                activityResultLauncher.launch(intent);
                 customDialogThreeButton.dismiss();
             }
         });
@@ -385,19 +427,6 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         customDialogThreeButton.show();
 
 
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode==REQUEST_TAKE_PICTURE && resultCode==RESULT_OK){
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            imvAvatar.setImageBitmap(bitmap);
-        }
-        else if(requestCode==REQUEST_PICK_PICTURE && resultCode==RESULT_OK)
-        {
-            imvAvatar.setImageURI(data.getData());
-
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     //Tạo sự kiện pick datetime

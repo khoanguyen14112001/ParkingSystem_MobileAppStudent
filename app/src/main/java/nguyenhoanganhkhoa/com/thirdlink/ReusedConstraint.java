@@ -56,7 +56,10 @@ public class ReusedConstraint {
     }
 
     public void showHidePassword(EditText edtPass, View view ) {
+        // PasswordTransformationMethod.getInstance()) : Password dạng *
+        // HideReturnsTransformationMethod.getInstance(): Password dạng hiện
         if(edtPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+            //set con mắt mở ra
             ((ImageView)(view)).setImageResource(R.drawable.ic_open_toggle);
             //Show Password
             edtPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -69,6 +72,8 @@ public class ReusedConstraint {
         }
 
     }
+
+
     public void setCustomColor(EditText edtCanSua,
                                int edtColor, int iconColor, int textColor) {
         // Chỉnh màu cho thanh edit text khi gặp error, focus, ...
@@ -80,6 +85,7 @@ public class ReusedConstraint {
 
     public void changeColor(TextView text, int numStart, int numEnd, int ColorChange) {
         String textVerifcation = text.getText().toString();
+
         SpannableString ss = new SpannableString(textVerifcation) ;
         ForegroundColorSpan fcsYellow = new ForegroundColorSpan(context.getColor(ColorChange));
         ss.setSpan(fcsYellow,numStart,numEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

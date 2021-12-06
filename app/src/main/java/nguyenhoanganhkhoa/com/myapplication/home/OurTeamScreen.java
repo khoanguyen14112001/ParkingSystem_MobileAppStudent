@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.DetailMemberAdapter;
+import nguyenhoanganhkhoa.com.adapter.MemberAdapter;
 import nguyenhoanganhkhoa.com.models.Member;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
@@ -54,6 +55,8 @@ public class OurTeamScreen extends AppCompatActivity {
 
             }
         });
+
+        viewPagerOurTeam.setCurrentItem(MemberAdapter.memberNumber);
     }
 
 

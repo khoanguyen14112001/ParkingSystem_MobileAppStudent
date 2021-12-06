@@ -1,5 +1,10 @@
 package nguyenhoanganhkhoa.com.myapplication.signup;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -7,16 +12,21 @@ import androidx.core.content.ContextCompat;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,6 +35,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -39,12 +54,15 @@ import nguyenhoanganhkhoa.com.customdialog.CustomDialogThreeButton;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.models.Faculty;
 import nguyenhoanganhkhoa.com.models.Major;
+import nguyenhoanganhkhoa.com.models.Student;
 import nguyenhoanganhkhoa.com.myapplication.another.CustomSpinner;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.home.HomePageScreen;
 import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
+
+
 
 public class PersonalInformationSetScreen extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {
 
@@ -56,6 +74,11 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     ImageView imvCamera, imvFaculty, imvDropdown, imvComebackUserinfo;
     TextView txtErrorIdStudent, txtErrorMarjor, txtErrorDateofBirth, txtErrorFaculty,edtDateofbirth;
     AutoCompleteTextView adtMajor;
+
+    private String username, password,email
+            ,fullname, phone, ID, major,dateOfBirth
+            ,faculty, gender;
+    private int avatar;
 
     ReusedConstraint reusedConstraint = new ReusedConstraint(PersonalInformationSetScreen.this);
 
@@ -87,10 +110,13 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         setContentView(R.layout.activity_personal_information_set_screen);
 
         linkView();
+        addResultLauncher();
         initAdapterFaculty();
         initAderterMarjor();
+
         addEvents();
     }
+
 
     //Các sự kiện validate
     private Boolean validateIDStudent(){
@@ -235,16 +261,48 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
 
     //Tạo sự kiện chụp ảnh
-    private static final int REQUEST_TAKE_PICTURE = 1337;
-    private static final int REQUEST_PICK_PICTURE = 1338;
+
+    ActivityResultLauncher<Intent> activityResultLauncher;
+    boolean isCamera;
+    Bitmap bitmap = null;
+
+    private void addResultLauncher() {
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if(result.getResultCode()==RESULT_OK && result.getData()!=null){
+                    if(isCamera){
+                        bitmap = (Bitmap) result.getData().getExtras().get("data");
+                        imvAvatar.setImageBitmap(bitmap);
+                    }
+                    else{
+                        Uri uri = result.getData().getData();
+                        if(uri !=null){
+                            try {
+                                InputStream inputStream = getContentResolver().openInputStream(uri);
+                                bitmap = BitmapFactory.decodeStream(inputStream);
+                                imvAvatar.setImageBitmap(bitmap);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }
+                }
+            }
+        });
+
+    }
     private void cameraPickImage() {
+
         CustomDialogThreeButton customDialogThreeButton = new CustomDialogThreeButton
                 (PersonalInformationSetScreen.this,R.layout.custom_dialog_chooss_image);
         customDialogThreeButton.btnTakePhotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isCamera = true;
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, REQUEST_TAKE_PICTURE);
+                activityResultLauncher.launch(cameraIntent);
                 customDialogThreeButton.dismiss();
 
             }
@@ -253,8 +311,10 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         customDialogThreeButton.btnChooseFromGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cameraIntent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(cameraIntent, REQUEST_PICK_PICTURE);
+                isCamera = false;
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                activityResultLauncher.launch(intent);
                 customDialogThreeButton.dismiss();
             }
         });
@@ -269,19 +329,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
 
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode==REQUEST_TAKE_PICTURE && resultCode==RESULT_OK){
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            imvAvatar.setImageBitmap(bitmap);
-        }
-        else if(requestCode==REQUEST_PICK_PICTURE && resultCode==RESULT_OK)
-        {
-            imvAvatar.setImageURI(data.getData());
 
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 
     // Tạo sự kiện thêm và đóng spinner
     @Override
@@ -313,6 +361,25 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
     // AddEvents và một vài sự kiện khác
     private void addEvents() {
+        radMale.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b && bitmap==null){
+                    imvAvatar.setImageResource(R.drawable.img_avatar_male);
+                }
+
+            }
+        });
+
+        radFemale.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b && bitmap==null){
+                    imvAvatar.setImageResource(R.drawable.img_avatar_female);
+                }
+            }
+        });
+
 
         imvComebackUserinfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -431,6 +498,9 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                 }
                 else {
                     clearAllForcus();
+
+                    pushAccountDataToFirebase();
+
                     CustomDialog customDialog = new
                             CustomDialog(PersonalInformationSetScreen.this, R.layout.custom_dialog_create_account_successful);
                     customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
@@ -464,6 +534,48 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         txtCanSua.setBackground(ContextCompat.getDrawable(PersonalInformationSetScreen.this,edtColor));
         txtCanSua.setCompoundDrawableTintList(ContextCompat.getColorStateList(PersonalInformationSetScreen.this,iconColor));
         txtCanSua.setTextColor(ContextCompat.getColorStateList(PersonalInformationSetScreen.this,textColor));
+    }
+
+
+    private void pushAccountDataToFirebase(){
+        username = AppUtil.USERNAME_S;
+        password = AppUtil.PASSWORD_S;
+        phone = AppUtil.PHONE_S;
+        fullname = AppUtil.FULLNAME_S;
+        email = AppUtil.EMAIL_S;
+
+        avatar = imvAvatar.getId();
+
+        if(radFemale.isChecked()){
+            gender = radFemale.getText().toString();
+        }
+        else if(radMale.isChecked()){
+            gender = radMale.getText().toString();
+        }
+
+        ID = edtIdStudent.getText().toString();
+        faculty = getListFaculty().get(selectedFaculty).getNameFaculty();
+        major = adtMajor.getText().toString();
+        dateOfBirth = edtDateofbirth.getText().toString();
+
+        Student student = new Student(username,password,email,
+                fullname,phone,ID,major,dateOfBirth,
+                faculty,gender,avatar);
+        AppUtil.databaseReference.child(AppUtil.DATA_OBJECT).child(username).setValue(student)
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(PersonalInformationSetScreen.this, "Sign in fail", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(PersonalInformationSetScreen.this, "Sign in success", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
     }
 
 }

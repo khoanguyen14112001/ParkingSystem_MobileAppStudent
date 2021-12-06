@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/dialog_login"
-    android:layout_margin="30dp">
+    android:layout_margin="55dp">
 
     <TextView
         android:layout_width="match_parent"

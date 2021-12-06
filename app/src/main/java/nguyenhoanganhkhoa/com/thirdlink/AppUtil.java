@@ -1,5 +1,8 @@
 package nguyenhoanganhkhoa.com.thirdlink;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -44,6 +47,29 @@ public class AppUtil {
     public static String GENDER1 = "gender1";
 
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
+    public static SimpleDateFormat dateFormat2 = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
+
+    //Khai báo database
+    public static DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("account");
+    public static final String DATA_OBJECT = "Student";
+
+    public static String USERNAME_S = "";
+    public static String PASSWORD_S = "";
+    public static String PHONE_S = "";
+    public static String FULLNAME_S = "";
+    public static String EMAIL_S = "";
+
+
+    public final static String top_up = "Top Up";
+    public final static String qr_code = "QR Code";
+    public final static String news = "News";
+    public final static String about_us = "About Us";
+    public final static String history = "History";
+    public final static String help_center = "Help Center";
+    public final static String security_center = "Security Center";
+
+
+
 
 
 

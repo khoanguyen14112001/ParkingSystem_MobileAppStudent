@@ -1,5 +1,6 @@
 package nguyenhoanganhkhoa.com.myapplication.signup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
@@ -99,14 +104,13 @@ public class EmailScreen extends AppCompatActivity {
          else if (!email.matches(emailPattern1) && !email.matches(emailPattern2)) {
              txtErrorEmail.setText(R.string.invalid_email_address);
              txtErrorEmail.setTextSize(15);
-            reusedConstraint.setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
+             reusedConstraint.setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
              return false;
         }
 
         else {
             reusedConstraint.setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtEmail.setHintTextColor(getColor(R.color.xamChu));
-
             txtErrorEmail.setText(null);
             txtErrorEmail.setTextSize(0);
             return true;
@@ -123,15 +127,14 @@ public class EmailScreen extends AppCompatActivity {
             reusedConstraint.setCustomColor(edtEmail,R.drawable.edt_custom_error,R.color.red,R.color.red);
             return false;
         }
-
-        else {
+        else
             reusedConstraint.setCustomColor(edtEmail,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
             edtEmail.setHintTextColor(getColor(R.color.xamChu));
 
             txtErrorEmail.setText(null);
             txtErrorEmail.setTextSize(0);
             return true;
-        }
+
 
     }
 
@@ -181,6 +184,7 @@ public class EmailScreen extends AppCompatActivity {
                 }
                 else
                 {
+                    AppUtil.EMAIL_S = edtEmail.getText().toString();
                     Intent intent = new Intent(EmailScreen.this, SignUpScreen_UserInfo.class);
                     startActivity(intent);
                 }
@@ -188,5 +192,7 @@ public class EmailScreen extends AppCompatActivity {
         });
 
     }
+
+
 
 }

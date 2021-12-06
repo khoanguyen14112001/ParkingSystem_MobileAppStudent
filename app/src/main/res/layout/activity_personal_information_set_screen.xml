@@ -35,32 +35,19 @@
             android:id="@+id/gRight7"/>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arror_left"
+            style="@style/imageViewComback"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintVertical_bias="0.03"
-            android:backgroundTint="@color/white"
             android:id="@+id/imvComebackUserinfo"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/fjalla_one_regular"
+            style="@style/out_BigHeaderText"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.1"
-            android:textColor="@color/black"
             android:id="@+id/txtPersonalInformation"
             android:text="@string/personal_information"
-            android:gravity="center"
-            android:textSize="32sp"
             />
 
         <TextView
@@ -80,7 +67,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:src="@drawable/img_your_avatar_here"
+            android:src="@drawable/img_avatar_female"
             app:layout_constraintTop_toBottomOf="@id/txTellUs"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -131,35 +118,26 @@
         </RadioGroup>
 
         <EditText
+            style="@style/inputStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
             android:id="@+id/edtIDStudent"
-            android:background="@drawable/custom_edt"
             android:hint="@string/id_student"
-            android:fontFamily="@font/be_vietnam_light"
             android:drawableStart="@drawable/ic_user"
-            android:drawableTint="#242A37"
             android:inputType="textEmailAddress"
-            android:textColorHint="#8F8E8E"
-            android:padding="15dp"
-            android:drawablePadding="15dp"
-            android:textColor="@color/xamChu"
             app:layout_constraintTop_toBottomOf="@+id/radioGroupGioiTinh"
             app:layout_constraintLeft_toLeftOf="@id/gLeft7"
             app:layout_constraintRight_toRightOf="@id/gRight7"
             />
 
         <TextView
+            style="@style/errorInputStyle"
             app:layout_constraintTop_toBottomOf="@id/edtIDStudent"
             app:layout_constraintRight_toRightOf="@id/gRight7"
             app:layout_constraintLeft_toLeftOf="@id/gLeft7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="0sp"
-            android:textColor="@color/red"
             android:id="@+id/txtErrorIDStudent"
-            android:fontFamily="@font/be_vietnam_medium"
             android:paddingStart="12dp"/>
 
 
@@ -180,15 +158,13 @@
 
 
         <TextView
+            style="@style/errorInputStyle"
             app:layout_constraintTop_toBottomOf="@id/spnFaculty"
             app:layout_constraintRight_toRightOf="@id/gRight7"
             app:layout_constraintLeft_toLeftOf="@id/gLeft7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="0sp"
-            android:textColor="@color/red"
             android:id="@+id/txtErrorSpnFaculty"
-            android:fontFamily="@font/be_vietnam_medium"
             android:paddingStart="12dp"/>
 
         <ImageView
@@ -213,21 +189,12 @@
 
 
         <AutoCompleteTextView
+            style="@style/inputStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
             android:id="@+id/adtMajors"
-            android:background="@drawable/custom_edt"
             android:hint="@string/major"
-            android:fontFamily="@font/be_vietnam_light"
             android:drawableStart="@drawable/ic_major"
-            android:drawableTint="#242A37"
-            android:textColorHint="#8F8E8E"
-            android:paddingTop="15dp"
-            android:paddingLeft="15dp"
-            android:paddingBottom="15dp"
-            android:drawablePadding="15dp"
-            android:textColor="@color/xamChu"
             app:layout_constraintTop_toBottomOf="@+id/txtErrorSpnFaculty"
             app:layout_constraintLeft_toLeftOf="@id/gLeft7"
             app:layout_constraintRight_toRightOf="@id/gRight7"
@@ -241,34 +208,23 @@
 
 
         <TextView
+            style="@style/errorInputStyle"
             app:layout_constraintTop_toBottomOf="@id/adtMajors"
             app:layout_constraintRight_toRightOf="@id/gRight7"
             app:layout_constraintLeft_toLeftOf="@id/gLeft7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="0sp"
-            android:textColor="@color/red"
             android:id="@+id/txtErrorMajor"
-            android:fontFamily="@font/be_vietnam_medium"
             android:paddingStart="12dp"/>
 
 
         <TextView
+            style="@style/inputStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
             android:id="@+id/edtDateOfBirth"
-            android:background="@drawable/custom_edt"
             android:hint="@string/date_of_birth"
-            android:fontFamily="@font/be_vietnam_light"
             android:drawableStart="@drawable/ic_dateofbirth"
-            android:drawableTint="#242A37"
-            android:textColorHint="#8F8E8E"
-            android:paddingTop="15dp"
-            android:paddingLeft="15dp"
-            android:paddingBottom="15dp"
-            android:drawablePadding="15dp"
-            android:textColor="@color/xamChu"
             app:layout_constraintTop_toBottomOf="@+id/txtErrorMajor"
             app:layout_constraintLeft_toLeftOf="@id/gLeft7"
             app:layout_constraintRight_toRightOf="@id/gRight7"
@@ -290,19 +246,13 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="200dp"
-            android:layout_height="38dp"
+            style="@style/buttonYellow"
             app:layout_constraintTop_toBottomOf="@id/txtErrorDataofbirth"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textColor="@color/black"
-            android:textAllCaps="false"
-            android:textSize="16sp"
             android:id="@+id/btnSave"
-            android:fontFamily="@font/be_vietnam_medium"
             android:text="@string/save"
-            android:background="@drawable/custom_button"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"/>
 

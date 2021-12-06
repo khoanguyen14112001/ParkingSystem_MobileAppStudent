@@ -10,16 +10,10 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:textAllCaps="true"
-        android:fontFamily="@font/fjalla_one_regular"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginTop="28dp"
+        style="@style/in_BigHeaderText"
         android:text="@string/notifications"
         android:id="@+id/txtNotification"
         />
@@ -28,9 +22,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@drawable/ic_arror_left"
-        android:layout_margin="16dp"
         android:id="@+id/imvBackNotifications"
+        style="@style/imageViewComback"
 
         />
     <androidx.appcompat.widget.SearchView
@@ -155,88 +148,18 @@
     </HorizontalScrollView>
 
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:overScrollMode="never"
+        android:id="@+id/layout_notification"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/a1231"
+        android:orientation="vertical"
         >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingBottom="8dp"
-                android:paddingEnd="20dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/recent"
-                    android:textSize="19sp"
-                    android:fontFamily="@font/be_vietnam_semibold"
-                    android:textColor="@color/black"
-                    android:id="@+id/txtRecent"
-                    />
 
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mark_all_as_read"
-                    android:gravity="end"
-                    android:textSize="19sp"
-                    android:fontFamily="@font/be_vietnam_semibold"
-                    android:textColor="@color/primary_yellow"
-                    android:id="@+id/txtMarkAllAsRead"
-                    />
-
-
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="0dp"
-                android:overScrollMode="never"
-                android:nestedScrollingEnabled="false"
-                android:id="@+id/rcvDisplayAllNotifications"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:text="@string/before"
-                android:id="@+id/txtBefore"
-                android:paddingBottom="8dp"
-                android:textSize="19sp"
-                android:fontFamily="@font/be_vietnam_semibold"
-                android:textColor="@color/black"
-                />
-            <androidx.recyclerview.widget.RecyclerView
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="0dp"
-                android:id="@+id/rcvDisTest"
-                android:overScrollMode="never"
-                android:paddingBottom="10dp"
-                android:nestedScrollingEnabled="false"
-                />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 
 
 

@@ -50,7 +50,6 @@ public class VerificationScreen extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
 
                 long remainedSecs = millisUntilFinished / 1000;
-                long secondLeft = remainedSecs % 60;
                 txtVerificationText.setText(getString(R.string.we_sent_your_code_to_your_phone) +
                         getString(R.string.this_code_will_be_expired_in)+
                         (remainedSecs % 60) +
@@ -133,7 +132,6 @@ public class VerificationScreen extends AppCompatActivity {
                             }
                         });
                         customDialog.show();
-
 
 
                     }

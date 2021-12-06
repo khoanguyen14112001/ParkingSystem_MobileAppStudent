@@ -8,26 +8,17 @@
     android:gravity="center"
     android:orientation="vertical">
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/in_BigHeaderText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:textAllCaps="true"
-        android:fontFamily="@font/fjalla_one_regular"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginTop="28dp"
         android:text="@string/our_team"
         android:id="@+id/txtOurTeam"
         />
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/imageViewComback"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@drawable/ic_arror_left"
-        android:layout_margin="16dp"
         android:id="@+id/imvBackOurTeam"
 
         />

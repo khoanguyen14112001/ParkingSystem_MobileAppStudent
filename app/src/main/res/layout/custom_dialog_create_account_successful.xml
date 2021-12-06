@@ -4,38 +4,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/dialog_login"
-    android:layout_margin="30dp">
+    android:layout_margin="55dp">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/congratulation"
-        android:gravity="center"
-        android:fontFamily="@font/fjalla_one_regular"
-        android:textSize="24.5sp"
-        android:textColor="@color/black"/>
+        style="@style/dialog_header"
+        android:text="@string/congratulation"/>
 
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:fontFamily="@font/be_vietnam_light"
-        android:textColor="@color/black"
-        android:layout_marginTop="15dp"
-        android:textSize="15sp"
+        style="@style/dialog_text"
         android:text="@string/your_account_has_been_successfully_created"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="90dp"
         android:background="@drawable/custom_button_dialog"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_height="40dp"
+        android:textAllCaps="false"
         android:text="@string/go"
-        android:layout_gravity="center"
         android:id="@+id/btnOK"
-        android:textSize="16sp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/be_vietnam_medium"
         />
 
 

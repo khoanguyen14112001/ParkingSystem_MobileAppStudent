@@ -135,167 +135,26 @@
                     android:layout_marginEnd="25dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_more"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:id="@+id/imbEditActivities"
                     app:layout_constraintBottom_toTopOf="@id/lnDad"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cvBalance" />
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/txtActivities"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     android:id="@+id/lnDad"
                     android:orientation="vertical">
-                    <HorizontalScrollView
+                    <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:scrollbars="none"
-
-                        android:id="@+id/scrollView">
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            >
-                            <LinearLayout
-                                android:id="@+id/lnQRCode"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:paddingTop="16dp"
-                                android:paddingStart="16dp"
-                                android:paddingEnd="16dp"
-                                android:paddingBottom="8dp"
-                                app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/linearLayout"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <ImageButton
-                                    android:id="@+id/imbQRCodeHome"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/custom_button_homepage"
-                                    android:padding="10dp"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/ic_qrcode" />
-
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/be_vietnam_semibold"
-                                    android:paddingTop="4dp"
-                                    android:text="@string/qr_code"
-                                    android:textColor="@color/blackUI" />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:id="@+id/linearLayout3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:paddingTop="16dp"
-                                android:paddingStart="16dp"
-                                android:paddingEnd="16dp"
-                                android:paddingBottom="8dp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-                                app:layout_constraintTop_toTopOf="parent">
-
-
-                                <ImageButton
-                                    android:id="@+id/imbAboutUs"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/custom_button_homepage"
-                                    android:padding="10dp"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/ic_aboutus" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/be_vietnam_semibold"
-                                    android:paddingTop="4dp"
-                                    android:text="@string/about_us"
-                                    android:textAllCaps="true"
-                                    android:textColor="@color/blackUI" />
-                            </LinearLayout>
-                            <LinearLayout
-                                android:id="@+id/linearLayout"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:paddingTop="16dp"
-                                android:paddingStart="16dp"
-                                android:paddingEnd="16dp"
-                                android:paddingBottom="8dp"
-                                app:layout_constraintEnd_toStartOf="@+id/lnQRCode"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <ImageButton
-                                    android:id="@+id/imbTopUpHome"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/custom_button_homepage"
-                                    android:padding="10dp"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/ic_topup" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/be_vietnam_semibold"
-                                    android:paddingTop="4dp"
-                                    android:text="TOP UP"
-                                    android:textColor="@color/blackUI" />
-                            </LinearLayout>
-                            <LinearLayout
-                                android:id="@+id/linearLayout2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:paddingTop="16dp"
-                                android:paddingStart="16dp"
-                                android:paddingEnd="16dp"
-                                android:paddingBottom="8dp"
-                                app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/lnQRCode"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <ImageButton
-                                    android:id="@+id/imbNewsHome"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/custom_button_homepage"
-                                    android:padding="10dp"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/ic_news" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/be_vietnam_semibold"
-                                    android:paddingTop="4dp"
-                                    android:text="@string/news"
-                                    android:textAllCaps="true"
-                                    android:textColor="@color/blackUI" />
-                            </LinearLayout>
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </HorizontalScrollView>
+                        android:id="@+id/rcvButtonsHome"
+                        />
                 </LinearLayout>
 
 
