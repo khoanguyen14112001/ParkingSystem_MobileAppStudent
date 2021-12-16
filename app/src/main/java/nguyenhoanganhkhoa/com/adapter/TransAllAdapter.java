@@ -2,6 +2,8 @@ package nguyenhoanganhkhoa.com.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import nguyenhoanganhkhoa.com.models.DetailProTrans;
 import nguyenhoanganhkhoa.com.models.Transaction;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.home.DetailTransaction;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 public class TransAllAdapter extends RecyclerView.Adapter<TransAllAdapter.ViewHolder> {
     private Context context;
@@ -60,10 +63,21 @@ public class TransAllAdapter extends RecyclerView.Adapter<TransAllAdapter.ViewHo
         holder.layout_item_trans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, DetailTransaction.class));
+                Intent intent = new Intent(context, DetailTransaction.class);
+                pushData(intent, transaction);
+                context.startActivity(intent);
+
             }
+
+
         });
 
+    }
+
+    private void pushData(Intent intent, Transaction transaction) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(AppUtil.SELECTED_ITEM,transaction);
+        intent.putExtra(AppUtil.MY_BUNDLE, bundle);
     }
 
     @Override

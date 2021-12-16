@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,13 +16,31 @@ import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.DetailProTransAdapter;
 import nguyenhoanganhkhoa.com.models.DetailProTrans;
+import nguyenhoanganhkhoa.com.models.Transaction;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 public class DetailTransaction extends AppCompatActivity {
 
     RecyclerView rcvDetailProblem;
     DetailProTransAdapter adapter;
     ImageView imvBack;
+
+    ImageView imvStatus, imvStatusTrans;
+    TextView txtStatusTrans, txtMoneyTrans, txtDateTrans;
+
+    Transaction transaction;
+
+    private void linkView() {
+        rcvDetailProblem = findViewById(R.id.rcvDetailProblem);
+        imvBack = findViewById(R.id.imvBack);
+
+        imvStatus = findViewById(R.id.imvStatus);
+        txtStatusTrans = findViewById(R.id.txtStatusTrans);
+        txtMoneyTrans = findViewById(R.id.txtMoneyTrans);
+        txtDateTrans = findViewById(R.id.txtDateTrans);
+        imvStatusTrans = findViewById(R.id.imvStatusTrans);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +49,27 @@ public class DetailTransaction extends AppCompatActivity {
 
         linkView();
         initAdapter();
+        getData();
         addEvents();
 
     }
+
+
+    private void getData(){
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra(AppUtil.MY_BUNDLE);
+        if(bundle!=null){
+            transaction = (Transaction) bundle.getSerializable(AppUtil.SELECTED_ITEM);
+            imvStatus.setImageResource(transaction.getImgStatusTrans());
+            imvStatusTrans.setImageResource(transaction.getImgSuccessTrans());
+            txtDateTrans.setText(transaction.getDateTrans());
+            txtMoneyTrans.setText(transaction.getMoneyTrans());
+            txtStatusTrans.setText(transaction.getStatusTrans());
+
+        }
+
+    }
+
 
     private void initAdapter() {
         adapter = new DetailProTransAdapter(this,R.layout.item_detail_problem_trans);
@@ -63,10 +101,5 @@ public class DetailTransaction extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void linkView() {
-        rcvDetailProblem = findViewById(R.id.rcvDetailProblem);
-        imvBack = findViewById(R.id.imvBack);
     }
 }

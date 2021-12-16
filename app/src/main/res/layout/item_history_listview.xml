@@ -62,6 +62,7 @@
         android:fontFamily="@font/be_vietnam_light"
         android:text="@string/contact_support"
         android:textSize="12sp"
+        android:id="@+id/btnContactSp"
         app:layout_constraintTop_toTopOf="@id/imvColorHis"
         android:layout_marginRight="7dp"
         android:paddingBottom="3dp"

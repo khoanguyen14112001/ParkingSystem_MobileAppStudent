@@ -1,6 +1,8 @@
 package nguyenhoanganhkhoa.com.models;
 
-public class Transaction {
+import java.io.Serializable;
+
+public class Transaction implements Serializable {
     private String statusTrans;
     private String dateTrans;
     private String moneyTrans;

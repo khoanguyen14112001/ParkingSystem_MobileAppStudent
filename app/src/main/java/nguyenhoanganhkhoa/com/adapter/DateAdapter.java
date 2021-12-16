@@ -53,7 +53,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
         holder.rcvHistory.setLayoutManager(linearLayoutManager);
-        HistoryAdapter historyAdapter = new HistoryAdapter();
+        HistoryAdapter historyAdapter = new HistoryAdapter(context);
         historyAdapter.setData(date.getHistories());
         holder.rcvHistory.setAdapter(historyAdapter);
 
