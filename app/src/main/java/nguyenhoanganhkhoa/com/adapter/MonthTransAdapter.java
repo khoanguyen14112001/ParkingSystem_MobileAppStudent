@@ -51,7 +51,7 @@ public class MonthTransAdapter extends RecyclerView.Adapter<MonthTransAdapter.Vi
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
         holder.rcvTransactionList.setLayoutManager(linearLayoutManager);
 
-        TransAllAdapter transAllAdapter = new TransAllAdapter();
+        TransAllAdapter transAllAdapter = new TransAllAdapter(context);
         transAllAdapter.setData(month.getTransactions());
 
         holder.rcvTransactionList.setAdapter(transAllAdapter);

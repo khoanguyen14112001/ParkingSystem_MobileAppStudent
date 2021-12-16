@@ -78,6 +78,8 @@ public class FacultyAdapter extends ArrayAdapter<Faculty> {
             return true;
         }
     }
+
+
     public FacultyAdapter(@NonNull Context context, int resource, @NonNull List<Faculty> objects) {
 
         super(context, resource, objects);

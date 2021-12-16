@@ -1,6 +1,7 @@
 package nguyenhoanganhkhoa.com.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +9,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import nguyenhoanganhkhoa.com.models.DetailProTrans;
 import nguyenhoanganhkhoa.com.models.Transaction;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.home.DetailTransaction;
 
 public class TransAllAdapter extends RecyclerView.Adapter<TransAllAdapter.ViewHolder> {
     private Context context;
     private List<Transaction> mTransaction;
+
+    public TransAllAdapter(Context context) {
+        this.context = context;
+    }
 
     public void setData(List<Transaction> list){
         this.mTransaction = list;
@@ -47,7 +55,14 @@ public class TransAllAdapter extends RecyclerView.Adapter<TransAllAdapter.ViewHo
         holder.txtDateStatusTrans.setText(transaction.getDateTrans());
         holder.txtStatusTrans.setText(transaction.getStatusTrans());
         holder.txtMoneyTrans.setText(transaction.getMoneyTrans());
+        holder.imvSuccessTrans.setImageResource(transaction.getImgSuccessTrans());
 
+        holder.layout_item_trans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(context, DetailTransaction.class));
+            }
+        });
 
     }
 
@@ -61,7 +76,9 @@ public class TransAllAdapter extends RecyclerView.Adapter<TransAllAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtDateStatusTrans, txtStatusTrans,txtMoneyTrans;
-        ImageView imvStatusTrans;
+        ImageView imvStatusTrans,imvSuccessTrans;
+
+        ConstraintLayout layout_item_trans;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +86,10 @@ public class TransAllAdapter extends RecyclerView.Adapter<TransAllAdapter.ViewHo
             txtDateStatusTrans =itemView.findViewById(R.id.txtDateStatusTrans);
             imvStatusTrans =itemView.findViewById(R.id.imvStatusTrans);
             txtMoneyTrans =itemView.findViewById(R.id.txtMoneyTrans);
+            imvSuccessTrans =itemView.findViewById(R.id.imvSuccessTrans);
+
+            layout_item_trans =itemView.findViewById(R.id.layout_item_trans);
+
         }
     }
 }

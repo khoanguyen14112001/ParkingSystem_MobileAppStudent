@@ -259,11 +259,22 @@
     <string name="favorite_activities">Favorite activities</string>
     <string name="filters">Filters</string>
     <string name="sort_by">Sort by</string>
-    <string name="choose_date">Choose date ...</string>
+    <string name="choose_date">Choose date …</string>
     <string name="apply">Apply</string>
     <string name="clear_filters">Clear filters</string>
     <string name="unsuccessful">Unsuccessful</string>
     <string name="filter_applied">Filter applied</string>
+    <string name="trading_code">Trading code:\u0020</string>
+    <string name="what_problem_do_you_have">What problem do you have?</string>
+    <string name="text_help_center_detail">Please double-check your top up transaction information again.</string>
+    <string name="text_help_center_detail2">If you really think this is a mistake, please click the button <font fgcolor='#FFD428'>Request help</font>\u0020below and fill in the necessary information so that we can best assist you.</string>
+    <string name="was_the_information_useful_to_you">Was the information useful to you?</string>
+    <string name="request_help">Request help</string>
+    <string name="service">Service:</string>
+    <string name="fill_the_information">Please fill in the necessary information \n so that we can best assist you</string>
+    <string name="add_pictures">Add pictures</string>
+    <string name="send_request_successful">Send request successful</string>
+    <string name="success_request">We have received your request, please wait for us to process</string>
 
     <array name="initial_slider_values">
         <item>0</item>

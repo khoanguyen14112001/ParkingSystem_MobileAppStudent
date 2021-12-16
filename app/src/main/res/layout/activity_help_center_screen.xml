@@ -120,15 +120,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
                 android:text="@string/popular_questions"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:textColor="@color/primary_yellow"
-                android:fontFamily="@font/be_vietnam_semibold"
-                android:textSize="17sp"
-                android:text="@string/see_all"
-                android:id="@+id/txtSeeAllHelp"/>
 
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
@@ -164,15 +155,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
                 android:text="@string/problem_categories"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:textColor="@color/primary_yellow"
-                android:fontFamily="@font/be_vietnam_semibold"
-                android:textSize="17sp"
-                android:text="@string/see_all"
-                android:id="@+id/txtSeeAllHelpCate"/>
 
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView

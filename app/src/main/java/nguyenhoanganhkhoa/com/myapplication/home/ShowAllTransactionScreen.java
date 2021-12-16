@@ -124,30 +124,30 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
         List<Transaction> listTrans4 = new ArrayList<>();
         List<Transaction> listTrans5 = new ArrayList<>();
 
-        listTrans1.add(new Transaction("Top up","20 Oct, 10:07 ","+50.000",R.drawable.ic_topup));
-        listTrans1.add(new Transaction("Parking payment","10 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
-        listTrans1.add(new Transaction("Parking payment","09 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
+        listTrans1.add(new Transaction("Top up","20 Oct, 10:07 ","+50.000",R.drawable.ic_topup,R.drawable.ic_tickbutton));
+        listTrans1.add(new Transaction("Parking payment","10 Oct, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        listTrans1.add(new Transaction("Parking payment","09 Oct, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
 
-        listTrans2.add(new Transaction("Parking payment","20 Sep, 10:07 ","-3.000",R.drawable.ic_bike));
-        listTrans2.add(new Transaction("Parking payment","10 Sep, 16:19 ","-3.000",R.drawable.ic_bike));
-        listTrans2.add(new Transaction("Parking payment","09 Sep, 16:19 ","-3.000",R.drawable.ic_bike));
-        listTrans2.add(new Transaction("Parking payment","08 Sep, 16:19 ","-3.000",R.drawable.ic_bike));
+        listTrans2.add(new Transaction("Parking payment","20 Sep, 10:07 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        listTrans2.add(new Transaction("Parking payment","10 Sep, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        listTrans2.add(new Transaction("Parking payment","09 Sep, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        listTrans2.add(new Transaction("Parking payment","08 Sep, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
 
-        listTrans3.add(new Transaction("Parking payment","20 Aug, 10:07 ","-3.000",R.drawable.ic_topup));
-        listTrans3.add(new Transaction("Parking payment","10 Aug, 16:19 ","-3.000",R.drawable.ic_bike));
-        listTrans3.add(new Transaction("Parking payment","09 Aug, 16:19 ","-3.000",R.drawable.ic_bike));
-        listTrans3.add(new Transaction("Parking payment","08 Aug, 16:19 ","-3.000",R.drawable.ic_bike));
-        listTrans3.add(new Transaction("Top up","07 Aug, 16:19 ","+20.000",R.drawable.ic_topup));
+        listTrans3.add(new Transaction("Parking payment","20 Aug, 10:07 ","-3.000",R.drawable.ic_topup,R.drawable.ic_tickbutton));
+        listTrans3.add(new Transaction("Parking payment","10 Aug, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        listTrans3.add(new Transaction("Parking payment","09 Aug, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_warning_red));
+        listTrans3.add(new Transaction("Parking payment","08 Aug, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        listTrans3.add(new Transaction("Top up","07 Aug, 16:19 ","+20.000",R.drawable.ic_topup,R.drawable.ic_warning_red));
 
 
-        listTrans4.add(new Transaction("Parking payment","20 July, 10:07 ","-3.000",R.drawable.ic_bike));
-        listTrans4.add(new Transaction("Parking payment","10 July, 16:19 ","-3.000",R.drawable.ic_bike));
-        listTrans4.add(new Transaction("Parking payment","09 July, 16:19 ","-3.000",R.drawable.ic_bike));
-        listTrans4.add(new Transaction("Parking payment","08 July, 16:19 ","-3.000",R.drawable.ic_bike));
-        listTrans4.add(new Transaction("Top up","07 July, 16:19 ","+20.000",R.drawable.ic_topup));
-        listTrans4.add(new Transaction("Parking up","06 July, 16:19 ","-3.000",R.drawable.ic_bike));
-        listTrans4.add(new Transaction("Parking up","05 July, 16:19 ","-3.000",R.drawable.ic_bike));
-        listTrans4.add(new Transaction("Top up","04 July, 16:19 ","+20.000",R.drawable.ic_topup));
+        listTrans4.add(new Transaction("Parking payment","20 July, 10:07 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        listTrans4.add(new Transaction("Parking payment","10 July, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        listTrans4.add(new Transaction("Parking payment","09 July, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        listTrans4.add(new Transaction("Parking payment","08 July, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        listTrans4.add(new Transaction("Top up","07 July, 16:19 ","+20.000",R.drawable.ic_topup,R.drawable.ic_tickbutton));
+        listTrans4.add(new Transaction("Parking up","06 July, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_warning_red));
+        listTrans4.add(new Transaction("Parking up","05 July, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        listTrans4.add(new Transaction("Top up","04 July, 16:19 ","+20.000",R.drawable.ic_topup,R.drawable.ic_tickbutton));
 
 
 

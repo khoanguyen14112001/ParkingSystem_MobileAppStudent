@@ -31,6 +31,7 @@ import nguyenhoanganhkhoa.com.adapter.HomeButtonAdapter;
 import nguyenhoanganhkhoa.com.adapter.TransAllAdapter;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogEditActivities;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogFragmentHome;
+import nguyenhoanganhkhoa.com.models.Date;
 import nguyenhoanganhkhoa.com.models.HomeButtons;
 import nguyenhoanganhkhoa.com.models.Transaction;
 import nguyenhoanganhkhoa.com.myapplication.home.EditActivitiesScreen;
@@ -220,7 +221,7 @@ public class HomeFragment extends Fragment {
 
 
     private void initData() {
-        transAllAdapter = new TransAllAdapter();
+        transAllAdapter = new TransAllAdapter(getContext());
         transAllAdapter.setData(getTransactionList());
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
@@ -232,15 +233,15 @@ public class HomeFragment extends Fragment {
 
     private List<Transaction> getTransactionList() {
         List<Transaction> list = new ArrayList<>();
-        list.add(new Transaction("Top up","20 Oct, 10:07 ","+50.000",R.drawable.ic_topup));
-        list.add(new Transaction("Parking payment","10 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
-        list.add(new Transaction("Parking payment","09 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
-        list.add(new Transaction("Parking payment","08 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
-        list.add(new Transaction("Parking payment","07 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
-        list.add(new Transaction("Parking payment","06 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
-        list.add(new Transaction("Parking payment","05 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
-        list.add(new Transaction("Parking payment","04 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
-        list.add(new Transaction("Parking payment","03 Oct, 16:19 ","-3.000",R.drawable.ic_bike));
+        list.add(new Transaction("Top up","20 Oct, 10:07 ","+50.000",R.drawable.ic_topup,R.drawable.ic_tickbutton));
+        list.add(new Transaction("Parking payment","10 Oct, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        list.add(new Transaction("Parking payment","09 Oct, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        list.add(new Transaction("Parking payment","08 Oct, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        list.add(new Transaction("Parking payment","07 Oct, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        list.add(new Transaction("Parking payment","06 Oct, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        list.add(new Transaction("Parking payment","05 Oct, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_tickbutton));
+        list.add(new Transaction("Parking payment","04 Oct, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_warning_red));
+        list.add(new Transaction("Parking payment","03 Oct, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_warning_red));
 
         return list;
     }

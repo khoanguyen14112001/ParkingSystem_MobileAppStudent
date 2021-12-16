@@ -183,7 +183,6 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
 
     }
-
     private Boolean validateFaculty(){
         String selectedItem = facultyAdapter.getItem(spnFaculty.getSelectedItemPosition()).getNameFaculty();
 
@@ -233,8 +232,8 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     private List<Faculty> getListFaculty() {
         List<Faculty> list =new ArrayList<>();
         String[] facultyArray= getResources().getStringArray(R.array.faculty);
-
-        for (int i = 0;i<facultyArray.length;i++)
+        int i;
+        for (i = 0;i<facultyArray.length;i++)
             list.add(new Faculty(facultyArray[i]));
 
         return list;
@@ -261,11 +260,9 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
 
     //Tạo sự kiện chụp ảnh
-
     ActivityResultLauncher<Intent> activityResultLauncher;
     boolean isCamera;
     Bitmap bitmap = null;
-
     private void addResultLauncher() {
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -326,10 +323,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         });
 
         customDialogThreeButton.show();
-
-
     }
-
 
     // Tạo sự kiện thêm và đóng spinner
     @Override

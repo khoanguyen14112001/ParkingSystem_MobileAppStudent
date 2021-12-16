@@ -132,8 +132,6 @@ public class VerificationScreen extends AppCompatActivity {
                             }
                         });
                         customDialog.show();
-
-
                     }
                     else
                     {

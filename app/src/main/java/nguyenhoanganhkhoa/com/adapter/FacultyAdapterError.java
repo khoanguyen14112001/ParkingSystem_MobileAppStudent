@@ -41,8 +41,6 @@ public class FacultyAdapterError extends ArrayAdapter<Faculty> {
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_faculty,parent,false);
-
-
         TextView txtFaculty = convertView.findViewById(R.id.txtFacultyItem);
 
         Faculty faculty = this.getItem(position);

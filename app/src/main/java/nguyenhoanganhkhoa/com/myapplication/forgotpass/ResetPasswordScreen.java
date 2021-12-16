@@ -169,6 +169,9 @@ public class ResetPasswordScreen extends AppCompatActivity {
         imvRestBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Phải startActivity kiểu như vầy thì lúc mở cái màn hình nhập phone, bấm trở về xong
+                // bấm vô lại thì nó mới tiếp tục countdown cái timer mà không bị crash.
+
                 Intent openMainActivity = new Intent(ResetPasswordScreen.this, LoginScreen.class);
                 openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivityIfNeeded(openMainActivity, 0);

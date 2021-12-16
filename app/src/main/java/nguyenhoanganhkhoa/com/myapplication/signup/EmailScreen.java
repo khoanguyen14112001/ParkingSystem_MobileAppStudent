@@ -135,7 +135,6 @@ public class EmailScreen extends AppCompatActivity {
             txtErrorEmail.setTextSize(0);
             return true;
 
-
     }
 
     private void addEvents() {

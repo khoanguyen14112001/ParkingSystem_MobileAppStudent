@@ -72,7 +72,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
 
         else if(!AppUtil.PASSWORD_PATTERN.matcher(passwordInput).matches())
         {
-            if(passwordInput.length()<=15)
+            if(passwordInput.length()<=8)
             {
                 txtErrorChangePass.setText(R.string.your_password_is_too_weak);
 

@@ -5,6 +5,15 @@ public class Transaction {
     private String dateTrans;
     private String moneyTrans;
     private int imgStatusTrans;
+    private int imgSuccessTrans;
+
+    public int getImgSuccessTrans() {
+        return imgSuccessTrans;
+    }
+
+    public void setImgSuccessTrans(int imgSuccessTrans) {
+        this.imgSuccessTrans = imgSuccessTrans;
+    }
 
     public String getStatusTrans() {
         return statusTrans;
@@ -38,10 +47,11 @@ public class Transaction {
         this.imgStatusTrans = imgStatusTrans;
     }
 
-    public Transaction(String statusTrans, String dateTrans, String moneyTrans, int imgStatusTrans) {
+    public Transaction(String statusTrans, String dateTrans, String moneyTrans, int imgStatusTrans, int imgSuccessTrans) {
         this.statusTrans = statusTrans;
         this.dateTrans = dateTrans;
         this.moneyTrans = moneyTrans;
         this.imgStatusTrans = imgStatusTrans;
+        this.imgSuccessTrans = imgSuccessTrans;
     }
 }

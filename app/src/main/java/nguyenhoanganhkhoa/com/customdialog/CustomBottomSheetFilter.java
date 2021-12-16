@@ -318,6 +318,31 @@ public class CustomBottomSheetFilter extends BottomSheetDialog {
             }
         };
 
+        sliderAmount.addOnSliderTouchListener(new RangeSlider.OnSliderTouchListener() {
+            @Override
+            public void onStartTrackingTouch(@NonNull RangeSlider slider) {
+
+
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(@NonNull RangeSlider slider) {
+                List<Float> values = sliderAmount.getValues();
+
+                float amountFrom = values.get(0);
+                float amountTo = values.get(1);
+
+                int a1 = (int) amountFrom;
+                int a2 = (int) amountTo;
+
+                edtValueFrom.setText(String.valueOf(a1));
+                edtValueTo.setText(String.valueOf(a2));
+
+            }
+        });
+
+
         setListenerTo = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
