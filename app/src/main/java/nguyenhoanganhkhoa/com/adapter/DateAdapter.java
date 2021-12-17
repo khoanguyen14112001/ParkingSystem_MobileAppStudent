@@ -1,6 +1,7 @@
 package nguyenhoanganhkhoa.com.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +23,11 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
     private List<Date> mDates;
     private int layout;
 
+
     public DateAdapter(Context context, int layout) {
         this.context = context;
         this.layout = layout;
+        Log.d("TAG", "DateAdapter: hihi");
     }
 
     public void setData(List<Date> list){
