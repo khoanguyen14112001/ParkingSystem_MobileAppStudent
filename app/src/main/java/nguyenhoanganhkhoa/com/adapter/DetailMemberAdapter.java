@@ -23,6 +23,8 @@ public class DetailMemberAdapter extends RecyclerView.Adapter<DetailMemberAdapte
     public DetailMemberAdapter(List<Member> mListDetailMember) {
         this.mListDetailMember = mListDetailMember;
         Log.d("TAG", "DetailMemberAdapter: adddddđ");
+        Log.d("TAG", "DetailMemberAdapter: 12312312312321321");
+
     }
 
     @NonNull
