@@ -156,7 +156,7 @@ public class NewsScreen extends AppCompatActivity {
             }
         }, 250,2500);
 
-        Log.d("TAG", "createSlideShow: " + sizeListNews);
+//        Log.d("TAG", "createSlideShow: " + sizeListNews);
     }
 
     private void loadFireBaseData(String cate,int layout) {
