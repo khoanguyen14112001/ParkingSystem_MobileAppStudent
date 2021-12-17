@@ -22,6 +22,7 @@ public class HelpCenterScreen extends AppCompatActivity {
     QuestionsAdapter questionsAdapter;
     RecyclerView rcvQuestions, rcvProblemCate;
     ImageView imvComebackHelpCenter;
+
     private void linkView() {
         rcvQuestions = findViewById(R.id.rcvQuestions);
         rcvProblemCate = findViewById(R.id.rcvProblemCate);
