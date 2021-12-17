@@ -1,5 +1,6 @@
 package nguyenhoanganhkhoa.com.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class DetailMemberAdapter extends RecyclerView.Adapter<DetailMemberAdapte
 
     public DetailMemberAdapter(List<Member> mListDetailMember) {
         this.mListDetailMember = mListDetailMember;
+        Log.d("TAG", "DetailMemberAdapter: adddddđ");
     }
 
     @NonNull
