@@ -49,6 +49,7 @@ public class NewsScreen extends AppCompatActivity {
     TextView dots[];
     LinearLayout layout_dots_news;
 
+
     int currentPosition = 0;
     Timer timer;
     ImageView imvBackNews;
@@ -83,17 +84,13 @@ public class NewsScreen extends AppCompatActivity {
         loadFireBaseData("news",R.layout.item_news);
 
         addEvents();
-        addAutoEvents();
+      //  addAutoEvents();
 
-        Log.d("TAG", "onCreate: " + sizeListNews);
 
     }
-    static int sizeListNews;
-    private void addAutoEvents() {
-        dots = new TextView[sizeListNews];
-        createSlideShow();
-        reusedConstraint.prepareDots(this,sizeListNews,layout_dots_news,dots,9);
-        Log.d("TAG", "addAutoEvents: " + sizeListNews);
+    private void addDots(int size) {
+        dots = new TextView[size];
+        reusedConstraint.prepareDots(this,size,layout_dots_news,dots,9);
     }
 
 
@@ -102,6 +99,10 @@ public class NewsScreen extends AppCompatActivity {
         {
             imagesAdapter = new ImagesAdapter(list,layout,this);
             viewPagerNews.setAdapter(imagesAdapter);
+            Log.d("TAG", "initAdapter: " + list.size());
+
+            createSlideShow(list.size());
+            addDots(list.size());
         }
 
         if(layout == R.layout.item_ads){
@@ -135,12 +136,12 @@ public class NewsScreen extends AppCompatActivity {
 
     }
 
-    private void createSlideShow() {
+    private void createSlideShow(int size) {
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                if(currentPosition ==sizeListNews){
+                if(currentPosition ==size){
                     currentPosition = 0;
                 }
                 viewPagerNews.setCurrentItem(currentPosition++,true);
@@ -154,10 +155,10 @@ public class NewsScreen extends AppCompatActivity {
             public void run() {
                 handler.post(runnable);
             }
-        }, 250,2500);
+        }, 150,2500);
 
-//        Log.d("TAG", "createSlideShow: " + sizeListNews);
     }
+
 
     private void loadFireBaseData(String cate,int layout) {
         List<Images> list = new ArrayList<>();
@@ -166,11 +167,8 @@ public class NewsScreen extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot data : snapshot.getChildren()){
                     Images images = new Images((data.child("link").getValue().toString()));
-                    Log.d("TAG", "onDataChange: " + data.child("link").getValue().toString());
                     list.add(images);
                 }
-                sizeListNews = list.size();
-                Log.d("TAG", "sizeListNews trong datachange: " + sizeListNews);
                 initAdapter(layout,list);
             }
 
@@ -179,6 +177,7 @@ public class NewsScreen extends AppCompatActivity {
                 Toast.makeText(NewsScreen.this, "Fail to load Data", Toast.LENGTH_SHORT).show();
             }
         });
+
 
 
     }
