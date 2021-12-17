@@ -1,17 +1,17 @@
 package nguyenhoanganhkhoa.com.models;
 
 public class Images {
-    public int getImagesSource() {
-        return imagesSource;
+    String linkImages;
+
+    public String getLinkImages() {
+        return linkImages;
     }
 
-    public void setImagesSource(int imagesSource) {
-        this.imagesSource = imagesSource;
+    public void setLinkImages(String linkImages) {
+        this.linkImages = linkImages;
     }
 
-    public Images(int imagesSource) {
-        this.imagesSource = imagesSource;
+    public Images(String linkImages) {
+        this.linkImages = linkImages;
     }
-
-    int imagesSource;
 }

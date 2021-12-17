@@ -51,6 +51,7 @@ public class AppUtil {
 
     //Khai báo database
     public static DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("account");
+
     public static final String DATA_OBJECT = "Student";
 
     public static String USERNAME_S = "";
