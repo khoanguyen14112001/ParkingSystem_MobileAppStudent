@@ -9,6 +9,8 @@ import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,21 +18,26 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import nguyenhoanganhkhoa.com.models.Images;
 import nguyenhoanganhkhoa.com.models.QuestionsCategories;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.home.HelpCenterScreen;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
-public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.ViewHolder>  {
+public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.ViewHolder> implements Filterable {
 
     private List<QuestionsCategories> mListQuesCate;
+    private List<QuestionsCategories> mListQuesCateOld;
     int layout;
     Context context;
 
     public QuestionsAdapter(List<QuestionsCategories> mListQuesCate, int layout, Context context) {
         this.mListQuesCate = mListQuesCate;
+        this.mListQuesCateOld = new ArrayList<>(mListQuesCate);
         this.layout = layout;
         this.context = context;
     }
@@ -84,6 +91,8 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
         return mListQuesCate.size();
     }
 
+
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imvThumbQuestion,imvProblemCategories;
         TextView txtNameCategories,txtArticles, txtQuestions ;
@@ -98,5 +107,37 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
             txtQuestions = itemView.findViewById(R.id.txtQuestions);
             cvQuetstions = itemView.findViewById(R.id.cvQuetstions);
         }
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                List<QuestionsCategories> quesList = new ArrayList<>();
+                String strSearch = charSequence.toString();
+                if(strSearch.isEmpty()){
+                    mListQuesCate = mListQuesCateOld;
+                }else{
+                    for (QuestionsCategories question : mListQuesCateOld){
+                        if (question.getNameQuestion_Categories().toLowerCase().contains(strSearch.toLowerCase()));
+                        quesList.add(question);
+                    }
+                }
+
+                mListQuesCate = quesList;
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mListQuesCate;
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mListQuesCate = (List<QuestionsCategories>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }
