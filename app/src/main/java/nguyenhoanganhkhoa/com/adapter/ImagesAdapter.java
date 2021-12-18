@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.models.Images;
@@ -42,11 +44,12 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
         if(images ==null){
             return;
         }
+
         if(layout==R.layout.item_news){
-            holder.imvNews.setImageResource(images.getImagesSource());
+            Glide.with(context).load(images.getLinkImages()).into(holder.imvNews);
         }
         else if(layout==R.layout.item_ads){
-            holder.imvAds.setImageResource(images.getImagesSource());
+            Glide.with(context).load(images.getLinkImages()).into(holder.imvAds);
         }
 
 

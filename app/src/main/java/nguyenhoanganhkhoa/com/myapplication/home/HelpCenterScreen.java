@@ -1,17 +1,14 @@
 package nguyenhoanganhkhoa.com.myapplication.home;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.SearchView;
 
@@ -26,13 +23,40 @@ public class HelpCenterScreen extends AppCompatActivity {
     QuestionsAdapter questionsAdapter;
     RecyclerView rcvQuestions, rcvProblemCate;
     ImageView imvComebackHelpCenter;
-    SearchView searchView;
+    androidx.appcompat.widget.SearchView searchView;
 
     private void linkView() {
         rcvQuestions = findViewById(R.id.rcvQuestions);
         rcvProblemCate = findViewById(R.id.rcvProblemCate);
         imvComebackHelpCenter = findViewById(R.id.imvComebackHelpCenter);
         searchView = findViewById(R.id.svProblem);
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_help_center_screen);
+
+        linkView();
+        initAdapter(R.layout.item_problem_categories);
+        initAdapter(R.layout.item_question);
+        addSearchView();
+        addEvents();
+    }
+
+    private void addSearchView() {
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                questionsAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                questionsAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     private void addEvents() {
@@ -95,29 +119,13 @@ public class HelpCenterScreen extends AppCompatActivity {
         list.add(new QuestionsCategories("How to top up my wallet?",
                 R.drawable.ic_topup));
 
+
+
         return list;
 
     }
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help_center_screen);
-        List<QuestionsCategories> list = new ArrayList<>();
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                questionsAdapter.getFilter().filter(s);
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                questionsAdapter.getFilter().filter(s);
-                return false;
-            }
-        });
 
-    }
 }

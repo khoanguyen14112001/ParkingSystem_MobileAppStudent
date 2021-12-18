@@ -20,12 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import nguyenhoanganhkhoa.com.models.Images;
 import nguyenhoanganhkhoa.com.models.QuestionsCategories;
 import nguyenhoanganhkhoa.com.myapplication.R;
-import nguyenhoanganhkhoa.com.myapplication.home.HelpCenterScreen;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.ViewHolder> implements Filterable {
@@ -37,8 +35,10 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
 
     public QuestionsAdapter(List<QuestionsCategories> mListQuesCate, int layout, Context context) {
         this.mListQuesCate = mListQuesCate;
-        this.mListQuesCateOld = new ArrayList<>(mListQuesCate);
         this.layout = layout;
+        if(layout == R.layout.item_question){
+            mListQuesCateOld = mListQuesCate;
+        }
         this.context = context;
     }
 
@@ -91,7 +91,42 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
         return mListQuesCate.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                if(layout == R.layout.item_question){
+                    String textSearch = charSequence.toString();
+                    if(textSearch.isEmpty()){
+                        mListQuesCate = mListQuesCateOld;
+                    }
+                    else{
+                        List<QuestionsCategories> list = new ArrayList<>();
+                        for(QuestionsCategories question: mListQuesCateOld){
+                            if(question.getNameQuestion_Categories().toLowerCase()
+                                    .contains(textSearch.toLowerCase().trim())){
+                                list.add(question);
+                            }
+                        }
+                        mListQuesCate = list;
+                    }
+                    FilterResults filterResults = new FilterResults();
+                    filterResults.values = mListQuesCate;
+                    return filterResults;
+                }
+                return null;
+            }
 
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                if(layout ==R.layout.item_question){
+                    mListQuesCate = (List<QuestionsCategories>) filterResults.values;
+                    notifyDataSetChanged();
+                }
+            }
+        };
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imvThumbQuestion,imvProblemCategories;
@@ -107,37 +142,5 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
             txtQuestions = itemView.findViewById(R.id.txtQuestions);
             cvQuetstions = itemView.findViewById(R.id.cvQuetstions);
         }
-    }
-
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                List<QuestionsCategories> quesList = new ArrayList<>();
-                String strSearch = charSequence.toString();
-                if(strSearch.isEmpty()){
-                    mListQuesCate = mListQuesCateOld;
-                }else{
-                    for (QuestionsCategories question : mListQuesCateOld){
-                        if (question.getNameQuestion_Categories().toLowerCase().contains(strSearch.toLowerCase()));
-                        quesList.add(question);
-                    }
-                }
-
-                mListQuesCate = quesList;
-
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = mListQuesCate;
-
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                mListQuesCate = (List<QuestionsCategories>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
     }
 }

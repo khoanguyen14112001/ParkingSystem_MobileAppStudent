@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtStatusTrans"
+            android:id="@+id/txtStatusSupport"
             android:text="@string/entry"
             android:layout_gravity="center_horizontal"
             style="@style/in_SmallHeaderText"
@@ -60,6 +60,7 @@
             android:text="21 Oct, 10:07 "
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:id="@+id/txtDateSupport"
             android:fontFamily="@font/be_vietnam_medium"
             android:textColor="@color/xamChu"
             android:textSize="20sp"/>

@@ -12,7 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".home.TopUpChooseWalletScreen"
+            android:name=".home.ContactSupportScreen"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name=".home.HelpCenterDetailScreen"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".home.DetailTransaction"
+            android:exported="true" />
+        <activity
+            android:name=".home.EditActivitiesScreen"
+            android:exported="true" />
+        <activity
+            android:name=".home.TopUpMainScreen"
             android:exported="true" />
         <activity
             android:name=".home.SecurityCenterScreen"
@@ -22,16 +37,13 @@
             android:exported="true" />
         <activity
             android:name=".home.HelpCenterScreen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".home.NewsScreen"
-            android:exported="true"></activity>
+            android:exported="true" >
+
+
+        </activity>
         <activity
             android:name=".home.OurTeamScreen"
             android:exported="true" />
@@ -41,12 +53,6 @@
         <activity
             android:name=".home.EditInfomationScreen"
             android:exported="true" />
-        <activity
-            android:name=".home.TopUpQRCodeScreen"
-            android:exported="true" />
-        <activity
-            android:name=".home.TopUpScreen"
-            android:exported="true"></activity>
         <activity
             android:name=".home.AllNotificationScreen"
             android:exported="true" />
@@ -58,12 +64,16 @@
             android:exported="true" />
         <activity
             android:name=".home.HomePageScreen"
-            android:exported="true">
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".signup.PersonalInformationSetScreen"
-            android:exported="true" />
+            android:exported="true"></activity>
         <activity
             android:name=".signup.VerificationSignupScreen"
             android:exported="true" />
@@ -87,14 +97,13 @@
             android:exported="true" />
         <activity
             android:name=".login.LoginScreen"
-            android:exported="true">
+            android:exported="true" >
 
         </activity>
         <activity
             android:name="nguyenhoanganhkhoa.com.test.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat">
-        </activity>
+            android:theme="@style/Theme.AppCompat" />
     </application>
 
 </manifest>

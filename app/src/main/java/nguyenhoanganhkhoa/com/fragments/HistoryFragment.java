@@ -1,6 +1,7 @@
 package nguyenhoanganhkhoa.com.fragments;
 
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,13 +16,19 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SearchView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import nguyenhoanganhkhoa.com.adapter.DateAdapter;
+import nguyenhoanganhkhoa.com.customdialog.CustomBottomSheetFilter;
+import nguyenhoanganhkhoa.com.customdialog.CustomBottomSheetFilterHistory;
 import nguyenhoanganhkhoa.com.models.Date;
 import nguyenhoanganhkhoa.com.models.History;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.home.ShowAllTransactionScreen;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,10 +76,12 @@ public class HistoryFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    SearchView svHistory;
+    ImageView imvFilter;
     RecyclerView rcvDisplayHistoryAndDate;
     DateAdapter dateAdapter;
     RadioButton radHistoryAll, radHistoryEntry, radHistoryExit;
+
+    CustomBottomSheetFilterHistory bottomSheetDialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -93,9 +102,21 @@ public class HistoryFragment extends Fragment {
         radHistoryAll = view.findViewById(R.id.radHistoryAll);
         radHistoryEntry = view.findViewById(R.id.radHistoryEntry);
         radHistoryExit = view.findViewById(R.id.radHistoryExit);
+
+        imvFilter = view.findViewById(R.id.imvFilter);
     }
 
     private void addEvent() {
+        imvFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(bottomSheetDialog ==null){
+                    bottomSheetDialog = new CustomBottomSheetFilterHistory(requireContext(),R.style.BottomSheetDialogTheme,R.layout.custom_bottomdialog_filter);
+                }
+                bottomSheetDialog.show();
+            }
+        });
+
         radHistoryAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
