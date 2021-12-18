@@ -298,7 +298,7 @@ public class CustomBottomSheetFilter extends BottomSheetDialog {
                         //getData and search
                     }
                     dismiss();
-                    Toast.makeText(getContext(), "Ngon lành", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -429,7 +429,7 @@ public class CustomBottomSheetFilter extends BottomSheetDialog {
                 }
             }
             catch (Exception e) {
-                Toast.makeText(getContext(), "Deo parseInt dc", Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "validateAmount: " + e);
                 return false;
             }
 
@@ -468,7 +468,7 @@ public class CustomBottomSheetFilter extends BottomSheetDialog {
 
         }
         catch (Exception e){
-            Toast.makeText(getContext(), "ko parseInt dc", Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "convertStringToInt: " + e);
             return null;
         }
     }

@@ -1,5 +1,6 @@
 package nguyenhoanganhkhoa.com.myapplication.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -28,6 +30,7 @@ import java.util.Objects;
 
 import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,6 +85,7 @@ public class HelpCenterInFragment extends Fragment {
 
     ImageView imv1,imv2,imv3;
     View viewAddPics;
+    TextView txtService;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,11 +93,22 @@ public class HelpCenterInFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_help_center_in, container, false);
         linkView(view);
+        setService();
         checkContent();
         addEvents();
         addResultLauncher();
 
         return view;
+    }
+
+    private void setService() {
+
+        if(AppUtil.HELP_PROBLEM_CONTEXT.equals(ContactSupportScreen.class.toString())){
+            txtService.setText(R.string.history);
+        }
+        else{
+            txtService.setText(R.string.transaction);
+        }
     }
 
 
@@ -196,5 +211,6 @@ public class HelpCenterInFragment extends Fragment {
         imv2 = view.findViewById(R.id.imv2);
         imv3 = view.findViewById(R.id.imv3);
         viewAddPics = view.findViewById(R.id.viewAddPics);
+        txtService = view.findViewById(R.id.txtService);
     }
 }
