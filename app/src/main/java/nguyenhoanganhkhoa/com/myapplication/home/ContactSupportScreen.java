@@ -4,27 +4,41 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.adapter.DetailProTransAdapter;
 import nguyenhoanganhkhoa.com.models.DetailProTrans;
+import nguyenhoanganhkhoa.com.models.History;
+import nguyenhoanganhkhoa.com.models.Transaction;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 public class ContactSupportScreen extends AppCompatActivity {
 
     RecyclerView rcvContactSupport;
     DetailProTransAdapter adapter;
 
+    History history;
+
     ImageView imvBack;
+
+    ImageView imvStatus;
+    TextView txtStatusSupport, txtDateSupport;
 
     private void linkView() {
         rcvContactSupport = findViewById(R.id.rcvContactSupport);
         imvBack = findViewById(R.id.imvBack);
+
+        imvStatus = findViewById(R.id.imvStatus);
+        txtStatusSupport = findViewById(R.id.txtStatusSupport);
+        txtDateSupport = findViewById(R.id.txtDateSupport);
     }
 
 
@@ -35,6 +49,7 @@ public class ContactSupportScreen extends AppCompatActivity {
 
         linkView();
         initAdapter();
+        getData();
         addEvents();
 
     }
@@ -66,5 +81,19 @@ public class ContactSupportScreen extends AppCompatActivity {
         list.add(new DetailProTrans("I do not want to receive notification history about my parking"));
 
         return list;
+    }
+
+    private void getData() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra(AppUtil.MY_BUNDLE_TRANS);
+        if(bundle!=null){
+            history = (History) bundle.getSerializable(AppUtil.SELECTED_ITEM_TRANS);
+            imvStatus.setImageResource(history.getColorHis());
+            txtStatusSupport.setText(history.getStatusInOut());
+            txtDateSupport.setText(history.getDayInOut());
+        }
+
+
+
     }
 }

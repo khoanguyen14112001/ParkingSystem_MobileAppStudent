@@ -70,9 +70,13 @@ public class AppUtil {
     public final static String security_center = "Security Center";
 
     public static final String SELECTED_ITEM = "my_clicked_item";
+    public static final String SELECTED_ITEM_TRANS = "my_clicked_item_trans";
     public static final String MY_BUNDLE = "my_bundle";
+    public static final String MY_BUNDLE_TRANS = "my_bundle_trans";
 
-    public static final String HELP_SCREEN = "";
+    public static String PROBLEM = "";
+    public static String HELP_PROBLEM_CONTEXT = "";
+
 
 
 

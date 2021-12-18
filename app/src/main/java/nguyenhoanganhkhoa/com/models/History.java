@@ -1,6 +1,8 @@
 package nguyenhoanganhkhoa.com.models;
 
-public class History {
+import java.io.Serializable;
+
+public class History implements Serializable {
     private int colorHis;
     private String statusInOut;
     private String dayInOut;

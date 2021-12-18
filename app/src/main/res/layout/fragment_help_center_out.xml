@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/in_SmallHeaderText"
+            android:id="@+id/txtProblem"
             android:text="I want to cancel the wrong top up" />
 
         <TextView
