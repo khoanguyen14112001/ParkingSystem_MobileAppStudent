@@ -9,6 +9,8 @@ import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.models.Images;
@@ -23,15 +26,19 @@ import nguyenhoanganhkhoa.com.models.QuestionsCategories;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
-public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.ViewHolder>  {
+public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.ViewHolder> implements Filterable {
 
     private List<QuestionsCategories> mListQuesCate;
+    private List<QuestionsCategories> mListQuesCateOld;
     int layout;
     Context context;
 
     public QuestionsAdapter(List<QuestionsCategories> mListQuesCate, int layout, Context context) {
         this.mListQuesCate = mListQuesCate;
         this.layout = layout;
+        if(layout == R.layout.item_question){
+            mListQuesCateOld = mListQuesCate;
+        }
         this.context = context;
     }
 
@@ -82,6 +89,43 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
     @Override
     public int getItemCount() {
         return mListQuesCate.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                if(layout == R.layout.item_question){
+                    String textSearch = charSequence.toString();
+                    if(textSearch.isEmpty()){
+                        mListQuesCate = mListQuesCateOld;
+                    }
+                    else{
+                        List<QuestionsCategories> list = new ArrayList<>();
+                        for(QuestionsCategories question: mListQuesCateOld){
+                            if(question.getNameQuestion_Categories().toLowerCase()
+                                    .contains(textSearch.toLowerCase().trim())){
+                                list.add(question);
+                            }
+                        }
+                        mListQuesCate = list;
+                    }
+                    FilterResults filterResults = new FilterResults();
+                    filterResults.values = mListQuesCate;
+                    return filterResults;
+                }
+                return null;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                if(layout ==R.layout.item_question){
+                    mListQuesCate = (List<QuestionsCategories>) filterResults.values;
+                    notifyDataSetChanged();
+                }
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

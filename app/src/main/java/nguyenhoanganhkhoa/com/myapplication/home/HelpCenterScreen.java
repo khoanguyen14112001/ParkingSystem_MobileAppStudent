@@ -10,6 +10,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,13 @@ public class HelpCenterScreen extends AppCompatActivity {
     QuestionsAdapter questionsAdapter;
     RecyclerView rcvQuestions, rcvProblemCate;
     ImageView imvComebackHelpCenter;
+    androidx.appcompat.widget.SearchView searchView;
 
     private void linkView() {
         rcvQuestions = findViewById(R.id.rcvQuestions);
         rcvProblemCate = findViewById(R.id.rcvProblemCate);
         imvComebackHelpCenter = findViewById(R.id.imvComebackHelpCenter);
+        searchView = findViewById(R.id.svProblem);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,24 @@ public class HelpCenterScreen extends AppCompatActivity {
         linkView();
         initAdapter(R.layout.item_problem_categories);
         initAdapter(R.layout.item_question);
+        addSearchView();
         addEvents();
+    }
+
+    private void addSearchView() {
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                questionsAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                questionsAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     private void addEvents() {
