@@ -26,8 +26,6 @@ import nguyenhoanganhkhoa.com.models.QuestionsCategories;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
-
-
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.ViewHolder> implements Filterable {
 
     private List<QuestionsCategories> mListQuesCate;
