@@ -9,6 +9,8 @@ import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.models.Images;
@@ -23,7 +26,7 @@ import nguyenhoanganhkhoa.com.models.QuestionsCategories;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
-public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.ViewHolder>  {
+public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.ViewHolder> {
 
     private List<QuestionsCategories> mListQuesCate;
     int layout;
