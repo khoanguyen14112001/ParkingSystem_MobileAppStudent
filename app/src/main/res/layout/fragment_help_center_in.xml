@@ -14,8 +14,8 @@
         style="@style/in_SmallHeaderText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Need further assistance?"
         android:layout_marginTop="20dp"
+        android:text="Need further assistance?"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -145,9 +145,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/be_vietnam_medium"
         android:text="Attach pictures (if any)"
         android:textColor="@color/black"
-        android:fontFamily="@font/be_vietnam_medium"
         app:layout_constraintBottom_toTopOf="@id/viewAddPics"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -159,39 +159,46 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/view_custom_corner_small_blackstroke"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@id/view1"
         app:layout_constraintVertical_bias="0.15" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/viewAddPics"
-        android:layout_marginTop="5dp"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/viewAddPics"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/viewAddPics"
+        >
+
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="85dp"
             android:id="@+id/imv1"
-            android:scaleType="centerCrop"/>
-
-        <ImageView
             android:layout_width="100dp"
             android:layout_height="85dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"/>
+
+        <ImageView
             android:id="@+id/imv2"
-            android:layout_marginHorizontal="10dp"
-            android:scaleType="centerCrop"/>
-
-        <ImageView
             android:layout_width="100dp"
             android:layout_height="85dp"
+            android:layout_marginHorizontal="10dp"
+            android:visibility="gone"
+            android:scaleType="centerCrop" />
+
+        <ImageView
             android:id="@+id/imv3"
-            android:scaleType="centerCrop"/>
+            android:layout_width="100dp"
+            android:layout_height="85dp"
+            android:visibility="gone"
+            android:scaleType="centerCrop" />
     </LinearLayout>
-
-
-
 
 
     <ImageView
@@ -209,6 +216,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/be_vietnam_light"
         android:src="@drawable/ic_plusbutton"
         android:text="@string/add_pictures"
@@ -216,20 +224,19 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/viewAddPics"
         app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="@id/viewAddPics"
         app:layout_constraintRight_toRightOf="@id/viewAddPics"
         app:layout_constraintTop_toBottomOf="@+id/imvAdd" />
 
     <androidx.appcompat.widget.AppCompatButton
-        style="@style/buttonYellow"
         android:id="@+id/btnRequestHelpIn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_bias="0.9"
+        style="@style/buttonYellow"
+        android:text="@string/request_help"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/request_help"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

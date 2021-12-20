@@ -2,6 +2,7 @@ package nguyenhoanganhkhoa.com.myapplication.home;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,10 +13,12 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import nguyenhoanganhkhoa.com.adapter.DialogNotificationAdapter;
 import nguyenhoanganhkhoa.com.models.Notification;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,7 +67,9 @@ public class FromAdminNoticeFragment extends Fragment {
         }
     }
     RecyclerView rcvDisplayNotifications;
+    ReusedConstraint reusedConstraint = new ReusedConstraint(getContext());
     DialogNotificationAdapter adapter;
+    SearchView searchView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,18 +79,19 @@ public class FromAdminNoticeFragment extends Fragment {
 
         linkView(view);
         initAdapter();
+        reusedConstraint.addSearchForNotification(searchView,adapter);
 
         return view;
     }
 
     private void linkView(View view) {
         rcvDisplayNotifications = view.findViewById(R.id.rcvDisplayNotifications);
+        searchView = requireActivity().findViewById(R.id.svNotification);
     }
 
 
     private void initAdapter() {
         adapter = new DialogNotificationAdapter(getContext(),R.layout.item_notification_all_bold);
-        rcvDisplayNotifications.setAdapter(adapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false);
         rcvDisplayNotifications.setLayoutManager(linearLayoutManager);

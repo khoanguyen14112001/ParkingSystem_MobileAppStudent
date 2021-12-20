@@ -10,6 +10,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -18,6 +19,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.SearchView;
+
+import nguyenhoanganhkhoa.com.adapter.DialogNotificationAdapter;
 import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class ReusedConstraint {
@@ -109,6 +113,33 @@ public class ReusedConstraint {
         }.start();
 
     }
+
+    public void addSearchForNotification(SearchView searchView, DialogNotificationAdapter adapter) {
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if(adapter!=null){
+                    adapter.getFilter().filter(query);
+                }
+                else{
+                    Log.d("TAG", "onQueryTextChange: null" );
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(adapter!=null){
+                    adapter.getFilter().filter(newText);
+                }
+                else{
+                    Log.d("TAG", "onQueryTextChange: null" );
+                }
+                return false;
+            }
+        });
+    }
+
 
 
 }

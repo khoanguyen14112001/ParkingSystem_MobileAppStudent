@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.FileNotFoundException;
@@ -83,9 +84,11 @@ public class HelpCenterInFragment extends Fragment {
     Button btnRequestHelpIn;
     ActivityResultLauncher activityResultLauncher;
 
-    ImageView imv1,imv2,imv3;
+    ImageView imv1,imv2,imv3, imvAdd;
     View viewAddPics;
-    TextView txtService;
+    TextView txtService, txtAdd;
+
+    LinearLayout layoutPics;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,7 +105,6 @@ public class HelpCenterInFragment extends Fragment {
     }
 
     private void setService() {
-
         if(AppUtil.HELP_PROBLEM_CONTEXT.equals(ContactSupportScreen.class.toString())){
             txtService.setText(R.string.history);
         }
@@ -125,16 +127,23 @@ public class HelpCenterInFragment extends Fragment {
                             if(bitmap1==null)
                             {
                                 bitmap1 = BitmapFactory.decodeStream(inputStream);
+                                layoutPics.setVisibility(View.VISIBLE);
+                                imv1.setVisibility(View.VISIBLE);
                                 imv1.setImageBitmap(bitmap1);
                             }
                             else if(bitmap2==null){
                                 bitmap2 = BitmapFactory.decodeStream(inputStream);
+                                imv2.setVisibility(View.VISIBLE);
                                 imv2.setImageBitmap(bitmap2);
                             }
 
                             else {
                                 bitmap3 = BitmapFactory.decodeStream(inputStream);
+                                imv3.setVisibility(View.VISIBLE);
                                 imv3.setImageBitmap(bitmap3);
+                                viewAddPics.setVisibility(View.GONE);
+                                txtAdd.setVisibility(View.GONE);
+                                imvAdd.setVisibility(View.GONE);
                             }
 
                         } catch (FileNotFoundException e) {
@@ -195,7 +204,12 @@ public class HelpCenterInFragment extends Fragment {
                     dialog.btnOK.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(new Intent(getContext(),ShowAllTransactionScreen.class));
+                            if(AppUtil.HELP_PROBLEM_CONTEXT.equals(ContactSupportScreen.class.toString())){
+                                startActivity(new Intent(getContext(),HomePageScreen.class));
+                            }
+                            else{
+                                startActivity(new Intent(getContext(),ShowAllTransactionScreen.class));
+                            }
                         }
                     });
                     dialog.show();
@@ -212,5 +226,9 @@ public class HelpCenterInFragment extends Fragment {
         imv3 = view.findViewById(R.id.imv3);
         viewAddPics = view.findViewById(R.id.viewAddPics);
         txtService = view.findViewById(R.id.txtService);
+
+        layoutPics = view.findViewById(R.id.linearLayout);
+        imvAdd = view.findViewById(R.id.imvAdd);
+        txtAdd = view.findViewById(R.id.textView);
     }
 }

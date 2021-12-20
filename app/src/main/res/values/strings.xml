@@ -275,6 +275,8 @@
     <string name="add_pictures">Add pictures</string>
     <string name="send_request_successful">Send request successful</string>
     <string name="success_request">We have received your request, please wait for us to process</string>
+    <string name="delete">Delete</string>
+    <string name="mark_as_read">Mark as read</string>
 
     <array name="initial_slider_values">
         <item>0</item>
