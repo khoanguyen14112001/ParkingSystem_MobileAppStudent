@@ -275,6 +275,9 @@
     <string name="add_pictures">Add pictures</string>
     <string name="send_request_successful">Send request successful</string>
     <string name="success_request">We have received your request, please wait for us to process</string>
+    <string name="login_setting_title">Login Setting</string>
+    <string name="truong_hoang_y">Truong Hoang Y</string>
+    <string name="sign_out_all_devices">Sign out all devices</string>
 
     <array name="initial_slider_values">
         <item>0</item>
