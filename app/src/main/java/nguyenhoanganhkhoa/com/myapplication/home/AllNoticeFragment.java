@@ -2,13 +2,16 @@ package nguyenhoanganhkhoa.com.myapplication.home;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.List;
 import nguyenhoanganhkhoa.com.adapter.DialogNotificationAdapter;
 import nguyenhoanganhkhoa.com.models.Notification;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,8 +68,8 @@ public class AllNoticeFragment extends Fragment {
         }
     }
 
-    DialogNotificationAdapter adapterRecent, adapterBefore;
     RecyclerView rcvRecentNotice, rcvBeforeNotice;
+    ReusedConstraint reusedConstraint = new ReusedConstraint(getContext());
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,16 +79,37 @@ public class AllNoticeFragment extends Fragment {
 
         linkView(view);
 
-        initAdapter(adapterRecent, rcvRecentNotice,
-                getListRecentNotification(),R.layout.item_notification_all_bold);
-
-        initAdapter(adapterBefore, rcvBeforeNotice,
-                getListBeforeNotification(),R.layout.item_notification_all_bold);
+        initAdapterRecent();
+        initAdapterBefore();
 
 
 
         return view;
     }
+
+    private void initAdapterBefore(){
+        DialogNotificationAdapter adapterBefore = new DialogNotificationAdapter(getContext(),R.layout.item_notification_all_bold);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        rcvBeforeNotice.setLayoutManager(linearLayoutManager);
+
+        adapterBefore.setData(getListBeforeNotification());
+        rcvBeforeNotice.setAdapter(adapterBefore);
+
+
+    }
+
+    private void initAdapterRecent(){
+        DialogNotificationAdapter adapterRecent = new DialogNotificationAdapter(getContext(),R.layout.item_notification_all_bold);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        rcvRecentNotice.setLayoutManager(linearLayoutManager);
+
+        adapterRecent.setData(getListRecentNotification());
+        rcvRecentNotice.setAdapter(adapterRecent);
+    }
+
+
 
     private void linkView(View view) {
         rcvRecentNotice = view.findViewById(R.id.rcvRecentNotice);
@@ -93,19 +118,8 @@ public class AllNoticeFragment extends Fragment {
     }
 
 
-    private void initAdapter(DialogNotificationAdapter adapter, RecyclerView rcv,
-                             List<Notification> list, int layout) {
-        adapter = new DialogNotificationAdapter(getContext(),layout);
-        rcv.setAdapter(adapter);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-        rcv.setLayoutManager(linearLayoutManager);
-
-        adapter.setData(list);
-        rcv.setAdapter(adapter);
-
-    }
-    private List<Notification> getListRecentNotification() {
+    public static List<Notification> getListRecentNotification() {
         List<Notification> list = new ArrayList<>();
         list.add(new Notification(R.drawable.img_newnotice,"The parking lot will be under " +
                 "maintenance from 14, Jan to 20, Jan","13 Jan, 19:04"));
@@ -114,11 +128,9 @@ public class AllNoticeFragment extends Fragment {
         list.add(new Notification(R.drawable.img_notice,"Due to the Christmas holiday, " +
                 "the parking lot will not be open","23 Dec, 18:35"));
 
-
-
         return list;
     }
-    private List<Notification> getListBeforeNotification() {
+    public static List<Notification> getListBeforeNotification() {
         List<Notification> list = new ArrayList<>();
         list.add(new Notification(R.drawable.img_newnotice,"The parking lot will be under " +
                 "maintenance from 11 Nov to 14 Nov","13 Jan, 19:04"));

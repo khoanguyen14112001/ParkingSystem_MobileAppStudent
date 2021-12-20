@@ -2,6 +2,7 @@ package nguyenhoanganhkhoa.com.myapplication.home;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import java.util.List;
 import nguyenhoanganhkhoa.com.adapter.DialogNotificationAdapter;
 import nguyenhoanganhkhoa.com.models.Notification;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,6 +68,8 @@ public class UnreadFNoticeFragment extends Fragment {
 
     RecyclerView rcvDisplayNotifications;
     DialogNotificationAdapter adapter;
+    ReusedConstraint reusedConstraint = new ReusedConstraint(getContext());
+    SearchView searchview;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,6 +80,7 @@ public class UnreadFNoticeFragment extends Fragment {
         linkView(view);
         addEvent();
         initAdapter();
+        reusedConstraint.addSearchForNotification(searchview, adapter);
 
         return view;
     }
@@ -114,6 +119,7 @@ public class UnreadFNoticeFragment extends Fragment {
 
     private void linkView(View view) {
         rcvDisplayNotifications = view.findViewById(R.id.rcvDisplayNotifications);
+        searchview = requireActivity().findViewById(R.id.svNotification);
     }
 
 

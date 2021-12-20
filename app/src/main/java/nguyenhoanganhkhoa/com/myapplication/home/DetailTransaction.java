@@ -97,7 +97,8 @@ public class DetailTransaction extends AppCompatActivity {
         imvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(DetailTransaction.this,HomePageScreen.class);
+                startActivity(intent);
             }
         });
 

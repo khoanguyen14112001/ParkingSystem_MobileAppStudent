@@ -62,6 +62,9 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
             if(position%2 == 1){
                 holder.cvQuetstions.setBackgroundTintList(context.getResources().getColorStateList(R.color.primary_yellow));
             }
+            else if(position%2 ==0){
+                holder.cvQuetstions.setBackgroundTintList(context.getResources().getColorStateList(R.color.xamNen));
+            }
             String s1 = "I have not received money from Momo wallet";
             if(mListQuesCate.get(position).getNameQuestion_Categories().equals(s1)){
                 holder.txtQuestions.setText(changeColor(s1,31,35,R.color.purple_momo));

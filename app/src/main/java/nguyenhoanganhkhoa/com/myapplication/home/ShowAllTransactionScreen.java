@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,7 +82,7 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
         imvAllTransBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                startActivity(new Intent(ShowAllTransactionScreen.this,HomePageScreen.class));
             }
         });
         radTransAllTopUp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -31,7 +31,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/gCenter"
         android:layout_height="wrap_content"
-        app:layout_constraintVertical_bias="0.4"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,8 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:padding="20dp"
                 android:src="@drawable/ic_topup"
                 android:background="@drawable/oval_shape"
@@ -49,13 +48,13 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:id="@+id/imvStatusTrans"
                 android:src="@drawable/ic_tickbutton"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="3dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -111,7 +110,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
             >
 
             <TextView

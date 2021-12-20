@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/mnEditActivity"
-        android:title="Edit activities"
+        android:title="@string/edit_activities"
         />
 
 </menu>
