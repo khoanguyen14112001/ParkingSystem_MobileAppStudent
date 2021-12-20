@@ -21,6 +21,7 @@ public class DetailMemberAdapter extends RecyclerView.Adapter<DetailMemberAdapte
 
     public DetailMemberAdapter(List<Member> mListDetailMember) {
         this.mListDetailMember = mListDetailMember;
+
     }
 
     @NonNull

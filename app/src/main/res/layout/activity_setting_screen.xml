@@ -71,8 +71,10 @@
                     android:src="@drawable/ic_setting_login" />
 
                 <TextView
+                    android:id="@+id/txtLoginSetting"
                     style="@style/in_setting_text"
-                    android:text="@string/login_setting" />
+                    android:text="@string/login_setting"
+                    android:clickable="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -107,7 +109,9 @@
                     android:src="@drawable/ic_setting_autolock" />
 
                 <TextView
+                    android:id="@+id/txtSetTime"
                     style="@style/in_setting_text"
+                    android:clickable="true"
                     android:text="@string/automatically_lock_the_app" />
 
                 <TextView
@@ -139,7 +143,9 @@
                     android:src="@drawable/ic_setting_language" />
 
                 <TextView
+                    android:id="@+id/txtLanguage"
                     style="@style/in_setting_text"
+                    android:clickable="true"
                     android:text="@string/language" />
 
                 <TextView
