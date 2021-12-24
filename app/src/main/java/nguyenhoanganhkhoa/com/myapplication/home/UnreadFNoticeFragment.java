@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,7 @@ public class UnreadFNoticeFragment extends Fragment {
     DialogNotificationAdapter adapter;
     ReusedConstraint reusedConstraint = new ReusedConstraint(getContext());
     SearchView searchview;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -25,6 +25,8 @@ import java.util.List;
 
 import nguyenhoanganhkhoa.com.models.Notification;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.home.AllNotificationScreen;
+import nguyenhoanganhkhoa.com.myapplication.home.UnreadFNoticeFragment;
 
 public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotificationAdapter.ViewHolder> implements Filterable {
 
@@ -188,6 +190,7 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
                         }
                         mNotification = list;
                     }
+
                     FilterResults filterResults = new FilterResults();
                     filterResults.values = mNotification;
                     return filterResults;

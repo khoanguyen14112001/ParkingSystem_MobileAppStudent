@@ -28,6 +28,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import nguyenhoanganhkhoa.com.adapter.DialogNotificationAdapter;
 import nguyenhoanganhkhoa.com.myapplication.R;
 
@@ -183,6 +186,17 @@ public class ReusedConstraint {
                         Log.d("Error", "Fail to load info in: " + context.getClass().toString() + error.toString());
                     }
                 });
+    }
+
+    public String formatCurrency (double number){
+        NumberFormat formatter = new DecimalFormat("#,###");
+        return formatter.format(number);
+    }
+
+    public String formatCurrency (String number){
+        double num = Double.parseDouble(number);
+        NumberFormat formatter = new DecimalFormat("#,###");
+        return formatter.format(num);
     }
 
 

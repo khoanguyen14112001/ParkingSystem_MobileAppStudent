@@ -3,14 +3,21 @@ package nguyenhoanganhkhoa.com.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.myapplication.home.HelpCenterScreen;
@@ -21,6 +28,8 @@ import nguyenhoanganhkhoa.com.myapplication.home.SettingScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.ShowAllTransactionScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.TopUpMainScreen;
 import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,12 +80,15 @@ public class WalletFragment extends Fragment {
 
     ImageButton imbTopUpWallet, imbQRCodeWallet, imbTransaction;
     LinearLayout lnHelpCenter,lnSetting,lnSignout ,lnSecurityCenter;
+
+    TextView txtMoneyDisplay;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wallet, container, false);
 
         linkView(view);
+        displayBalanceFromFirebase();
         addEventS();
 
 
@@ -166,5 +178,25 @@ public class WalletFragment extends Fragment {
         lnSignout= view.findViewById(R.id.lnSignout);
         lnSecurityCenter= view.findViewById(R.id.lnSecurityCenter);
 
+        txtMoneyDisplay= view.findViewById(R.id.txtMoneyDisplay);
+
     }
+    ReusedConstraint reusedConstraint = new ReusedConstraint(getContext());
+    private void displayBalanceFromFirebase(){
+        AppUtil.databaseReference.child(AppUtil.DATA_OBJECT).child(AppUtil.USERNAME_AFTER_LOGGIN)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        long balance = snapshot.child(AppUtil.FB_BALANCE).getValue(Long.class);
+                        double balanceDisplay = Double.parseDouble(String.valueOf(balance));
+                        txtMoneyDisplay.setText(reusedConstraint.formatCurrency(balanceDisplay));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.d("Error", "Fail to load info in Wallet fragment" + error.toString());
+                    }
+                });
+    }
+
 }

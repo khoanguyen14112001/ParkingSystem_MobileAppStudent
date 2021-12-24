@@ -34,6 +34,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -53,6 +55,7 @@ import nguyenhoanganhkhoa.com.myapplication.home.QRCodeScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.home.ShowAllTransactionScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -111,7 +114,7 @@ public class HomeFragment extends Fragment {
     HomeButtonAdapter homeButtonAdapter;
     RecyclerView rcvButtonsHome;
 
-    TextView txtNameDisplayUser;
+    TextView txtNameDisplayUser, txtMoneyDisplay;
     ImageView imvInsideAvatar;
 
 
@@ -165,6 +168,8 @@ public class HomeFragment extends Fragment {
 
         txtNameDisplayUser = view.findViewById(R.id.txtNameDisplayUser);
         imvInsideAvatar = view.findViewById(R.id.imvInsideAvatar);
+
+        txtMoneyDisplay = view.findViewById(R.id.txtMoneyDisplay);
     }
 
     private void addEvents() {
@@ -266,6 +271,9 @@ public class HomeFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String fullname = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
                         String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
+                        long balance = snapshot.child(AppUtil.FB_BALANCE).getValue(Long.class);
+                        double balanceDisplay = Double.parseDouble(String.valueOf(balance));
+
                         if(uri.isEmpty()|uri.equals("Null")){
                             long avatar = snapshot.child("avatarStudent").getValue(Long.class);
                             int idAva = Integer.parseInt(String.valueOf(avatar));
@@ -277,6 +285,7 @@ public class HomeFragment extends Fragment {
                             }
                         }
                         txtNameDisplayUser.setText(fullname);
+                        txtMoneyDisplay.setText(reusedConstraint.formatCurrency(balanceDisplay));
 
                     }
 
@@ -287,9 +296,6 @@ public class HomeFragment extends Fragment {
                 });
     }
 
-
-
-
-
+    ReusedConstraint reusedConstraint = new ReusedConstraint(getContext());
 
 }

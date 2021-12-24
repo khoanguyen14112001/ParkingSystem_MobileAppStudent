@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -203,6 +204,7 @@ public class TopUpAmountFragment extends Fragment {
         btnRequestTransfer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AppUtil.AMOUNT_SEND = edtAmount.getText().toString();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.lnFragmentRelace,new TopUpQRCodeFragment());
                 fragmentTransaction.addToBackStack(null).commit();

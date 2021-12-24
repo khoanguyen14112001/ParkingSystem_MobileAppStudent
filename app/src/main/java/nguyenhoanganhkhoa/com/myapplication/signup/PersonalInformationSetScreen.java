@@ -290,13 +290,11 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
     //Tạo sự kiện chụp ảnh
     Uri uri;
-    DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("account")
-            .child(AppUtil.DATA_OBJECT).child(AppUtil.USERNAME_AFTER_LOGGIN);
     StorageReference storageReference;
     FirebaseAuth auth;
     StorageTask uploadTask;
     String myUri = "";
-    private void uploadProfileImages() {
+    private void uploadProfileImages(DatabaseReference databaseReference) {
         storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
         auth =  FirebaseAuth.getInstance();
         if(uri!=null){
@@ -318,8 +316,6 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                         myUri = downloadUri.toString();
                         Log.d("TAG", "onComplete: " + myUri);
                         databaseReference.child(AppUtil.FB_IMAGES_BITMAP).setValue(myUri);
-
-
                     }
                 }
             });
@@ -608,7 +604,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     }
 
     FirebaseAuth firebaseAuth;
-
+    DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("account").child(AppUtil.DATA_OBJECT);
 
     private void pushAccountDataToFirebase(){
         username = AppUtil.USERNAME_S;
@@ -640,10 +636,9 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                     public void onSuccess(AuthResult authResult) {
                         Student student = new Student(firebaseAuth.getCurrentUser().getUid(),username,password,email,
                                 fullname,phone,ID,major,dateOfBirth,
-                                faculty,gender,avatar,"Null");
-                        uploadProfileImages();
+                                faculty,gender,avatar,myUri,3000);
 
-                        AppUtil.databaseReference.child(AppUtil.DATA_OBJECT).child(username).setValue(student)
+                        databaseReference.child(username).setValue(student)
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
@@ -656,13 +651,14 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                                         Toast.makeText(PersonalInformationSetScreen.this, "Sign up success", Toast.LENGTH_SHORT).show();
                                     }
                                 });
+
+                        uploadProfileImages(databaseReference.child(username));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(PersonalInformationSetScreen.this,e.toString(),Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(PersonalInformationSetScreen.this,"Email has been user, please try another!",Toast.LENGTH_SHORT).show();
                     }
                 });
 

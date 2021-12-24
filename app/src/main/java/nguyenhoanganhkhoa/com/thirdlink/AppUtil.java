@@ -74,6 +74,9 @@ public class AppUtil {
     public static String FB_EMAIL = "emailStudent";
     public static String FB_USERNAME = "usernameStudent";
     public static String FB_IMAGES_BITMAP = "uriImageStudent";
+    public static String FB_BALANCE = "balanceStudent";
+
+    public static String AMOUNT_SEND = "";
 
 
 

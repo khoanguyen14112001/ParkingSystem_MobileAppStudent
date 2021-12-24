@@ -1,15 +1,27 @@
 package nguyenhoanganhkhoa.com.myapplication.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 /**
@@ -59,7 +71,10 @@ public class TopUpQRCodeFragment extends Fragment {
         }
     }
 
-    TextView txtTimeMomo;
+    TextView txtTimeMomo,txtAmount;
+    Button btnSaveQRCode;
+    ReusedConstraint reusedConstraint = new ReusedConstraint(getContext());
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,11 +85,41 @@ public class TopUpQRCodeFragment extends Fragment {
     }
 
     private void addEvents() {
-        ReusedConstraint reusedConstraint = new ReusedConstraint(getContext());
         reusedConstraint.addTimer(txtTimeMomo,240000);
+        txtAmount.setText(reusedConstraint.formatCurrency(AppUtil.AMOUNT_SEND));
+        btnSaveQRCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateBalanceToFirebase();
+                startActivity(new Intent(getContext(),HomePageScreen.class));
+            }
+        });
+    }
+
+    private void updateBalanceToFirebase() {
+        DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("account")
+                .child(AppUtil.DATA_OBJECT).child(AppUtil.USERNAME_AFTER_LOGGIN);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        long balance = snapshot.child(AppUtil.FB_BALANCE).getValue(Long.class);
+                        double currentBalance = Double.parseDouble(String.valueOf(balance));
+                        double plusBalance = Double.parseDouble(AppUtil.AMOUNT_SEND);
+                        double newBalance = currentBalance + plusBalance;
+                        databaseReference.child(AppUtil.FB_BALANCE).setValue(newBalance);
+                        Toast.makeText(getContext(),"Your balance successfully updated!",Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.d("Error", "Fail to upload balance" + error.toString());
+                    }
+                });
     }
 
     private void linkView(View view) {
         txtTimeMomo = view.findViewById(R.id.txtTimeMomo);
+        txtAmount = view.findViewById(R.id.txtAmount);
+        btnSaveQRCode = view.findViewById(R.id.btnSaveQRCode);
     }
 }

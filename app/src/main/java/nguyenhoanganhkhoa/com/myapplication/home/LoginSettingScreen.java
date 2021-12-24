@@ -24,7 +24,7 @@ public class LoginSettingScreen extends AppCompatActivity {
 
     ImageView imvSettingBack, imvAvatar;
     Button btnSignOutAllDevices;
-    ReusedConstraint reusedConstraint = new ReusedConstraint(LoginSettingScreen.this);
+    ReusedConstraint reusedConstraint = new ReusedConstraint(getApplicationContext());
 
     TextView txtName;
 

@@ -470,9 +470,19 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         });
 
     }
+    private void runCheckChange(){
+        nameIsChanged();
+        genderIsChanged();
+        birthIsChanged();
+        idIsChanged();
+        facultyIsChanged();
+        majorIsChanged();
+        phoneIsChanged();
+    }
 
     private void updateDataFireBase() {
         isComeback=false;
+        runCheckChange();
         if(!nameIsChanged() && !genderIsChanged() && !birthIsChanged() && !idIsChanged() && !facultyIsChanged() &&
                 !majorIsChanged() && !phoneIsChanged()){
             Log.d("TAG", "updateDataFireBase: all data is not changed" );
@@ -593,7 +603,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
             });
         }
         else {
-            Toast.makeText(this,"Image not selected",Toast.LENGTH_SHORT).show();
+            Log.d("TAG", "Images not selected");
         }
     }
 

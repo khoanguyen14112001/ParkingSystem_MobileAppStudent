@@ -7,6 +7,7 @@ public class Student implements Serializable {
             ,fullnameStudent, phoneStudent, IDStudent, majorStudent,dateOfBirthStudent
             ,facultyStudent, genderStudent;
     private int avatarStudent;
+    private double balanceStudent;
     private String uriImageStudent;
 
     public String getUid() {
@@ -19,6 +20,14 @@ public class Student implements Serializable {
 
     public String getUriImageStudent() {
         return uriImageStudent;
+    }
+
+    public double getBalanceStudent() {
+        return balanceStudent;
+    }
+
+    public void setBalanceStudent(double balanceStudent) {
+        this.balanceStudent = balanceStudent;
     }
 
     public void setUriImageStudent(String uriImageStudent) {
@@ -40,7 +49,7 @@ public class Student implements Serializable {
                    String emailStudent, String fullnameStudent,
                    String phoneStudent, String IDStudent, String majorStudent,
                    String dateOfBirthStudent, String facultyStudent,
-                   String genderStudent, int avatarStudent, String uriImageStudent) {
+                   String genderStudent, int avatarStudent, String uriImageStudent, int balanceStudent) {
         this.uid = uid;
         this.usernameStudent = usernameStudent;
         this.passwordStudent = passwordStudent;
@@ -54,6 +63,7 @@ public class Student implements Serializable {
         this.genderStudent = genderStudent;
         this.avatarStudent = avatarStudent;
         this.uriImageStudent = uriImageStudent;
+        this.balanceStudent = balanceStudent;
     }
 
     public String getUsernameStudent() {
