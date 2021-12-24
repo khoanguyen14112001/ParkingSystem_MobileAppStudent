@@ -27,6 +27,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
     public DateAdapter(Context context, int layout) {
         this.context = context;
         this.layout = layout;
+        Log.d("TAG", "DateAdapter: Test ");
 
     }
 
