@@ -97,19 +97,28 @@ public class NewsScreen extends AppCompatActivity {
     private void initAdapter(int layout, List<Images> list) {
         if(layout == R.layout.item_news)
         {
-            imagesAdapter = new ImagesAdapter(list,layout,this);
-            viewPagerNews.setAdapter(imagesAdapter);
-            Log.d("TAG", "initAdapter: " + list.size());
-
+            try {
+                imagesAdapter = new ImagesAdapter(list,layout,this);
+                viewPagerNews.setAdapter(imagesAdapter);
+            }
+            catch (Exception e) {
+                Log.d("Error", "Fail to load adapter viewpagerNews in NewsScreen: " + e);
+            }
             createSlideShow(list.size());
             addDots(list.size());
         }
 
         if(layout == R.layout.item_ads){
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
-            rcvAds.setLayoutManager(linearLayoutManager);
-            imagesAdapter = new ImagesAdapter(list,layout,this);
-            rcvAds.setAdapter(imagesAdapter);
+            try {
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
+                rcvAds.setLayoutManager(linearLayoutManager);
+                imagesAdapter = new ImagesAdapter(list,layout,this);
+                rcvAds.setAdapter(imagesAdapter);
+            }
+            catch (Exception e){
+                Log.d("Error", "Fail to load adapter rcvAds in NewsScreen: " + e);
+            }
+
         }
     }
 
@@ -166,8 +175,18 @@ public class NewsScreen extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot data : snapshot.getChildren()){
-                    Images images = new Images((data.child("link").getValue().toString()));
-                    list.add(images);
+                    try {
+                        Images images = new Images((data.child("link").getValue().toString()));
+                        list.add(images);
+                    }
+                    catch (Exception e){
+                        if(cate.equals("ads")){
+                            Log.d("Error", "Cannot load ads image from firebase: " + e);
+                        }
+                        else{
+                            Log.d("Error", "Cannot load news image from firebase: " + e);
+                        }
+                    }
                 }
                 initAdapter(layout,list);
             }

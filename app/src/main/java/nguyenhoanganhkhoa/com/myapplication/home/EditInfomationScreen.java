@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -13,15 +14,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,6 +36,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,11 +46,28 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.IntUnaryOperator;
 
@@ -57,6 +81,7 @@ import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.fragments.AccountFragment;
 import nguyenhoanganhkhoa.com.models.Faculty;
 import nguyenhoanganhkhoa.com.models.Major;
+import nguyenhoanganhkhoa.com.models.Student;
 import nguyenhoanganhkhoa.com.myapplication.another.CustomSpinner;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.signup.PersonalInformationSetScreen;
@@ -73,6 +98,9 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     TextView txtErrorIdStudent, txtErrorMarjor, txtErrorDateofBirth, txtErrorFaculty,edtDateofbirth,
     txtErrorPhone;
     AutoCompleteTextView adtMajor;
+
+    boolean isComeback = false;
+
 
 
     ReusedConstraint reusedConstraint = new ReusedConstraint(EditInfomationScreen.this);
@@ -111,111 +139,228 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_infomation_screen);
 
+
+
         linkView();
         initAdapterFaculty();
         initAderterMarjor();
         addResultLauncher();
         getData();
+        getUserImages();
         addEvents();
 
 
     }
 
+    Student student;
+    String oName, oBirth, oID, oPhone, oMajor, oGender, oFaculty;
 
     private void getData() {
-        Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("my_bundle");
-        edtNameEditInfo.setText(bundle.getString(AppUtil.NAME));
-        edtDateofbirth.setText(bundle.getString(AppUtil.DATE_OF_BIRTH));
-        edtIdStudent.setText(bundle.getString(AppUtil.ID));
-        edtPhone.setText(bundle.getString(AppUtil.PHONE));
-        adtMajor.setText(bundle.getString(AppUtil.MAJOR));
+        try {
+            Intent intent = getIntent();
+            Bundle bundle = intent.getBundleExtra("my_bundle");
+            if (bundle != null) {
+                student = (Student) bundle.getSerializable("my_item");
 
-        if(bundle.getString(AppUtil.GENDER).equals("Female"))
-        {
-            radFemale.setChecked(true);
-        }
-        else if(bundle.getString(AppUtil.GENDER).equals("Male"))
-        {
-            radMale.setChecked(true);
-        }
-        for (int i = 0; i < getListFaculty().size(); i++) {
-            if (getListFaculty().get(i).getNameFaculty().equals(bundle.getString(AppUtil.FACULTY))) {
-                spnFaculty.setSelection(i);
-                break;
+                oName = student.getFullnameStudent();
+                oBirth = student.getDateOfBirthStudent();
+                oID = student.getIDStudent();
+                oPhone = student.getPhoneStudent();
+                oMajor = student.getMajorStudent();
+                oGender = student.getGenderStudent();
+                oFaculty = student.getFacultyStudent();
+
+                edtNameEditInfo.setText(oName);
+                edtDateofbirth.setText(oBirth);
+                edtIdStudent.setText(oID);
+                edtPhone.setText(oPhone);
+                adtMajor.setText(oMajor);
+
+                if(oGender.equals("Female"))
+                {
+                    radFemale.setChecked(true);
+                }
+                else if(oGender.equals("Male"))
+                {
+                    radMale.setChecked(true);
+                }
+                int i;
+                for (i = 0; i < getListFaculty().size(); i++) {
+                    if (getListFaculty().get(i).getNameFaculty().equals(oFaculty)) {
+                        spnFaculty.setSelection(i);
+                        break;
+                    }
+                }
+                imvAvatar.setImageResource(student.getAvatarStudent());
             }
+
         }
-
-
-
+        catch (Exception e){
+            Log.d("Error", "Fail to get data from Account fragment: " + e);
+        }
 
     }
 
+    DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("account")
+            .child(AppUtil.DATA_OBJECT).child(AppUtil.USERNAME_AFTER_LOGGIN);
 
-    public void pushData(){
-        Bundle bundle = new Bundle();
-        bundle.putString(AppUtil.DATE_OF_BIRTH1,edtDateofbirth.getText().toString());
-        bundle.putString(AppUtil.FACULTY1,spnFaculty.getSelectedItem().toString());
-        bundle.putString(AppUtil.MAJOR1,adtMajor.getText().toString());
-        bundle.putString(AppUtil.PHONE1,edtPhone.getText().toString());
-        bundle.putString(AppUtil.NAME1,edtNameEditInfo.getText().toString());
+    private boolean nameIsChanged(){
+        String name = edtNameEditInfo.getText().toString();
+        if(name.equals(oName)){
+            return false;
+        }
+        else{
+            if(!isComeback){
+                databaseReference.child(AppUtil.FB_FULLNAME).setValue(name);
+            }
+            Log.d("TAG2", "nameIsChanged: ");
+            return true;
+        }
+    }
 
+
+    private boolean genderIsChanged(){
+        String gender = null;
+        int avatar = 0;
         if(radMale.isChecked())
         {
-            bundle.putString(AppUtil.GENDER1,"Male");
+            gender = "Male";
+            avatar = R.drawable.img_avatar_male;
         }
-        else if(radFemale.isChecked())
-        {
-            bundle.putString(AppUtil.GENDER1,"Female");
-
+        if(radFemale.isChecked()){
+            gender = "Female";
+            avatar = R.drawable.img_avatar_female;
         }
-        bundle.putString(AppUtil.ID1,edtIdStudent.getText().toString());
 
-        Fragment fragment = new AccountFragment();
-        fragment.setArguments(bundle);
-
+        if(gender.equals(oGender)){
+            return false;
+        }
+        else{
+            if(!isComeback){
+                databaseReference.child(AppUtil.FB_GENDER).setValue(gender);
+                if(bitmap==null){
+                    databaseReference.child(AppUtil.FB_AVATAR).setValue(avatar);
+                }
+            }
+            Log.d("TAG2", "genderIsChanged: ");
+            return true;
+        }
     }
+    private boolean birthIsChanged(){
+        String birth = edtDateofbirth.getText().toString();
+        if(birth.equals(oBirth)){
+            return false;
+        }
+        else{
+            if(!isComeback){
+                databaseReference.child(AppUtil.FB_DATE_OF_BIRTH).setValue(birth);
+            }
+            Log.d("TAG2", "birthIsChanged: ");
+            return true;
+        }
+    }
+    private boolean idIsChanged(){
+        String id = edtIdStudent.getText().toString();
+        if(id.equals(oID)){
+            return false;
+        }
+        else{
+            if(!isComeback){
+                databaseReference.child(AppUtil.FB_ID).setValue(id);
+            }
+            Log.d("TAG2", "idIsChanged: ");
+            return true;
+        }
+    }
+
+    private boolean facultyIsChanged(){
+        String faculty = getListFaculty().get(selectedFaculty).getNameFaculty();
+        if(faculty.equals(oFaculty)){
+            return false;
+        }
+        else{
+            if(!isComeback){
+                databaseReference.child(AppUtil.FB_FACULTY).setValue(faculty);
+            }
+            Log.d("TAG2", "facultyIsChanged: " + facultyAdapter.getItemAtPostion(getListFaculty()));
+            return true;
+        }
+    }
+
+    private boolean majorIsChanged(){
+        String major = adtMajor.getText().toString();
+        if(major.equals(oMajor)){
+            return false;
+        }
+        else{
+            if(!isComeback){
+                databaseReference.child(AppUtil.FB_MAJOR).setValue(major);
+            }
+            Log.d("TAG2", "majorIsChanged: " );
+            return true;
+        }
+    }
+    private boolean phoneIsChanged(){
+        String phone = edtPhone.getText().toString();
+        if(phone.equals(oPhone)){
+            return false;
+        }
+        else{
+            if(!isComeback){
+                databaseReference.child(AppUtil.FB_PHONE).setValue(phone);
+            }
+            return true;
+        }
+    }
+
+
 
 
 
     // Sự kiện addEvents() và các sự kiện khác
     private void addEvents() {
+
         imvComebackEditInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CustomDialogTwoButton customDialogTwoButton =
-                        new CustomDialogTwoButton(EditInfomationScreen.this,R.layout.custom_dialog_unsaved_changes);
-                customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        customDialogTwoButton.dismiss();
-                        finish();
-                    }
-                });
-                customDialogTwoButton.btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        customDialogTwoButton.dismiss();
-                    }
-                });
+                isComeback = true;
+                if(!nameIsChanged() && !genderIsChanged() && !birthIsChanged() && !idIsChanged() && !facultyIsChanged() &&
+                        !majorIsChanged() && !phoneIsChanged()){
+                    Log.d("TAG", "updateDataFireBase: all data is not changed" );
+                    finish();
+                }
+                else{
+                    CustomDialogTwoButton customDialogTwoButton =
+                            new CustomDialogTwoButton(EditInfomationScreen.this,R.layout.custom_dialog_unsaved_changes);
+                    customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            customDialogTwoButton.dismiss();
+                            finish();
+                        }
+                    });
+                    customDialogTwoButton.btnCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            customDialogTwoButton.dismiss();
+                        }
+                    });
 
-                customDialogTwoButton.show();
+                    customDialogTwoButton.show();
+                }
+
             }
         });
         spnFaculty.setSpinnerEventsListener(EditInfomationScreen.this);
         spnFaculty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0)
-                {
-                    txtErrorFaculty.setText(null);
-                    spnFaculty.setBackgroundResource(R.drawable.custom_edt);
-                    imvFaculty.setImageDrawable(getResources().getDrawable(R.drawable.ic_faculty));
-                    imvDropdown.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_spinner));
-                    txtErrorFaculty.setTextSize(0);
-                    selectedFaculty = i;
-                }
-
+                txtErrorFaculty.setText(null);
+                spnFaculty.setBackgroundResource(R.drawable.custom_edt);
+                imvFaculty.setImageDrawable(getResources().getDrawable(R.drawable.ic_faculty));
+                imvDropdown.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_spinner));
+                txtErrorFaculty.setTextSize(0);
+                selectedFaculty = i;
             }
 
             @Override
@@ -312,18 +457,8 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
                 }
                 else {
                     clearAllForcus();
-                    CustomDialog customDialog = new
-                            CustomDialog(EditInfomationScreen.this, R.layout.custom_dialog_save_editifor_change);
-                    customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            customDialog.dismiss();
-                            pushData();
-                            finish();
-
-                        }
-                    });
-                    customDialog.show();
+                    uploadProfileImages();
+                    updateDataFireBase();
                 }
             }
         });
@@ -335,6 +470,30 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         });
 
     }
+
+    private void updateDataFireBase() {
+        isComeback=false;
+        if(!nameIsChanged() && !genderIsChanged() && !birthIsChanged() && !idIsChanged() && !facultyIsChanged() &&
+                !majorIsChanged() && !phoneIsChanged()){
+            Log.d("TAG", "updateDataFireBase: all data is not changed" );
+            finish();
+        }
+        else{
+            CustomDialog customDialog = new
+                    CustomDialog(EditInfomationScreen.this, R.layout.custom_dialog_save_editifor_change);
+            customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    customDialog.dismiss();
+                    finish();
+                }
+            });
+            Log.d("TAG", "updateDataFireBase:  something is change");
+            customDialog.show();
+        }
+    }
+
+
 
     private void clearAllForcus(){
         edtIdStudent.clearFocus();
@@ -365,6 +524,13 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     ActivityResultLauncher<Intent> activityResultLauncher;
     boolean isCamera;
     Bitmap bitmap = null;
+    Uri uri;
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        Bitmap OutImage = Bitmap.createScaledBitmap(inImage, 1000, 1000,true);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), OutImage, "Title", null);
+        return Uri.parse(path);
+    }
     private void addResultLauncher() {
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -373,9 +539,10 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
                     if(isCamera){
                         bitmap = (Bitmap) result.getData().getExtras().get("data");
                         imvAvatar.setImageBitmap(bitmap);
+                        uri = getImageUri(getApplicationContext(),bitmap);
                     }
                     else{
-                        Uri uri = result.getData().getData();
+                        uri = result.getData().getData();
                         if(uri !=null){
                             try {
                                 InputStream inputStream = getContentResolver().openInputStream(uri);
@@ -392,6 +559,97 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         });
 
     }
+
+    StorageReference storageReference;
+    FirebaseAuth auth;
+    StorageTask uploadTask;
+    String myUri = "";
+    private void uploadProfileImages() {
+        storageReference =FirebaseStorage.getInstance().getReference().child("Profile Images");
+        auth =  FirebaseAuth.getInstance();
+        if(uri!=null){
+            StorageReference fileRef = storageReference.child(auth.getCurrentUser().getUid() + ". jpg");
+            uploadTask = fileRef.putFile(uri);
+            uploadTask.continueWithTask(new Continuation() {
+                @Override
+                public Object then(@NonNull Task task) throws Exception {
+                    if(!task.isSuccessful()){
+                        throw task.getException();
+                    }
+                    return fileRef.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if(task.isSuccessful()){
+                        Uri downloadUri = (Uri) task.getResult();
+                        myUri = downloadUri.toString();
+                        Log.d("TAG", "onComplete: " + myUri);
+                        databaseReference.child(AppUtil.FB_IMAGES_BITMAP).setValue(myUri);
+
+
+                    }
+                }
+            });
+        }
+        else {
+            Toast.makeText(this,"Image not selected",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void getUserImages(){
+        databaseReference.child(AppUtil.FB_IMAGES_BITMAP).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    try {
+                        String image = snapshot.getValue().toString();
+                        if(!image.isEmpty()&&!image.equals("Null")){
+                            Glide.with(getApplicationContext()).load(image).into(imvAvatar);
+                        }
+                        else {
+                            changeDefaultAvatar();
+                        }
+                    }
+                    catch (Exception e){
+                        Log.d("Error", "Fail to get image from Firebase: " + e);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Error", "onCancelled: " + error.toString());
+
+            }
+        });
+    }
+
+    private void changeDefaultAvatar() {
+        radFemale.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    if(bitmap==null){
+                        imvAvatar.setImageResource(R.drawable.img_avatar_female);
+                    }
+                }
+            }
+        });
+        radMale.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    if(bitmap==null){
+                        imvAvatar.setImageResource(R.drawable.img_avatar_male);
+                    }
+                }
+            }
+        });
+    }
+
+
     private void cameraPickImage() {
 
         CustomDialogThreeButton customDialogThreeButton = new CustomDialogThreeButton

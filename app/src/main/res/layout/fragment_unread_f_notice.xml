@@ -35,15 +35,22 @@
     </LinearLayout>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="0dp"
-            android:overScrollMode="never"
-            android:nestedScrollingEnabled="false"
-            android:id="@+id/rcvDisplayNotifications"
-            />
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:overScrollMode="never"
+        android:nestedScrollingEnabled="false"
+        android:id="@+id/rcvDisplayNotifications"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="There is no result"
+        android:id="@+id/txtTextDemo"
+        android:visibility="gone"/>
 
 </LinearLayout>

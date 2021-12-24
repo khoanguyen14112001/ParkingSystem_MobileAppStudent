@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -43,6 +44,8 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
         imvClose= findViewById(R.id.imvClose);
         imvFilterTrans= findViewById(R.id.imvFilterTrans);
 
+        rcvDisplayTransaction = findViewById(R.id.rcvDisplayTransaction);
+
     }
 
     @Override
@@ -60,12 +63,7 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
 
     private void createBottomSheetDialog() {
         if(bottomSheetDialog ==null){
-//            View view = LayoutInflater.from(this).inflate(R.layout.custom_bottomdialog_filter,null);
-//            bottomSheetDialog = new BottomSheetDialog(this);
-//            bottomSheetDialog.setContentView(view);
-
             bottomSheetDialog = new CustomBottomSheetFilter(ShowAllTransactionScreen.this,R.style.BottomSheetDialogTheme,R.layout.custom_bottomdialog_filter);
-//            bottomSheetDialog = new CustomBottomSheetFilter(this,R.layout.custom_bottomdialog_filter);
         }
         bottomSheetDialog.show();
 
@@ -106,14 +104,19 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
     }
 
     private void initAdapter() {
-        rcvDisplayTransaction = findViewById(R.id.rcvDisplayTransaction);
-        monthTransAdapter= new MonthTransAdapter(ShowAllTransactionScreen.this);
+        try {
+            monthTransAdapter= new MonthTransAdapter(ShowAllTransactionScreen.this);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ShowAllTransactionScreen.this,RecyclerView.VERTICAL,false);
+            rcvDisplayTransaction.setLayoutManager(linearLayoutManager);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ShowAllTransactionScreen.this,RecyclerView.VERTICAL,false);
-        rcvDisplayTransaction.setLayoutManager(linearLayoutManager);
+            monthTransAdapter.setData(getListMonth());
+            rcvDisplayTransaction.setAdapter(monthTransAdapter);
+        }
+        catch (Exception e)
+        {
+            Log.d("Error", "Fail to load adapter in ShowAllTransactionScreen: " + e);
+        }
 
-        monthTransAdapter.setData(getListMonth());
-        rcvDisplayTransaction.setAdapter(monthTransAdapter);
     }
 
     private List<Month> getListMonth() {

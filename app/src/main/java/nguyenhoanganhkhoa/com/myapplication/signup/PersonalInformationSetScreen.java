@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,8 +36,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -109,10 +120,13 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_information_set_screen);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
+
         linkView();
         addResultLauncher();
         initAdapterFaculty();
-        initAderterMarjor();
+        initAdapterMajor();
 
         addEvents();
     }
@@ -187,13 +201,16 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         String selectedItem = facultyAdapter.getItem(spnFaculty.getSelectedItemPosition()).getNameFaculty();
 
         if (selectedItem.equals("Faculty*")){
-            facultyAdapterError = new FacultyAdapterError(this,R.layout.item_faculty_selected,getListFaculty());
-            spnFaculty.setAdapter(facultyAdapterError);
-
+            try {
+                facultyAdapterError = new FacultyAdapterError(this,R.layout.item_faculty_selected,getListFaculty());
+                spnFaculty.setAdapter(facultyAdapterError);
+            }
+            catch (Exception e){
+                Log.d("Error", "validateFaculty: " + e);
+            }
             txtErrorFaculty.setText(R.string.field_cannot_be_empty);
             spnFaculty.setBackgroundResource(R.drawable.edt_custom_error);
             txtErrorFaculty.setTextSize(15);
-
 
             imvFaculty.setImageDrawable(getResources().getDrawable(R.drawable.ic_faculty_error));
             imvDropdown.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_spinner_error));
@@ -225,8 +242,14 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     FacultyAdapter facultyAdapter;
     FacultyAdapterError facultyAdapterError;
     private void initAdapterFaculty() {
-        facultyAdapter = new FacultyAdapter(this,R.layout.item_faculty_selected,getListFaculty());
-        spnFaculty.setAdapter(facultyAdapter);
+        try {
+            facultyAdapter = new FacultyAdapter(this,R.layout.item_faculty_selected,getListFaculty());
+            spnFaculty.setAdapter(facultyAdapter);
+        }
+        catch (Exception e){
+            Log.d("Error", "initAdapterFaculty: " + e);
+        }
+
 
     }
     private List<Faculty> getListFaculty() {
@@ -242,9 +265,15 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     public static int selectedFaculty = 0;
 
     MajorAdapter majorAdapter;
-    private void initAderterMarjor() {
-        majorAdapter = new MajorAdapter(this,R.layout.item_faculty_selected,getListMajor());
-        adtMajor.setAdapter(majorAdapter);
+    private void initAdapterMajor() {
+        try{
+            majorAdapter = new MajorAdapter(this,R.layout.item_faculty_selected,getListMajor());
+            adtMajor.setAdapter(majorAdapter);
+        }
+        catch (Exception e){
+            Log.d("Error", "initAdapterMajor: " + e);
+        }
+
 
     }
     private List<Major> getListMajor() {
@@ -260,9 +289,55 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
 
     //Tạo sự kiện chụp ảnh
+    Uri uri;
+    DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("account")
+            .child(AppUtil.DATA_OBJECT).child(AppUtil.USERNAME_AFTER_LOGGIN);
+    StorageReference storageReference;
+    FirebaseAuth auth;
+    StorageTask uploadTask;
+    String myUri = "";
+    private void uploadProfileImages() {
+        storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
+        auth =  FirebaseAuth.getInstance();
+        if(uri!=null){
+            StorageReference fileRef = storageReference.child(auth.getCurrentUser().getUid() + ". jpg");
+            uploadTask = fileRef.putFile(uri);
+            uploadTask.continueWithTask(new Continuation() {
+                @Override
+                public Object then(@NonNull Task task) throws Exception {
+                    if(!task.isSuccessful()){
+                        throw task.getException();
+                    }
+                    return fileRef.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if(task.isSuccessful()){
+                        Uri downloadUri = (Uri) task.getResult();
+                        myUri = downloadUri.toString();
+                        Log.d("TAG", "onComplete: " + myUri);
+                        databaseReference.child(AppUtil.FB_IMAGES_BITMAP).setValue(myUri);
+
+
+                    }
+                }
+            });
+        }
+        else {
+            Toast.makeText(this,"Image not selected",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     ActivityResultLauncher<Intent> activityResultLauncher;
     boolean isCamera;
     Bitmap bitmap = null;
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        Bitmap OutImage = Bitmap.createScaledBitmap(inImage, 1000, 1000,true);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), OutImage, "Title", null);
+        return Uri.parse(path);
+    }
     private void addResultLauncher() {
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -271,9 +346,10 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
                     if(isCamera){
                         bitmap = (Bitmap) result.getData().getExtras().get("data");
                         imvAvatar.setImageBitmap(bitmap);
+                        uri = getImageUri(getApplicationContext(),bitmap);
                     }
                     else{
-                        Uri uri = result.getData().getData();
+                        uri = result.getData().getData();
                         if(uri !=null){
                             try {
                                 InputStream inputStream = getContentResolver().openInputStream(uri);
@@ -354,6 +430,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     }
 
     // AddEvents và một vài sự kiện khác
+
     private void addEvents() {
         radMale.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -530,6 +607,8 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         txtCanSua.setTextColor(ContextCompat.getColorStateList(PersonalInformationSetScreen.this,textColor));
     }
 
+    FirebaseAuth firebaseAuth;
+
 
     private void pushAccountDataToFirebase(){
         username = AppUtil.USERNAME_S;
@@ -538,13 +617,15 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         fullname = AppUtil.FULLNAME_S;
         email = AppUtil.EMAIL_S;
 
-        avatar = imvAvatar.getId();
+
 
         if(radFemale.isChecked()){
             gender = radFemale.getText().toString();
+            avatar = R.drawable.img_avatar_female;
         }
         else if(radMale.isChecked()){
             gender = radMale.getText().toString();
+            avatar = R.drawable.img_avatar_male;
         }
 
         ID = edtIdStudent.getText().toString();
@@ -552,22 +633,41 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         major = adtMajor.getText().toString();
         dateOfBirth = edtDateofbirth.getText().toString();
 
-        Student student = new Student(username,password,email,
-                fullname,phone,ID,major,dateOfBirth,
-                faculty,gender,avatar);
-        AppUtil.databaseReference.child(AppUtil.DATA_OBJECT).child(username).setValue(student)
+
+        firebaseAuth.createUserWithEmailAndPassword(email,password)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        Student student = new Student(firebaseAuth.getCurrentUser().getUid(),username,password,email,
+                                fullname,phone,ID,major,dateOfBirth,
+                                faculty,gender,avatar,"Null");
+                        uploadProfileImages();
+
+                        AppUtil.databaseReference.child(AppUtil.DATA_OBJECT).child(username).setValue(student)
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(PersonalInformationSetScreen.this, "Sign up fail", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(PersonalInformationSetScreen.this, "Sign up success", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(PersonalInformationSetScreen.this, "Sign in fail", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(PersonalInformationSetScreen.this, "Sign in success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PersonalInformationSetScreen.this,e.toString(),Toast.LENGTH_SHORT).show();
+
                     }
                 });
+
+
+
 
 
     }

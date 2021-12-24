@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -56,29 +57,39 @@ public class DetailTransaction extends AppCompatActivity {
 
 
     private void getData(){
-        Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra(AppUtil.MY_BUNDLE);
-        if(bundle!=null){
-            transaction = (Transaction) bundle.getSerializable(AppUtil.SELECTED_ITEM);
-            imvStatus.setImageResource(transaction.getImgStatusTrans());
-            imvStatusTrans.setImageResource(transaction.getImgSuccessTrans());
-            txtDateTrans.setText(transaction.getDateTrans());
-            txtMoneyTrans.setText(transaction.getMoneyTrans());
-            txtStatusTrans.setText(transaction.getStatusTrans());
-
+        try{
+            Intent intent = getIntent();
+            Bundle bundle = intent.getBundleExtra(AppUtil.MY_BUNDLE);
+            if(bundle!=null){
+                transaction = (Transaction) bundle.getSerializable(AppUtil.SELECTED_ITEM);
+                imvStatus.setImageResource(transaction.getImgStatusTrans());
+                imvStatusTrans.setImageResource(transaction.getImgSuccessTrans());
+                txtDateTrans.setText(transaction.getDateTrans());
+                txtMoneyTrans.setText(transaction.getMoneyTrans());
+                txtStatusTrans.setText(transaction.getStatusTrans());
+            }
+        }
+        catch (Exception e){
+            Log.d("Error", "Cannot get data from transaction adapter: " + e);
         }
 
     }
 
 
     private void initAdapter() {
-        adapter = new DetailProTransAdapter(this,R.layout.item_detail_problem_trans);
-        adapter.setData(getListProDetail());
+        try {
+            adapter = new DetailProTransAdapter(this,R.layout.item_detail_problem_trans);
+            adapter.setData(getListProDetail());
 
-        LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        rcvDetailProblem.setLayoutManager(manager);
+            LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+            rcvDetailProblem.setLayoutManager(manager);
 
-        rcvDetailProblem.setAdapter(adapter);
+            rcvDetailProblem.setAdapter(adapter);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to load adapter in DetailTransaction: " + e);
+        }
+
 
     }
 

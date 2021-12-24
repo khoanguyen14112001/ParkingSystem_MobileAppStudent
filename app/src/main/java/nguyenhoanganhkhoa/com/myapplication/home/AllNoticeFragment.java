@@ -88,25 +88,37 @@ public class AllNoticeFragment extends Fragment {
     }
 
     private void initAdapterBefore(){
-        DialogNotificationAdapter adapterBefore = new DialogNotificationAdapter(getContext(),R.layout.item_notification_all_bold);
+        try {
+            DialogNotificationAdapter adapterBefore = new DialogNotificationAdapter(getContext(),R.layout.item_notification_all_bold);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-        rcvBeforeNotice.setLayoutManager(linearLayoutManager);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+            rcvBeforeNotice.setLayoutManager(linearLayoutManager);
 
-        adapterBefore.setData(getListBeforeNotification());
-        rcvBeforeNotice.setAdapter(adapterBefore);
+            adapterBefore.setData(getListBeforeNotification());
+            rcvBeforeNotice.setAdapter(adapterBefore);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to load AdapterBefore in AllNoticeFragment " + e);
+        }
+
 
 
     }
 
     private void initAdapterRecent(){
-        DialogNotificationAdapter adapterRecent = new DialogNotificationAdapter(getContext(),R.layout.item_notification_all_bold);
+        try {
+            DialogNotificationAdapter adapterRecent = new DialogNotificationAdapter(getContext(),R.layout.item_notification_all_bold);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-        rcvRecentNotice.setLayoutManager(linearLayoutManager);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+            rcvRecentNotice.setLayoutManager(linearLayoutManager);
 
-        adapterRecent.setData(getListRecentNotification());
-        rcvRecentNotice.setAdapter(adapterRecent);
+            adapterRecent.setData(getListRecentNotification());
+            rcvRecentNotice.setAdapter(adapterRecent);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to load AdapterRecent in AllNoticeFragment " + e);
+        }
+
     }
 
 

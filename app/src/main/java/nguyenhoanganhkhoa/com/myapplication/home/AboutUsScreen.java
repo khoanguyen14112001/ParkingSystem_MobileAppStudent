@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,14 +44,19 @@ public class AboutUsScreen extends AppCompatActivity {
     }
 
     private void initAdapter() {
+        try {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AboutUsScreen.this,RecyclerView.HORIZONTAL,false);
+            rcvListMemberTeam.setLayoutManager(linearLayoutManager);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AboutUsScreen.this,RecyclerView.HORIZONTAL,false);
-        rcvListMemberTeam.setLayoutManager(linearLayoutManager);
+            memberAdapter = new MemberAdapter(AboutUsScreen.this);
+            memberAdapter.setData(getMemberList());
 
-        memberAdapter = new MemberAdapter(AboutUsScreen.this);
-        memberAdapter.setData(getMemberList());
+            rcvListMemberTeam.setAdapter(memberAdapter);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to load adapter member in AboutUsScreen: " + e);
+        }
 
-        rcvListMemberTeam.setAdapter(memberAdapter);
 
     }
 

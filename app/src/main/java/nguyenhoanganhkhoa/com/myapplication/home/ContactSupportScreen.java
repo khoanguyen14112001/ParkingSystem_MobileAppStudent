@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -84,14 +85,21 @@ public class ContactSupportScreen extends AppCompatActivity {
     }
 
     private void getData() {
-        Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra(AppUtil.MY_BUNDLE_TRANS);
-        if(bundle!=null){
-            history = (History) bundle.getSerializable(AppUtil.SELECTED_ITEM_TRANS);
-            imvStatus.setImageResource(history.getColorHis());
-            txtStatusSupport.setText(history.getStatusInOut());
-            txtDateSupport.setText(history.getDayInOut());
+        try {
+            Intent intent = getIntent();
+            Bundle bundle = intent.getBundleExtra(AppUtil.MY_BUNDLE_TRANS);
+            if(bundle!=null){
+                history = (History) bundle.getSerializable(AppUtil.SELECTED_ITEM_TRANS);
+                imvStatus.setImageResource(history.getColorHis());
+                txtStatusSupport.setText(history.getStatusInOut());
+                txtDateSupport.setText(history.getDayInOut());
+            }
         }
+
+        catch (Exception e){
+            Log.d("Error", "Cannot get data from history adapter " + e);
+        }
+
 
 
 

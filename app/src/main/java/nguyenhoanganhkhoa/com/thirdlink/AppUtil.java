@@ -29,22 +29,6 @@ public class AppUtil {
     public static String VERIFICATION_CODE_APP = "1234";
     public static String PHONE_APP = "0908315280";
 
-    //Dữ liệu đẩy
-    public static String DATE_OF_BIRTH = "dateofbirth";
-    public static String FACULTY = "faculty";
-    public static String MAJOR = "major";
-    public static String PHONE = "phone";
-    public static String NAME = "name";
-    public static String ID = "id";
-    public static String GENDER = "gender";
-
-    public static String DATE_OF_BIRTH1 = "dateofbirth1";
-    public static String FACULTY1 = "faculty1";
-    public static String MAJOR1 = "major1";
-    public static String PHONE1 = "phone1";
-    public static String NAME1 = "name1";
-    public static String ID1 = "id1";
-    public static String GENDER1 = "gender1";
 
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
     public static SimpleDateFormat dateFormat2 = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
@@ -76,6 +60,21 @@ public class AppUtil {
 
     public static String PROBLEM = "";
     public static String HELP_PROBLEM_CONTEXT = "";
+
+    public static String USERNAME_AFTER_LOGGIN = "";
+
+    public static String FB_DATE_OF_BIRTH = "dateOfBirthStudent";
+    public static String FB_FACULTY = "facultyStudent";
+    public static String FB_MAJOR = "majorStudent";
+    public static String FB_PHONE = "phoneStudent";
+    public static String FB_FULLNAME = "fullnameStudent";
+    public static String FB_ID = "idstudent";
+    public static String FB_GENDER = "genderStudent";
+    public static String FB_AVATAR = "avatarStudent";
+    public static String FB_EMAIL = "emailStudent";
+    public static String FB_USERNAME = "usernameStudent";
+    public static String FB_IMAGES_BITMAP = "uriImageStudent";
+
 
 
 

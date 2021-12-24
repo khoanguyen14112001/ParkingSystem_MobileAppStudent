@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,13 +92,19 @@ public class FromAdminNoticeFragment extends Fragment {
 
 
     private void initAdapter() {
-        adapter = new DialogNotificationAdapter(getContext(),R.layout.item_notification_all_bold);
+        try {
+            adapter = new DialogNotificationAdapter(getContext(),R.layout.item_notification_all_bold);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false);
-        rcvDisplayNotifications.setLayoutManager(linearLayoutManager);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false);
+            rcvDisplayNotifications.setLayoutManager(linearLayoutManager);
 
-        adapter.setData(getListNotify());
-        rcvDisplayNotifications.setAdapter(adapter);
+            adapter.setData(getListNotify());
+            rcvDisplayNotifications.setAdapter(adapter);
+        }
+        catch (Exception e) {
+            Log.d("Error", "Fail to load adapter in FromAdminNoticeFragment: " + e);
+        }
+
     }
 
     private List<Notification> getListNotify() {

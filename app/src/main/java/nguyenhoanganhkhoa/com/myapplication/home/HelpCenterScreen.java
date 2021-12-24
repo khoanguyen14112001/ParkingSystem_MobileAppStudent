@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -47,13 +48,23 @@ public class HelpCenterScreen extends AppCompatActivity {
         searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                questionsAdapter.getFilter().filter(query);
+                try {
+                    questionsAdapter.getFilter().filter(query);
+                }
+                catch (Exception e){
+                    Log.d("Error", "Fail to search data in HelpCenterScreen: " + e);
+                }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                questionsAdapter.getFilter().filter(newText);
+                try {
+                    questionsAdapter.getFilter().filter(newText);
+                }
+                catch (Exception e){
+                    Log.d("Error", "Fail to search data in HelpCenterScreen: " + e);
+                }
                 return false;
             }
         });
@@ -70,18 +81,28 @@ public class HelpCenterScreen extends AppCompatActivity {
     private void initAdapter(int layout) {
         if(layout == R.layout.item_question)
         {
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false);
-            rcvQuestions.setLayoutManager(linearLayoutManager);
-            questionsAdapter = new QuestionsAdapter(getQuestionsList(),layout,this);
-            rcvQuestions.setAdapter(questionsAdapter);
-
+            try{
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false);
+                rcvQuestions.setLayoutManager(linearLayoutManager);
+                questionsAdapter = new QuestionsAdapter(getQuestionsList(),layout,this);
+                rcvQuestions.setAdapter(questionsAdapter);
+            }
+            catch (Exception e){
+                Log.d("Error", "Fail to load question adapter in HelpCenterScreen: " + e);
+            }
 
         }
         if(layout == R.layout.item_problem_categories){
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL,false);
-            rcvProblemCate.setLayoutManager(linearLayoutManager);
-            questionsAdapter = new QuestionsAdapter(getProblemsCateList(),layout,this);
-            rcvProblemCate.setAdapter(questionsAdapter);
+            try {
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL,false);
+                rcvProblemCate.setLayoutManager(linearLayoutManager);
+                questionsAdapter = new QuestionsAdapter(getProblemsCateList(),layout,this);
+                rcvProblemCate.setAdapter(questionsAdapter);
+            }
+            catch (Exception e){
+                Log.d("Error", "Fail to load problem category adapter in HelpCenterScreen: " + e);
+
+            }
         }
     }
 

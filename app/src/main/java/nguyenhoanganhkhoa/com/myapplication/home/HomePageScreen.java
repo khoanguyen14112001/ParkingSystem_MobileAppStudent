@@ -12,13 +12,17 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import nguyenhoanganhkhoa.com.adapter.ViewPagerAdapter;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
 
 public class HomePageScreen extends AppCompatActivity {
     BottomNavigationView navBottom;
     ViewPager2 vpagerHomePage;
+    private FirebaseAuth mAuth;
 
     private void linkView() {
         navBottom = findViewById(R.id.navBottom);
@@ -96,5 +100,15 @@ public class HomePageScreen extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            startActivity(new Intent(this,LoginScreen.class));
+        }
     }
 }

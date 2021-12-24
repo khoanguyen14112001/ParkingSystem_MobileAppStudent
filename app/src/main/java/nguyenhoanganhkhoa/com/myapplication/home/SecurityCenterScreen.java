@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -39,14 +40,21 @@ public class SecurityCenterScreen extends AppCompatActivity {
     }
 
     private void initAdapter() {
-        termAdapter= new TermAdapter(this,R.layout.item_term);
-        rcvTerms.setAdapter(termAdapter);
+        try {
+            termAdapter= new TermAdapter(this,R.layout.item_term);
+            rcvTerms.setAdapter(termAdapter);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
-        rcvTerms.setLayoutManager(linearLayoutManager);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+            rcvTerms.setLayoutManager(linearLayoutManager);
 
-        termAdapter.setData(getTermList());
-        rcvTerms.setAdapter(termAdapter);
+            termAdapter.setData(getTermList());
+            rcvTerms.setAdapter(termAdapter);
+        }
+        catch (Exception e) {
+            Log.d("Error", "Fail to load adapter in SecurityScreen: " + e);
+
+        }
+
 
     }
 

@@ -184,10 +184,7 @@ public class CustomBottomSheetFilter extends BottomSheetDialog {
                 layout_filter_date.setVisibility(View.VISIBLE);
                 position = "All";
                 break;
-
         }
-
-
     }
 
     private Date convertStringToDate(String sDate, SimpleDateFormat sdf) {
@@ -269,6 +266,10 @@ public class CustomBottomSheetFilter extends BottomSheetDialog {
                 chkUnsuccessful.setChecked(false);
                 edtValueFrom.setText("0");
                 edtValueTo.setText("500000");
+                ArrayList<Float> list = new ArrayList<>();
+                list.add((float) 0);
+                list.add(500000F);
+                sliderAmount.setValues(list);
             }
         });
 
@@ -468,7 +469,7 @@ public class CustomBottomSheetFilter extends BottomSheetDialog {
 
         }
         catch (Exception e){
-            Log.d("TAG", "convertStringToInt: " + e);
+            Log.d(":Error", "Fail to convertStringToInt in bottom sheet: " + e);
             return null;
         }
     }

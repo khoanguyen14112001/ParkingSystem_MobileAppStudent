@@ -52,12 +52,18 @@ public class HelpCenterDetailScreen extends AppCompatActivity {
     private void addFragment() {
         FragmentManager fragmentManager;
         fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        try {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        HelpCenterOutFragment fragment = new HelpCenterOutFragment();
+            HelpCenterOutFragment fragment = new HelpCenterOutFragment();
 
-        fragmentTransaction.add(R.id.layout_fragment, fragment);
-        fragmentTransaction.commit();
+            fragmentTransaction.add(R.id.layout_fragment, fragment);
+            fragmentTransaction.commit();
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to add fragment in HelpCenterScreen: " + e);
+        }
+
     }
 
 

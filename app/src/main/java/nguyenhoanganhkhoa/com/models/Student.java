@@ -1,16 +1,47 @@
 package nguyenhoanganhkhoa.com.models;
 
-public class Student {
-    private String usernameStudent, passwordStudent,emailStudent
+import java.io.Serializable;
+
+public class Student implements Serializable {
+    private String uid, usernameStudent, passwordStudent,emailStudent
             ,fullnameStudent, phoneStudent, IDStudent, majorStudent,dateOfBirthStudent
             ,facultyStudent, genderStudent;
     private int avatarStudent;
+    private String uriImageStudent;
 
-    public Student(String usernameStudent, String passwordStudent,
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getUriImageStudent() {
+        return uriImageStudent;
+    }
+
+    public void setUriImageStudent(String uriImageStudent) {
+        this.uriImageStudent = uriImageStudent;
+    }
+
+    public Student(String fullnameStudent, String phoneStudent, String IDStudent, String majorStudent, String dateOfBirthStudent, String facultyStudent, String genderStudent, int avatarStudent) {
+        this.fullnameStudent = fullnameStudent;
+        this.phoneStudent = phoneStudent;
+        this.IDStudent = IDStudent;
+        this.majorStudent = majorStudent;
+        this.dateOfBirthStudent = dateOfBirthStudent;
+        this.facultyStudent = facultyStudent;
+        this.genderStudent = genderStudent;
+        this.avatarStudent = avatarStudent;
+    }
+
+    public Student(String uid, String usernameStudent, String passwordStudent,
                    String emailStudent, String fullnameStudent,
                    String phoneStudent, String IDStudent, String majorStudent,
                    String dateOfBirthStudent, String facultyStudent,
-                   String genderStudent, int avatarStudent) {
+                   String genderStudent, int avatarStudent, String uriImageStudent) {
+        this.uid = uid;
         this.usernameStudent = usernameStudent;
         this.passwordStudent = passwordStudent;
         this.emailStudent = emailStudent;
@@ -22,6 +53,7 @@ public class Student {
         this.facultyStudent = facultyStudent;
         this.genderStudent = genderStudent;
         this.avatarStudent = avatarStudent;
+        this.uriImageStudent = uriImageStudent;
     }
 
     public String getUsernameStudent() {

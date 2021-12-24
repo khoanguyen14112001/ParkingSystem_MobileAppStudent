@@ -2,8 +2,10 @@ package nguyenhoanganhkhoa.com.customdialog;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +23,8 @@ import nguyenhoanganhkhoa.com.myapplication.R;
 
 public class CustomBottomSheetComponent extends BottomSheetDialog {
 
+    ImageView imvClose;
+    Button btnApply;
 
 
 
@@ -28,12 +32,32 @@ public class CustomBottomSheetComponent extends BottomSheetDialog {
 
         super(context,theme);
         setContentView(layout);
+        linkView();
+        addEvents();
 
     }
 
+    private void linkView() {
+        imvClose = findViewById(R.id.imvClose);
+        btnApply = findViewById(R.id.btnApply);
 
+    }
 
+    private void addEvents() {
+        imvClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
 
+        btnApply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
+    }
 
 
 }

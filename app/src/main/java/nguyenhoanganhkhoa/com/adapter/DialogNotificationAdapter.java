@@ -1,7 +1,6 @@
 package nguyenhoanganhkhoa.com.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -16,27 +15,24 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.nio.file.SimpleFileVisitor;
 import java.util.ArrayList;
 import java.util.List;
 
 import nguyenhoanganhkhoa.com.models.Notification;
-import nguyenhoanganhkhoa.com.models.QuestionsCategories;
 import nguyenhoanganhkhoa.com.myapplication.R;
-import nguyenhoanganhkhoa.com.myapplication.home.EditActivitiesScreen;
 
 public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotificationAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private List<Notification> mNotification;
     private List<Notification> mNotificationOld;
+
+
     private int layoutItem;
 
     public DialogNotificationAdapter(Context context, int layoutItem) {
@@ -52,6 +48,8 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
         }
         notifyDataSetChanged();
     }
+
+
 
     @NonNull
     @Override
@@ -168,6 +166,8 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
             return 0;
     }
 
+
+
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -191,6 +191,7 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
                     FilterResults filterResults = new FilterResults();
                     filterResults.values = mNotification;
                     return filterResults;
+
                 }
                 return null;
             }

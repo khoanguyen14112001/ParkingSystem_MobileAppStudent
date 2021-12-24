@@ -3,11 +3,13 @@ package nguyenhoanganhkhoa.com.fragments;
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -18,14 +20,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.text.SimpleDateFormat;
 
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
+import nguyenhoanganhkhoa.com.models.Student;
 import nguyenhoanganhkhoa.com.myapplication.home.EditInfomationScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
 import nguyenhoanganhkhoa.com.myapplication.signup.EmailScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
+import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,8 +87,10 @@ public class AccountFragment extends Fragment {
     }
 
     ImageView imvChangeProfile;
-    TextView txtDateOfBirthIns,txtFacultyIns, txtMajorIns, txtPhoneIns, txtNameIns,txtGender, txtIDIns, txtSignOut ;
+    TextView txtDateOfBirthIns,txtFacultyIns, txtMajorIns, txtPhoneIns, txtNameIns,txtGender, txtIDIns, txtSignOut,txtEmailIns ;
 
+    ImageView imvAvatarIns;
+    ReusedConstraint reusedConstraint = new ReusedConstraint(getContext());
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,43 +98,97 @@ public class AccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
         linkView(view);
+        getDataFromFirebase();
         addEvents();
-        getData();
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getData();
+        getDataFromFirebase();
+
+
+    }
+    public static DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("account");
+
+    private void getDataFromFirebase() {
+        databaseReference.child(AppUtil.DATA_OBJECT).child(AppUtil.USERNAME_AFTER_LOGGIN)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String name = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
+                        String birth = snapshot.child(AppUtil.FB_DATE_OF_BIRTH).getValue(String.class);
+                        String ID = snapshot.child(AppUtil.FB_ID).getValue(String.class);
+                        String faculty = snapshot.child(AppUtil.FB_FACULTY).getValue(String.class);
+                        String major = snapshot.child(AppUtil.FB_MAJOR).getValue(String.class);
+                        String phone = snapshot.child(AppUtil.FB_PHONE).getValue(String.class);
+                        String email = snapshot.child(AppUtil.FB_EMAIL).getValue(String.class);
+                        String gender = snapshot.child(AppUtil.FB_GENDER).getValue(String.class);
+
+                        int avatar = 0;
+                        String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
+                        if(!uri.isEmpty() && !uri.equals("Null")){
+                            if(getContext()!=null){
+                                Glide.with(getContext()).load(uri).into(imvAvatarIns);
+                            }
+                        }
+                        else{
+                            if(gender.equals("Male")){
+                                avatar = R.drawable.img_avatar_male;
+                            }
+                            if(gender.equals("Female")){
+                                avatar = R.drawable.img_avatar_female;
+                            }
+                            imvAvatarIns.setImageResource(avatar);
+                        }
+
+                        txtNameIns.setText(name);
+                        txtDateOfBirthIns.setText(birth);
+                        txtIDIns.setText(ID);
+                        txtFacultyIns.setText(faculty);
+                        txtMajorIns.setText(major);
+                        txtPhoneIns.setText(phone);
+                        txtEmailIns.setText(email);
+                        txtGender.setText(gender);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.d("Error", "Fail to load info in Account Fragment" + error.toString());
+                    }
+                });
+
     }
 
-    private void  getData(){
-        Bundle bundle = getArguments();
-        if(bundle!=null)
-        {
-            txtDateOfBirthIns.setText(bundle.getString(AppUtil.DATE_OF_BIRTH1));
-            txtFacultyIns.setText(bundle.getString(AppUtil.FACULTY1));
-            txtMajorIns.setText(bundle.getString(AppUtil.MAJOR1));
-            txtPhoneIns.setText(bundle.getString(AppUtil.PHONE1));
-            txtNameIns.setText(bundle.getString(AppUtil.NAME1));
-            txtGender.setText(bundle.getString(AppUtil.GENDER1));
-            txtIDIns.setText(bundle.getString(AppUtil.ID1));
+    private void pushData(Intent intent) {
+        try {
+            Bundle bundle = new Bundle();
+            String fullname = txtNameIns.getText().toString();
+            String phone = txtPhoneIns.getText().toString();
+            String ID = txtIDIns.getText().toString();
+            String major = txtMajorIns.getText().toString();
+            String birth = txtDateOfBirthIns.getText().toString();
+            String faculty = txtFacultyIns.getText().toString();
+            String gender = txtGender.getText().toString();
+            int avatar = 0;
 
+            if(gender.equals("Male")){
+                avatar = R.drawable.img_avatar_male;
+            }
+            if(gender.equals("Female")){
+                avatar = R.drawable.img_avatar_female;
+            }
+
+            Student student = new Student(fullname,phone,ID,major,birth,faculty,gender,avatar);
+            bundle.putSerializable("my_item",student);
+            intent.putExtra("my_bundle",bundle);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to push data to EditInfoScreen from Account Fragment: " + e);
         }
 
-
-    }
-    private void pushData(Intent intent) {
-        Bundle bundle = new Bundle();
-        bundle.putString(AppUtil.DATE_OF_BIRTH,txtDateOfBirthIns.getText().toString());
-        bundle.putString(AppUtil.FACULTY,txtFacultyIns.getText().toString());
-        bundle.putString(AppUtil.MAJOR,txtMajorIns.getText().toString());
-        bundle.putString(AppUtil.PHONE,txtPhoneIns.getText().toString());
-        bundle.putString(AppUtil.NAME,txtNameIns.getText().toString());
-        bundle.putString(AppUtil.GENDER,txtGender.getText().toString());
-        bundle.putString(AppUtil.ID,txtIDIns.getText().toString());
-        intent.putExtra("my_bundle",bundle);
     }
 
     private void linkView(View view) {
@@ -134,6 +201,9 @@ public class AccountFragment extends Fragment {
         txtGender = view.findViewById(R.id.txtGender);
         txtIDIns = view.findViewById(R.id.txtIDIns);
         txtSignOut = view.findViewById(R.id.txtSignOut);
+
+        imvAvatarIns = view.findViewById(R.id.imvAvatarIns);
+        txtEmailIns = view.findViewById(R.id.txtEmailIns);
 
     }
 
@@ -168,8 +238,5 @@ public class AccountFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
     }
-
-
 }

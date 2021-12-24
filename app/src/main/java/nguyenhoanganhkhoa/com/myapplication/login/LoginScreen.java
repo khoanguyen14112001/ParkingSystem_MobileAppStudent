@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -17,12 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
@@ -30,6 +25,7 @@ import nguyenhoanganhkhoa.com.myapplication.signup.EmailScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.HomePageScreen;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.forgotpass.ResetPasswordScreen;
+import nguyenhoanganhkhoa.com.myapplication.signup.PersonalInformationSetScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
@@ -117,11 +113,13 @@ public class LoginScreen extends AppCompatActivity {
 
         linkView();
         addEvents();
+        PersonalInformationSetScreen.selectedFaculty = 0;
+        AppUtil.USERNAME_AFTER_LOGGIN = "";
 
     }
 
 
-    int attemp = 1;
+    int attempt = 1;
     int trytime = 0;
 
 
@@ -187,8 +185,6 @@ public class LoginScreen extends AppCompatActivity {
                 }
                 else {
                     validationAccount();
-                    checkSignin();
-
                 }
             }
         });
@@ -205,21 +201,21 @@ public class LoginScreen extends AppCompatActivity {
 
     }
 
-    private void checkSignin() {
+    private void checkSignin(boolean isValidAccount) {
         // Nếu lần thử > 4 --> bát user chờ 30s, tăng trytime (số lần bị khóa) lên 1 lần
         String username = edtUsername.getText().toString();
         String password = edtPassword.getText().toString();
 
-        if(attemp > 3)
+        if(attempt > 3)
         {
-            setAttemp(30000);
+            setAttempt(30000);
             trytime++;
             edtUsername.clearFocus();
             edtPassword.clearFocus();
         }
         // Nếu lần thử <= 4 --> thực hiện verify email và password
 
-        else if(attemp<3| attemp==3)
+        else if(attempt <3| attempt ==3)
         {
             // Nếu đúng thì cho user đi tiếp, reset lại attemp và trytime
 
@@ -227,7 +223,7 @@ public class LoginScreen extends AppCompatActivity {
             {
                 Intent intent = new Intent(LoginScreen.this, HomePageScreen.class);
                 startActivity(intent);
-                attemp=1;
+                attempt =1;
                 trytime=0;
             }
             // Nếu sai thì bắt đầu làm tiếp như sau:
@@ -254,7 +250,7 @@ public class LoginScreen extends AppCompatActivity {
                         }
                     });
                     customDialog.show();
-                    attemp++;
+                    attempt++;
                     edtUsername.clearFocus();
                     edtPassword.clearFocus();
                 }
@@ -262,7 +258,7 @@ public class LoginScreen extends AppCompatActivity {
 
                 if(trytime==3)
                 {
-                    setAttemp(3600000);
+                    setAttempt(3600000);
                     trytime = 0;
                     edtUsername.clearFocus();
                     edtPassword.clearFocus();
@@ -274,7 +270,7 @@ public class LoginScreen extends AppCompatActivity {
     }
 
 
-    private void setAttemp(int time) {
+    private void setAttempt(int time) {
         // Nếu attemp(lần thử) > 3 --> block hết phần nhập của user và mở lại sau 30s
         btnLogin.setEnabled(false);
         edtUsername.setEnabled(false);
@@ -334,12 +330,11 @@ public class LoginScreen extends AppCompatActivity {
             }
         }.start();
         // Chỉnh lại attemp ở mức 1
-        attemp = 1;
+        attempt = 1;
 
     }
 
 
-    private boolean isValidAccount = false;
     private void validationAccount () {
         username = edtUsername.getText().toString();
         password = edtPassword.getText().toString();
@@ -347,11 +342,20 @@ public class LoginScreen extends AppCompatActivity {
                                  .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String pass = snapshot.child("passwordStudent").getValue(String.class);
+                boolean isValidAccount;
+                String pass = "";
+                try {
+                    pass = snapshot.child("passwordStudent").getValue(String.class);
+                }
+                catch (Exception e){
+                    Log.d("Error", "Fail to get password from Firebase: " + e);
+                }
+
                 if(snapshot.exists())
                 {
                     if(pass.equals(password)){
                         isValidAccount = true;
+                        AppUtil.USERNAME_AFTER_LOGGIN = username;
                     }
                     else{
                         isValidAccount = false;
@@ -360,6 +364,7 @@ public class LoginScreen extends AppCompatActivity {
                 else {
                     isValidAccount = false;
                 }
+                checkSignin(isValidAccount);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

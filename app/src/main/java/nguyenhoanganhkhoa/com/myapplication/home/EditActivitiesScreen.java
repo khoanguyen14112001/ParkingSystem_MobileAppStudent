@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -49,19 +50,21 @@ public class EditActivitiesScreen extends AppCompatActivity {
     }
 
     private void intitAdapterGv() {
+        try {
+            adapter2 = new HomeButtonAdapter(this,R.layout.item_add_in_home_button);
+            adapter2.setData(getOtherButtonList());
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
+            rcvOtherAct.setLayoutManager(linearLayoutManager);
+            rcvOtherAct.setLayoutManager(new GridLayoutManager(this, 4));
+
+            rcvOtherAct.setAdapter(adapter2);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to load adapter button in EditActsScreen " + e);
+        }
 
 
-//        adapterGV = new GVHomeButtonAdapter(this,R.layout.item_add_in_home_button,getOtherButtonList());
-//        gvOtherActivities.setAdapter(adapterGV);
-
-        adapter2 = new HomeButtonAdapter(this,R.layout.item_add_in_home_button);
-        adapter2.setData(getOtherButtonList());
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
-        rcvOtherAct.setLayoutManager(linearLayoutManager);
-        rcvOtherAct.setLayoutManager(new GridLayoutManager(this, 4));
-
-        rcvOtherAct.setAdapter(adapter2);
 
 
     }
@@ -84,29 +87,30 @@ public class EditActivitiesScreen extends AppCompatActivity {
         list.add(new HomeButtons(R.drawable.ic_act_helpcenter, AppUtil.help_center,R.drawable.ic_plusbutton));
         list.add(new HomeButtons(R.drawable.ic_act_security, AppUtil.security_center,R.drawable.ic_plusbutton));
 
-//        list.add(new HomeButtons(R.drawable.ic_topup, AppUtil.top_up,R.drawable.ic_redbutton));
-//        list.add(new HomeButtons(R.drawable.ic_qrcode, AppUtil.qr_code,R.drawable.ic_redbutton));
-//        list.add(new HomeButtons(R.drawable.ic_act_history, AppUtil.history));
-//        list.add(new HomeButtons(R.drawable.ic_act_helpcenter, AppUtil.help_center, R.drawable.ic_plusbutton));
         return list;
     }
 
 
 
     private void initAdapterRcv() {
-        adapter = new HomeButtonAdapter(this,R.layout.item_add_in_home_button);
-        adapter.setData(getFavoriteButtonList());
+        try {
+            adapter = new HomeButtonAdapter(this,R.layout.item_add_in_home_button);
+            adapter.setData(getFavoriteButtonList());
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
-        rcvFavoriteButton.setLayoutManager(linearLayoutManager);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
+            rcvFavoriteButton.setLayoutManager(linearLayoutManager);
 
-        rcvFavoriteButton.setAdapter(adapter);
+            rcvFavoriteButton.setAdapter(adapter);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to load favorite button adapter: " + e);
+        }
+
 
     }
 
     private void linkView() {
         rcvFavoriteButton = findViewById(R.id.rcvFavoriteButton);
-//        gvOtherActivities = findViewById(R.id.gvOtherActivities);
         rcvOtherAct = findViewById(R.id.rcvOtherAct);
         imvBack = findViewById(R.id.imvBack);
     }

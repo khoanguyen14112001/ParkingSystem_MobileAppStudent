@@ -6,11 +6,13 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -24,12 +26,20 @@ import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import nguyenhoanganhkhoa.com.adapter.HomeButtonAdapter;
 import nguyenhoanganhkhoa.com.adapter.TransAllAdapter;
-import nguyenhoanganhkhoa.com.customdialog.CustomDialogEditActivities;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogFragmentHome;
 import nguyenhoanganhkhoa.com.models.Date;
 import nguyenhoanganhkhoa.com.models.HomeButtons;
@@ -101,6 +111,9 @@ public class HomeFragment extends Fragment {
     HomeButtonAdapter homeButtonAdapter;
     RecyclerView rcvButtonsHome;
 
+    TextView txtNameDisplayUser;
+    ImageView imvInsideAvatar;
+
 
 
 
@@ -113,6 +126,7 @@ public class HomeFragment extends Fragment {
         linkView(view);
 
         // Xử lý sự kiện
+        getDataFromFirebase();
         initData();
         initButton();
         addEvents();
@@ -148,6 +162,9 @@ public class HomeFragment extends Fragment {
         imvNoteBell = view.findViewById(R.id.imvNoteBell);
         imbEditActivities = view.findViewById(R.id.imbEditActivities);
         rcvButtonsHome = view.findViewById(R.id.rcvButtonsHome);
+
+        txtNameDisplayUser = view.findViewById(R.id.txtNameDisplayUser);
+        imvInsideAvatar = view.findViewById(R.id.imvInsideAvatar);
     }
 
     private void addEvents() {
@@ -214,9 +231,6 @@ public class HomeFragment extends Fragment {
                 customDialogFragment.show();
             }
         });
-
-
-
     }
 
 
@@ -244,6 +258,33 @@ public class HomeFragment extends Fragment {
         list.add(new Transaction("Parking payment","03 Oct, 16:19 ","-3.000",R.drawable.ic_bike,R.drawable.ic_warning_red));
 
         return list;
+    }
+    private void getDataFromFirebase(){
+        AppUtil.databaseReference.child(AppUtil.DATA_OBJECT).child(AppUtil.USERNAME_AFTER_LOGGIN)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String fullname = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
+                        String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
+                        if(uri.isEmpty()|uri.equals("Null")){
+                            long avatar = snapshot.child("avatarStudent").getValue(Long.class);
+                            int idAva = Integer.parseInt(String.valueOf(avatar));
+                            imvInsideAvatar.setImageResource(idAva);
+                        }
+                        else{
+                            if(getContext()!=null){
+                                Glide.with(getContext()).load(uri).into(imvInsideAvatar);
+                            }
+                        }
+                        txtNameDisplayUser.setText(fullname);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.d("Error", "Fail to load info in Home fragment" + error.toString());
+                    }
+                });
     }
 
 

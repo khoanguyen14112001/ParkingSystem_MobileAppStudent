@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -171,15 +172,20 @@ public class TopUpAmountFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String s = edtAmount.getText().toString();
-                int amountMoneyCurrent;
+                int amountMoneyCurrent = 0;
                 if(!s.equals("")){
-                    amountMoneyCurrent = Integer.parseInt(s);
+                    try {
+                        amountMoneyCurrent = Integer.parseInt(s);
+                    }
+                    catch (Exception e){
+                        Log.d("Error", "Fail to parseInt amount money: " + e);
+                    }
                 }
                 else{
                     amountMoneyCurrent = 0;
                 }
                 int newAmount;
-                if(((amountMoneyCurrent - m10k) >= 0)){
+                if((amountMoneyCurrent - m10k) >= 0){
                     newAmount = amountMoneyCurrent - m10k;
                     edtAmount.setText(String.valueOf(newAmount));
                 }

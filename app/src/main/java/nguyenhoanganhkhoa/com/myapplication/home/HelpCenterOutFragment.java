@@ -46,9 +46,15 @@ public class HelpCenterOutFragment extends Fragment {
         btnRequestHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.layout_fragment,new HelpCenterInFragment());
-                fragmentTransaction.addToBackStack(null).commit();
+                try {
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.layout_fragment,new HelpCenterInFragment());
+                    fragmentTransaction.addToBackStack(null).commit();
+                }
+                catch (Exception e){
+                    Log.d("Error", "onClick - Fail to load HelpCenterInFragment: " + e);
+                }
+
             }
         });
     }

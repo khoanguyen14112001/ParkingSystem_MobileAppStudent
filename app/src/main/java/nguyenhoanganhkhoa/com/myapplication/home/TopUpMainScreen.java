@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -41,12 +42,18 @@ public class TopUpMainScreen extends AppCompatActivity {
     private void addFragment() {
         FragmentManager fragmentManager;
         fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        try {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        TopUpWalletFragment topUpWalletFragment = new TopUpWalletFragment();
+            TopUpWalletFragment topUpWalletFragment = new TopUpWalletFragment();
 
-        fragmentTransaction.add(R.id.lnFragmentRelace, topUpWalletFragment);
-        fragmentTransaction.commit();
+            fragmentTransaction.add(R.id.lnFragmentRelace, topUpWalletFragment);
+            fragmentTransaction.commit();
+        }
+        catch (Exception e) {
+            Log.d("Error", "Fail to addFragment in TopUpScreen: " + e);
+        }
+
     }
 
     private void linkView() {

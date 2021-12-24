@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,14 +87,19 @@ public class UnreadFNoticeFragment extends Fragment {
     }
 
     private void initAdapter() {
-        adapter = new DialogNotificationAdapter(getContext(),R.layout.item_notification_all_bold);
-        rcvDisplayNotifications.setAdapter(adapter);
+        try{
+            adapter = new DialogNotificationAdapter(getContext(),R.layout.item_notification_all_bold);
+            rcvDisplayNotifications.setAdapter(adapter);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+            rcvDisplayNotifications.setLayoutManager(linearLayoutManager);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-        rcvDisplayNotifications.setLayoutManager(linearLayoutManager);
+            adapter.setData(getListNotify());
+            rcvDisplayNotifications.setAdapter(adapter);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to set adapter in UnreadFragment: " + e);
+        }
 
-        adapter.setData(getListNotify());
-        rcvDisplayNotifications.setAdapter(adapter);
     }
 
     private List<Notification> getListNotify() {
@@ -108,8 +114,8 @@ public class UnreadFNoticeFragment extends Fragment {
                 "money to pay, please top up","01 Nov, 18:45"));
         list.add(new Notification(R.drawable.ic_img_nomoney_notice_new,"You currently do not have enough " +
                 "money to pay, please top up","01 Nov, 18:45"));
-        list.add(new Notification(R.drawable.ic_img_nomoney_notice_new,"You currently do not have enough " +
-                "money to pay, please top up","01 Nov, 18:45"));
+        list.add(new Notification(R.drawable.ic_img_nomoney_notice_new,"There was an error occurs in your transaction, " +
+                "please try again","01 Nov, 18:45"));
         return list;
 
     }

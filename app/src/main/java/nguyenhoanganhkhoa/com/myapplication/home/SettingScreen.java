@@ -90,12 +90,7 @@ public class SettingScreen extends AppCompatActivity {
 
     private void createBottomSheetTime() {
         if(bottomSheetDialogTime ==null){
-//            View view = LayoutInflater.from(this).inflate(R.layout.custom_bottomdialog_filter,null);
-//            bottomSheetDialog = new BottomSheetDialog(this);
-//            bottomSheetDialog.setContentView(view);
-
             bottomSheetDialogTime = new CustomBottomSheetComponent(SettingScreen.this,R.style.BottomSheetDialogTheme,R.layout.custom_bottomdialog_time);
-//            bottomSheetDialog = new CustomBottomSheetFilter(this,R.layout.custom_bottomdialog_filter);
         }
         bottomSheetDialogTime.show();
 
@@ -103,12 +98,7 @@ public class SettingScreen extends AppCompatActivity {
 
     private void createBottomSheetLanguage() {
         if(bottomSheetDialogLanguage ==null){
-//            View view = LayoutInflater.from(this).inflate(R.layout.custom_bottomdialog_filter,null);
-//            bottomSheetDialog = new BottomSheetDialog(this);
-//            bottomSheetDialog.setContentView(view);
-
             bottomSheetDialogLanguage = new CustomBottomSheetComponent(SettingScreen.this,R.style.BottomSheetDialogTheme,R.layout.custom_bottomdialog_language);
-//            bottomSheetDialog = new CustomBottomSheetFilter(this,R.layout.custom_bottomdialog_filter);
         }
         bottomSheetDialogLanguage.show();
     }

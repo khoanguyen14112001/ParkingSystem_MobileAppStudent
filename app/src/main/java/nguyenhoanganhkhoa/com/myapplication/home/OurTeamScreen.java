@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -61,9 +62,13 @@ public class OurTeamScreen extends AppCompatActivity {
 
 
     private void initAdapter() {
-        DetailMemberAdapter detailMemberAdapter = new DetailMemberAdapter(mList);
-        viewPagerOurTeam.setAdapter(detailMemberAdapter);
-
+        try {
+            DetailMemberAdapter detailMemberAdapter = new DetailMemberAdapter(mList);
+            viewPagerOurTeam.setAdapter(detailMemberAdapter);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to load adapter in OurTeamScreen: " + e);
+        }
     }
 
 

@@ -20,6 +20,7 @@ import nguyenhoanganhkhoa.com.myapplication.signup.PersonalInformationSetScreen;
 
 public class FacultyEditAdapter extends ArrayAdapter<Faculty> {
 
+    int positionOut;
 
     @NonNull
     @Override
@@ -33,6 +34,7 @@ public class FacultyEditAdapter extends ArrayAdapter<Faculty> {
             txtFacultySelected.setText(faculty.getNameFaculty());
 
         }
+        positionOut = position;
         return convertView;
 //        return super.getView(position, convertView, parent);
     }
@@ -53,8 +55,9 @@ public class FacultyEditAdapter extends ArrayAdapter<Faculty> {
         }
 
 
-        if(EditInfomationScreen.selectedFaculty==position && EditInfomationScreen.selectedFaculty!=0)
+        if(EditInfomationScreen.selectedFaculty==position)
             txtFaculty.setTextColor(ContextCompat.getColorStateList(getContext(),R.color.primary_yellow));
+
 
 
 
@@ -62,23 +65,10 @@ public class FacultyEditAdapter extends ArrayAdapter<Faculty> {
 
     }
 
-
-
-
-    public boolean isEnabled(int position){
-        Faculty faculty = this.getItem(position);
-
-        if(position == 0 && faculty.getNameFaculty().equals("Faculty*"))
-        {
-            // Disable the first item from Spinner
-            // First item will be use for hint
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+    public String getItemAtPostion(List<Faculty> list) {
+        return list.get(positionOut).getNameFaculty();
     }
+
     public FacultyEditAdapter(@NonNull Context context, int resource, @NonNull List<Faculty> objects) {
 
         super(context, resource, objects);

@@ -282,11 +282,12 @@
     <string name="login_setting_title">Login Setting</string>
     <string name="truong_hoang_y">Truong Hoang Y</string>
     <string name="sign_out_all_devices">Sign out all devices</string>
+    <string name="e_commerce_course_19">E-commerce, course 19</string>
 
 
     <array name="initial_slider_values">
         <item>0</item>
-        <item>0</item>
+        <item>500000</item>
     </array>
 
 </resources>

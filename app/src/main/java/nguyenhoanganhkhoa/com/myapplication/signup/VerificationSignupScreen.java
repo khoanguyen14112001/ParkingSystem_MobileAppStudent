@@ -140,9 +140,6 @@ public class VerificationSignupScreen extends AppCompatActivity {
                             }
                         });
                         customDialog.show();
-
-
-
                     }
                     else
                     {

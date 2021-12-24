@@ -13,8 +13,8 @@ import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class QRCodeScreen extends AppCompatActivity {
 
-    ImageView imvQRCodeScan;
-    TextView txtSecondUpdateQRCode;
+    ImageView imvQRCodeScan, imvAvatarQRCode;
+    TextView txtSecondUpdateQRCode, txtName;
     View viewHoldImage;
 
     ReusedConstraint reusedConstraint = new ReusedConstraint(QRCodeScreen.this);
@@ -25,6 +25,7 @@ public class QRCodeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_qrcode_screen);
 
         linkView();
+        reusedConstraint.getDataFromFirebase(imvAvatarQRCode,txtName);
         addEvents();
 
     }
@@ -52,5 +53,7 @@ public class QRCodeScreen extends AppCompatActivity {
         imvQRCodeScan = findViewById(R.id.imvQRCodeScan);
         txtSecondUpdateQRCode= findViewById(R.id.txtSecondUpdateQRCode);
         viewHoldImage = findViewById(R.id.viewHoldImage);
+        imvAvatarQRCode = findViewById(R.id.imvAvatarQRCode);
+        txtName = findViewById(R.id.txtName);
     }
 }
