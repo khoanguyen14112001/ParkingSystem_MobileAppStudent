@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -24,7 +26,7 @@ public class QRCodeScreen extends AppCompatActivity {
     TextView txtSecondUpdateQRCode, txtName, txtMoneyDisplay;
     View viewHoldImage;
 
-    ReusedConstraint reusedConstraint = new ReusedConstraint(getApplicationContext());
+    ReusedConstraint reusedConstraint = new ReusedConstraint(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +34,41 @@ public class QRCodeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_qrcode_screen);
 
         linkView();
-        reusedConstraint.getDataFromFirebase(imvAvatarQRCode,txtName);
+        getDataFromFirebase();
         displayBalanceFromFirebase();
         addEvents();
 
+    }
+
+    public void getDataFromFirebase(){
+        AppUtil.databaseReference.child(AppUtil.DATA_OBJECT).child(AppUtil.USERNAME_AFTER_LOGGIN)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String fullname = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
+                        String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
+                        if(uri.isEmpty()|uri.equals("Null")){
+                            long avatar = snapshot.child(AppUtil.FB_AVATAR).getValue(Long.class);
+                            int idAva = Integer.parseInt(String.valueOf(avatar));
+                            imvAvatarQRCode.setImageResource(idAva);
+                        }
+                        else{
+                            if(getApplicationContext()!=null){
+                                Glide.with(getApplicationContext()).load(uri).into(imvAvatarQRCode);
+                            }
+                            else{
+                                Toast.makeText(QRCodeScreen.this,"Cannot get Application context",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        txtName.setText(fullname);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.d("Error", "Fail to load info in: "  + error.toString());
+                    }
+                });
     }
 
     private void addEvents() {

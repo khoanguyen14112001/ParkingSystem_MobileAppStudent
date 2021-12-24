@@ -34,6 +34,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:orientation="vertical"
+            android:id="@+id/layoutOut"
             app:layout_constraintTop_toBottomOf="@id/txtSettings">
 
             <LinearLayout
@@ -122,7 +123,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:paddingHorizontal="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="5dp"
+                >
 
                 <TextView
                     style="@style/in_SmallHeaderText"
@@ -296,34 +300,30 @@
 
 
                     </LinearLayout>
-
-
                 </LinearLayout>
-
             </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:text="Sign out all devices"
-                app:layout_constraintTop_toBottomOf="@id/linearIphone"
-                app:layout_constraintLeft_toLeftOf="@+id/gLeft2"
-                app:layout_constraintRight_toRightOf="@+id/gRight2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.4"
-                android:layout_gravity="center"
-                style="@style/buttonLongYellow"
-                android:layout_marginHorizontal="20dp"
-                android:id="@+id/btnSignOutAllDevices"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:background="@color/white"
-                app:layout_constraintTop_toBottomOf="@id/btnSignOutAllDevices"
-                />
-
-
-
         </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="Sign out all devices"
+            android:layout_width="0dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutOut"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            android:layout_gravity="center"
+            style="@style/buttonLongYellow"
+            android:layout_marginHorizontal="20dp"
+            android:id="@+id/btnSignOutAllDevices"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/btnSignOutAllDevices"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

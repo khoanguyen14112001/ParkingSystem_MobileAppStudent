@@ -160,33 +160,6 @@ public class ReusedConstraint {
         });
     }
 
-    public void getDataFromFirebase(ImageView imv, TextView txtName){
-        AppUtil.databaseReference.child(AppUtil.DATA_OBJECT).child(AppUtil.USERNAME_AFTER_LOGGIN)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String fullname = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
-                        String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
-                        if(uri.isEmpty()|uri.equals("Null")){
-                            long avatar = snapshot.child(AppUtil.FB_AVATAR).getValue(Long.class);
-                            int idAva = Integer.parseInt(String.valueOf(avatar));
-                            imv.setImageResource(idAva);
-                        }
-                        else{
-                            if(context!=null){
-                                Glide.with(context).load(uri).into(imv);
-                            }
-                        }
-                        txtName.setText(fullname);
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Log.d("Error", "Fail to load info in: " + context.getClass().toString() + error.toString());
-                    }
-                });
-    }
 
     public String formatCurrency (double number){
         NumberFormat formatter = new DecimalFormat("#,###");
