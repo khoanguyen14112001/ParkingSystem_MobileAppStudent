@@ -28,6 +28,8 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ViewHolder> {
         this.context = context;
         this.layout = layout;
         Log.d("TAG", "DateAdapter: Test ");
+        Log.d("TAG", "DateAdapter: Test 2 ");
+
 
     }
 
