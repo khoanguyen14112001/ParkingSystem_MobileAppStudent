@@ -48,17 +48,21 @@ public class HelpCenterScreen extends AppCompatActivity {
         searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 try {
                     questionsAdapter.getFilter().filter(query);
                 }
                 catch (Exception e){
                     Log.d("Error", "Fail to search data in HelpCenterScreen: " + e);
                 }
+
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+
                 try {
                     questionsAdapter.getFilter().filter(newText);
                 }
