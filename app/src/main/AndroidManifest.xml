@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nguyenhoanganhkhoa.com.myapplication">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,14 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".home.EnterNewPasswordScreen"
+            android:exported="false" />
+        <activity
+            android:name=".home.SetNewPasswordScreen"
+            android:exported="false" />
+        <activity
             android:name=".home.LoginSettingScreen"
             android:exported="false" />
         <activity
             android:name=".home.ContactSupportScreen"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".home.HelpCenterDetailScreen"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".home.DetailTransaction"
             android:exported="true" />
@@ -42,9 +48,7 @@
             android:exported="true" />
         <activity
             android:name=".home.NewsScreen"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".home.OurTeamScreen"
             android:exported="true" />
@@ -65,9 +69,7 @@
             android:exported="true" />
         <activity
             android:name=".home.HomePageScreen"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".signup.PersonalInformationSetScreen"
             android:exported="true" />
