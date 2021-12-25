@@ -138,7 +138,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
     //Các sự kiện validate
     private Boolean validateIDStudent(){
-        String username = edtIdStudent.getText().toString();
+        String username = edtIdStudent.getText().toString().trim();
         if (username.isEmpty()){
             txtErrorIdStudent.setText(R.string.field_cannot_be_empty);
             txtErrorIdStudent.setTextSize(15);
@@ -160,8 +160,8 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
     }
     private Boolean validateMajor(){
-        String username = adtMajor.getText().toString();
-        if (username.isEmpty()){
+        String major = adtMajor.getText().toString().trim();
+        if (major.isEmpty()){
             txtErrorMarjor.setText(R.string.field_cannot_be_empty);
             txtErrorMarjor.setTextSize(15);
             adtMajor.setHintTextColor(getColor(R.color.red));
@@ -182,7 +182,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     }
     private Boolean validateDateOfbirth(){
 
-        String dateofbirth = edtDateofbirth.getText().toString();
+        String dateofbirth = edtDateofbirth.getText().toString().trim();
         if (dateofbirth.isEmpty()){
             txtErrorDateofBirth.setText(R.string.field_cannot_be_empty);
             txtErrorDateofBirth.setTextSize(15);
@@ -357,7 +357,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         else{
             if(ContextCompat.checkSelfPermission(PersonalInformationSetScreen.this,
                     Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-                pickGalery();
+                pickGallery();
             }
             else{
                 requestStoragePermission();
@@ -383,7 +383,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         if(requestCode == STORAGE_REQUEST_PERMISSION_CODE){
             if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
                 Toast.makeText(this,"Permission read storage granted",Toast.LENGTH_LONG).show();
-                pickGalery();
+                pickGallery();
             }else{
                 Toast.makeText(this,"Permission read storage denied",Toast.LENGTH_LONG).show();
             }
@@ -403,7 +403,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         activityResultLauncher.launch(cameraIntent);
     }
-    private void pickGalery(){
+    private void pickGallery(){
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         activityResultLauncher.launch(intent);
@@ -629,7 +629,10 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                validateIDStudent();
+                validateMajor();
+                validateDateOfbirth();
+                validateFaculty();
                 if(!validateIDStudent()|!validateMajor()|!validateDateOfbirth()|!validateFaculty())
                 {
                     clearAllForcus();
@@ -678,27 +681,27 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
     DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("account").child(AppUtil.DATA_OBJECT);
 
     private void pushAccountDataToFirebase(){
-        username = AppUtil.USERNAME_S;
-        password = AppUtil.PASSWORD_S;
-        phone = AppUtil.PHONE_S;
-        fullname = AppUtil.FULLNAME_S;
-        email = AppUtil.EMAIL_S;
+        username = AppUtil.USERNAME_S.trim();
+        password = AppUtil.PASSWORD_S.trim();
+        phone = AppUtil.PHONE_S.trim();
+        fullname = AppUtil.FULLNAME_S.trim();
+        email = AppUtil.EMAIL_S.trim();
 
 
 
         if(radFemale.isChecked()){
-            gender = radFemale.getText().toString();
+            gender = radFemale.getText().toString().trim();
             avatar = R.drawable.img_avatar_female;
         }
         else if(radMale.isChecked()){
-            gender = radMale.getText().toString();
+            gender = radMale.getText().toString().trim();
             avatar = R.drawable.img_avatar_male;
         }
 
-        ID = edtIdStudent.getText().toString();
-        faculty = getListFaculty().get(selectedFaculty).getNameFaculty();
-        major = adtMajor.getText().toString();
-        dateOfBirth = edtDateofbirth.getText().toString();
+        ID = edtIdStudent.getText().toString().trim();
+        faculty = getListFaculty().get(selectedFaculty).getNameFaculty().trim();
+        major = adtMajor.getText().toString().trim();
+        dateOfBirth = edtDateofbirth.getText().toString().trim();
 
 
         firebaseAuth.createUserWithEmailAndPassword(email,password)

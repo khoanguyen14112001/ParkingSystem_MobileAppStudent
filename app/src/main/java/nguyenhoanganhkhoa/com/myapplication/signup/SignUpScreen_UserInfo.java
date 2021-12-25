@@ -170,7 +170,7 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
 
     }
     private Boolean validateNewPassword(){
-        String password = edtPassSignUp.getText().toString();
+        String password = edtPassSignUp.getText().toString().trim();
 
         if (password.isEmpty()){
             txtErrorPassSignup.setText(R.string.field_cannot_be_empty);
@@ -208,7 +208,7 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
 
     }
     private Boolean validateConfirmPassword(){
-        String password = edtConfirmPassSignup.getText().toString();
+        String password = edtConfirmPassSignup.getText().toString().trim();
 
         if (password.isEmpty()){
             txtErrorConfirmPassSignUp.setText(R.string.field_cannot_be_empty);
@@ -219,7 +219,7 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             return false;
         }
 
-        else if(!password.equals(edtPassSignUp.getText().toString()))
+        else if(!password.equals(edtPassSignUp.getText().toString().trim()))
         {
             txtErrorConfirmPassSignUp.setText(R.string.your_password_must_be_match);
             txtErrorConfirmPassSignUp.setTextSize(15);
@@ -271,11 +271,11 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
         imvSignupUserInfoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = edtFullname.getText().toString();
-                String phone = edtPhoneSignUp.getText().toString();
-                String username = edtUsernameSignUp.getText().toString();
-                String password = edtPassSignUp.getText().toString();
-                String confirm = edtConfirmPassSignup.getText().toString();
+                String name = edtFullname.getText().toString().trim();
+                String phone = edtPhoneSignUp.getText().toString().trim();
+                String username = edtUsernameSignUp.getText().toString().trim();
+                String password = edtPassSignUp.getText().toString().trim();
+                String confirm = edtConfirmPassSignup.getText().toString().trim();
                 if(!name.isEmpty()|!phone.isEmpty()|!username.isEmpty()|!password.isEmpty()|!confirm.isEmpty())
                 {
                     CustomDialogTwoButton customDialogTwoButton = new CustomDialogTwoButton
@@ -400,7 +400,7 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = edtUsernameSignUp.getText().toString();
+                String s = edtUsernameSignUp.getText().toString().trim();
                 validationAccount(s);
 
             }
@@ -408,10 +408,10 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
     }
     private void validation() {
         clearAllFocus();
-        AppUtil.USERNAME_S = edtUsernameSignUp.getText().toString();
-        AppUtil.PASSWORD_S = edtPassSignUp.getText().toString();
-        AppUtil.PHONE_S = edtPhoneSignUp.getText().toString();
-        AppUtil.FULLNAME_S = edtFullname.getText().toString();
+        AppUtil.USERNAME_S = edtUsernameSignUp.getText().toString().trim();
+        AppUtil.PASSWORD_S = edtPassSignUp.getText().toString().trim();
+        AppUtil.PHONE_S = edtPhoneSignUp.getText().toString().trim();
+        AppUtil.FULLNAME_S = edtFullname.getText().toString().trim();
         Intent intent = new Intent(SignUpScreen_UserInfo.this, VerificationSignupScreen.class);
         startActivity(intent);
         // Move to next screen

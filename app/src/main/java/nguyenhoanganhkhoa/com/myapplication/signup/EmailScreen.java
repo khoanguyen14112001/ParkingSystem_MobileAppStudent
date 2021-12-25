@@ -89,7 +89,7 @@ public class EmailScreen extends AppCompatActivity {
     }
 
     private Boolean validateEmail(){
-        String email = edtEmail.getText().toString();
+        String email = edtEmail.getText().toString().trim();
         String emailPattern1 = "[a-zA-Z0-9._-]+@st.uel.edu.vn+";
         String emailPattern2 = "[a-zA-Z0-9._-]+@uel.edu.vn+";
 
@@ -183,7 +183,7 @@ public class EmailScreen extends AppCompatActivity {
                 }
                 else
                 {
-                    AppUtil.EMAIL_S = edtEmail.getText().toString();
+                    AppUtil.EMAIL_S = edtEmail.getText().toString().trim();
                     Intent intent = new Intent(EmailScreen.this, SignUpScreen_UserInfo.class);
                     startActivity(intent);
                 }
