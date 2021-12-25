@@ -140,20 +140,24 @@ public class LoginSettingScreen extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String fullname = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
-                        String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
-                        if(uri.isEmpty()|uri.equals("Null")){
-                            long avatar = snapshot.child(AppUtil.FB_AVATAR).getValue(Long.class);
-                            int idAva = Integer.parseInt(String.valueOf(avatar));
-                            imvAvatar.setImageResource(idAva);
-                        }
-                        else{
-                            if(getApplicationContext()!=null){
-                                Glide.with(getApplicationContext()).load(uri).into(imvAvatar);
+                        try {
+                            String fullname = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
+                            String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
+                            if(uri.isEmpty()|uri.equals("Null")){
+                                long avatar = snapshot.child(AppUtil.FB_AVATAR).getValue(Long.class);
+                                int idAva = Integer.parseInt(String.valueOf(avatar));
+                                imvAvatar.setImageResource(idAva);
                             }
+                            else{
+                                if(getApplicationContext()!=null){
+                                    Glide.with(getApplicationContext()).load(uri).into(imvAvatar);
+                                }
+                            }
+                            txtName.setText(fullname);
                         }
-                        txtName.setText(fullname);
-
+                        catch (Exception e){
+                            Log.d("Error", "Fail to set value to views in LoginSettingScreen " + e);
+                        }
                     }
 
                     @Override

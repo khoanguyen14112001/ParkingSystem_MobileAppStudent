@@ -241,16 +241,16 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
                 }
 
                 else{
-                        CustomDialog customDialog = new CustomDialog(CreateNewPasswordScreen.this,R.layout.custom_dialog_update_password);
-                        customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(CreateNewPasswordScreen.this, LoginScreen.class);
-                                startActivity(intent);
-                            }
-                        });
-                        customDialog.show();
-                        clearFocus();
+                    CustomDialog customDialog = new CustomDialog(CreateNewPasswordScreen.this,R.layout.custom_dialog_update_password);
+                    customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(CreateNewPasswordScreen.this, LoginScreen.class);
+                            startActivity(intent);
+                        }
+                    });
+                    customDialog.show();
+                    clearFocus();
                 }
             }
         });

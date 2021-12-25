@@ -102,12 +102,19 @@ public class TopUpQRCodeFragment extends Fragment {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        long balance = snapshot.child(AppUtil.FB_BALANCE).getValue(Long.class);
-                        double currentBalance = Double.parseDouble(String.valueOf(balance));
-                        double plusBalance = Double.parseDouble(AppUtil.AMOUNT_SEND);
-                        double newBalance = currentBalance + plusBalance;
-                        databaseReference.child(AppUtil.FB_BALANCE).setValue(newBalance);
-                        Toast.makeText(getContext(),"Your balance successfully updated!",Toast.LENGTH_LONG).show();
+                        try {
+                            long balance = snapshot.child(AppUtil.FB_BALANCE).getValue(Long.class);
+                            double currentBalance = Double.parseDouble(String.valueOf(balance));
+                            double plusBalance = Double.parseDouble(AppUtil.AMOUNT_SEND);
+                            double newBalance = currentBalance + plusBalance;
+                            databaseReference.child(AppUtil.FB_BALANCE).setValue(newBalance);
+                            Toast.makeText(getContext(),"Your balance successfully updated!",Toast.LENGTH_LONG).show();
+                        }
+                        catch (Exception e){
+                            Log.d("Error", "Fail to set values to views in TopUpQRFragment: " + e);
+                            Toast.makeText(getContext(), "Something was wrong when top up your balance", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
 
                     @Override

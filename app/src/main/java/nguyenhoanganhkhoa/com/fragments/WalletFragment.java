@@ -187,9 +187,15 @@ public class WalletFragment extends Fragment {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        long balance = snapshot.child(AppUtil.FB_BALANCE).getValue(Long.class);
-                        double balanceDisplay = Double.parseDouble(String.valueOf(balance));
-                        txtMoneyDisplay.setText(reusedConstraint.formatCurrency(balanceDisplay));
+                        try {
+                            long balance = snapshot.child(AppUtil.FB_BALANCE).getValue(Long.class);
+                            double balanceDisplay = Double.parseDouble(String.valueOf(balance));
+                            txtMoneyDisplay.setText(reusedConstraint.formatCurrency(balanceDisplay));
+                        }
+                        catch (Exception e){
+                            Log.d("Error", "Cannot load value to views in WalletFragment: " + e);
+                        }
+
                     }
 
                     @Override

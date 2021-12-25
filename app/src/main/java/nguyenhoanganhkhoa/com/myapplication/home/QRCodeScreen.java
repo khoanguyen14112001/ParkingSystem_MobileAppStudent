@@ -45,23 +45,27 @@ public class QRCodeScreen extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String fullname = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
-                        String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
-                        if(uri.isEmpty()|uri.equals("Null")){
-                            long avatar = snapshot.child(AppUtil.FB_AVATAR).getValue(Long.class);
-                            int idAva = Integer.parseInt(String.valueOf(avatar));
-                            imvAvatarQRCode.setImageResource(idAva);
-                        }
-                        else{
-                            if(getApplicationContext()!=null){
-                                Glide.with(getApplicationContext()).load(uri).into(imvAvatarQRCode);
+                        try {
+                            String fullname = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
+                            String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
+                            if(uri.isEmpty()|uri.equals("Null")){
+                                long avatar = snapshot.child(AppUtil.FB_AVATAR).getValue(Long.class);
+                                int idAva = Integer.parseInt(String.valueOf(avatar));
+                                imvAvatarQRCode.setImageResource(idAva);
                             }
                             else{
-                                Toast.makeText(QRCodeScreen.this,"Cannot get Application context",Toast.LENGTH_SHORT).show();
+                                if(getApplicationContext()!=null){
+                                    Glide.with(getApplicationContext()).load(uri).into(imvAvatarQRCode);
+                                }
+                                else{
+                                    Toast.makeText(QRCodeScreen.this,"Cannot get Application context",Toast.LENGTH_SHORT).show();
+                                }
                             }
+                            txtName.setText(fullname);
                         }
-                        txtName.setText(fullname);
-
+                        catch (Exception e){
+                            Log.d("Error", "Fail to load value to views in QRCodeScreen " + e);
+                        }
                     }
 
                     @Override

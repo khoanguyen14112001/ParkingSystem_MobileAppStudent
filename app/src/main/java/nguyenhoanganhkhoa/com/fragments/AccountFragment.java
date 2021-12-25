@@ -117,41 +117,45 @@ public class AccountFragment extends Fragment {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String name = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
-                        String birth = snapshot.child(AppUtil.FB_DATE_OF_BIRTH).getValue(String.class);
-                        String ID = snapshot.child(AppUtil.FB_ID).getValue(String.class);
-                        String faculty = snapshot.child(AppUtil.FB_FACULTY).getValue(String.class);
-                        String major = snapshot.child(AppUtil.FB_MAJOR).getValue(String.class);
-                        String phone = snapshot.child(AppUtil.FB_PHONE).getValue(String.class);
-                        String email = snapshot.child(AppUtil.FB_EMAIL).getValue(String.class);
-                        String gender = snapshot.child(AppUtil.FB_GENDER).getValue(String.class);
+                        try {
+                            String name = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
+                            String birth = snapshot.child(AppUtil.FB_DATE_OF_BIRTH).getValue(String.class);
+                            String ID = snapshot.child(AppUtil.FB_ID).getValue(String.class);
+                            String faculty = snapshot.child(AppUtil.FB_FACULTY).getValue(String.class);
+                            String major = snapshot.child(AppUtil.FB_MAJOR).getValue(String.class);
+                            String phone = snapshot.child(AppUtil.FB_PHONE).getValue(String.class);
+                            String email = snapshot.child(AppUtil.FB_EMAIL).getValue(String.class);
+                            String gender = snapshot.child(AppUtil.FB_GENDER).getValue(String.class);
 
-                        int avatar = 0;
-                        String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
-                        if(!uri.isEmpty() && !uri.equals("Null")){
-                            if(getContext()!=null){
-                                Glide.with(getContext()).load(uri).into(imvAvatarIns);
+                            int avatar = 0;
+                            String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
+                            if(!uri.isEmpty() && !uri.equals("Null")){
+                                if(getContext()!=null){
+                                    Glide.with(getContext()).load(uri).into(imvAvatarIns);
+                                }
                             }
+                            else{
+                                if(gender.equals("Male")){
+                                    avatar = R.drawable.img_avatar_male;
+                                }
+                                if(gender.equals("Female")){
+                                    avatar = R.drawable.img_avatar_female;
+                                }
+                                imvAvatarIns.setImageResource(avatar);
+                            }
+
+                            txtNameIns.setText(name);
+                            txtDateOfBirthIns.setText(birth);
+                            txtIDIns.setText(ID);
+                            txtFacultyIns.setText(faculty);
+                            txtMajorIns.setText(major);
+                            txtPhoneIns.setText(phone);
+                            txtEmailIns.setText(email);
+                            txtGender.setText(gender);
                         }
-                        else{
-                            if(gender.equals("Male")){
-                                avatar = R.drawable.img_avatar_male;
-                            }
-                            if(gender.equals("Female")){
-                                avatar = R.drawable.img_avatar_female;
-                            }
-                            imvAvatarIns.setImageResource(avatar);
+                        catch (Exception e){
+                            Log.d("Error", "Fail to parse and add value to view in AccountFragment: " + e);
                         }
-
-                        txtNameIns.setText(name);
-                        txtDateOfBirthIns.setText(birth);
-                        txtIDIns.setText(ID);
-                        txtFacultyIns.setText(faculty);
-                        txtMajorIns.setText(major);
-                        txtPhoneIns.setText(phone);
-                        txtEmailIns.setText(email);
-                        txtGender.setText(gender);
-
                     }
 
                     @Override

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:background="@color/xamNen"
     android:layout_margin="55dp"
-    android:padding="20dp">
+    android:padding="15dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
+        android:paddingLeft="5dp"
         android:inputType="textMultiLine"
         android:fontFamily="@font/be_vietnam_regular"
         android:id="@+id/txtNotifyDisplay"
