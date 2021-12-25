@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
+import nguyenhoanganhkhoa.com.customdialog.CustomDialogNotify;
 import nguyenhoanganhkhoa.com.models.Notification;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.home.AllNotificationScreen;
@@ -96,6 +98,7 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
                 @Override
                 public void onClick(View view) {
                     changeNotice(holder);
+                    displayFullNotification(position);
                 }
             });
             holder.imbMore.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +124,20 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
                 }
             });
         }
+    }
+
+    private void displayFullNotification(int position) {
+        CustomDialogNotify dialog = new CustomDialogNotify(context,R.layout.custom_dialog_display_notify);
+        dialog.txtText.setText(mNotification.get(position).getNotificationContent());
+        dialog.txtDate.setText(mNotification.get(position).getNotificationDate());
+        dialog.btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
     }
 
     private void deleteItem (int position){
