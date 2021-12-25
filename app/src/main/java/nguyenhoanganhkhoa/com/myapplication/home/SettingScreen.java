@@ -14,13 +14,16 @@ import nguyenhoanganhkhoa.com.customdialog.CustomBottomSheetFilter;
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 public class SettingScreen extends AppCompatActivity {
     ImageView imvSettingBack ;
     LinearLayout lnSignOutSetting;
-    TextView txtLoginSetting, txtSetTime, txtLanguage,txtMinutes;
+    TextView txtLoginSetting, txtSetTime, txtLanguage,txtMinutes, txtSetAPass;
     CustomBottomSheetComponent bottomSheetDialogLanguage = null;
     CustomBottomSheetComponent bottomSheetDialogTime = null;
+
+    TextView txtLanguageSpec;
     private void linkView() {
         imvSettingBack = findViewById(R.id.imvSettingBack);
         lnSignOutSetting= findViewById(R.id.lnSignoutSetting);
@@ -28,6 +31,8 @@ public class SettingScreen extends AppCompatActivity {
         txtLanguage=findViewById(R.id.txtLanguage);
         txtSetTime=findViewById(R.id.txtSetTime);
         txtMinutes=findViewById(R.id.txtMinutes);
+        txtLanguageSpec=findViewById(R.id.txtLanguageSpec);
+        txtSetAPass=findViewById(R.id.txtSetAPass);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,12 @@ public class SettingScreen extends AppCompatActivity {
     }
 
     private void addEvents() {
+        txtSetAPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingScreen.this,SetNewPasswordScreen.class));
+            }
+        });
         txtMinutes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,11 +76,24 @@ public class SettingScreen extends AppCompatActivity {
                 customDialogTwoButton.show();
             }
         });
+        txtLanguageSpec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createBottomSheetLanguage();
+            }
+        });
 
         imvSettingBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                if(AppUtil.SIGNAL_COMEBACK_FOR_SETTING == AppUtil.SIGNAL_TO_HOME){
+                    startActivity(new Intent(SettingScreen.this,HomePageScreen.class));
+                    AppUtil.SIGNAL_COMEBACK_FOR_SETTING = 0;
+                }
+                else{
+                    AppUtil.SIGNAL_COMEBACK_FOR_SETTING = 0;
+                    finish();
+                }
             }
         });
 

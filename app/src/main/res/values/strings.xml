@@ -294,6 +294,15 @@
     <string name="you_are_signing_out_this_device_are_you_sure">You are signing out this device.\n Are you sure?</string>
     <string name="you_are_signing_out_all_devices_are_you_sure">You are signing out all devices.\n Are you sure?</string>
     <string name="_1_min">1 min</string>
+    <string name="set_a_password">Set a password</string>
+    <string name="enter_your_current_password">Enter your current password</string>
+    <string name="current_password">Current password</string>
+    <string name="wrong_password_please_try_again">Wrong password, please try again</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_new_password">Confirm new password</string>
+    <string name="updated_successful">Updated successful</string>
+    <string name="your_new_password_has_been_updated">Your new password has been updated.</string>
 
     <array name="initial_slider_values">
         <item>0</item>

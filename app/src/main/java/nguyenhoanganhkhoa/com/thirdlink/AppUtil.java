@@ -16,7 +16,7 @@ public class AppUtil {
                     "(?=.*[0-9])" +
                     "(?=.*[a-z])" +
                     "(?=.*[A-Z])" +
-                    //   "(?=.*[@#$%^&+=])" +
+                    "(?=.*[@#$%^&+=])" +
                     "(?=\\S+$)" +
                     ".{8,15}" +
                     "$");
@@ -73,8 +73,11 @@ public class AppUtil {
     public static String FB_USERNAME = "usernameStudent";
     public static String FB_IMAGES_BITMAP = "uriImageStudent";
     public static String FB_BALANCE = "balanceStudent";
+    public static String FB_PASSWORD = "passwordStudent";
 
     public static String AMOUNT_SEND = "";
+    public static int SIGNAL_COMEBACK_FOR_SETTING = 0;
+    public static int SIGNAL_TO_HOME = 123;
 
 
 

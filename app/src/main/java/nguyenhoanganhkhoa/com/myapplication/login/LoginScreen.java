@@ -61,7 +61,7 @@ public class LoginScreen extends AppCompatActivity {
 
 
     private Boolean validateUsername(){
-        String username = edtUsername.getText().toString();
+        String username = edtUsername.getText().toString().trim();
         if (username.isEmpty()){
 
             txtErrorUsername.setText(R.string.field_cannot_be_empty);
@@ -119,7 +119,7 @@ public class LoginScreen extends AppCompatActivity {
 
     }
     private Boolean validatePassword(){
-        String password = edtPassword.getText().toString();
+        String password = edtPassword.getText().toString().trim();
 
         if (password.isEmpty()){
             txtErrorPassword.setText(R.string.field_cannot_be_empty);
@@ -373,8 +373,8 @@ public class LoginScreen extends AppCompatActivity {
 
 
     private void validationAccount () {
-        username = edtUsername.getText().toString();
-        password = edtPassword.getText().toString();
+        username = edtUsername.getText().toString().trim();
+        password = edtPassword.getText().toString().trim();
         AppUtil.databaseReference.child(AppUtil.DATA_OBJECT).child(username)
                                  .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -382,7 +382,7 @@ public class LoginScreen extends AppCompatActivity {
                 boolean isValidAccount;
                 String pass = "";
                 try {
-                    pass = snapshot.child("passwordStudent").getValue(String.class);
+                    pass = snapshot.child(AppUtil.FB_PASSWORD).getValue(String.class);
                 }
                 catch (Exception e){
                     Log.d("Error", "Fail to get password from Firebase: " + e);

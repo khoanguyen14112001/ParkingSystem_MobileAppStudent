@@ -1,31 +1,40 @@
-package nguyenhoanganhkhoa.com.myapplication.forgotpass;
+package nguyenhoanganhkhoa.com.myapplication.home;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.forgotpass.CreateNewPasswordScreen;
+import nguyenhoanganhkhoa.com.myapplication.forgotpass.ResetPasswordScreen;
 import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
-public class CreateNewPasswordScreen extends AppCompatActivity {
-
+public class EnterNewPasswordScreen extends AppCompatActivity {
     EditText edtNewPassword, edtConfirmPassword;
     ImageView imgPasswordToggle1, imgPasswordToggle2, imvComeback;
     TextView txtErrorChangePass, txtErrorConfirmPass,txtVerificationCode;
     Button btnUpdate;
 
-    ReusedConstraint reusedConstraint = new ReusedConstraint(CreateNewPasswordScreen.this);
+    ReusedConstraint reusedConstraint = new ReusedConstraint(EnterNewPasswordScreen.this);
 
     private void linkView() {
         edtNewPassword = findViewById(R.id.edtNewPassword);
@@ -40,15 +49,14 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
     }
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_new_password_screen);
-
+        setContentView(R.layout.activity_enter_new_password_screen);
         linkView();
         addEvents();
     }
-
 
     private void clearFocus(){
         edtConfirmPassword.clearFocus();
@@ -175,8 +183,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         imvComeback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CreateNewPasswordScreen.this, ResetPasswordScreen.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -235,26 +242,48 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!validatePassword() | !validateConfirmPassword()){
-                    clearFocus();
-
+                if (!(!validatePassword() | !validateConfirmPassword())) {
+                    updatePasswordToFirebase();
                 }
-
-                else{
-                    CustomDialog customDialog = new CustomDialog(CreateNewPasswordScreen.this,R.layout.custom_dialog_update_password);
-                    customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(CreateNewPasswordScreen.this, LoginScreen.class);
-                            startActivity(intent);
-                        }
-                    });
-                    customDialog.show();
-                    clearFocus();
-                }
+                clearFocus();
             }
         });
     }
 
+    private void updatePasswordToFirebase(){
+        String pass = edtNewPassword.getText().toString().trim();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    databaseReference.child(AppUtil.FB_PASSWORD).setValue(pass);
+                    openDialog();
+                }
+                catch (Exception e){
+                    Log.d("Error", "Failed to set password to firebase: " + e);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Error", "Failed to set password to firebase: " + error);
+            }
+        });
+    }
+
+    private void openDialog(){
+        CustomDialog customDialog = new CustomDialog(EnterNewPasswordScreen.this, R.layout.custom_dialog_update_password_inhome);
+        customDialog.btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EnterNewPasswordScreen.this, SettingScreen.class);
+                AppUtil.SIGNAL_COMEBACK_FOR_SETTING = AppUtil.SIGNAL_TO_HOME;
+                startActivity(intent);
+            }
+        });
+        customDialog.show();
+    }
+
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("account")
+            .child(AppUtil.DATA_OBJECT).child(AppUtil.USERNAME_AFTER_LOGGIN);
 }

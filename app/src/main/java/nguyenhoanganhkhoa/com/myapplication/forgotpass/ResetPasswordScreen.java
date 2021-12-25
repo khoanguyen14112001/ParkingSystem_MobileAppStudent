@@ -92,7 +92,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
 
 
     private Boolean validatePhoner(){
-        String s = edtPhone.getText().toString();
+        String s = edtPhone.getText().toString().trim();
 
         if (s.isEmpty()){
             txtErrorPhone.setText(R.string.field_cannot_be_empty);
@@ -128,7 +128,7 @@ public class ResetPasswordScreen extends AppCompatActivity {
 
 
                 else{
-                    if(!edtPhone.getText().toString().equals(AppUtil.PHONE_APP))
+                    if(!edtPhone.getText().toString().trim().equals(AppUtil.PHONE_APP))
                     {
                         txtErrorPhone.setText(R.string.your_phone_does_not_exists);
                         txtErrorPhone.setTextSize(15);
