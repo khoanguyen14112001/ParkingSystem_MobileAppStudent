@@ -66,12 +66,18 @@ public class ContactSupportScreen extends AppCompatActivity {
     }
 
     private void initAdapter() {
-        adapter = new DetailProTransAdapter(this,R.layout.item_detail_problem_trans);
-        adapter.setData(getListProblem());
+        try{
+            adapter = new DetailProTransAdapter(this,R.layout.item_detail_problem_trans);
+            adapter.setData(getListProblem());
 
-        LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        rcvContactSupport.setLayoutManager(manager);
-        rcvContactSupport.setAdapter(adapter);
+            LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+            rcvContactSupport.setLayoutManager(manager);
+            rcvContactSupport.setAdapter(adapter);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to load adapter to ContactSupportScreen: " + e);
+        }
+
     }
 
     private List<DetailProTrans> getListProblem() {

@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -152,10 +153,17 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
     }
 
     private void deleteItem (int position){
-        mNotification.remove(position);
-        notifyItemRemoved(position);
-        // dòng này để load lại dữ liệu sau khi đã xóa lên
-        notifyItemRangeChanged(position, mNotification.size());
+        try {
+            mNotification.remove(position);
+            notifyItemRemoved(position);
+            // dòng này để load lại dữ liệu sau khi đã xóa lên
+            notifyItemRangeChanged(position, mNotification.size());
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to delete item in Notification Adapter: " + e);
+            Toast.makeText(context, "Delete notification fail!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private boolean changeReadImage(DialogNotificationAdapter.ViewHolder holder) {

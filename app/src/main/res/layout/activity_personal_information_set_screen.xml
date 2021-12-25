@@ -194,6 +194,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/adtMajors"
             android:hint="@string/major"
+            android:maxLines="2"
             android:drawableStart="@drawable/ic_major"
             app:layout_constraintTop_toBottomOf="@+id/txtErrorSpnFaculty"
             app:layout_constraintLeft_toLeftOf="@id/gLeft7"

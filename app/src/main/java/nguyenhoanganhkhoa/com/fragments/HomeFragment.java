@@ -240,13 +240,19 @@ public class HomeFragment extends Fragment {
 
 
     private void initData() {
-        transAllAdapter = new TransAllAdapter(getContext());
-        transAllAdapter.setData(getTransactionList());
+        try {
+            transAllAdapter = new TransAllAdapter(getContext());
+            transAllAdapter.setData(getTransactionList());
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-        rcvHistoryTrans.setLayoutManager(linearLayoutManager);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+            rcvHistoryTrans.setLayoutManager(linearLayoutManager);
 
-        rcvHistoryTrans.setAdapter(transAllAdapter);
+            rcvHistoryTrans.setAdapter(transAllAdapter);
+        }
+        catch (Exception e){
+            Log.d("Error", "Cannot load adapter in HomeFragment: " + e);
+        }
+
     }
 
 
@@ -269,24 +275,28 @@ public class HomeFragment extends Fragment {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String fullname = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
-                        String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
-                        long balance = snapshot.child(AppUtil.FB_BALANCE).getValue(Long.class);
-                        double balanceDisplay = Double.parseDouble(String.valueOf(balance));
+                        try {
+                            String fullname = snapshot.child(AppUtil.FB_FULLNAME).getValue(String.class);
+                            String uri = snapshot.child(AppUtil.FB_IMAGES_BITMAP).getValue(String.class);
+                            long balance = snapshot.child(AppUtil.FB_BALANCE).getValue(Long.class);
+                            double balanceDisplay = Double.parseDouble(String.valueOf(balance));
 
-                        if(uri.isEmpty()|uri.equals("Null")){
-                            long avatar = snapshot.child("avatarStudent").getValue(Long.class);
-                            int idAva = Integer.parseInt(String.valueOf(avatar));
-                            imvInsideAvatar.setImageResource(idAva);
-                        }
-                        else{
-                            if(getContext()!=null){
-                                Glide.with(getContext()).load(uri).into(imvInsideAvatar);
+                            if(uri.isEmpty()|uri.equals("Null")){
+                                long avatar = snapshot.child(AppUtil.FB_AVATAR).getValue(Long.class);
+                                int idAva = Integer.parseInt(String.valueOf(avatar));
+                                imvInsideAvatar.setImageResource(idAva);
                             }
+                            else{
+                                if(getContext()!=null){
+                                    Glide.with(getContext()).load(uri).into(imvInsideAvatar);
+                                }
+                            }
+                            txtNameDisplayUser.setText(fullname);
+                            txtMoneyDisplay.setText(reusedConstraint.formatCurrency(balanceDisplay));
                         }
-                        txtNameDisplayUser.setText(fullname);
-                        txtMoneyDisplay.setText(reusedConstraint.formatCurrency(balanceDisplay));
-
+                        catch (Exception e){
+                            Log.d("Error", "Cannot parse value in HomeFragment: " + e);
+                        }
                     }
 
                     @Override

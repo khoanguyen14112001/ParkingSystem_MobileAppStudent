@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentResultListener;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -185,9 +186,15 @@ public class HelpCenterInFragment extends Fragment {
     }
 
     private void pickAction(){
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        activityResultLauncher.launch(intent);
+        try{
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            activityResultLauncher.launch(intent);
+        }
+        catch (Exception e) {
+            Log.d("Error", "Fail to pick Gallery: " + e);
+        }
+
     }
 
     private void pickGallery() {

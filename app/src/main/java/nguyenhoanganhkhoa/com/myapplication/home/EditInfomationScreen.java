@@ -211,7 +211,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
             .child(AppUtil.DATA_OBJECT).child(AppUtil.USERNAME_AFTER_LOGGIN);
 
     private boolean nameIsChanged(){
-        String name = edtNameEditInfo.getText().toString();
+        String name = edtNameEditInfo.getText().toString().trim();
         if(name.equals(oName)){
             return false;
         }
@@ -253,7 +253,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         }
     }
     private boolean birthIsChanged(){
-        String birth = edtDateofbirth.getText().toString();
+        String birth = edtDateofbirth.getText().toString().trim();
         if(birth.equals(oBirth)){
             return false;
         }
@@ -266,7 +266,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         }
     }
     private boolean idIsChanged(){
-        String id = edtIdStudent.getText().toString();
+        String id = edtIdStudent.getText().toString().trim();
         if(id.equals(oID)){
             return false;
         }
@@ -294,7 +294,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     }
 
     private boolean majorIsChanged(){
-        String major = adtMajor.getText().toString();
+        String major = adtMajor.getText().toString().trim();
         if(major.equals(oMajor)){
             return false;
         }
@@ -307,7 +307,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         }
     }
     private boolean phoneIsChanged(){
-        String phone = edtPhone.getText().toString();
+        String phone = edtPhone.getText().toString().trim();
         if(phone.equals(oPhone)){
             return false;
         }
@@ -684,7 +684,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         else{
             if(ContextCompat.checkSelfPermission(EditInfomationScreen.this,
                     Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-                pickGalery();
+                pickGallery();
             }
             else{
                 requestStoragePermission();
@@ -710,7 +710,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
         if(requestCode == STORAGE_REQUEST_PERMISSION_CODE){
             if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
                 Toast.makeText(this,"Permission read storage granted",Toast.LENGTH_LONG).show();
-                pickGalery();
+                pickGallery();
             }else{
                 Toast.makeText(this,"Permission read storage denied",Toast.LENGTH_LONG).show();
             }
@@ -727,13 +727,24 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     }
 
     private void pickCamera(){
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        activityResultLauncher.launch(cameraIntent);
+        try {
+            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            activityResultLauncher.launch(cameraIntent);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to pickCamera in EditInformationScreen: " + e);
+        }
+
     }
-    private void pickGalery(){
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        activityResultLauncher.launch(intent);
+    private void pickGallery(){
+        try {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            activityResultLauncher.launch(intent);
+        }
+        catch (Exception e){
+            Log.d("Error", "Fail to pickGallery in EditInformationScreen: " + e);
+        }
     }
 
 
@@ -789,7 +800,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
 
     //Tạo sự kiện Validate
     private Boolean validateIDStudent(){
-        String username = edtIdStudent.getText().toString();
+        String username = edtIdStudent.getText().toString().trim();
         if (username.isEmpty()){
             txtErrorIdStudent.setText(R.string.field_cannot_be_empty);
             txtErrorIdStudent.setTextSize(15);
@@ -811,7 +822,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
 
     }
     private Boolean validatePhoneNumber(){
-        String username = edtPhone.getText().toString();
+        String username = edtPhone.getText().toString().trim();
         if (username.isEmpty()){
             txtErrorPhone.setText(R.string.field_cannot_be_empty);
             txtErrorPhone.setTextSize(15);
@@ -832,7 +843,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
 
     }
     private Boolean validateMajor(){
-        String username = adtMajor.getText().toString();
+        String username = adtMajor.getText().toString().trim();
         if (username.isEmpty()){
             txtErrorMarjor.setText(R.string.field_cannot_be_empty);
             txtErrorMarjor.setTextSize(15);
@@ -854,7 +865,7 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
     }
     private Boolean validateDateOfbirth(){
 
-        String dateofbirth = edtDateofbirth.getText().toString();
+        String dateofbirth = edtDateofbirth.getText().toString().trim();
         if (dateofbirth.isEmpty()){
             txtErrorDateofBirth.setText(R.string.field_cannot_be_empty);
             txtErrorDateofBirth.setTextSize(15);
