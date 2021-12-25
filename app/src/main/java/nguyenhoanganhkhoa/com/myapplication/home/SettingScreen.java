@@ -18,7 +18,7 @@ import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
 public class SettingScreen extends AppCompatActivity {
     ImageView imvSettingBack ;
     LinearLayout lnSignOutSetting;
-    TextView txtLoginSetting, txtSetTime, txtLanguage;
+    TextView txtLoginSetting, txtSetTime, txtLanguage,txtMinutes;
     CustomBottomSheetComponent bottomSheetDialogLanguage = null;
     CustomBottomSheetComponent bottomSheetDialogTime = null;
     private void linkView() {
@@ -27,6 +27,7 @@ public class SettingScreen extends AppCompatActivity {
         txtLoginSetting = findViewById(R.id.txtLoginSetting);
         txtLanguage=findViewById(R.id.txtLanguage);
         txtSetTime=findViewById(R.id.txtSetTime);
+        txtMinutes=findViewById(R.id.txtMinutes);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,12 @@ public class SettingScreen extends AppCompatActivity {
     }
 
     private void addEvents() {
+        txtMinutes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createBottomSheetTime();
+            }
+        });
         lnSignOutSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +63,6 @@ public class SettingScreen extends AppCompatActivity {
                     }
                 });
                 customDialogTwoButton.show();
-
             }
         });
 
@@ -87,6 +93,7 @@ public class SettingScreen extends AppCompatActivity {
             }
         });
     }
+
 
     private void createBottomSheetTime() {
         if(bottomSheetDialogTime ==null){

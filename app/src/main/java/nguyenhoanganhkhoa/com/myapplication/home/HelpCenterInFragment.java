@@ -1,7 +1,10 @@
 package nguyenhoanganhkhoa.com.myapplication.home;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -11,6 +14,9 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 
@@ -24,6 +30,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -31,6 +38,7 @@ import java.util.Objects;
 
 import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.signup.PersonalInformationSetScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 
 /**
@@ -83,6 +91,8 @@ public class HelpCenterInFragment extends Fragment {
     EditText editTextTextMultiLine;
     Button btnRequestHelpIn;
     ActivityResultLauncher activityResultLauncher;
+    ActivityResultLauncher<String> permission;
+
 
     ImageView imv1,imv2,imv3, imvAdd;
     View viewAddPics;
@@ -99,6 +109,7 @@ public class HelpCenterInFragment extends Fragment {
         setService();
         checkContent();
         addEvents();
+        addPermissionResult();
         addResultLauncher();
 
         return view;
@@ -169,13 +180,49 @@ public class HelpCenterInFragment extends Fragment {
         }
     }
 
+    private void requestStoragePermission() {
+        permission.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+    }
+
+    private void pickAction(){
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        activityResultLauncher.launch(intent);
+    }
+
+    private void pickGallery() {
+        if(ContextCompat.checkSelfPermission(requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+            pickAction();
+        }
+        else{
+            requestStoragePermission();
+        }
+    }
+    private void addPermissionResult() {
+         permission = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                new ActivityResultCallback<Boolean>() {
+                    @Override
+                    public void onActivityResult(Boolean result) {
+                        if(result) {
+                            Toast.makeText(getContext(),"Permission Granted",Toast.LENGTH_LONG).show();
+                            pickAction();
+                        }
+                        else{
+                            Toast.makeText(getContext(),"Permission Denied",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+        );
+    }
+
+
     private void addEvents() {
         viewAddPics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                activityResultLauncher.launch(intent);
+                pickGallery();
             }
         });
 

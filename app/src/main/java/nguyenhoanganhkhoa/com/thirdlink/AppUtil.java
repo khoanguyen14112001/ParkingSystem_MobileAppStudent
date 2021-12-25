@@ -24,8 +24,6 @@ public class AppUtil {
     public static String LOCK_CONDITION_FORGOTPASS = "KEY";
 
     // Thông tin dữ liệu để validate APP.
-    public static String USERNAME_APP = "nckh123";
-    public static String PASSWORD_APP = "NCKH12345a";
     public static String VERIFICATION_CODE_APP = "1234";
     public static String PHONE_APP = "0908315280";
 

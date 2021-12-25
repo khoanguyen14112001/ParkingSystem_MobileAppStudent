@@ -30,6 +30,7 @@
             android:background="@drawable/custom_button_dialog"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/black"
+            android:fontFamily="@font/be_vietnam_medium"
             android:layout_height="40dp"
             android:textAllCaps="false"
             android:layout_marginTop="0dp"

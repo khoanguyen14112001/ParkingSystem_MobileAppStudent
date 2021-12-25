@@ -1,6 +1,7 @@
 package nguyenhoanganhkhoa.com.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,8 @@ import java.util.List;
 import nguyenhoanganhkhoa.com.models.Images;
 import nguyenhoanganhkhoa.com.models.QuestionsCategories;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.home.HelpCenterDetailScreen;
+import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
 import nguyenhoanganhkhoa.com.thirdlink.ReusedConstraint;
 
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.ViewHolder> implements Filterable {
@@ -69,6 +73,19 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
             if(mListQuesCate.get(position).getNameQuestion_Categories().equals(s1)){
                 holder.txtQuestions.setText(changeColor(s1,31,35,R.color.purple_momo));
             }
+
+            holder.layout_question.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, HelpCenterDetailScreen.class);
+                    AppUtil.PROBLEM = questionsCategories.getNameQuestion_Categories();
+                    AppUtil.HELP_PROBLEM_CONTEXT = context.getClass().toString();
+                    context.startActivity(intent);
+                }
+            });
+
+
+
         }
         else if(layout==R.layout.item_problem_categories){
             holder.imvProblemCategories.setImageResource(questionsCategories.getThumbQuestion_Categories());
@@ -136,6 +153,8 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
         TextView txtNameCategories,txtArticles, txtQuestions ;
         CardView cvQuetstions;
 
+        LinearLayout layout_question;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imvThumbQuestion = itemView.findViewById(R.id.imvThumbQuestion);
@@ -144,6 +163,8 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
             txtArticles = itemView.findViewById(R.id.txtArticles);
             txtQuestions = itemView.findViewById(R.id.txtQuestions);
             cvQuetstions = itemView.findViewById(R.id.cvQuetstions);
+
+            layout_question = itemView.findViewById(R.id.layout_question);
         }
     }
 }
