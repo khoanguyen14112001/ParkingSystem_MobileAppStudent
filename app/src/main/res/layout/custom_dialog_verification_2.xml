@@ -23,6 +23,7 @@
         android:textAllCaps="false"
         android:layout_marginTop="10dp"
         android:text="@string/ok"
+        android:fontFamily="@font/be_vietnam_medium"
         android:id="@+id/btnOK"
         />
 

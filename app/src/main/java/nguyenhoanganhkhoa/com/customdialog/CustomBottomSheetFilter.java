@@ -17,10 +17,12 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -256,6 +258,23 @@ public class CustomBottomSheetFilter extends BottomSheetDialog {
 
 
     private void addEvents() {
+        chkUnsuccessful.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    chkSuccessful.setChecked(false);
+                }
+            }
+        });
+
+        chkSuccessful.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    chkUnsuccessful.setChecked(false);
+                }
+            }
+        });
 
         txtClearFilters.setOnClickListener(new View.OnClickListener() {
             @Override

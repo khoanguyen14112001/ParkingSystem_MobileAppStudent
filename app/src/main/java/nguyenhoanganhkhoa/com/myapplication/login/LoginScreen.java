@@ -2,6 +2,7 @@ package nguyenhoanganhkhoa.com.myapplication.login;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,9 @@ import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import nguyenhoanganhkhoa.com.customdialog.CustomDialog;
 import nguyenhoanganhkhoa.com.myapplication.signup.EmailScreen;
@@ -61,6 +65,41 @@ public class LoginScreen extends AppCompatActivity {
         if (username.isEmpty()){
 
             txtErrorUsername.setText(R.string.field_cannot_be_empty);
+            txtErrorUsername.setTextSize(15);
+            edtUsername.setHintTextColor(getColor(R.color.red));
+            reusedConstraint.setCustomColor(edtUsername,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            return false;
+        }
+
+//
+
+        else {
+            reusedConstraint.setCustomColor(edtUsername,R.drawable.custom_edt,R.color.blackUI,R.color.xamChu);
+            edtUsername.setHintTextColor(getColor(R.color.xamChu));
+
+            txtErrorUsername.setText(null);
+            txtErrorUsername.setTextSize(0);
+            return true;
+        }
+
+    }
+
+
+
+    private Boolean validateUsernameButton(){
+        String username = edtUsername.getText().toString().trim();
+        if (username.isEmpty()){
+
+            txtErrorUsername.setText(R.string.field_cannot_be_empty);
+            txtErrorUsername.setTextSize(15);
+            edtUsername.setHintTextColor(getColor(R.color.red));
+            reusedConstraint.setCustomColor(edtUsername,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            return false;
+        }
+        // ("[a-zA-Z0-9-_]+")
+
+        if(!username.matches("[a-zA-Z0-9-]+")){
+            txtErrorUsername.setText(R.string.username_must_not_contain);
             txtErrorUsername.setTextSize(15);
             edtUsername.setHintTextColor(getColor(R.color.red));
             reusedConstraint.setCustomColor(edtUsername,R.drawable.edt_custom_error,R.color.red,R.color.red);
@@ -179,7 +218,7 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Validate password và email
-                if( !validateUsername()| !validatePassword()){
+                if( !validateUsernameButton()| !validatePassword()){
                     edtUsername.clearFocus();
                     edtPassword.clearFocus();
                 }
@@ -203,8 +242,6 @@ public class LoginScreen extends AppCompatActivity {
 
     private void checkSignin(boolean isValidAccount) {
         // Nếu lần thử > 4 --> bát user chờ 30s, tăng trytime (số lần bị khóa) lên 1 lần
-        String username = edtUsername.getText().toString();
-        String password = edtPassword.getText().toString();
 
         if(attempt > 3)
         {

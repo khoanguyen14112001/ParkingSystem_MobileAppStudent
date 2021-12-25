@@ -283,7 +283,17 @@
     <string name="truong_hoang_y">Truong Hoang Y</string>
     <string name="sign_out_all_devices">Sign out all devices</string>
     <string name="e_commerce_course_19">E-commerce, course 19</string>
-
+    <string name="username_must_not_contain">Username must not contains special characters</string>
+    <string name="currently_signin_devices">Currently, this account is signed in on the following devices:</string>
+    <string name="iphone_8_plus">iPhone 8 Plus</string>
+    <string name="currently_using">- <font fgcolor='#FFD428'>Currently using</font></string>
+    <string name="ios">IOS</string>
+    <string name="last_operating_time">Last operating time</string>
+    <string name="wednesday_dec_01_2021_at_00_04_37_in_thu_duc_hcmc">Wednesday, Dec 01, 2021 at 00:04:37 in Thu Duc, HCMC</string>
+    <string name="sign_out_this_device">Sign out this device</string>
+    <string name="you_are_signing_out_this_device_are_you_sure">You are signing out this device.\n Are you sure?</string>
+    <string name="you_are_signing_out_all_devices_are_you_sure">You are signing out all devices.\n Are you sure?</string>
+    <string name="_1_min">1 min</string>
 
     <array name="initial_slider_values">
         <item>0</item>

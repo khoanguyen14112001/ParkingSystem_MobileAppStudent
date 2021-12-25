@@ -125,182 +125,18 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="20dp"
                 android:paddingTop="20dp"
-                android:paddingBottom="5dp"
-                >
+                android:paddingBottom="5dp">
 
                 <TextView
                     style="@style/in_SmallHeaderText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Currently, this account is signed in on the following devices:" />
-
-                <LinearLayout
+                    android:text="@string/currently_signin_devices" />
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="16dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/img_iphone" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <TextView
-                            style="@style/in_SmallHeaderText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Iphone 8 plus" />
-
-
-                        </LinearLayout>
-                        <TextView
-                            android:fontFamily="@font/be_vietnam_light"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="IOS - Currently using"
-                            android:textColor="@color/primary_yellow" />
-
-                        <TextView
-                            android:fontFamily="@font/be_vietnam_medium"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Last operating time" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Wednesday, Dec 01, 2021 at 00:04:37 in Thu Duc, HCMC"
-                            android:fontFamily="@font/be_vietnam_light"
-                            android:textSize="12sp" />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_text"
-                    app:layout_constraintVertical_bias="0.05" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="16dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/img_iphone" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/in_SmallHeaderText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="IPhone 13 Pro Max" />
-
-                        <TextView
-                            android:fontFamily="@font/be_vietnam_light"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="IOS" />
-
-                        <TextView
-                            android:fontFamily="@font/be_vietnam_medium"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Last operating time" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Friday, Jul 06, 2021 at 17:07:58 in California, United States"
-                            android:fontFamily="@font/be_vietnam_light"
-                            android:textSize="12sp" />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/view3"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_text"
-                    app:layout_constraintVertical_bias="0.05" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="16dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/img_iphone" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:id="@+id/linearIphone">
-
-                        <TextView
-                            style="@style/in_SmallHeaderText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Samsung Galazy Z Flip3 5G" />
-
-                        <TextView
-                            android:fontFamily="@font/be_vietnam_light"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Android" />
-
-                        <TextView
-                            android:fontFamily="@font/be_vietnam_medium"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Last operating time" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Monday, Mar 25, 2021 at 06:03:16 in Dak Nong, Viet Nam"
-                            android:fontFamily="@font/be_vietnam_light"
-                            android:textSize="12sp" />
-
-
-
-                    </LinearLayout>
-                </LinearLayout>
+                    android:id="@+id/rcvDevices"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="330dp"/>
             </LinearLayout>
         </LinearLayout>
 

@@ -6,6 +6,7 @@
     android:paddingTop="10dp"
     android:paddingStart="5dp"
     android:paddingEnd="5dp"
+    android:id="@+id/layout_question"
     android:paddingBottom="10dp">
     <androidx.cardview.widget.CardView
         android:layout_width="130dp"

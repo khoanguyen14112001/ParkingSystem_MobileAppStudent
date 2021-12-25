@@ -17,6 +17,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import nguyenhoanganhkhoa.com.customdialog.CustomDialogTwoButton;
 import nguyenhoanganhkhoa.com.myapplication.R;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
@@ -125,12 +128,18 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             return true;
         }
     }
-
     private Boolean validateUsername(){
-        String s = edtUsernameSignUp.getText().toString();
-        if(s.isEmpty())
+        String username = edtUsernameSignUp.getText().toString().trim();
+        if(username.isEmpty())
         {
             txtErrorUsernameSignUp.setText(R.string.field_cannot_be_empty);
+            txtErrorUsernameSignUp.setTextSize(15);
+            edtUsernameSignUp.setHintTextColor(getColor(R.color.red));
+            reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
+            return false;
+        }
+        if(!username.matches("[a-zA-Z0-9-]+")){
+            txtErrorUsernameSignUp.setText(R.string.username_must_not_contain);
             txtErrorUsernameSignUp.setTextSize(15);
             edtUsernameSignUp.setHintTextColor(getColor(R.color.red));
             reusedConstraint.setCustomColor(edtUsernameSignUp,R.drawable.edt_custom_error,R.color.red,R.color.red);
@@ -392,35 +401,36 @@ public class SignUpScreen_UserInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String s = edtUsernameSignUp.getText().toString();
-                checkExistUsername(s);
+                validationAccount(s);
 
             }
         });
     }
     private void validation() {
+        clearAllFocus();
+        AppUtil.USERNAME_S = edtUsernameSignUp.getText().toString();
+        AppUtil.PASSWORD_S = edtPassSignUp.getText().toString();
+        AppUtil.PHONE_S = edtPhoneSignUp.getText().toString();
+        AppUtil.FULLNAME_S = edtFullname.getText().toString();
+        Intent intent = new Intent(SignUpScreen_UserInfo.this, VerificationSignupScreen.class);
+        startActivity(intent);
+        // Move to next screen
+    }
+
+
+    private void validationAccount(String username){
         if(!validateFullname()|!validateUsername()|!validatePhone()|!validateNewPassword()|!validateConfirmPassword())
         {
             clearAllFocus();
         }
-
         else{
-            clearAllFocus();
-
-            AppUtil.USERNAME_S = edtUsernameSignUp.getText().toString();
-            AppUtil.PASSWORD_S = edtPassSignUp.getText().toString();
-            AppUtil.PHONE_S = edtPhoneSignUp.getText().toString();
-            AppUtil.FULLNAME_S = edtFullname.getText().toString();
-
-            Intent intent = new Intent(SignUpScreen_UserInfo.this, VerificationSignupScreen.class);
-            startActivity(intent);
-
-
-
-            // Move to next screen
+            if(validateUsername()){
+                checkExistUsername(username);
+            }
         }
     }
-    private void checkExistUsername(String username) {
 
+    private void checkExistUsername(String username) {
         AppUtil.databaseReference.child(AppUtil.DATA_OBJECT).child(username)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
 

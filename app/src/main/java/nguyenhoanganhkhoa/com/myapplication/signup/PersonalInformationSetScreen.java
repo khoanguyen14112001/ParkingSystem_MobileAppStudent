@@ -7,11 +7,14 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -68,6 +71,7 @@ import nguyenhoanganhkhoa.com.models.Major;
 import nguyenhoanganhkhoa.com.models.Student;
 import nguyenhoanganhkhoa.com.myapplication.another.CustomSpinner;
 import nguyenhoanganhkhoa.com.myapplication.R;
+import nguyenhoanganhkhoa.com.myapplication.home.EditInfomationScreen;
 import nguyenhoanganhkhoa.com.myapplication.home.HomePageScreen;
 import nguyenhoanganhkhoa.com.myapplication.login.LoginScreen;
 import nguyenhoanganhkhoa.com.thirdlink.AppUtil;
@@ -334,6 +338,76 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), OutImage, "Title", null);
         return Uri.parse(path);
     }
+    private static final int STORAGE_REQUEST_PERMISSION_CODE = 100;
+    private static final int CAMERA_REQUEST_PERMISSION_CODE = 200;
+
+    private void pickImageAction() {
+        if(isCamera){
+            if(ContextCompat.checkSelfPermission(PersonalInformationSetScreen.this,
+                    Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(PersonalInformationSetScreen.this,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+            {
+                pickCamera();
+            }
+            else{
+                requestCameraPermission();
+            }
+        }
+        else{
+            if(ContextCompat.checkSelfPermission(PersonalInformationSetScreen.this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                pickGalery();
+            }
+            else{
+                requestStoragePermission();
+            }
+
+        }
+    }
+    private void requestStoragePermission() {
+        ActivityCompat.requestPermissions(PersonalInformationSetScreen.this,new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE},
+                STORAGE_REQUEST_PERMISSION_CODE);
+    }
+    private void requestCameraPermission() {
+        String[] permission = {Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        ActivityCompat.requestPermissions(PersonalInformationSetScreen.this,permission,
+                CAMERA_REQUEST_PERMISSION_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == STORAGE_REQUEST_PERMISSION_CODE){
+            if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this,"Permission read storage granted",Toast.LENGTH_LONG).show();
+                pickGalery();
+            }else{
+                Toast.makeText(this,"Permission read storage denied",Toast.LENGTH_LONG).show();
+            }
+        }
+
+        if(requestCode == CAMERA_REQUEST_PERMISSION_CODE){
+            if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED && grantResults[1]==PackageManager.PERMISSION_GRANTED){
+                pickCamera();
+                Toast.makeText(this,"Permission camera granted",Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this,"Permission camera denied",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void pickCamera(){
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        activityResultLauncher.launch(cameraIntent);
+    }
+    private void pickGalery(){
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        activityResultLauncher.launch(intent);
+    }
     private void addResultLauncher() {
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -370,8 +444,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
             @Override
             public void onClick(View view) {
                 isCamera = true;
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                activityResultLauncher.launch(cameraIntent);
+                pickImageAction();
                 customDialogThreeButton.dismiss();
 
             }
@@ -381,9 +454,7 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
             @Override
             public void onClick(View view) {
                 isCamera = false;
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                activityResultLauncher.launch(intent);
+                pickImageAction();
                 customDialogThreeButton.dismiss();
             }
         });

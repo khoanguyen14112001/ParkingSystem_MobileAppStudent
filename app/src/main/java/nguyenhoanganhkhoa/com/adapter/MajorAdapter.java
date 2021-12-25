@@ -41,7 +41,7 @@ public class MajorAdapter extends ArrayAdapter<Major> {
                     String filter = charSequence.toString().toLowerCase().trim();
                     for(Major major : mListMajor)
                     {
-                        if(major.getNameMajor().toLowerCase().contains(filter))
+                        if(major.getNameMajor().toLowerCase().trim().contains(filter))
                         {
                             mListSuggest.add(major);
                         }
