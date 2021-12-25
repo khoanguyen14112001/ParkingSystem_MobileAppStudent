@@ -105,7 +105,7 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
         }
     }
     private Boolean validateConfirmPassword(){
-        String password = edtConfirmPassword.getText().toString();
+        String password = edtConfirmPassword.getText().toString().trim();
 
         if (password.isEmpty()){
             txtErrorConfirmPass.setText(R.string.field_cannot_be_empty);

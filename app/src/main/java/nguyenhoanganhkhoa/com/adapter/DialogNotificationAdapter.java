@@ -75,7 +75,7 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
         holder.txtNotificationContent.setText(notification.getNotificationContent());
         holder.imvThumbNotification.setImageResource(notification.getNotificationThumb());
 
-        changeReadImange(holder);
+        changeReadImage(holder);
         addEvents(holder, position);
 
     }
@@ -108,11 +108,22 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
                     PopupMenu popupMenu = new PopupMenu(wrapper,holder.imbMore);
                     popupMenu.getMenuInflater().inflate(R.menu.menu_edit_notification,popupMenu.getMenu());
 
+                    if(changeReadImage(holder)){
+                        popupMenu.getMenu().findItem(R.id.mnMarkAsRead).setTitle("Mark as unread");
+                    }
+                    else{
+                        popupMenu.getMenu().findItem(R.id.mnMarkAsRead).setTitle("Mark as read");
+                    }
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
                             if(menuItem.getItemId()==R.id.mnMarkAsRead){
-                                changeNotice(holder);
+                                if(menuItem.getTitle()=="Mark as read"){
+                                    changeNotice(holder);
+                                }
+                                else{
+                                    changeNoticeToUnread(holder);
+                                }
                             }
                             if(menuItem.getItemId()==R.id.mnDelete){
                                 deleteItem(position);
@@ -147,7 +158,7 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
         notifyItemRangeChanged(position, mNotification.size());
     }
 
-    private void changeReadImange(DialogNotificationAdapter.ViewHolder holder) {
+    private boolean changeReadImage(DialogNotificationAdapter.ViewHolder holder) {
         Drawable.ConstantState drawable = holder.imvThumbNotification.getDrawable().getConstantState();
         Drawable.ConstantState drawable1 = context.getResources().getDrawable(R.drawable.img_notice).getConstantState();
         Drawable.ConstantState drawable2 = context.getResources().getDrawable(R.drawable.img_nomoney_notice).getConstantState();
@@ -155,6 +166,12 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
         {
             Typeface typeface = context.getResources().getFont(R.font.be_vietnam_light);
             holder.txtNotificationContent.setTypeface(typeface);
+            return true;
+        }
+        else{
+            Typeface typeface = context.getResources().getFont(R.font.be_vietnam_bold);
+            holder.txtNotificationContent.setTypeface(typeface);
+            return false;
         }
     }
 
@@ -173,6 +190,25 @@ public class DialogNotificationAdapter extends RecyclerView.Adapter<DialogNotifi
         if(drawable == drawable2)
         {
             holder.imvThumbNotification.setImageResource(R.drawable.img_nomoney_notice);
+        }
+
+    }
+
+    private void changeNoticeToUnread(DialogNotificationAdapter.ViewHolder holder) {
+        Typeface typeface = context.getResources().getFont(R.font.be_vietnam_bold);
+        holder.txtNotificationContent.setTypeface(typeface);
+
+        Drawable.ConstantState drawable = holder.imvThumbNotification.getDrawable().getConstantState();
+        Drawable.ConstantState drawable1 = context.getResources().getDrawable(R.drawable.img_notice).getConstantState();
+        Drawable.ConstantState drawable2 = context.getResources().getDrawable(R.drawable.img_nomoney_notice).getConstantState();
+
+        if(drawable == drawable1)
+        {
+            holder.imvThumbNotification.setImageResource(R.drawable.img_newnotice);
+        }
+        if(drawable == drawable2)
+        {
+            holder.imvThumbNotification.setImageResource(R.drawable.ic_img_nomoney_notice_new);
         }
 
     }
