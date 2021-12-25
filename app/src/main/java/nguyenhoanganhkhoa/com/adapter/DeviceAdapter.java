@@ -125,7 +125,6 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         private TextView txtNameDevice, txtBrandDevice, txtStatusDevice,
                 txtCurrentlyUsedDevice;
 
-        private Button btnSignOutAllDevices;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
