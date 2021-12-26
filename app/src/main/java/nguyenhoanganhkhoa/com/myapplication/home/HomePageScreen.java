@@ -65,11 +65,9 @@ public class HomePageScreen extends AppCompatActivity {
 
     }
 
-
     @Override
-    protected void onResume() {
-
-        super.onResume();
+    public void onBackPressed() {
+        // Do nothing
     }
 
     private void setUpViewPager() {

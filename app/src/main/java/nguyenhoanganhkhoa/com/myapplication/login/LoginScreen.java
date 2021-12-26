@@ -371,6 +371,9 @@ public class LoginScreen extends AppCompatActivity {
 
     }
 
+    public void onBackPressed() {
+        // Do nothing
+    }
 
     private void validationAccount () {
         username = edtUsername.getText().toString().trim();

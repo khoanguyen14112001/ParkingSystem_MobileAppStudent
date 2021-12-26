@@ -182,6 +182,11 @@ public class ResetPasswordScreen extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
 
-
+        Intent openMainActivity = new Intent(ResetPasswordScreen.this, LoginScreen.class);
+        openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivityIfNeeded(openMainActivity, 0);
+    }
 }

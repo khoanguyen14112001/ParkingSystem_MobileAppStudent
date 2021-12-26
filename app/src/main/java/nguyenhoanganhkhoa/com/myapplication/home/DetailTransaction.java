@@ -114,4 +114,10 @@ public class DetailTransaction extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(DetailTransaction.this,HomePageScreen.class);
+        startActivity(intent);
+    }
 }

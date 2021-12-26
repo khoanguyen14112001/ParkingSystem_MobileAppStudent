@@ -323,38 +323,46 @@ public class EditInfomationScreen extends AppCompatActivity implements CustomSpi
 
 
 
+
     // Sự kiện addEvents() và các sự kiện khác
+    private void comeBackScreen() {
+        isComeback = true;
+        if(!nameIsChanged() && !genderIsChanged() && !birthIsChanged() && !idIsChanged() && !facultyIsChanged() &&
+                !majorIsChanged() && !phoneIsChanged()){
+            Log.d("TAG", "updateDataFireBase: all data is not changed" );
+            finish();
+        }
+        else{
+            CustomDialogTwoButton customDialogTwoButton =
+                    new CustomDialogTwoButton(EditInfomationScreen.this,R.layout.custom_dialog_unsaved_changes);
+            customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    customDialogTwoButton.dismiss();
+                    finish();
+                }
+            });
+            customDialogTwoButton.btnCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    customDialogTwoButton.dismiss();
+                }
+            });
+
+            customDialogTwoButton.show();
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        comeBackScreen();
+    }
+
     private void addEvents() {
 
         imvComebackEditInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                isComeback = true;
-                if(!nameIsChanged() && !genderIsChanged() && !birthIsChanged() && !idIsChanged() && !facultyIsChanged() &&
-                        !majorIsChanged() && !phoneIsChanged()){
-                    Log.d("TAG", "updateDataFireBase: all data is not changed" );
-                    finish();
-                }
-                else{
-                    CustomDialogTwoButton customDialogTwoButton =
-                            new CustomDialogTwoButton(EditInfomationScreen.this,R.layout.custom_dialog_unsaved_changes);
-                    customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            customDialogTwoButton.dismiss();
-                            finish();
-                        }
-                    });
-                    customDialogTwoButton.btnCancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            customDialogTwoButton.dismiss();
-                        }
-                    });
-
-                    customDialogTwoButton.show();
-                }
-
+               comeBackScreen();
             }
         });
         spnFaculty.setSpinnerEventsListener(EditInfomationScreen.this);
