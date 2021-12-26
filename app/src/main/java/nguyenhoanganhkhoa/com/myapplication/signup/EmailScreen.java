@@ -137,6 +137,13 @@ public class EmailScreen extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent openMainActivity = new Intent(EmailScreen.this, LoginScreen.class);
+        openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivityIfNeeded(openMainActivity, 0);
+    }
+
     private void addEvents() {
         imvComebackEmailScreen.setOnClickListener(new View.OnClickListener() {
             @Override

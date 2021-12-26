@@ -31,7 +31,13 @@ public class HelpCenterDetailScreen extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onBackPressed() {
+        if(getFragmentManager().getBackStackEntryCount()>0) {
+            getFragmentManager().popBackStack();
+        }
+        else HelpCenterDetailScreen.super.onBackPressed();
+    }
 
     private void addEvents() {
         imvBack.setOnClickListener(new View.OnClickListener() {

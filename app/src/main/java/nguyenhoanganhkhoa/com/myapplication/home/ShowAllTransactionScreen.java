@@ -69,6 +69,11 @@ public class ShowAllTransactionScreen extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ShowAllTransactionScreen.this,HomePageScreen.class));
+    }
+
     private void addEvents() {
         imvFilterTrans.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -170,6 +170,12 @@ public class CreateNewPasswordScreen extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(CreateNewPasswordScreen.this, ResetPasswordScreen.class);
+        startActivity(intent);
+    }
+
     private void addEvents() {
 
         imvComeback.setOnClickListener(new View.OnClickListener() {

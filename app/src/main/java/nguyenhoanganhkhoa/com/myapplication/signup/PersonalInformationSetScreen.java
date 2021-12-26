@@ -483,6 +483,28 @@ public class PersonalInformationSetScreen extends AppCompatActivity implements C
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        CustomDialogTwoButton customDialogTwoButton =
+                new CustomDialogTwoButton(PersonalInformationSetScreen.this,R.layout.custom_dialog_unsaved_changes);
+        customDialogTwoButton.btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PersonalInformationSetScreen.this, EmailScreen.class);
+                startActivity(intent);
+            }
+        });
+        customDialogTwoButton.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customDialogTwoButton.dismiss();
+            }
+        });
+
+        customDialogTwoButton.show();
+    }
+
     @Override
     public void onPopupWindowClosed(Spinner spinner) {
         String thongdiep = getString(R.string.field_cannot_be_empty);

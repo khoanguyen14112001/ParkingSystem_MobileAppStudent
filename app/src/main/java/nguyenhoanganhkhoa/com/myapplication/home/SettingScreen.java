@@ -133,4 +133,16 @@ public class SettingScreen extends AppCompatActivity {
         }
         bottomSheetDialogLanguage.show();
     }
+
+    @Override
+    public void onBackPressed() {
+        if(AppUtil.SIGNAL_COMEBACK_FOR_SETTING == AppUtil.SIGNAL_TO_HOME){
+            startActivity(new Intent(SettingScreen.this,HomePageScreen.class));
+            AppUtil.SIGNAL_COMEBACK_FOR_SETTING = 0;
+        }
+        else{
+            AppUtil.SIGNAL_COMEBACK_FOR_SETTING = 0;
+            finish();
+        }
+    }
 }
